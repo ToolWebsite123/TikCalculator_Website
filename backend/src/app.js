@@ -95,4 +95,8 @@ app.use((err, _req, res, _next) => {
 });
 
 // Changed from { app } to just app for Vercel compatibility
+<<<<<<< HEAD
 module.exports = app;
+=======
+module.exports = app;
+>>>>>>> c1336a3fdcffd89e3c0893ff0f3c16b6faf9a5dd
