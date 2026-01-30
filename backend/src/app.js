@@ -11,34 +11,60 @@ const tiktokRoutes = require('./routes/tiktokRoutes');
 
 const app = express();
 
-const allowedOrigins = (process.env.FRONTEND_URL || '')
-  .split(',')
-  .map((o) => o.trim())
-  .filter(Boolean);
+// CORS Configuration - UPDATED
+const allowedOrigins = [
+  'https://tik-calculator-website.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://localhost:5000',
+];
+
+// Add environment variable origins
+if (process.env.FRONTEND_URL) {
+  const envOrigins = process.env.FRONTEND_URL.split(',').map(o => o.trim()).filter(Boolean);
+  allowedOrigins.push(...envOrigins);
+}
+
+console.log('Allowed CORS origins:', allowedOrigins);
 
 const corsOptions = {
   origin: (origin, callback) => {
     // Allow requests with no origin (mobile apps, Postman, etc.)
-    if (!origin) return callback(null, true);
-    
-    // Allow configured origins
-    if (allowedOrigins.length && allowedOrigins.includes(origin)) {
+    if (!origin) {
+      console.log('CORS: Allowing request with no origin');
       return callback(null, true);
     }
     
-    // Allow localhost and local network IPs (192.168.x.x, 10.x.x.x, 172.16-31.x.x)
+    // Check if origin is in allowed list
+    if (allowedOrigins.includes(origin)) {
+      console.log('CORS: Allowing origin:', origin);
+      return callback(null, true);
+    }
+    
+    // Allow localhost and local network IPs
     const localPattern = /^https?:\/\/(localhost|127\.0\.0\.1|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2\d|3[01])\.\d+\.\d+)(:\d+)?$/;
     if (localPattern.test(origin)) {
+      console.log('CORS: Allowing local origin:', origin);
       return callback(null, true);
     }
     
+    console.error('CORS: Blocking origin:', origin);
     return callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
+// Apply CORS before other middleware
 app.use(cors(corsOptions));
-app.use(helmet());
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
+
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
 
 // Rate limiting: 100 requests per minute per IP
 app.use(
@@ -94,9 +120,4 @@ app.use((err, _req, res, _next) => {
   return res.status(status).json({ error: err.message || 'Server error' });
 });
 
-// Changed from { app } to just app for Vercel compatibility
-<<<<<<< HEAD
 module.exports = app;
-=======
-module.exports = app;
->>>>>>> c1336a3fdcffd89e3c0893ff0f3c16b6faf9a5dd

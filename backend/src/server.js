@@ -1,7 +1,7 @@
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const { connectDB } = require('./utils/db');
-const app = require('./app');  // ← Changed from const { app }
+const { app } = require('./app');
 
 const maskKey = (key) => {
   if (!key) return 'MISSING';
@@ -26,11 +26,25 @@ if (process.env.VERCEL) {
   const PORT = process.env.PORT || 5001;
 
   const start = async () => {
+    // MongoDB disabled - uncomment below to enable database connection
+    // connectDB().then((connected) => {
+    //   if (connected) {
+    //     console.log('✅ Database ready');
+    //   } else {
+    //     console.log('⚠️  Server starting without database - caching disabled');
+    //   }
+    // }).catch((err) => {
+    //   console.warn('⚠️  Database connection issue:', err.message);
+    //   console.log('⚠️  Server starting without database - caching disabled');
+    // });
+
+    // Start server regardless of database connection
     const server = app.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
       console.log(`📡 API available at http://localhost:${PORT}/api`);
     });
 
+    // Handle server errors
     server.on('error', (err) => {
       if (err.code === 'EADDRINUSE') {
         console.error(`❌ Port ${PORT} is already in use!`);
@@ -45,7 +59,8 @@ if (process.env.VERCEL) {
     });
   };
 
-start().catch((err) => {
-  console.error('❌ Failed to start server:', err);
-  process.exit(1);
-});
+  start().catch((err) => {
+    console.error('❌ Failed to start server:', err);
+    process.exit(1);
+  });
+}
