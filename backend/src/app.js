@@ -39,6 +39,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(helmet());
+
 // Rate limiting: 100 requests per minute per IP
 app.use(
   rateLimit({
@@ -53,6 +54,7 @@ app.use(
     },
   })
 );
+
 app.use(express.json());
 app.use(morgan('dev'));
 
@@ -80,6 +82,7 @@ app.get('/api/v1/health', (_req, res) =>
 app.use('/api/v1/calc', calculatorRoutes);
 app.use('/api/v1/countries', countryRoutes);
 app.use('/api/v1', savedCalcRoutes);
+
 // TikTok route available under both /api and /api/v1 for compatibility
 app.use('/api', tiktokRoutes);
 app.use('/api/v1', tiktokRoutes);
@@ -91,4 +94,5 @@ app.use((err, _req, res, _next) => {
   return res.status(status).json({ error: err.message || 'Server error' });
 });
 
-module.exports = { app };
+// Changed from { app } to just app for Vercel compatibility
+module.exports = app;
