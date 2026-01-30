@@ -1,9 +1,29 @@
 {
   "version": 2,
   "builds": [
-    { "src": "src/server.js", "use": "@vercel/node" }
+    { 
+      "src": "src/server.js", 
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "src/server.js" }
-  ]
+    { 
+      "src": "/(.*)", 
+      "dest": "src/server.js" 
+    }
+  ],
+  "installCommand": "npm install",
+  "buildCommand": "npm run build"
 }
+```
+
+---
+
+## **Expected Output After Fix:**
+```
+✅ Running in Vercel serverless mode
+✅ Build completed
+✅ Deployment ready
