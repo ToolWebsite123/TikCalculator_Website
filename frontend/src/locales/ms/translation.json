@@ -1,0 +1,79 @@
+{
+  "navbar": {
+    "moneyCalculator": "Kalkulator Wang TikTok",
+    "engagementCalculator": "Kalkulator Engagement TikTok",
+    "cpmCalculator": "Kalkulator CPM TikTok",
+    "aboutUs": "Tentang Kami",
+    "language": "Bahasa"
+  },
+  "home": {
+    "badge": "Kalkulator Pendapatan TikTok",
+    "title": "Semak mana-mana pencipta TikTok",
+    "subtitle": "Masukkan nama pengguna TikTok untuk mendapatkan statistik profil langsung dan anggaran pendapatan yang dikuasakan oleh RapidAPI.",
+    "placeholder": "cth. mrbeast",
+    "button": "Dapatkan pendapatan",
+    "buttonCalculate": "Kira pendapatan",
+    "buttonLoading": "Memuatkan profil...",
+    "usernameLabel": "Nama pengguna TikTok:",
+    "error": "Sila masukkan nama pengguna TikTok.",
+    "errorFetch": "Gagal mengambil statistik. Cuba lagi.",
+    "profileDetails": "Butiran profil",
+    "category": "Kategori",
+    "region": "Wilayah",
+    "tiktokId": "ID TikTok",
+    "joined": "Menyertai",
+    "bio": "Bio",
+    "notSpecified": "Tidak dinyatakan"
+  },
+  "footer": {
+    "contactUs": "Hubungi Kami",
+    "quickLinks": "Pautan Pantas",
+    "helpfulLinks": "Pautan Berguna",
+    "information": "Maklumat",
+    "tiktokMoneyCalculator": "Kalkulator Wang TikTok",
+    "tiktokCpmCalculator": "Kalkulator CPM TikTok",
+    "tiktokEngagementCalculator": "Kalkulator Engagement TikTok",
+    "boostEngagement": "Tingkatkan engagement TikTok anda",
+    "privacyPolicy": "Dasar Privasi",
+    "termsAndConditions": "Terma dan Syarat",
+    "copyright": "2022–2025 Tikcalculator.com Hak Cipta Terpelihara"
+  },
+  "engagementCalculator": {
+    "title": "Kalkulator Kadar Engagement TikTok",
+    "subtitle": "Kira kadar engagement TikTok anda sekarang!",
+    "totalLikes": "Jumlah Suka:",
+    "totalVideos": "Jumlah Video:",
+    "totalFollowers": "Jumlah Pengikut:",
+    "calculate": "Kira",
+    "engagementRate": "Kadar Engagement",
+    "placeholderLikes": "cth. 4.2M atau 4200000",
+    "placeholderVideos": "cth. 221",
+    "placeholderFollowers": "cth. 277.8K atau 277800"
+  },
+  "cpmCalculator": {
+    "title": "Kalkulator CPM TikTok",
+    "subtitle": "Gunakan Kalkulator CPM TikTok kami untuk mengetahui kos menjalankan iklan di TikTok dengan mudah.",
+    "totalCost": "Jumlah Kos:",
+    "impressions": "Bilangan Tayangan Iklan:",
+    "industry": "Pilih industri (pilihan)",
+    "country": "Pilih Negara (pilihan)",
+    "channel": "Pilih saluran (pilihan)",
+    "currency": "Mata Wang",
+    "calculate": "Kira",
+    "calculatedCpm": "CPM TERKIRA",
+    "costPerThousand": "Kos untuk 1,000 tayangan",
+    "placeholderCost": "Masukkan kos di sini",
+    "placeholderImpressions": "Masukkan tayangan di sini"
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "email": "tikcalculator@proton.me"
+  },
+  "privacy": {
+    "title": "Dasar Privasi untuk TikCalculator"
+  },
+  "terms": {
+    "title": "Terma dan Syarat"
+  }
+}
+

@@ -1,0 +1,79 @@
+{
+  "navbar": {
+    "moneyCalculator": "TikTok Geldrechner",
+    "engagementCalculator": "TikTok Engagement-Rechner",
+    "cpmCalculator": "TikTok CPM-Rechner",
+    "aboutUs": "Über uns",
+    "language": "Sprache"
+  },
+  "home": {
+    "badge": "TikTok Verdienstrechner",
+    "title": "Jeden TikTok-Creator prüfen",
+    "subtitle": "Geben Sie einen TikTok-Benutzernamen ein, um Live-Profilstatistiken und geschätzte Verdienste abzurufen, unterstützt von RapidAPI.",
+    "placeholder": "z.B. mrbeast",
+    "button": "Verdienste abrufen",
+    "buttonCalculate": "Verdienste berechnen",
+    "buttonLoading": "Profil wird geladen...",
+    "usernameLabel": "TikTok Benutzername:",
+    "error": "Bitte geben Sie einen TikTok-Benutzernamen ein.",
+    "errorFetch": "Statistiken konnten nicht abgerufen werden. Bitte versuchen Sie es erneut.",
+    "profileDetails": "Profildetails",
+    "category": "Kategorie",
+    "region": "Region",
+    "tiktokId": "TikTok-ID",
+    "joined": "Beigetreten",
+    "bio": "Bio",
+    "notSpecified": "Nicht angegeben"
+  },
+  "footer": {
+    "contactUs": "Kontakt",
+    "quickLinks": "Schnelllinks",
+    "helpfulLinks": "Hilfreiche Links",
+    "information": "Informationen",
+    "tiktokMoneyCalculator": "TikTok Geldrechner",
+    "tiktokCpmCalculator": "TikTok CPM-Rechner",
+    "tiktokEngagementCalculator": "TikTok Engagement-Rechner",
+    "boostEngagement": "Steigern Sie Ihr TikTok-Engagement",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "termsAndConditions": "Allgemeine Geschäftsbedingungen",
+    "copyright": "2022–2025 Tikcalculator.com Alle Rechte vorbehalten"
+  },
+  "engagementCalculator": {
+    "title": "TikTok Engagement-Rate-Rechner",
+    "subtitle": "Berechnen Sie jetzt Ihre TikTok-Engagement-Rate!",
+    "totalLikes": "Gesamt-Likes:",
+    "totalVideos": "Gesamt-Videos:",
+    "totalFollowers": "Gesamt-Follower:",
+    "calculate": "Berechnen",
+    "engagementRate": "Engagement-Rate",
+    "placeholderLikes": "z.B. 4,2M oder 4200000",
+    "placeholderVideos": "z.B. 221",
+    "placeholderFollowers": "z.B. 277,8K oder 277800"
+  },
+  "cpmCalculator": {
+    "title": "TikTok CPM-Rechner",
+    "subtitle": "Verwenden Sie unseren TikTok CPM-Rechner, um die Kosten für TikTok-Werbung einfach zu ermitteln.",
+    "totalCost": "Gesamtkosten:",
+    "impressions": "Anzahl der Werbeimpressionen:",
+    "industry": "Branche auswählen (optional)",
+    "country": "Land auswählen (optional)",
+    "channel": "Kanal auswählen (optional)",
+    "currency": "Währung",
+    "calculate": "Berechnen",
+    "calculatedCpm": "BERECHNETER CPM",
+    "costPerThousand": "Kosten pro 1.000 Impressionen",
+    "placeholderCost": "Kosten hier eingeben",
+    "placeholderImpressions": "Werbimpressionen hier eingeben"
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "email": "tikcalculator@proton.me"
+  },
+  "privacy": {
+    "title": "Datenschutzrichtlinie für TikCalculator"
+  },
+  "terms": {
+    "title": "Allgemeine Geschäftsbedingungen"
+  }
+}
+

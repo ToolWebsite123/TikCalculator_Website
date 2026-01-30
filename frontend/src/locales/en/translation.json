@@ -1,0 +1,77 @@
+{
+  "navbar": {
+    "moneyCalculator": "TikTok Money Calculator",
+    "engagementCalculator": "TikTok Engagement Calculator",
+    "cpmCalculator": "TikTok CPM Calculator",
+    "aboutUs": "About Us",
+    "language": "Language"
+  },
+  "home": {
+    "title": "TikTok Money Calculator",
+    "subtitle": "Free TikTok earnings estimator. Get profile-based earnings estimates for any TikTok account in seconds.",
+    "placeholder": "e.g. mrbeast",
+    "button": "Get Estimate",
+    "buttonCalculate": "Get Estimate",
+    "buttonLoading": "Analyzing profile...",
+    "usernameLabel": "Enter TikTok Username",
+    "error": "Please enter a valid TikTok username.",
+    "errorFetch": "Unable to fetch profile. Please check the username and try again.",
+    "profileDetails": "Profile details",
+    "category": "Category",
+    "region": "Region",
+    "tiktokId": "TikTok ID",
+    "joined": "Joined",
+    "bio": "Bio",
+    "notSpecified": "Not specified"
+  },
+  "footer": {
+    "contactUs": "Contact Us",
+    "quickLinks": "Quick Links",
+    "helpfulLinks": "Helpful Links",
+    "information": "Information",
+    "tiktokMoneyCalculator": "TikTok Money Calculator",
+    "tiktokCpmCalculator": "TikTok CPM Calculator",
+    "tiktokEngagementCalculator": "TikTok Engagement Calculator",
+    "boostEngagement": "Boost your TikTok engagement",
+    "privacyPolicy": "Privacy Policy",
+    "termsAndConditions": "Terms and Conditions",
+    "copyright": "2022–2026 Tikcalculator.com All Rights Reserved"
+  },
+  "engagementCalculator": {
+    "title": "TikTok Engagement Rate Calculator",
+    "subtitle": "Calculate your TikTok engagement rate instantly. Free engagement calculator for creators and brands.",
+    "totalLikes": "Total Likes:",
+    "totalVideos": "Total Videos:",
+    "totalFollowers": "Total Followers:",
+    "calculate": "Calculate",
+    "engagementRate": "Engagement Rate",
+    "placeholderLikes": "e.g., 4.2M or 4200000",
+    "placeholderVideos": "e.g., 221",
+    "placeholderFollowers": "e.g., 277.8K or 277800"
+  },
+  "cpmCalculator": {
+    "title": "TikTok CPM Calculator",
+    "subtitle": "Calculate the cost per 1,000 impressions for TikTok ads. Free CPM calculator for advertisers.",
+    "totalCost": "Total Ad Cost:",
+    "impressions": "Number of Impressions:",
+    "industry": "Select Industry (optional)",
+    "country": "Select Country (optional)",
+    "channel": "Select Channel (optional)",
+    "currency": "Currency",
+    "calculate": "Calculate CPM",
+    "calculatedCpm": "ESTIMATED CPM",
+    "costPerThousand": "Cost per 1,000 impressions",
+    "placeholderCost": "Enter total cost",
+    "placeholderImpressions": "Enter impressions"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "email": "tikcalculator@proton.me"
+  },
+  "privacy": {
+    "title": "Privacy Policy"
+  },
+  "terms": {
+    "title": "Terms and Conditions"
+  }
+}
