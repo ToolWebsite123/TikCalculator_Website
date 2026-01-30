@@ -3,7 +3,7 @@ require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const { connectDB } = require('./utils/db');
 const { app } = require('./app');
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
 const maskKey = (key) => {
   if (!key) return 'MISSING';
