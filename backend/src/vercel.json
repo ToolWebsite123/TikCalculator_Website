@@ -10,6 +10,11 @@
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "src/server.js" }
-  ]
+    { 
+      "src": "/(.*)", 
+      "dest": "src/server.js" 
+    }
+  ],
+  "installCommand": "npm install",
+  "buildCommand": "npm run build"
 }
