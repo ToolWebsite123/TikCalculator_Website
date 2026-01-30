@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// API base configuration
+// API base configuration - FIXED: Use VITE_API_BASE_URL instead of VITE_API_URL
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000',
   timeout: 30000, // 30 seconds
   headers: {
     'Content-Type': 'application/json',
@@ -12,6 +12,7 @@ const api = axios.create({
 // Request interceptor
 api.interceptors.request.use(
   (config) => {
+    console.log('[API] Request:', config.method?.toUpperCase(), config.url);
     return config;
   },
   (error) => {
@@ -62,7 +63,7 @@ api.interceptors.response.use(
 export const fetchTikTokProfile = async (username, params = {}) => {
   try {
     const cleanUsername = username.replace('@', '');
-    const response = await api.get(`/tiktok/user/${encodeURIComponent(cleanUsername)}`, { 
+    const response = await api.get(`/api/tiktok/user/${encodeURIComponent(cleanUsername)}`, { 
       params 
     });
     
@@ -94,7 +95,7 @@ export const fetchTikTokProfile = async (username, params = {}) => {
  */
 export const calculateEarningsFromViews = async (views, engagementRate = 0, followers = 0) => {
   try {
-    const response = await api.get('/tiktok/earnings', {
+    const response = await api.get('/api/tiktok/earnings', {
       params: {
         views: views,
         engagementRate: engagementRate || undefined,
@@ -130,7 +131,7 @@ export const calculateEarningsFromViews = async (views, engagementRate = 0, foll
 export const fetchTikTokEarnings = async (username, params = {}) => {
   try {
     const cleanUsername = username.replace('@', '');
-    const url = `/tiktok/user/${encodeURIComponent(cleanUsername)}/earnings`;
+    const url = `/api/tiktok/user/${encodeURIComponent(cleanUsername)}/earnings`;
     console.log('[API] ========================================');
     console.log('[API] Calling earnings endpoint:', url);
     console.log('[API] Params:', params);
@@ -193,7 +194,7 @@ export const fetchTikTokEarnings = async (username, params = {}) => {
 export const clearTikTokCache = async (username) => {
   try {
     const cleanUsername = username.replace('@', '');
-    const response = await api.delete(`/tiktok/cache/${encodeURIComponent(cleanUsername)}`);
+    const response = await api.delete(`/api/tiktok/cache/${encodeURIComponent(cleanUsername)}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -206,7 +207,7 @@ export const clearTikTokCache = async (username) => {
  */
 export const checkHealth = async () => {
   try {
-    const response = await api.get('/tiktok/health');
+    const response = await api.get('/api/tiktok/health');
     return response.data;
   } catch (error) {
     throw error;
@@ -219,7 +220,7 @@ export const checkHealth = async () => {
  */
 export const fetchCountries = async () => {
   try {
-    const response = await api.get('/countries');
+    const response = await api.get('/api/v1/countries');
     return response.data;
   } catch (error) {
     throw error;
@@ -233,7 +234,7 @@ export const fetchCountries = async () => {
  */
 export const saveCalculation = async (payload) => {
   try {
-    const response = await api.post('/save', payload);
+    const response = await api.post('/api/v1/save', payload);
     return response.data;
   } catch (error) {
     throw error;
@@ -247,7 +248,7 @@ export const saveCalculation = async (payload) => {
  */
 export const fetchSaved = async (id) => {
   try {
-    const response = await api.get(`/saved/${id}`);
+    const response = await api.get(`/api/v1/saved/${id}`);
     return response.data;
   } catch (error) {
     throw error;
