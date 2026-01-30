@@ -14,24 +14,37 @@ console.log('ENV → SCRAPER_USER_AGENT:', maskKey(process.env.SCRAPER_USER_AGEN
 console.log('ENV → FRONTEND_URL:', process.env.FRONTEND_URL || 'MISSING');
 console.log('ENV → PROXY_URL:', process.env.PROXY_URL ? 'SET' : 'NOT SET');
 console.log('TikTok Scraper: Universal HTML scraper with Puppeteer fallback');
+console.log('ℹ️  MongoDB disabled - running without database');
 
-// For Vercel Serverless
+// Check if running on Vercel
 if (process.env.VERCEL) {
-  console.log('ℹ️  Running in Vercel serverless environment');
-  console.log('ℹ️  MongoDB disabled - running without database');
+  // Vercel serverless mode - just export the app
+  console.log('✅ Running in Vercel serverless mode');
   module.exports = app;
 } else {
-  // For local development
+  // Local development mode - start server normally
   const PORT = process.env.PORT || 5001;
-  
-  const start = async () => {
-    console.log('ℹ️  MongoDB disabled - running without database');
 
+  const start = async () => {
+    // MongoDB disabled - uncomment below to enable database connection
+    // connectDB().then((connected) => {
+    //   if (connected) {
+    //     console.log('✅ Database ready');
+    //   } else {
+    //     console.log('⚠️  Server starting without database - caching disabled');
+    //   }
+    // }).catch((err) => {
+    //   console.warn('⚠️  Database connection issue:', err.message);
+    //   console.log('⚠️  Server starting without database - caching disabled');
+    // });
+
+    // Start server regardless of database connection
     const server = app.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
       console.log(`📡 API available at http://localhost:${PORT}/api`);
     });
 
+    // Handle server errors
     server.on('error', (err) => {
       if (err.code === 'EADDRINUSE') {
         console.error(`❌ Port ${PORT} is already in use!`);
