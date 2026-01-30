@@ -9,6 +9,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
+    "build": "echo 'Build complete - No build step needed'",
+    "vercel-build": "echo 'Vercel build complete'",
     "seed": "node src/seed.js",
     "test": "jest"
   },
