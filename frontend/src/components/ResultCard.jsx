@@ -89,17 +89,17 @@ const ResultCard = ({ result, shareId }) => {
         </div>
 
         <div className="space-y-2 rounded-2xl bg-white px-4 py-6 text-center shadow-md ring-1 ring-gray-100">
-          <p className="text-sm font-medium text-slate-600">Estimated Earnings per Video</p>
-          <p className="text-5xl font-bold text-gray-900 md:text-6xl">{perVideoDisplay}</p>
+          <p className="text-sm font-medium text-slate-600">Estimated TikTok Earnings</p>
+          <p className="text-5xl font-bold text-gray-900 md:text-6xl">{monthlyDisplay}</p>
           <p className="text-xs text-slate-500">
-            Estimated net per video based on profile stats
+            Total estimated earnings based on profile stats
           </p>
         </div>
 
         <div className="rounded-2xl bg-white px-4 py-4 text-center shadow-sm ring-1 ring-gray-100">
-          <p className="text-sm font-medium text-slate-600">Estimated Monthly</p>
-          <p className="text-2xl font-semibold text-slate-900">{monthlyDisplay}</p>
-          <p className="text-xs text-slate-500">estimated per month</p>
+          <p className="text-sm font-medium text-slate-600">Estimated Per Video</p>
+          <p className="text-2xl font-semibold text-slate-900">{perVideoDisplay}</p>
+          <p className="text-xs text-slate-500">estimated per video</p>
         </div>
 
         <div className="grid gap-3 rounded-2xl bg-white p-4 text-sm text-gray-700 ring-1 ring-gray-100 md:grid-cols-3">

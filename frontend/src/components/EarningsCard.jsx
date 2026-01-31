@@ -85,7 +85,7 @@ const EarningsCard = ({ earningsData, isLoading = false }) => {
           />
         </svg>
         <p className="text-xs font-medium text-gray-600 uppercase tracking-wide sm:text-sm">
-          Estimated Earnings per Video
+          Estimated TikTok Earnings
         </p>
       </div>
 
@@ -93,7 +93,7 @@ const EarningsCard = ({ earningsData, isLoading = false }) => {
       <div className="text-center mb-4 sm:mb-5">
         <p 
           className="text-3xl font-bold text-gray-900 tracking-tight sm:text-4xl md:text-5xl"
-          aria-label={`Estimated earnings: ${formatCurrency(earnings)} per video`}
+          aria-label={`Estimated TikTok earnings: ${formatCurrency(earnings)}`}
         >
           {formatCurrency(earnings)}
         </p>
@@ -113,7 +113,7 @@ const EarningsCard = ({ earningsData, isLoading = false }) => {
 
       {/* Helper Text */}
       <p className="text-[10px] text-center text-gray-500 mb-3 sm:text-xs">
-        Earnings calculated using profile statistics and industry-standard CPM rates
+        Total estimated earnings calculated using profile statistics and industry-standard CPM rates
       </p>
 
       {/* Disclaimer */}

@@ -698,21 +698,34 @@ const getTikTokProfile = async (req, res) => {
       // CRITICAL: calculateEarnings never returns null, but ensure we have valid data
       if (calculated && calculated.earnings !== undefined) {
         analytics = calculated.analytics;
-        // Return earnings in TikCalculator.com format (same as earnings endpoint)
+        // Calculate monthly earnings (total earnings per month)
+        const perVideoEarning = calculated.earningPerVideo || calculated.earnings;
+        const monthlyTotal = perVideoEarning * 20; // 20 posts per month average
+        const monthlyMin = (calculated.earningsMin || perVideoEarning) * 20;
+        const monthlyMax = (calculated.earningsMax || perVideoEarning) * 20;
+        
+        // Return earnings in TikCalculator.com format - TOTAL EARNINGS (monthly) as primary
         earnings = {
-          earnings: calculated.earnings,
-          earningPerVideo: calculated.earningPerVideo || calculated.earnings,
-          estimatedEarnings: calculated.earnings,
-          perVideoNet: calculated.earningPerVideo || calculated.earnings,
-          perVideo: calculated.earningPerVideo || calculated.earnings,
-          monthly: (calculated.earningPerVideo || calculated.earnings) * 20,
-          monthlyEarning: (calculated.earningPerVideo || calculated.earnings) * 20,
-          yearly: (calculated.earningPerVideo || calculated.earnings) * 240,
+          // Primary earnings field - NOW SHOWS TOTAL (monthly) instead of per video
+          earnings: monthlyTotal,
+          estimatedEarnings: monthlyTotal,
+          // Per video earnings (kept for reference)
+          earningPerVideo: perVideoEarning,
+          perVideoNet: perVideoEarning,
+          perVideo: perVideoEarning,
+          // Monthly/Total earnings
+          monthly: monthlyTotal,
+          monthlyEarning: monthlyTotal,
+          yearly: perVideoEarning * 240,
+          // Range for total earnings
+          earningsMin: monthlyMin,
+          earningsMax: monthlyMax,
+          // Per video range (for reference)
+          perVideoMin: calculated.earningsMin,
+          perVideoMax: calculated.earningsMax,
           cpm: calculated.cpm,
           cpmMin: calculated.cpmMin,
           cpmMax: calculated.cpmMax,
-          earningsMin: calculated.earningsMin,
-          earningsMax: calculated.earningsMax,
           platformFactor: calculated.platformFactor,
         };
 
@@ -1381,31 +1394,43 @@ const getTikTokEarnings = async (req, res) => {
       });
     }
 
+    // Calculate monthly total earnings (primary display value)
+    const monthlyTotal = safeEarningPerVideo * POSTS_PER_MONTH;
+    const monthlyMin = safeEarningsMin * POSTS_PER_MONTH;
+    const monthlyMax = safeEarningsMax * POSTS_PER_MONTH;
+    
     // Build response with TikCalculator.com structure - UNIFIED FORMAT
     // All fields at root level for easy frontend access
+    // PRIMARY EARNINGS NOW SHOWS TOTAL (monthly) instead of per video
     const response = {
       success: true,
-      // CRITICAL: All earnings fields at root level (TikCalculator.com format)
+      // CRITICAL: Primary earnings fields now show TOTAL (monthly) earnings
+      estimatedEarnings: monthlyTotal,
+      earnings: monthlyTotal, // Primary field - TOTAL monthly earnings
+      earningsMin: monthlyMin,
+      earningsMax: monthlyMax,
+      // Per video earnings (kept for reference)
+      earningPerVideo: safeEarningPerVideo,
+      perVideoNet: safeEarningPerVideo,
+      perVideoMin: safeEarningsMin,
+      perVideoMax: safeEarningsMax,
+      // Additional fields
       avgViews: safeAvgViews,
       engagementRate: safeEngagementRate,
       cpm: safeCPM,
       cpmMin: safeCpmMin,
       cpmMax: safeCpmMax,
       platformFactor: finalPlatformFactor,
-      estimatedEarnings: safeEarnings,
-      earningPerVideo: safeEarningPerVideo,
-      earnings: safeEarnings, // Alias for estimatedEarnings
-      perVideoNet: safeEarningPerVideo, // Alias for earningPerVideo
-      earningsMin: safeEarningsMin,
-      earningsMax: safeEarningsMax,
+      // Monthly/Total earnings (aliases for compatibility)
+      monthlyEarning: monthlyTotal,
+      monthlyEarnings: monthlyTotal,
+      yearly: safeEarningPerVideo * 240,
       // Additional fields for compatibility
       username: cleanUsername,
       followers: profile.followers || 0,
       likes: profile.likes || 0,
       following: profile.following || 0,
       videos: profile.videos || 0,
-      monthlyEarning: safeEarningPerVideo * POSTS_PER_MONTH,
-      monthlyEarnings: safeEarningPerVideo * POSTS_PER_MONTH,
       source: source,
       raw: {
         videoCount: latestVideos.length,
@@ -1577,13 +1602,29 @@ const calculateEarningsFromViews = async (req, res) => {
     const round = (val, places = 2) =>
       Math.round((Number(val) + Number.EPSILON) * 10 ** places) / 10 ** places;
 
+    // Calculate monthly total earnings (primary display value)
+    const POSTS_PER_MONTH = 20;
+    const monthlyTotal = round(earningPerVideo * POSTS_PER_MONTH, 2);
+    const monthlyMin = round(earningsMin * POSTS_PER_MONTH, 2);
+    const monthlyMax = round(earningsMax * POSTS_PER_MONTH, 2);
+
     const response = {
       success: true,
-      earnings: round(estimatedEarnings, 2),
+      // Primary earnings - NOW SHOWS TOTAL (monthly) instead of per video
+      earnings: monthlyTotal,
+      estimatedEarnings: monthlyTotal,
+      earningsMin: monthlyMin,
+      earningsMax: monthlyMax,
+      // Per video earnings (kept for reference)
       earningPerVideo: round(earningPerVideo, 2),
-      estimatedEarnings: round(estimatedEarnings, 2),
-      earningsMin: round(earningsMin, 2),
-      earningsMax: round(earningsMax, 2),
+      perVideoNet: round(earningPerVideo, 2),
+      perVideoMin: round(earningsMin, 2),
+      perVideoMax: round(earningsMax, 2),
+      // Monthly/Total earnings (aliases)
+      monthlyEarning: monthlyTotal,
+      monthlyEarnings: monthlyTotal,
+      yearly: round(earningPerVideo * 240, 2),
+      // Other fields
       avgViews: round(avgViews, 2),
       engagementRate: round(finalEngagementRate, 2),
       cpm: round(cpmRange.used, 2),
