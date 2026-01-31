@@ -292,16 +292,6 @@ const InfoSection = () => {
           </div>
         </div>
       </section>
-
-      {/* Final Disclaimer */}
-      <section className="mb-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
-        <p className="text-xs text-gray-500 leading-relaxed sm:text-sm">
-          <strong>Important:</strong> This TikTok money calculator provides estimates only and is 
-          not affiliated with TikTok. Actual earnings depend on Creator Fund eligibility, content 
-          performance, audience demographics, and other factors. Use these estimates for 
-          informational purposes only.
-        </p>
-      </section>
     </article>
   );
 };

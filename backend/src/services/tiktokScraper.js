@@ -77,7 +77,7 @@ const safeJSONParse = (jsonString) => {
 const extractJSONFromHTML = (html) => {
     if (!html || typeof html !== 'string') return null;
 
-    console.log('[Scraper] Extracting JSON from HTML with multiple strategies...');
+    // Silent mode
 
     // Strategy 1: <script id="SIGI_STATE" type="application/json"> (MOST COMMON)
     try {
@@ -93,13 +93,13 @@ const extractJSONFromHTML = (html) => {
             if (match && match[1]) {
                 const parsed = safeJSONParse(match[1].trim());
                 if (parsed && (parsed.UserModule || parsed.UserPage || parsed['__DEFAULT_SCOPE__'])) {
-                    console.log('[Scraper] ✓ Found SIGI_STATE script tag');
+                    // Found data
                     return parsed;
                 }
             }
         }
     } catch (err) {
-        console.log('[Scraper] Strategy 1 (SIGI_STATE script) failed');
+        // Strategy failed
     }
 
     // Strategy 2: window['SIGI_STATE'] or window.SIGI_STATE (STRONG REGEX)
@@ -116,13 +116,13 @@ const extractJSONFromHTML = (html) => {
             if (match && match[1]) {
                 const parsed = safeJSONParse(match[1].trim());
                 if (parsed && (parsed.UserModule || parsed.UserPage || parsed['__DEFAULT_SCOPE__'])) {
-                    console.log('[Scraper] ✓ Found window.SIGI_STATE');
+                    // Found data
                     return parsed;
                 }
             }
         }
     } catch (err) {
-        console.log('[Scraper] Strategy 2 (window.SIGI_STATE) failed');
+        // Strategy failed
     }
 
     // Strategy 3: __NEXT_DATA__ (NEXT.JS)
@@ -137,13 +137,12 @@ const extractJSONFromHTML = (html) => {
             if (match && match[1]) {
                 const parsed = safeJSONParse(match[1].trim());
                 if (parsed && parsed.props && parsed.props.pageProps) {
-                    console.log('[Scraper] ✓ Found __NEXT_DATA__');
                     return parsed;
                 }
             }
         }
     } catch (err) {
-        console.log('[Scraper] Strategy 3 (__NEXT_DATA__) failed');
+        // Strategy failed
     }
 
     // Strategy 4: window.__UNIVERSAL_DATA__ or __UNIVERSAL_DATA__
@@ -158,13 +157,12 @@ const extractJSONFromHTML = (html) => {
             if (match && match[1]) {
                 const parsed = safeJSONParse(match[1].trim());
                 if (parsed && (parsed.UserModule || parsed.UserPage || parsed.userInfo)) {
-                    console.log('[Scraper] ✓ Found __UNIVERSAL_DATA__');
                     return parsed;
                 }
             }
         }
     } catch (err) {
-        console.log('[Scraper] Strategy 4 (__UNIVERSAL_DATA__) failed');
+        // Strategy failed
     }
 
     // Strategy 5: window.__INIT_PROPS__
@@ -179,13 +177,12 @@ const extractJSONFromHTML = (html) => {
             if (match && match[1]) {
                 const parsed = safeJSONParse(match[1].trim());
                 if (parsed && (parsed.UserModule || parsed.UserPage || parsed.userInfo)) {
-                    console.log('[Scraper] ✓ Found __INIT_PROPS__');
                     return parsed;
                 }
             }
         }
     } catch (err) {
-        console.log('[Scraper] Strategy 5 (__INIT_PROPS__) failed');
+        // Strategy failed
     }
 
     // Strategy 6: Any <script type="application/json"> containing UserModule/UserPage
@@ -197,14 +194,13 @@ const extractJSONFromHTML = (html) => {
                 if (contentMatch && contentMatch[1]) {
                     const parsed = safeJSONParse(contentMatch[1].trim());
                     if (parsed && (parsed.UserModule || parsed.UserPage || parsed.userInfo || parsed.props)) {
-                        console.log('[Scraper] ✓ Found application/json script tag');
                         return parsed;
                     }
                 }
             }
         }
     } catch (err) {
-        console.log('[Scraper] Strategy 6 (application/json) failed');
+        // Strategy failed
     }
 
     // Strategy 7: Find any script tag containing UserModule or UserPage (BROAD SEARCH)
@@ -225,7 +221,6 @@ const extractJSONFromHTML = (html) => {
                         if (jsonMatch && jsonMatch[1]) {
                             const parsed = safeJSONParse(jsonMatch[1]);
                             if (parsed && (parsed.UserModule || parsed.UserPage || parsed.userInfo)) {
-                                console.log('[Scraper] ✓ Found UserModule/UserPage in script');
                                 return parsed;
                             }
                         }
@@ -234,7 +229,7 @@ const extractJSONFromHTML = (html) => {
             }
         }
     } catch (err) {
-        console.log('[Scraper] Strategy 7 (UserModule/UserPage search) failed');
+        // Strategy failed
     }
 
     // Strategy 8: Direct JSON object search (LAST RESORT)
@@ -249,16 +244,15 @@ const extractJSONFromHTML = (html) => {
             if (match && match[1]) {
                 const parsed = safeJSONParse(match[1]);
                 if (parsed && (parsed.UserModule || parsed.UserPage)) {
-                    console.log('[Scraper] ✓ Found direct JSON object');
                     return parsed;
                 }
             }
         }
     } catch (err) {
-        console.log('[Scraper] Strategy 8 (direct JSON) failed');
+        // Strategy failed
     }
 
-    console.log('[Scraper] ✗ All JSON extraction strategies failed');
+    // All strategies failed - trying direct extraction
     return null;
 };
 
@@ -268,7 +262,7 @@ const extractJSONFromHTML = (html) => {
 const extractDirectValues = (html, username) => {
     if (!html || typeof html !== 'string') return null;
 
-    console.log('[Scraper] Trying direct value extraction from script tags...');
+    // Trying direct extraction
 
     const result = {
         username: username,
@@ -391,7 +385,7 @@ const extractDirectValues = (html, username) => {
             const match = html.match(pattern);
             if (match && match[1]) {
                 result.avatar = fixUrl(match[1]);
-                console.log(`[Scraper] ✓ Extracted avatar URL (fixed): "${result.avatar.substring(0, 80)}${result.avatar.length > 80 ? '...' : ''}"`);
+                // Avatar extracted
                 break;
             }
         }
@@ -475,8 +469,6 @@ const extractDirectValues = (html, username) => {
                                 !extracted.match(/^\d+$/) &&
                                 !extracted.match(/^signature\s*\(/i)) {
                                 foundBio = extracted;
-                                console.log(`[Scraper] ✓ Found bio via direct extraction: "${foundBio.substring(0, 50)}${foundBio.length > 50 ? '...' : ''}"`);
-                                console.log("BIO FOUND:", foundBio);
                                 break;
                             }
                         }
@@ -495,11 +487,11 @@ const extractDirectValues = (html, username) => {
 
         // Check if we got at least some data
         if (result.followers > 0 || result.likes > 0 || result.tiktokId || result.avatar) {
-            console.log('[Scraper] ✓ Extracted direct values from script tags');
+            // Direct extraction successful
             return result;
         }
     } catch (err) {
-        console.log('[Scraper] Direct value extraction failed:', err.message);
+        // Direct extraction failed
     }
 
     return null;
@@ -599,7 +591,6 @@ const extractStats = (data, userId = null) => {
  */
 const extractLatestVideos = (data) => {
     if (!data || typeof data !== 'object') {
-        console.log('[VideoExtract] No data object provided');
         return [];
     }
 
@@ -611,31 +602,24 @@ const extractLatestVideos = (data) => {
         const itemModule = data.ItemModule;
         if (Array.isArray(itemModule)) {
             videoItems = itemModule;
-            console.log(`[VideoExtract] Found ${videoItems.length} videos in ItemModule (array)`);
         } else {
             // Convert object to array
             videoItems = Object.values(itemModule).filter(item => item && (item.id || item.aweme_id || item.video));
-            console.log(`[VideoExtract] Found ${videoItems.length} videos in ItemModule (object)`);
         }
     }
     // Try UserPage.itemList
     else if (data.UserPage?.itemList && Array.isArray(data.UserPage.itemList)) {
         videoItems = data.UserPage.itemList;
-        console.log(`[VideoExtract] Found ${videoItems.length} videos in UserPage.itemList`);
     }
     // Try props.pageProps.itemList
     else if (data.props?.pageProps?.itemList && Array.isArray(data.props.pageProps.itemList)) {
         videoItems = data.props.pageProps.itemList;
-        console.log(`[VideoExtract] Found ${videoItems.length} videos in props.pageProps.itemList`);
     }
     // Try __DEFAULT_SCOPE__
     else if (data['__DEFAULT_SCOPE__']?.['webapp.user-detail']?.itemList) {
         videoItems = Array.isArray(data['__DEFAULT_SCOPE__']['webapp.user-detail'].itemList)
             ? data['__DEFAULT_SCOPE__']['webapp.user-detail'].itemList
             : Object.values(data['__DEFAULT_SCOPE__']['webapp.user-detail'].itemList || {});
-        console.log(`[VideoExtract] Found ${videoItems.length} videos in __DEFAULT_SCOPE__`);
-    } else {
-        console.log('[VideoExtract] No video data found in any known location');
     }
 
     // Map videos to standard format
@@ -878,23 +862,24 @@ const parseUserData = (data, username) => {
  * Scrape using fetch with retry logic
  */
 const scrapeWithFetch = async (username, retryCount = 0) => {
-    const MAX_RETRIES = 3;
+    const MAX_RETRIES = 2; // Reduced to 2 for faster response (4 second target)
     const cleanUsername = username.trim().replace('@', '');
     const url = `https://www.tiktok.com/@${cleanUsername}`;
     const userAgent = getNextUserAgent();
     const headers = buildBrowserHeaders(userAgent, url);
 
     if (retryCount > 0) {
-        await new Promise(resolve => setTimeout(resolve, 300 + Math.random() * 700));
+        // Reduced delay for faster response (4 second target)
+        await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 200));
     }
 
-    console.log(`[Scraper] Fetching @${cleanUsername} (attempt ${retryCount + 1}/${MAX_RETRIES})`);
+    // Silent mode - only log errors
 
     try {
         const response = await fetch(url, {
             headers,
             redirect: 'follow',
-            signal: AbortSignal.timeout(30000),
+            signal: AbortSignal.timeout(5000), // Reduced to 5 seconds for faster response
         });
 
         if (response.status === 429 && retryCount < MAX_RETRIES) {
@@ -1016,17 +1001,17 @@ const fetchFromTikTokAPI = async (username) => {
     headers['Sec-Fetch-Mode'] = 'cors';
     headers['Sec-Fetch-Site'] = 'same-origin';
 
-    console.log(`[API] Fetching from TikTok API: ${apiUrl}`);
+    // Fetching from API
 
     try {
         const response = await fetch(apiUrl, {
             headers,
             redirect: 'follow',
-            signal: AbortSignal.timeout(15000), // 15 second timeout
+            signal: AbortSignal.timeout(4000), // 4 second timeout for fast response
         });
 
         if (!response.ok) {
-            console.log(`[API] API returned status ${response.status}`);
+            // API response received
             return null;
         }
 
@@ -1034,7 +1019,7 @@ const fetchFromTikTokAPI = async (username) => {
 
         // Check if API returned valid data
         if (!data || typeof data !== 'object') {
-            console.log(`[API] Invalid API response structure`);
+            // Invalid API response
             return null;
         }
 
@@ -1045,11 +1030,11 @@ const fetchFromTikTokAPI = async (username) => {
         const stats = userInfo.stats || userInfo.statistics || user.stats || user.statistics || {};
 
         if (!user || !user.uniqueId) {
-            console.log(`[API] User data not found in API response`);
+            // User data not found
             return null;
         }
 
-        console.log(`[API] ✓ Successfully fetched from TikTok API`);
+        // API fetch successful
 
         // Extract bio (signature) - try ALL possible paths comprehensively
         let bio = '';
@@ -1154,7 +1139,6 @@ const fetchFromTikTokAPI = async (username) => {
             secUid: user.secUid || user.sec_uid || '',
         };
     } catch (err) {
-        console.log(`[API] API fetch failed: ${err.message}`);
         return null;
     }
 };
@@ -1173,24 +1157,18 @@ const scrapeTikTokProfile = async (username) => {
     // STEP 1: Try TikTok's internal API first (PRIMARY METHOD)
     let result = null;
     try {
-        console.log(`[Scraper] Step 1: Attempting TikTok API for @${cleanUsername}`);
         result = await fetchFromTikTokAPI(cleanUsername);
         
-        if (result && (result.followers > 0 || result.likes > 0 || result.tiktokId)) {
-            console.log(`[Scraper] ✓ TikTok API success - got bio: "${result.bio}"`);
-        } else {
-            console.log(`[Scraper] TikTok API returned incomplete data, trying HTML fallback...`);
+        if (!result || !(result.followers > 0 || result.likes > 0 || result.tiktokId)) {
             result = null;
         }
     } catch (apiErr) {
-        console.log(`[Scraper] TikTok API failed: ${apiErr.message}, trying HTML fallback...`);
         result = null;
     }
 
     // STEP 2: Fallback to HTML scraping if API failed or returned incomplete data
     if (!result || (!result.bio && (result.followers === 0 && result.likes === 0))) {
         try {
-            console.log(`[Scraper] Step 2: Attempting HTML scrape for @${cleanUsername}`);
             const htmlResult = await scrapeWithFetch(cleanUsername);
             
             // Fix avatar URL encoding in htmlResult
@@ -1296,17 +1274,6 @@ const scrapeTikTokProfile = async (username) => {
     // Extract videos from result if available
     const latestVideos = Array.isArray(result.latestVideos) ? result.latestVideos : [];
 
-    console.log(`[Scraper] ✓ Successfully scraped @${cleanUsername}:`, {
-        username: result.username,
-        followers: result.followers,
-        following: result.following,
-        likes: result.likes,
-        videos: result.videos,
-        videoCount: latestVideos.length,
-        tiktokId: result.tiktokId || 'N/A',
-        hasAvatar: !!result.avatar,
-    });
-
     // Fix URL encoding - decode escaped characters in avatar URL
     const fixUrl = (url) => {
         if (!url || typeof url !== 'string') return '';
@@ -1350,16 +1317,9 @@ const scrapeTikTokProfile = async (username) => {
         finalBio.length < 5 ||
         finalBio.match(/^%[sd]/)) {
         finalBio = '';
-        console.log(`[Scraper] Filtered out invalid/system bio message`);
     }
     
     console.log(`[Scraper] Final bio for @${cleanUsername}: "${finalBio.substring(0, 50)}${finalBio.length > 50 ? '...' : ''}"`);
-    console.log(`[Scraper] Fixed avatar URL: "${fixedAvatar.substring(0, 80)}${fixedAvatar.length > 80 ? '...' : ''}"`);
-    
-    if (finalBio) {
-        console.log("BIO FOUND:", finalBio);
-    }
-
     // Return in required format
     return {
         success: true,
@@ -1437,20 +1397,14 @@ const fetchVideosFromTikWM = async (username, count = 30) => {
     const cleanUsername = username.trim().replace('@', '');
     const url = `https://www.tikwm.com/api/user/posts?unique_id=${encodeURIComponent(cleanUsername)}&count=${count}`;
 
-    console.log(`[TikWM] ========================================`);
-    console.log(`[TikWM] Fetching videos for @${cleanUsername} from TikWM API...`);
-    console.log(`[TikWM] URL: ${url}`);
-
     try {
         const response = await fetch(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
                 'Accept': 'application/json',
             },
-            signal: AbortSignal.timeout(15000), // 15 second timeout
+            signal: AbortSignal.timeout(4000), // 4 second timeout for fast response
         });
-
-        console.log(`[TikWM] Response status: ${response.status} ${response.statusText}`);
 
         if (!response.ok) {
             console.warn(`[TikWM] ❌ API returned status ${response.status}`);
@@ -1459,20 +1413,9 @@ const fetchVideosFromTikWM = async (username, count = 30) => {
 
         const data = await response.json();
 
-        console.log(`[TikWM] API Response structure:`, {
-            hasData: !!data.data,
-            hasVideos: !!data.videos,
-            hasList: !!data.list,
-            code: data.code,
-            msg: data.msg,
-            dataKeys: data.data ? Object.keys(data.data) : [],
-            topLevelKeys: Object.keys(data),
-        });
-
         // Check if API returned success - TikWM uses code: 0 for success
         if (data.code !== 0 && data.code !== 200 && data.code !== undefined) {
             console.warn(`[TikWM] ❌ API returned error code: ${data.code}, msg: ${data.msg || 'Unknown error'}`);
-            console.log(`[TikWM] Full response:`, JSON.stringify(data, null, 2).substring(0, 500));
             return [];
         }
 
@@ -1482,32 +1425,26 @@ const fetchVideosFromTikWM = async (username, count = 30) => {
         // Try data.data.videos first (most common TikWM structure)
         if (data.data?.data?.videos && Array.isArray(data.data.data.videos)) {
             videos = data.data.data.videos;
-            console.log(`[TikWM] Found videos in data.data.data.videos: ${videos.length}`);
         }
         // Try data.data.videos
         else if (data.data?.videos && Array.isArray(data.data.videos)) {
             videos = data.data.videos;
-            console.log(`[TikWM] Found videos in data.data.videos: ${videos.length}`);
         }
         // Try data.data.list
         else if (data.data?.list && Array.isArray(data.data.list)) {
             videos = data.data.list;
-            console.log(`[TikWM] Found videos in data.data.list: ${videos.length}`);
         }
         // Try data.videos
         else if (data.videos && Array.isArray(data.videos)) {
             videos = data.videos;
-            console.log(`[TikWM] Found videos in data.videos: ${videos.length}`);
         }
         // Try data.list
         else if (data.list && Array.isArray(data.list)) {
             videos = data.list;
-            console.log(`[TikWM] Found videos in data.list: ${videos.length}`);
         }
         // Try data.data as array
         else if (data.data && Array.isArray(data.data)) {
             videos = data.data;
-            console.log(`[TikWM] Found videos in data.data (array): ${videos.length}`);
         }
 
         if (!Array.isArray(videos) || videos.length === 0) {
@@ -1572,21 +1509,6 @@ const fetchVideosFromTikWM = async (username, count = 30) => {
 
             const views = Number(rawViews) || 0;
 
-            // Log first 3 videos for debugging
-            if (index < 3) {
-                console.log(`[TikWM] Video ${index + 1}:`, {
-                    id: video.aweme_id || video.id,
-                    viewsSource: viewsSource,
-                    rawViews: rawViews,
-                    views: views,
-                    play_count: video.play_count,
-                    statistics_play_count: video.statistics?.play_count,
-                    stats_play_count: video.stats?.play_count,
-                    play: video.play,
-                    playCount: video.playCount,
-                });
-            }
-
             // Extract other stats
             const likes = Number(
                 video.digg_count ||
@@ -1633,28 +1555,6 @@ const fetchVideosFromTikWM = async (username, count = 30) => {
                 duration: video.duration || null,
             };
         }).filter(v => v.views > 0); // Only include videos with views > 0
-
-        console.log(`[TikWM] ✓ Successfully mapped ${mappedVideos.length} videos with views > 0`);
-        console.log(`[TikWM] Videos breakdown:`, {
-            totalVideos: videos.length,
-            videosWithViews: mappedVideos.length,
-            viewsRange: mappedVideos.length > 0 ? {
-                min: Math.min(...mappedVideos.map(v => v.views)),
-                max: Math.max(...mappedVideos.map(v => v.views)),
-            } : null,
-        });
-
-        if (mappedVideos.length > 0) {
-            const totalViews = mappedVideos.reduce((sum, v) => sum + v.views, 0);
-            const avgViews = totalViews / mappedVideos.length;
-            console.log(`[TikWM] ========================================`);
-            console.log(`[TikWM] ✓ TOTAL VIEWS: ${totalViews.toLocaleString()}`);
-            console.log(`[TikWM] ✓ NUMBER OF VIDEOS: ${mappedVideos.length}`);
-            console.log(`[TikWM] ✓ AVG VIEWS: ${avgViews.toLocaleString()}`);
-            console.log(`[TikWM] ========================================`);
-        } else {
-            console.log(`[TikWM] ❌ No videos with views > 0 found!`);
-        }
 
         return mappedVideos;
     } catch (err) {

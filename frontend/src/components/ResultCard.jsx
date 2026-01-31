@@ -137,11 +137,6 @@ const ResultCard = ({ result, shareId }) => {
           </p>
         </div>
 
-        {/* Disclaimer */}
-        <p className="text-[10px] text-gray-400 leading-tight">
-          * These are estimates based on profile data. Actual earnings depend on content type, audience location, TikTok Creator Fund eligibility, and other factors.
-        </p>
-
         {result.note && (
           <p className="text-xs text-slate-500">
             Note: {result.note}

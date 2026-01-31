@@ -1,7 +1,7 @@
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const { connectDB } = require('./utils/db');
-const { app } = require('./app');
+const app = require('./app');
 
 const maskKey = (key) => {
   if (!key) return 'MISSING';

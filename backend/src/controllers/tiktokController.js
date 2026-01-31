@@ -24,6 +24,10 @@ try {
 
 const CACHE_MAX_AGE_MS = 1 * 60 * 60 * 1000; // 1 hour (as specified)
 
+// In-memory cache for ultra-fast responses (4 seconds target)
+const inMemoryCache = new Map();
+const IN_MEMORY_CACHE_TTL = 30 * 60 * 1000; // 30 minutes in-memory cache
+
 /**
  * Calculate earnings using exact TikCalculator.com formula
  * @param {number} avgViews - Average views per video
@@ -48,24 +52,7 @@ function calculateEarningsData(avgViews, engagementRate = 5, followers = 0, regi
   const earningsMin = Number(((safeAvgViews / 1000) * cpmRange.min).toFixed(2));
   const earningsMax = Number(((safeAvgViews / 1000) * cpmRange.max).toFixed(2));
 
-  console.log('[calculateEarningsData] ========================================');
-  console.log('[calculateEarningsData] INPUT:', {
-    avgViews: safeAvgViews,
-    cpm: cpmRange.used,
-    cpmRange,
-    engagementRate: safeEngagementRate, // Display only
-    followers,
-    region,
-  });
-  console.log('[calculateEarningsData] Formula: (avgViews / 1000) * CPM');
-  console.log('[calculateEarningsData] STEP 1: (avgViews / 1000) =', safeAvgViews / 1000);
-  console.log('[calculateEarningsData] STEP 2: earnings (avg) =', earningPerVideo);
-  console.log('[calculateEarningsData] RANGE:', { earningsMin, earningsMax });
-  console.log('[calculateEarningsData] FINAL RESULT:', {
-    estimatedEarnings: earningPerVideo,
-    earningPerVideo: earningPerVideo,
-  });
-  console.log('[calculateEarningsData] ========================================');
+  // Silent mode - only log errors
 
   return {
     avgViews: safeAvgViews,
@@ -159,7 +146,7 @@ const buildResponse = (profile, analytics, earnings, latestVideos = []) => {
   // This ensures earningsData is NEVER null/undefined
   const earningsData = calculateEarningsData(avgViews, engagementRate, followerCount, region);
 
-  console.log('[Controller] ✓ Calculated earningsData:', earningsData);
+  // Silent mode
 
   // Extract description/bio from profile - clean "Signature (Required):" prefix and HTML
   let rawDescription = (profile.bio || profile.description || profile.signature || '').toString().trim();
@@ -279,7 +266,21 @@ const getTikTokProfile = async (req, res) => {
 
     const cleanUsername = username.trim().toLowerCase().replace('@', '');
 
-    // Check cache first (unless force refresh)
+    // Check in-memory cache first (FASTEST - instant response)
+    if (!forceRefresh && inMemoryCache.has(cleanUsername)) {
+      const cached = inMemoryCache.get(cleanUsername);
+      const age = Date.now() - cached.timestamp;
+      
+      if (age < IN_MEMORY_CACHE_TTL && cached.data) {
+        // Cache hit - silent mode
+        return res.json(cached.data);
+      } else {
+        // Cache expired, remove it
+        inMemoryCache.delete(cleanUsername);
+      }
+    }
+
+    // Check MongoDB cache (slower but persistent)
     if (!forceRefresh && ProfileCache && isMongoAvailable()) {
       try {
         const cached = await ProfileCache.findOne({ username: cleanUsername });
@@ -296,11 +297,7 @@ const getTikTokProfile = async (req, res) => {
 
           // Return cached data ONLY if fresh AND has REAL data (not fallback values)
           if (age < CACHE_MAX_AGE_MS && hasValidProfile && hasValidAnalytics && hasValidEarnings && hasVideosWithViews) {
-            console.log(`[Controller] ✓ Returning cached data with REAL values for @${cleanUsername}`, {
-              avgViews: cached.analytics?.avgViews,
-              sampleSize: cached.analytics?.sampleSize,
-              videosWithViews: cached.latestVideos.filter(v => v && Number(v.views) > 0).length,
-            });
+            // Cache hit - silent mode
 
             // Ensure bio is included in cached profile
             const cachedProfile = {
@@ -309,23 +306,22 @@ const getTikTokProfile = async (req, res) => {
               description: cached.bio || cached.profile?.bio || cached.profile?.description || '',
             };
 
-            return res.json(buildResponse(
+            const cachedResponse = buildResponse(
               cachedProfile,
               cached.analytics,
               cached.earnings,
               cached.latestVideos || []
-            ));
-          } else {
-            // Cache exists but is invalid - log why and force re-scrape
-            console.log(`[Controller] Cache invalid for @${cleanUsername} - forcing re-scrape:`, {
-              hasValidProfile,
-              hasValidAnalytics,
-              hasValidEarnings,
-              hasVideosWithViews,
-              age: age < CACHE_MAX_AGE_MS ? 'fresh' : 'expired',
-              avgViews: cached.analytics?.avgViews || 0,
-              sampleSize: cached.analytics?.sampleSize || 0,
+            );
+            
+            // Store in in-memory cache for faster future access
+            inMemoryCache.set(cleanUsername, {
+              data: cachedResponse,
+              timestamp: Date.now()
             });
+            
+            return res.json(cachedResponse);
+          } else {
+            // Cache exists but is invalid - force re-scrape
           }
         }
       } catch (cacheErr) {
@@ -335,7 +331,7 @@ const getTikTokProfile = async (req, res) => {
     }
 
     // Fetch fresh data from TikTok
-    console.log(`[Controller] Fetching fresh data for @${cleanUsername}`);
+    // Fetching fresh data
 
     let scrapedData;
     try {
@@ -401,22 +397,7 @@ const getTikTokProfile = async (req, res) => {
       });
     }
 
-    // DEBUG: Log scrapedData structure
-    console.log('[Controller] ========================================');
-    console.log('[Controller] ScrapedData structure:', {
-      hasProfile: !!scrapedData.profile,
-      hasUser: !!scrapedData.user,
-      hasDescription: !!scrapedData.description,
-      hasBio: !!scrapedData.bio,
-      profileKeys: scrapedData.profile ? Object.keys(scrapedData.profile) : [],
-      userKeys: scrapedData.user ? Object.keys(scrapedData.user) : [],
-      profileBio: scrapedData.profile?.bio,
-      profileDescription: scrapedData.profile?.description,
-      userBio: scrapedData.user?.bio,
-      rootBio: scrapedData.bio,
-      rootDescription: scrapedData.description,
-    });
-    console.log('[Controller] ========================================');
+    // Silent mode - no debug logs
 
     // Extract profile - handle both old and new scraper response formats
     let profile = scrapedData.profile;
@@ -467,7 +448,7 @@ const getTikTokProfile = async (req, res) => {
         secUid: scrapedData.user.secUid || '',
       };
 
-      console.log(`[Controller] Created profile from user - bio: "${cleanDescription.substring(0, 50)}${cleanDescription.length > 50 ? '...' : ''}"`);
+      // Profile created from user data
     }
 
     // CRITICAL: Ensure bio is extracted from profile if it exists
@@ -505,7 +486,7 @@ const getTikTokProfile = async (req, res) => {
       profile.description = cleanBio;
 
       if (cleanBio) {
-        console.log(`[Controller] ✓ Extracted bio: "${cleanBio.substring(0, 50)}${cleanBio.length > 50 ? '...' : ''}"`);
+        // Bio extracted
       } else {
         console.warn(`[Controller] ⚠ No bio found for @${cleanUsername} - trying additional sources...`);
 
@@ -531,7 +512,7 @@ const getTikTokProfile = async (req, res) => {
           if (cleanedRootBio) {
             profile.bio = cleanedRootBio;
             profile.description = cleanedRootBio;
-            console.log(`[Controller] ✓ Found bio in root level: "${cleanedRootBio.substring(0, 50)}${cleanedRootBio.length > 50 ? '...' : ''}"`);
+            // Bio found in root
           }
         }
       }
@@ -542,19 +523,19 @@ const getTikTokProfile = async (req, res) => {
     // ALWAYS try to fetch videos from TikWM API with retry logic (3 attempts)
     const videosWithViews = latestVideos.filter(v => v && Number(v.views) > 0);
     if (videosWithViews.length === 0) {
-      console.log(`[Controller] No videos with views found, fetching from TikWM API (with retries)...`);
+      // Fetching videos from TikWM
 
       // Retry logic: 3 attempts
       let tikwmVideos = [];
-      for (let attempt = 1; attempt <= 3; attempt++) {
+      for (let attempt = 1; attempt <= 2; attempt++) {
         try {
-          console.log(`[Controller] TikWM API attempt ${attempt}/3...`);
+          // TikWM attempt
           tikwmVideos = await fetchVideosFromTikWM(cleanUsername, 30);
           if (tikwmVideos && Array.isArray(tikwmVideos) && tikwmVideos.length > 0) {
             const videosWithViewsFromTikWM = tikwmVideos.filter(v => v && Number(v.views) > 0);
             if (videosWithViewsFromTikWM.length > 0) {
               latestVideos = tikwmVideos;
-              console.log(`[Controller] ✓ Fetched ${tikwmVideos.length} videos from TikWM API (attempt ${attempt})`);
+              // Videos fetched successfully
               break; // Success, exit retry loop
             } else {
               console.warn(`[Controller] ⚠ TikWM attempt ${attempt}: Got ${tikwmVideos.length} videos but none have views > 0`);
@@ -564,14 +545,14 @@ const getTikTokProfile = async (req, res) => {
           }
         } catch (tikwmErr) {
           console.warn(`[Controller] ⚠ TikWM API attempt ${attempt} failed: ${tikwmErr.message}`);
-          if (attempt === 3) {
-            console.error(`[Controller] ❌ All 3 TikWM API attempts failed`);
+          if (attempt === 2) {
+            console.error(`[Controller] ❌ All 2 TikWM API attempts failed`);
           }
         }
 
-        // Wait 1 second between retries (except on last attempt)
-        if (attempt < 3) {
-          await new Promise(resolve => setTimeout(resolve, 1000));
+        // Wait 500ms between retries (except on last attempt) - faster for 4 second target
+        if (attempt < 2) {
+          await new Promise(resolve => setTimeout(resolve, 500));
         }
       }
     }
@@ -653,7 +634,7 @@ const getTikTokProfile = async (req, res) => {
     profile.description = cleanBio;
 
     if (cleanBio) {
-      console.log(`[Controller] ✓ Final bio set: "${cleanBio.substring(0, 50)}${cleanBio.length > 50 ? '...' : ''}"`);
+      // Bio set
     }
 
     profile.verified = Boolean(profile.verified);
@@ -677,14 +658,7 @@ const getTikTokProfile = async (req, res) => {
       // Filter videos with valid views
       const videosWithViews = (latestVideos || []).filter(v => v && Number(v.views) > 0);
 
-      console.log(`[Controller] ========================================`);
-      console.log(`[Controller] Calculating earnings:`, {
-        followers: profile.followers || 0,
-        likes: profile.likes || 0,
-        videos: profile.videos || 0,
-        videoCount: latestVideos?.length || 0,
-        videosWithViews: videosWithViews.length,
-      });
+      // Calculating earnings
 
       // ALWAYS calculate earnings (calculateEarnings never returns null)
       const calculated = calculateEarnings({
@@ -729,21 +703,7 @@ const getTikTokProfile = async (req, res) => {
           platformFactor: calculated.platformFactor,
         };
 
-        console.log(`[CALCULATED]`, {
-          earnings: calculated.earnings,
-          earningPerVideo: calculated.earningPerVideo,
-          avgViews: calculated.avgViews,
-          engagementRate: calculated.engagementRate,
-          cpm: calculated.cpm,
-          platformFactor: calculated.platformFactor,
-        });
-        console.log(`[Controller] ✓ Calculated earnings:`, {
-          avgViews: analytics?.avgViews,
-          engagementRate: analytics?.engagementRate,
-          earnings: earnings?.earnings,
-          earningPerVideo: earnings?.earningPerVideo,
-          cpm: earnings?.cpm,
-        });
+        // Earnings calculated
       } else {
         // Emergency fallback - should never happen, but ensure we have data
         console.warn('[Controller] ⚠ calculateEarnings returned unexpected format, using emergency fallback');
@@ -782,7 +742,7 @@ const getTikTokProfile = async (req, res) => {
         sampleSize: 0,
       };
       earnings = safeFallback;
-      console.log('[Controller] ✓ Using emergency fallback earnings:', earnings);
+        // Using emergency fallback
     }
 
     // Build response - profile.username should be set by now
@@ -814,15 +774,18 @@ const getTikTokProfile = async (req, res) => {
       responseData.earningPerVideo = responseData.earningsData.earningPerVideo;
     }
 
-    console.log('[Controller] ✓ Final response includes earningsData:', {
-      hasEarningsData: !!responseData.earningsData,
-      avgViews: responseData.earningsData?.avgViews,
-      estimatedEarnings: responseData.earningsData?.estimatedEarnings,
-      earningPerVideo: responseData.earningsData?.earningPerVideo,
-    });
-    console.log("Final Earnings Payload:", responseData.earningsData);
+    // Response ready
 
-    // Cache the results - ONLY if data is valid and from REAL video data
+    // Store in in-memory cache FIRST (fastest access)
+    if (responseData.profile?.followers > 0 && earnings?.perVideo > 0) {
+      inMemoryCache.set(cleanUsername, {
+        data: responseData,
+        timestamp: Date.now()
+      });
+      // Cached in memory
+    }
+
+    // Cache the results in MongoDB - ONLY if data is valid and from REAL video data
     if (ProfileCache && isMongoAvailable()) {
       try {
         // Validate before caching - don't cache fallback/invalid data
@@ -848,7 +811,7 @@ const getTikTokProfile = async (req, res) => {
             },
             { upsert: true, new: true }
           );
-          console.log(`[Controller] ✓ Cached valid data for @${cleanUsername}`);
+          // Data cached
         } else {
           console.warn(`[Controller] ⚠ Not caching invalid data for @${cleanUsername}:`, {
             hasFollowers: responseData.profile?.followers > 0,
@@ -996,8 +959,6 @@ const getTikTokEarnings = async (req, res) => {
     const { username } = req.params;
     const forceRefresh = req.query.refresh === 'true';
 
-    console.log(`[Earnings] GET /api/tiktok/user/${username}/earnings - refresh: ${forceRefresh}`);
-
     // Validate username
     if (!username || username.trim().length === 0) {
       return res.status(400).json({
@@ -1007,7 +968,6 @@ const getTikTokEarnings = async (req, res) => {
     }
 
     const cleanUsername = username.trim().toLowerCase().replace('@', '');
-    console.log(`[Earnings] Processing earnings for @${cleanUsername}`);
 
     // Check in-memory cache first (unless force refresh)
     if (!forceRefresh && earningsCache[cleanUsername]) {
@@ -1015,7 +975,6 @@ const getTikTokEarnings = async (req, res) => {
       const age = Date.now() - cached.timestamp;
 
       if (age < EARNINGS_CACHE_TTL) {
-        console.log(`[Earnings] Returning cached data for @${cleanUsername}`);
         const cachedData = cached.data;
         // Ensure cached data has all required fields
         if (cachedData && cachedData.success !== false) {
@@ -1026,13 +985,6 @@ const getTikTokEarnings = async (req, res) => {
           if (!cachedData.estimatedEarnings && cachedData.earningPerVideo) {
             cachedData.estimatedEarnings = cachedData.earningPerVideo;
           }
-          console.log(`[Earnings] Cached data structure:`, {
-            hasEarnings: !!cachedData.earnings,
-            hasEstimatedEarnings: !!cachedData.estimatedEarnings,
-            hasEarningPerVideo: !!cachedData.earningPerVideo,
-            avgViews: cachedData.avgViews,
-            cpm: cachedData.cpm,
-          });
           return res.json(cachedData);
         }
       } else {
@@ -1077,20 +1029,7 @@ const getTikTokEarnings = async (req, res) => {
                 latestVideos: cached.latestVideos || [],
                 source: 'cache',
               };
-              console.log(`[Earnings] ✓ Using MongoDB cache with REAL data - videos: ${(cached.latestVideos || []).length}, avgViews: ${cached.analytics?.avgViews}, sampleSize: ${cached.analytics?.sampleSize}`);
-            } else {
-              console.log(`[Earnings] MongoDB cache invalid - forcing re-scrape:`, {
-                hasValidProfile,
-                hasValidAnalytics,
-                hasValidEarnings,
-                hasVideosWithViews,
-                avgViews: cached.analytics?.avgViews || 0,
-                sampleSize: cached.analytics?.sampleSize || 0,
-                perVideo: cached.earnings?.perVideo || 0,
-              });
             }
-          } else {
-            console.log(`[Earnings] No MongoDB cache found`);
           }
         } catch (cacheErr) {
           console.warn('[Earnings] Cache read error:', cacheErr.message);
@@ -1099,10 +1038,7 @@ const getTikTokEarnings = async (req, res) => {
 
       // If no cached data, fetch fresh
       if (!profileData) {
-        console.log(`[Earnings] Fetching fresh profile data for @${cleanUsername}`);
         const scrapedData = await scrapeTikTokProfile(cleanUsername);
-
-        console.log(`[Earnings] Scraped data received - videos: ${(scrapedData.latestVideos || []).length}`);
 
         profileData = {
           profile: scrapedData.profile || scrapedData.user,
@@ -1111,14 +1047,10 @@ const getTikTokEarnings = async (req, res) => {
         };
       } else {
         const videoCount = (profileData.latestVideos || []).length;
-        console.log(`[Earnings] Using cached profile data - videos: ${videoCount}`);
 
         // If cached data has no videos, fetch fresh data
         if (videoCount === 0) {
-          console.log(`[Earnings] ⚠ Cached data has no videos, fetching fresh data...`);
           const scrapedData = await scrapeTikTokProfile(cleanUsername);
-
-          console.log(`[Earnings] Fresh scraped data - videos: ${(scrapedData.latestVideos || []).length}`);
 
           profileData = {
             profile: scrapedData.profile || scrapedData.user,
@@ -1152,56 +1084,26 @@ const getTikTokEarnings = async (req, res) => {
     const profile = profileData.profile || {};
     let latestVideos = profileData.latestVideos || [];
 
-    console.log(`[Earnings] ========================================`);
-    console.log(`[Earnings] Starting earnings calculation for @${cleanUsername}`);
-    console.log(`[API RAW DATA]`, {
-      profile: {
-        followers: profile.followers,
-        likes: profile.likes,
-        videos: profile.videos,
-      },
-      latestVideosCount: latestVideos.length,
-      sampleVideos: latestVideos.slice(0, 3).map(v => ({
-        views: v?.views,
-        likes: v?.likes,
-        comments: v?.comments,
-      })),
-    });
-
-    // CRITICAL: ALWAYS fetch videos from TikWM API with retry logic (3 attempts) - PRIMARY source for real data
-    console.log(`[Earnings] ========================================`);
-    console.log(`[Earnings] Fetching videos from TikWM API (PRIMARY SOURCE) with retries...`);
+    // Silent mode - only log errors
     let tikwmSuccess = false;
     let tikwmVideos = [];
 
-    // Retry logic: 3 attempts
-    for (let attempt = 1; attempt <= 3; attempt++) {
+    // Retry logic: 2 attempts (faster for 4 second target)
+    for (let attempt = 1; attempt <= 2; attempt++) {
       try {
-        console.log(`[Earnings] TikWM API attempt ${attempt}/3...`);
         tikwmVideos = await fetchVideosFromTikWM(cleanUsername, 30);
         if (tikwmVideos && Array.isArray(tikwmVideos) && tikwmVideos.length > 0) {
           const videosWithViews = tikwmVideos.filter(v => v && Number(v.views) > 0);
           if (videosWithViews.length > 0) {
             latestVideos = tikwmVideos;
             tikwmSuccess = true;
-            console.log(`[Earnings] ✓ TikWM API SUCCESS (attempt ${attempt}): ${tikwmVideos.length} videos, ${videosWithViews.length} with views > 0`);
-
-            // Log sample data
-            if (videosWithViews.length > 0) {
-              const sampleViews = videosWithViews.slice(0, 3).map(v => v.views);
-              console.log(`[Earnings] Sample views from TikWM:`, sampleViews);
-            }
             break; // Success, exit retry loop
-          } else {
-            console.warn(`[Earnings] ⚠ TikWM attempt ${attempt}: Got ${tikwmVideos.length} videos but NONE have views > 0`);
           }
-        } else {
-          console.warn(`[Earnings] ⚠ TikWM attempt ${attempt}: No videos returned (got: ${tikwmVideos?.length || 0})`);
         }
       } catch (err) {
         console.error(`[Earnings] ❌ TikWM API attempt ${attempt} failed: ${err.message}`);
-        if (attempt === 3) {
-          console.error(`[Earnings] ❌ All 3 TikWM API attempts failed`);
+        if (attempt === 2) {
+          console.error(`[Earnings] ❌ All 2 TikWM API attempts failed`);
           console.error(`[Earnings] Error stack:`, err.stack);
         }
       }
@@ -1214,32 +1116,20 @@ const getTikTokEarnings = async (req, res) => {
 
     // If TikWM failed, try to get videos from scraped data
     if (!tikwmSuccess) {
-      console.log(`[Earnings] TikWM failed, checking scraped videos...`);
       const scrapedVideosWithViews = latestVideos.filter(v => v && Number(v.views) > 0);
       if (scrapedVideosWithViews.length > 0) {
         latestVideos = scrapedVideosWithViews;
-        console.log(`[Earnings] ✓ Using ${scrapedVideosWithViews.length} videos from scraper`);
       } else {
         console.error(`[Earnings] ❌ NO VIDEOS WITH VIEWS FOUND from any source!`);
-        console.error(`[Earnings]   - TikWM videos: ${tikwmVideos.length}`);
-        console.error(`[Earnings]   - Scraped videos: ${latestVideos.length}`);
       }
     }
 
     // Calculate avgViews from latest videos (MUST use last 30 videos from API)
     let avgViews = 0;
-    console.log(`[Earnings] ========================================`);
-    console.log(`[Earnings] Processing ${latestVideos.length} videos for @${cleanUsername}`);
 
     if (latestVideos && Array.isArray(latestVideos) && latestVideos.length > 0) {
       // Filter videos with valid views data
       const videosWithValidViews = latestVideos.filter(v => v && Number(v.views) > 0);
-
-      console.log(`[Earnings] Videos breakdown:`, {
-        total: latestVideos.length,
-        withViews: videosWithValidViews.length,
-        withoutViews: latestVideos.length - videosWithValidViews.length,
-      });
 
       if (videosWithValidViews.length > 0) {
         // Use last 30 videos (or all available if less than 30)
@@ -1247,35 +1137,18 @@ const getTikTokEarnings = async (req, res) => {
           ? videosWithValidViews.slice(-30) // Last 30 videos
           : videosWithValidViews;
 
-        console.log(`[Earnings] Using ${videosToUse.length} videos for calculation`);
-
         // Calculate total views
         const totalViews = videosToUse.reduce((sum, v) => {
           const views = Number(v.views) || 0;
           return sum + views;
         }, 0);
 
-        console.log(`[Earnings] Total views: ${totalViews.toLocaleString()}`);
-        console.log(`[Earnings] Number of videos: ${videosToUse.length}`);
-
         // Calculate average: totalViews / numberOfVideos
         avgViews = totalViews / videosToUse.length;
-
-        console.log(`[Earnings] ========================================`);
-        console.log(`[Earnings] ✓ CALCULATED AVG VIEWS: ${avgViews.toLocaleString()}`);
-        console.log(`[Earnings] Formula: ${totalViews.toLocaleString()} / ${videosToUse.length} = ${avgViews.toLocaleString()}`);
-        console.log(`[Earnings] ========================================`);
-      } else {
-        console.log(`[Earnings] ⚠ No videos with views > 0 found`);
-        console.log(`[Earnings] Sample video data:`, latestVideos.slice(0, 2));
       }
-    } else {
-      console.log(`[Earnings] ⚠ No videos found in latestVideos array`);
     }
 
     // Use the new calculateEarnings function (TikCalculator.com formula)
-    console.log(`[Earnings] Using calculateEarnings function...`);
-
     const calculatedResult = calculateEarnings({
       followers: profile.followers || 0,
       likes: profile.likes || 0,
@@ -1283,8 +1156,6 @@ const getTikTokEarnings = async (req, res) => {
       latestVideos: latestVideos,
       region: profile.region || profile.country || '',
     });
-
-    console.log(`[PARSED DATA]`, calculatedResult);
 
     // CRITICAL: calculateEarnings never returns null, but ensure we have valid data
     if (!calculatedResult || calculatedResult.earnings === undefined) {
@@ -1337,16 +1208,6 @@ const getTikTokEarnings = async (req, res) => {
     const POSTS_PER_MONTH = 20;
     const finalMonthlyEarning = earningPerVideo * POSTS_PER_MONTH;
 
-    console.log(`[CALCULATED EARNINGS]`, {
-      earnings,
-      earningPerVideo,
-      avgViews: finalAvgViews,
-      engagementRate: finalEngagementRate,
-      cpm: finalCPM,
-      platformFactor: finalPlatformFactor,
-      monthlyEarning: finalMonthlyEarning,
-    });
-
     // CRITICAL: Ensure all values are non-zero and realistic
     // If any value is 0 or invalid, recalculate using fallback
     let safeEarnings = earnings;
@@ -1386,12 +1247,6 @@ const getTikTokEarnings = async (req, res) => {
           : 5.0;
       }
 
-      console.log('[Earnings] ✓ Recalculated with fallback:', {
-        earnings: safeEarnings,
-        avgViews: safeAvgViews,
-        cpm: safeCPM,
-        engagementRate: safeEngagementRate,
-      });
     }
 
     // Calculate monthly total earnings (primary display value)
@@ -1439,26 +1294,6 @@ const getTikTokEarnings = async (req, res) => {
       },
     };
 
-    // Log final response
-    console.log(`[Earnings] ========================================`);
-    console.log(`[Earnings] FINAL RESPONSE BEING SENT:`);
-    console.log(`[CALCULATED EARNINGS]`, JSON.stringify({
-      earnings: response.earnings,
-      earningPerVideo: response.earningPerVideo,
-      avgViews: response.avgViews,
-      engagementRate: response.engagementRate,
-      cpm: response.cpm,
-      platformFactor: response.platformFactor,
-    }, null, 2));
-    console.log("Final Earnings Payload:", {
-      avgViews: response.avgViews,
-      engagementRate: response.engagementRate,
-      cpm: response.cpm,
-      platformFactor: response.platformFactor,
-      estimatedEarnings: response.estimatedEarnings,
-      earningPerVideo: response.earningPerVideo,
-    });
-    console.log(`[Earnings] ========================================`);
 
     // Cache the response
     earningsCache[cleanUsername] = {
@@ -1585,18 +1420,7 @@ const calculateEarningsFromViews = async (req, res) => {
     const earningsMax = Number(((avgViews / 1000) * cpmRange.max * platformFactor).toFixed(2));
     const estimatedEarnings = earningPerVideo;
 
-    console.log('[calculateEarningsFromViews] ========================================');
-    console.log('[calculateEarningsFromViews] Formula: (avgViews / 1000) * CPM');
-    console.log('[calculateEarningsFromViews] INPUT:', {
-      avgViews: avgViews,
-      cpmRange,
-      engagementRate: finalEngagementRate, // Display only
-    });
-    console.log('[calculateEarningsFromViews] STEP 1: (avgViews / 1000) =', avgViews / 1000);
-    console.log('[calculateEarningsFromViews] STEP 2: earnings(avg) =', earningPerVideo);
-    console.log('[calculateEarningsFromViews] RANGE:', { earningsMin, earningsMax });
-    console.log('[calculateEarningsFromViews] FINAL RESULT:', earningPerVideo);
-    console.log('[calculateEarningsFromViews] ========================================');
+    // Silent mode - only log errors
 
     // Round values
     const round = (val, places = 2) =>

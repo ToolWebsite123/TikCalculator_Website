@@ -97,33 +97,8 @@ const EarningsCard = ({ earningsData, isLoading = false }) => {
         >
           {formatCurrency(earnings)}
         </p>
-        
-        {/* Earnings Range */}
-        {rangeLabel && (
-          <p className="mt-2 text-sm text-gray-500">
-            Estimated range: {rangeLabel}
-          </p>
-        )}
-        
-        {/* CPM Info */}
-        <p className="mt-1.5 text-xs text-gray-400">
-          Based on CPM: {cpmRangeLabel}
-        </p>
       </div>
 
-      {/* Helper Text */}
-      <p className="text-[10px] text-center text-gray-500 mb-3 sm:text-xs">
-        Total estimated earnings calculated using profile statistics and industry-standard CPM rates
-      </p>
-
-      {/* Disclaimer */}
-      <div className="pt-3 border-t border-gray-100">
-        <p className="text-[10px] text-center text-gray-400 leading-relaxed sm:text-xs">
-          <span className="font-medium">Disclaimer:</span> This is a profile-based estimate only. 
-          Actual TikTok earnings depend on Creator Fund eligibility, content type, audience location, 
-          and brand partnerships. Results are not guaranteed.
-        </p>
-      </div>
     </div>
   );
 };
