@@ -12,20 +12,8 @@
  */
 export const mapEarningsData = (data, profile = {}) => {
   if (!data || typeof data !== 'object') {
-    console.warn('[EarningsMapper] ⚠ Invalid data, using fallback');
     return createFallbackEarnings(profile);
   }
-
-  console.log('[EarningsMapper] Mapping earnings data from:', {
-    hasAvgViews: !!data.avgViews,
-    hasEngagementRate: !!data.engagementRate,
-    hasCpm: !!data.cpm,
-    hasEstimatedEarnings: !!data.estimatedEarnings,
-    hasEarningPerVideo: !!data.earningPerVideo,
-    hasAnalytics: !!data.analytics,
-    hasEarnings: !!data.earnings,
-    dataKeys: Object.keys(data),
-  });
 
   // Extract from root level (earnings endpoint format)
   let avgViews = Number(data.avgViews) || 0;
@@ -43,39 +31,32 @@ export const mapEarningsData = (data, profile = {}) => {
   // Extract from analytics object (profile endpoint format)
   if (!avgViews && data.analytics?.avgViews) {
     avgViews = Number(data.analytics.avgViews) || 0;
-    console.log('[EarningsMapper] ✓ Extracted avgViews from analytics:', avgViews);
   }
   if (!engagementRate && data.analytics?.engagementRate) {
     engagementRate = Number(data.analytics.engagementRate) || 0;
-    console.log('[EarningsMapper] ✓ Extracted engagementRate from analytics:', engagementRate);
   }
 
   // Extract from earnings object (profile endpoint format)
   if (!cpm && data.earnings?.cpm) {
     cpm = Number(data.earnings.cpm) || 0;
-    console.log('[EarningsMapper] ✓ Extracted cpm from earnings object:', cpm);
   }
   if (!platformFactor && data.earnings?.platformFactor) {
     platformFactor = Number(data.earnings.platformFactor) || 1.0;
-    console.log('[EarningsMapper] ✓ Extracted platformFactor from earnings object:', platformFactor);
   }
   if (!estimatedEarnings && data.earnings?.perVideo) {
     estimatedEarnings = Number(data.earnings.perVideo) || 0;
     earningPerVideo = estimatedEarnings;
     earnings = estimatedEarnings;
-    console.log('[EarningsMapper] ✓ Extracted earnings from earnings.perVideo:', estimatedEarnings);
   }
   if (!estimatedEarnings && data.earnings?.earningPerVideo) {
     estimatedEarnings = Number(data.earnings.earningPerVideo) || 0;
     earningPerVideo = estimatedEarnings;
     earnings = estimatedEarnings;
-    console.log('[EarningsMapper] ✓ Extracted earnings from earnings.earningPerVideo:', estimatedEarnings);
   }
   if (!estimatedEarnings && data.earnings?.earnings) {
     estimatedEarnings = Number(data.earnings.earnings) || 0;
     earningPerVideo = estimatedEarnings;
     earnings = estimatedEarnings;
-    console.log('[EarningsMapper] ✓ Extracted earnings from earnings.earnings:', estimatedEarnings);
   }
 
   if (!earningsMin && (data.earnings?.earningsMin || data.earningsMin)) {
@@ -98,7 +79,6 @@ export const mapEarningsData = (data, profile = {}) => {
       cpmMin = cpmMin && cpmMin > 0 ? cpmMin : 12;
       cpmMax = cpmMax && cpmMax > 0 ? cpmMax : 35;
       cpm = (cpmMin + cpmMax) / 2;
-      console.log('[EarningsMapper] ✓ Calculated CPM range fallback:', { cpmMin, cpm, cpmMax });
     } else {
       cpmMin = cpmMin && cpmMin > 0 ? cpmMin : Math.max(cpm * 0.7, 5);
       cpmMax = cpmMax && cpmMax > 0 ? cpmMax : Math.max(cpm * 1.3, cpmMin + 5);
@@ -114,17 +94,6 @@ export const mapEarningsData = (data, profile = {}) => {
     earnings = estimatedEarnings;
     earningsMin = (avgViews / 1000) * cpmMin;
     earningsMax = (avgViews / 1000) * cpmMax;
-    console.log('[EarningsMapper] ✓✓✓ Calculated earnings from avgViews:', {
-      avgViews,
-      cpm,
-      cpmMin,
-      cpmMax,
-      platformFactor,
-      earnings: estimatedEarnings,
-      earningsMin,
-      earningsMax,
-      formula: `(${avgViews} / 1000) * CPM`,
-    });
   }
 
   // Ensure all values are valid numbers (never 0 unless truly 0)
@@ -151,16 +120,6 @@ export const mapEarningsData = (data, profile = {}) => {
     following: Number(data.following || profile?.following || 0),
     videos: Number(data.videos || profile?.videos || 0),
   };
-
-  console.log('[EarningsMapper] ========================================');
-  console.log('[EarningsMapper] ✓✓✓ MAPPED EARNINGS DATA:');
-  console.log('[EarningsMapper]   - earnings:', mappedData.earnings);
-  console.log('[EarningsMapper]   - estimatedEarnings:', mappedData.estimatedEarnings);
-  console.log('[EarningsMapper]   - avgViews:', mappedData.avgViews);
-  console.log('[EarningsMapper]   - engagementRate:', mappedData.engagementRate);
-  console.log('[EarningsMapper]   - cpm:', mappedData.cpm);
-  console.log('[EarningsMapper]   - platformFactor:', mappedData.platformFactor);
-  console.log('[EarningsMapper] ========================================');
 
   return mappedData;
 };

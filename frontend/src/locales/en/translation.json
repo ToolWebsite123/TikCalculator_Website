@@ -36,7 +36,7 @@
     "boostEngagement": "Boost your TikTok engagement",
     "privacyPolicy": "Privacy Policy",
     "termsAndConditions": "Terms and Conditions",
-    "copyright": "2022–2026 Tikcalculator.com All Rights Reserved"
+    "copyright": "2026 Tikcalculator.com All Rights Reserved"
   },
   "engagementCalculator": {
     "title": "TikTok Engagement Rate Calculator",
@@ -48,7 +48,109 @@
     "engagementRate": "Engagement Rate",
     "placeholderLikes": "e.g., 4.2M or 4200000",
     "placeholderVideos": "e.g., 221",
-    "placeholderFollowers": "e.g., 277.8K or 277800"
+    "placeholderFollowers": "e.g., 277.8K or 277800",
+    "content": {
+      "whatIs": {
+        "title": "What Is a TikTok Engagement Rate Calculator?",
+        "description1": "A TikTok Engagement Rate Calculator is an analytics tool that measures audience interaction on your TikTok profile.",
+        "description2": "It converts raw metrics into a simple percentage that reflects how engaging your content truly is.",
+        "description3": "This helps creators, brands, and marketers understand whether their videos resonate with viewers or need improvement."
+      },
+      "tikCalculator": {
+        "title": "Calculate TikTok Engagement Rate – TikCalculator",
+        "description1": "TikCalculator helps you instantly calculate your TikTok engagement rate using real performance data.",
+        "description2": "By entering likes, comments, shares, videos, and followers, you get a clear percentage that shows how actively your audience interacts with your content. This removes guesswork and gives you reliable insights to evaluate account performance."
+      },
+      "relatedTools": {
+        "title": "Related Tools",
+        "moneyCalculator": "Curious about your TikTok earning potential? Try our TikTok Money Calculator to estimate possible income using engagement and account performance data. It helps creators understand their monetization value before working with brands.",
+        "cpmCalculator": "You can also check advertising value with the TikTok CPM Calculator, which shows the average payout advertisers may offer for every 1,000 views. This is useful for planning paid campaigns and sponsorship deals."
+      },
+      "manualCalculation": {
+        "title": "How to Manually Calculate the Engagement Rate on TikTok",
+        "description": "The manual engagement rate formula is simple and widely used:",
+        "formula": "Engagement Rate (%) = (Likes + Comments + Shares) ÷ Followers × 100",
+        "explanation1": "This formula shows how engaged your followers are with your content.",
+        "explanation2": "A higher percentage means stronger audience interaction and loyalty."
+      },
+      "benchmarks": {
+        "title": "TikTok Engagement Rate Benchmarks by Follower Count",
+        "description": "Engagement rates vary depending on audience size. Smaller accounts usually see higher engagement, while larger accounts experience a gradual decline as they grow.",
+        "table": {
+          "followerRange": "Follower Range",
+          "averageRate": "Average Engagement Rate",
+          "range1": "1K – 5K followers",
+          "rate1": "18% – 22%",
+          "range2": "5K – 20K followers",
+          "rate2": "15% – 19%",
+          "range3": "20K – 100K followers",
+          "rate3": "13% – 16%",
+          "range4": "100K – 500K followers",
+          "rate4": "12% – 15%",
+          "range5": "500K – 1M followers",
+          "rate5": "14% – 17%",
+          "range6": "1M+ followers",
+          "rate6": "13% – 17%"
+        },
+        "conclusion": "These benchmark ranges help creators and brands evaluate performance realistically using a TikTok engagement calculator. Engagement naturally fluctuates based on niche, content quality, and audience behavior, so results should be compared within similar follower ranges."
+      },
+      "howToUse": {
+        "title": "How to Use the Calculator Effectively",
+        "intro": "To get accurate results:",
+        "tip1": "Enter correct and up-to-date data",
+        "tip2": "Use total followers, not video views",
+        "tip3": "Compare multiple posts instead of one",
+        "tip4": "Track engagement consistently over time",
+        "conclusion": "Regular use helps identify trends and improve content decisions."
+      },
+      "whyMatters": {
+        "title": "Why Engagement Rate Matters",
+        "point1": "Engagement rate is one of TikTok's most important performance metrics.",
+        "point2": "It directly influences reach, visibility, and algorithm performance.",
+        "point3": "Brands also use engagement rate to evaluate creators for partnerships and sponsorships.",
+        "point4": "High engagement signals trust, relevance, and strong audience connection."
+      },
+      "industrySpecific": {
+        "title": "Industry-Specific Engagement on TikTok",
+        "description1": "Engagement rates vary by niche. Entertainment and lifestyle content often see higher interaction.",
+        "description2": "Business, education, and finance niches usually have lower but more targeted engagement. Comparing engagement within your industry gives more accurate performance insights than global averages."
+      },
+      "improveEngagement": {
+        "title": "How to Improve Your TikTok Engagement Rate",
+        "intro": "Improving engagement requires consistency and strategy:",
+        "tip1": "Post regularly",
+        "tip2": "Use strong hooks in the first seconds",
+        "tip3": "Follow trends with originality",
+        "tip4": "Use relevant hashtags",
+        "tip5": "Engage with comments",
+        "tip6": "Encourage interaction through questions",
+        "tip7": "Collaborate with other creators",
+        "conclusion": "Strong engagement comes from connection, not just views."
+      },
+      "faq": {
+        "title": "FAQs",
+        "q1": {
+          "question": "What does the TikTok Engagement Rate Calculator do?",
+          "answer": "It calculates how actively users interact with your TikTok content using likes, comments, shares, and followers."
+        },
+        "q2": {
+          "question": "Is this tool free to use?",
+          "answer": "Yes, the calculator is completely free and requires no signup."
+        },
+        "q3": {
+          "question": "How often should I check my engagement rate?",
+          "answer": "Check it weekly or monthly to track performance trends accurately."
+        },
+        "q4": {
+          "question": "Can brands use it for influencer selection?",
+          "answer": "Yes, brands use engagement rate to evaluate influencer quality and audience authenticity."
+        },
+        "q5": {
+          "question": "What's considered an excellent engagement rate?",
+          "answer": "An engagement rate above 10% is considered excellent on TikTok."
+        }
+      }
+    }
   },
   "cpmCalculator": {
     "title": "TikTok CPM Calculator",
@@ -63,11 +165,127 @@
     "calculatedCpm": "ESTIMATED CPM",
     "costPerThousand": "Cost per 1,000 impressions",
     "placeholderCost": "Enter total cost",
-    "placeholderImpressions": "Enter impressions"
+    "placeholderImpressions": "Enter impressions",
+    "content": {
+      "whatIsTikTokCPM": {
+        "title": "What Is TikTok CPM and Why Does It Matter?",
+        "description": "TikTok CPM stands for Cost Per Mille, which means the cost advertisers pay for every 1,000 impressions on TikTok. An impression is counted each time your ad or promoted content is shown to a user. CPM matters because it helps creators, brands, and businesses understand the cost-effectiveness of their reach. A well-optimized CPM means you're reaching more people while spending less, which directly impacts campaign performance and profitability."
+      },
+      "relatedTools": {
+        "title": "Related Tools",
+        "moneyCalculator": "Use our TikTok Money Calculator to get an estimated earning range based on your follower count, video views, and overall engagement. It helps creators understand how much their content could be worth before working with brands.",
+        "engagementCalculator": "To evaluate how well your content connects with your audience, try our TikTok Engagement Calculator. This tool analyzes likes, comments, shares, and views to show how actively users interact with your videos—an important factor that directly influences CPM and ad performance."
+      },
+      "howItHelps": {
+        "title": "TikTok CPM Calculator: How It Helps Creators and Brands",
+        "description": "A TikTok CPM Calculator helps users estimate ad costs before running campaigns.",
+        "forCreators": "For creators: It shows how valuable their audience is to advertisers.",
+        "forBrands": "For brands: It helps plan budgets, compare campaign performance, and decide whether TikTok ads are delivering good value compared to other platforms."
+      },
+      "howItWorks": {
+        "title": "How a TikTok CPM Calculator Actually Works",
+        "description": "The calculator works by taking two basic inputs:",
+        "input1": "Total ad spend",
+        "input2": "Total impressions",
+        "conclusion": "Using these values, it calculates how much you're paying to reach 1,000 users. This gives a clear picture of reach efficiency and helps advertisers control spending without guessing."
+      },
+      "formula": {
+        "title": "TikTok CPM Formula Explained in Simple Terms",
+        "equation": "CPM = (Total Ad Spend ÷ Total Impressions) × 1000",
+        "description": "In simple words, it shows how much money you spend to get your content in front of 1,000 people."
+      },
+      "stepByStep": {
+        "title": "Calculating TikTok CPM Step by Step",
+        "step1": "Note your total advertising cost",
+        "step2": "Check the total impressions your ad received",
+        "step3": "Divide cost by impressions",
+        "step4": "Multiply the result by 1,000",
+        "conclusion": "This step-by-step calculation removes confusion and helps you clearly track ad efficiency."
+      },
+      "lowOrHigh": {
+        "title": "What Is Considered a Low or High TikTok CPM?",
+        "low": "Low CPM indicates strong performance, good targeting, and engaging content",
+        "high": "High CPM suggests poor targeting, weak engagement, or high competition",
+        "conclusion": "Neither is permanent—CPM can improve with better strategy and optimization."
+      },
+      "averageRates": {
+        "title": "Average TikTok CPM Rates and Benchmarks",
+        "description": "TikTok CPM rates are not fixed. They vary based on campaign objective, audience location, industry competition, and targeting precision. However, based on common advertising patterns, the following benchmarks give a realistic overview of what advertisers and creators can expect:",
+        "table": {
+          "campaignObjective": "Campaign Objective",
+          "estimatedCPM": "Estimated TikTok CPM (USD)",
+          "brandAwareness": "Brand Awareness Campaigns",
+          "brandAwarenessCPM": "$1.20 – $3.50",
+          "trafficClicks": "Traffic & Website Clicks",
+          "trafficClicksCPM": "$3.00 – $6.50",
+          "appInstalls": "App Installs & Lead Generation",
+          "appInstallsCPM": "$4.50 – $8.00",
+          "salesConversion": "Sales & Conversion Campaigns",
+          "salesConversionCPM": "$6.00 – $12.00",
+          "influencerPromotions": "Influencer & Creator Promotions",
+          "influencerPromotionsCPM": "$7.00 – $14.00"
+        },
+        "conclusion": "Lower CPMs are usually seen in broad awareness campaigns and less competitive niches, while higher CPMs are common in conversion-focused ads and high-demand industries. Geographic targeting also plays a major role—ads shown in Tier-1 countries generally cost more than those in emerging markets. Monitoring your CPM regularly allows you to optimize targeting, control ad spend, and improve overall campaign profitability."
+      },
+      "forUsers": {
+        "title": "TikTok CPM for Influencers, Brands, and Businesses",
+        "influencers": "Influencers use CPM to prove audience value to brands",
+        "brands": "Brands use CPM to measure ad efficiency",
+        "businesses": "Businesses rely on CPM to optimize marketing budgets",
+        "conclusion": "Each group benefits by understanding how impressions translate into real costs and returns."
+      },
+      "comparison": {
+        "title": "TikTok CPM Compared to Other Social Platforms",
+        "description": "Compared to platforms like Facebook, Instagram, and YouTube, TikTok often offers lower CPM with higher organic reach. This makes TikTok attractive for brands looking for cost-effective visibility, especially for younger and trend-driven audiences."
+      },
+      "improveCPM": {
+        "title": "Proven Ways to Improve Your TikTok CPM",
+        "intro": "You can improve your TikTok CPM by:",
+        "tip1": "Creating engaging, trend-aligned content",
+        "tip2": "Targeting the right audience demographics",
+        "tip3": "Testing different ad formats",
+        "tip4": "Improving engagement rates",
+        "tip5": "Optimizing posting times",
+        "conclusion": "When engagement improves, TikTok rewards ads with better reach at lower costs."
+      },
+      "faq": {
+        "title": "FAQs",
+        "q1": {
+          "question": "How accurate is the TikTok CPM Calculator?",
+          "answer": "The TikTok CPM Calculator provides a close estimate based on your ad spend and impressions. While it's not an exact billing amount, it gives a reliable benchmark to understand and compare campaign costs."
+        },
+        "q2": {
+          "question": "Can I use it for any industry?",
+          "answer": "Yes, the calculator works for all industries. However, CPM results may vary depending on niche competition, audience demand, and targeting strategy."
+        },
+        "q3": {
+          "question": "Does CPM differ for influencers and brands?",
+          "answer": "Yes, CPM often differs. Influencers may see higher CPMs due to audience trust and engagement, while brands running large-scale ads may achieve lower CPMs with optimized targeting."
+        },
+        "q4": {
+          "question": "What affects CPM on TikTok?",
+          "answer": "CPM is influenced by audience location, ad objective, competition, content quality, targeting accuracy, and overall engagement levels."
+        },
+        "q5": {
+          "question": "How does CPM help in budget planning?",
+          "answer": "CPM helps estimate how much budget is needed to reach a specific audience size. It allows advertisers to plan campaigns, control spending, and adjust strategies for better results."
+        }
+      }
+    }
   },
   "contact": {
     "title": "Contact Us",
-    "email": "tikcalculator@proton.me"
+    "subtitle": "Get in touch with us. We'd love to hear from you!",
+    "email": "tikcalculator@proton.me",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Enter your email",
+    "message": "Message",
+    "messagePlaceholder": "Enter your message",
+    "sendMessage": "Send Message",
+    "sending": "Sending...",
+    "successMessage": "Thank you! Your message has been sent successfully."
   },
   "privacy": {
     "title": "Privacy Policy",
@@ -168,9 +386,36 @@
     }
   },
   "about": {
-    "title": "About TikCalulaator",
-    "description1": "TikCalulaator is a lightweight earnings estimator for TikTok creators and brands. It combines CPM presets, platform share, and niche multipliers to help you reason about revenue potential before negotiating deals.",
-    "description2": "Built with React, Tailwind CSS, and an Express + MongoDB API, it focuses on clarity and responsiveness so you can run quick what-if scenarios on any device."
+    "title": "About Us – TikTok Money Calculator",
+    "welcome": "Welcome to TikTok Money Calculator, the go-to platform for creators, influencers, and businesses who want to understand their TikTok performance and earning potential. We simplify the process of analyzing your account so you can make smarter decisions, grow your audience, and maximize your opportunities on TikTok.",
+    "mission": {
+      "title": "Our Mission",
+      "description": "We aim to empower TikTok users with clear, accurate, and actionable insights. Whether you are a rising creator, an influencer, or a brand, our tools help you measure engagement, track growth, and estimate earnings, giving you the confidence to plan your content and campaigns effectively."
+    },
+    "whatWeOffer": {
+      "title": "What We Offer",
+      "engagementCalculator": {
+        "title": "Engagement Calculator",
+        "description": "Quickly measure how your audience interacts with your content to understand which posts perform best."
+      },
+      "earningsCalculator": {
+        "title": "Earnings Calculator",
+        "description": "Estimate your potential income based on views, followers, and engagement, so you can plan collaborations and monetization strategies."
+      },
+      "guidesTips": {
+        "title": "Guides & Tips",
+        "description": "Access expert advice on TikTok strategy, content creation, and audience engagement to improve your performance consistently."
+      }
+    },
+    "ourTeam": {
+      "title": "Our Team",
+      "description": "Our team consists of social media experts, data analysts, and content enthusiasts who constantly study TikTok trends and analytics. We combine technical knowledge with practical insights to provide tools that are easy to use, accurate, and relevant."
+    },
+    "joinUs": {
+      "title": "Join Us",
+      "description": "TikTok is growing rapidly, and opportunities are expanding every day. With TikTok Money Calculator, you can track, measure, and optimize your TikTok presence like a pro. We are here to support your journey and help you succeed with clarity and confidence.",
+      "thankYou": "Thank you for trusting TikTok Money Calculator—let's grow, engage, and earn together!"
+    }
   },
   "faq": {
     "title": "FAQ",

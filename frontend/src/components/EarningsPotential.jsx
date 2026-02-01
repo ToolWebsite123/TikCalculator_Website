@@ -49,3 +49,5 @@ const EarningsPotential = () => {
 
 export default EarningsPotential;
 
+
+

@@ -36,7 +36,7 @@
         "boostEngagement": "Tingkatkan engagement TikTok Anda",
         "privacyPolicy": "Kebijakan Privasi",
         "termsAndConditions": "Syarat dan Ketentuan",
-        "copyright": "2022–2026 Tikcalculator.com Semua Hak Dilindungi"
+        "copyright": "2026 Tikcalculator.com Semua Hak Dilindungi"
     },
     "engagementCalculator": {
         "title": "Kalkulator Tingkat Engagement TikTok",
@@ -48,7 +48,109 @@
         "engagementRate": "Tingkat Engagement",
         "placeholderLikes": "mis., 4.2M atau 4200000",
         "placeholderVideos": "mis., 221",
-        "placeholderFollowers": "mis., 277.8K atau 277800"
+        "placeholderFollowers": "mis., 277.8K atau 277800",
+        "content": {
+            "whatIs": {
+                "title": "Apa itu Kalkulator Tingkat Engagement TikTok?",
+                "description1": "Kalkulator Tingkat Engagement TikTok adalah alat analitik yang mengukur interaksi audiens di profil TikTok Anda.",
+                "description2": "Ini mengubah metrik mentah menjadi persentase sederhana yang mencerminkan seberapa menarik konten Anda.",
+                "description3": "Ini membantu kreator, merek, dan pemasar memahami apakah video mereka beresonansi dengan penonton atau perlu perbaikan."
+            },
+            "tikCalculator": {
+                "title": "Hitung Tingkat Engagement TikTok – TikCalculator",
+                "description1": "TikCalculator membantu Anda menghitung tingkat engagement TikTok secara instan menggunakan data kinerja nyata.",
+                "description2": "Dengan memasukkan suka, komentar, bagikan, video, dan pengikut, Anda mendapatkan persentase yang jelas yang menunjukkan seberapa aktif audiens Anda berinteraksi dengan konten Anda. Ini menghilangkan tebakan dan memberi Anda wawasan yang dapat diandalkan untuk mengevaluasi kinerja akun."
+            },
+            "relatedTools": {
+                "title": "Alat Terkait",
+                "moneyCalculator": "Penasaran dengan potensi penghasilan TikTok Anda? Coba Kalkulator Uang TikTok kami untuk memperkirakan kemungkinan pendapatan menggunakan data engagement dan kinerja akun. Ini membantu kreator memahami nilai monetisasi mereka sebelum bekerja dengan merek.",
+                "cpmCalculator": "Anda juga dapat memeriksa nilai iklan dengan Kalkulator CPM TikTok, yang menunjukkan pembayaran rata-rata yang mungkin ditawarkan pengiklan untuk setiap 1.000 tayangan. Ini berguna untuk merencanakan kampanye berbayar dan kesepakatan sponsor."
+            },
+            "manualCalculation": {
+                "title": "Cara Menghitung Tingkat Engagement di TikTok Secara Manual",
+                "description": "Rumus tingkat engagement manual sederhana dan banyak digunakan:",
+                "formula": "Tingkat Engagement (%) = (Suka + Komentar + Bagikan) ÷ Pengikut × 100",
+                "explanation1": "Rumus ini menunjukkan seberapa terlibat pengikut Anda dengan konten Anda.",
+                "explanation2": "Persentase yang lebih tinggi berarti interaksi dan loyalitas audiens yang lebih kuat."
+            },
+            "benchmarks": {
+                "title": "Tolok Ukur Tingkat Engagement TikTok berdasarkan Jumlah Pengikut",
+                "description": "Tingkat engagement bervariasi tergantung pada ukuran audiens. Akun yang lebih kecil biasanya melihat engagement yang lebih tinggi, sementara akun yang lebih besar mengalami penurunan bertahap saat mereka tumbuh.",
+                "table": {
+                    "followerRange": "Rentang Pengikut",
+                    "averageRate": "Tingkat Engagement Rata-Rata",
+                    "range1": "1K – 5K pengikut",
+                    "rate1": "18% – 22%",
+                    "range2": "5K – 20K pengikut",
+                    "rate2": "15% – 19%",
+                    "range3": "20K – 100K pengikut",
+                    "rate3": "13% – 16%",
+                    "range4": "100K – 500K pengikut",
+                    "rate4": "12% – 15%",
+                    "range5": "500K – 1M pengikut",
+                    "rate5": "14% – 17%",
+                    "range6": "1M+ pengikut",
+                    "rate6": "13% – 17%"
+                },
+                "conclusion": "Rentang tolok ukur ini membantu kreator dan merek mengevaluasi kinerja secara realistis menggunakan kalkulator engagement TikTok. Engagement secara alami berfluktuasi berdasarkan niche, kualitas konten, dan perilaku audiens, jadi hasil harus dibandingkan dalam rentang pengikut yang serupa."
+            },
+            "howToUse": {
+                "title": "Cara Menggunakan Kalkulator Secara Efektif",
+                "intro": "Untuk mendapatkan hasil yang akurat:",
+                "tip1": "Masukkan data yang benar dan terkini",
+                "tip2": "Gunakan total pengikut, bukan tayangan video",
+                "tip3": "Bandingkan beberapa postingan, bukan satu",
+                "tip4": "Lacak engagement secara konsisten dari waktu ke waktu",
+                "conclusion": "Penggunaan rutin membantu mengidentifikasi tren dan meningkatkan keputusan konten."
+            },
+            "whyMatters": {
+                "title": "Mengapa Tingkat Engagement Penting",
+                "point1": "Tingkat engagement adalah salah satu metrik kinerja terpenting TikTok.",
+                "point2": "Ini secara langsung mempengaruhi jangkauan, visibilitas, dan kinerja algoritma.",
+                "point3": "Merek juga menggunakan tingkat engagement untuk mengevaluasi kreator untuk kemitraan dan sponsor.",
+                "point4": "Engagement tinggi menandakan kepercayaan, relevansi, dan koneksi audiens yang kuat."
+            },
+            "industrySpecific": {
+                "title": "Engagement Spesifik Industri di TikTok",
+                "description1": "Tingkat engagement bervariasi menurut niche. Konten hiburan dan gaya hidup sering melihat interaksi yang lebih tinggi.",
+                "description2": "Niche bisnis, pendidikan, dan keuangan biasanya memiliki engagement yang lebih rendah tetapi lebih ditargetkan. Membandingkan engagement dalam industri Anda memberikan wawasan kinerja yang lebih akurat daripada rata-rata global."
+            },
+            "improveEngagement": {
+                "title": "Cara Meningkatkan Tingkat Engagement TikTok Anda",
+                "intro": "Meningkatkan engagement memerlukan konsistensi dan strategi:",
+                "tip1": "Posting secara teratur",
+                "tip2": "Gunakan hook yang kuat di detik-detik pertama",
+                "tip3": "Ikuti tren dengan orisinalitas",
+                "tip4": "Gunakan hashtag yang relevan",
+                "tip5": "Berinteraksi dengan komentar",
+                "tip6": "Dorong interaksi melalui pertanyaan",
+                "tip7": "Berkolaborasi dengan kreator lain",
+                "conclusion": "Engagement yang kuat datang dari koneksi, bukan hanya tayangan."
+            },
+            "faq": {
+                "title": "Pertanyaan yang Sering Diajukan",
+                "q1": {
+                    "question": "Apa yang dilakukan Kalkulator Tingkat Engagement TikTok?",
+                    "answer": "Ini menghitung seberapa aktif pengguna berinteraksi dengan konten TikTok Anda menggunakan suka, komentar, bagikan, dan pengikut."
+                },
+                "q2": {
+                    "question": "Apakah alat ini gratis digunakan?",
+                    "answer": "Ya, kalkulator sepenuhnya gratis dan tidak memerlukan pendaftaran."
+                },
+                "q3": {
+                    "question": "Seberapa sering saya harus memeriksa tingkat engagement saya?",
+                    "answer": "Periksa secara mingguan atau bulanan untuk melacak tren kinerja secara akurat."
+                },
+                "q4": {
+                    "question": "Bisakah merek menggunakannya untuk pemilihan influencer?",
+                    "answer": "Ya, merek menggunakan tingkat engagement untuk mengevaluasi kualitas influencer dan keaslian audiens."
+                },
+                "q5": {
+                    "question": "Apa yang dianggap sebagai tingkat engagement yang sangat baik?",
+                    "answer": "Tingkat engagement di atas 10% dianggap sangat baik di TikTok."
+                }
+            }
+        }
     },
     "cpmCalculator": {
         "title": "Kalkulator CPM TikTok",
@@ -63,7 +165,113 @@
         "calculatedCpm": "CPM TAKSIRAN",
         "costPerThousand": "Biaya per 1.000 tayangan",
         "placeholderCost": "Masukkan total biaya",
-        "placeholderImpressions": "Masukkan tayangan"
+        "placeholderImpressions": "Masukkan tayangan",
+        "content": {
+            "whatIsTikTokCPM": {
+                "title": "Apa itu TikTok CPM dan Mengapa Penting?",
+                "description": "TikTok CPM adalah singkatan dari Cost Per Mille, yang berarti biaya yang dibayar pengiklan untuk setiap 1.000 tayangan di TikTok. Tayangan dihitung setiap kali iklan atau konten promosi Anda ditampilkan kepada pengguna. CPM penting karena membantu kreator, merek, dan bisnis memahami efisiensi biaya jangkauan mereka. CPM yang dioptimalkan dengan baik berarti Anda menjangkau lebih banyak orang sambil menghabiskan lebih sedikit, yang secara langsung mempengaruhi kinerja dan profitabilitas kampanye."
+            },
+            "relatedTools": {
+                "title": "Alat Terkait",
+                "moneyCalculator": "Gunakan Kalkulator Uang TikTok kami untuk mendapatkan perkiraan rentang penghasilan berdasarkan jumlah pengikut, tayangan video, dan engagement keseluruhan Anda. Ini membantu kreator memahami berapa nilai konten mereka sebelum bekerja dengan merek.",
+                "engagementCalculator": "Untuk mengevaluasi seberapa baik konten Anda terhubung dengan audiens, coba Kalkulator Engagement TikTok kami. Alat ini menganalisis suka, komentar, bagikan, dan tayangan untuk menunjukkan seberapa aktif pengguna berinteraksi dengan video Anda—faktor penting yang secara langsung mempengaruhi CPM dan kinerja iklan."
+            },
+            "howItHelps": {
+                "title": "Kalkulator CPM TikTok: Bagaimana Ini Membantu Kreator dan Merek",
+                "description": "Kalkulator CPM TikTok membantu pengguna memperkirakan biaya iklan sebelum menjalankan kampanye.",
+                "forCreators": "Untuk kreator: Ini menunjukkan seberapa berharga audiens mereka bagi pengiklan.",
+                "forBrands": "Untuk merek: Ini membantu merencanakan anggaran, membandingkan kinerja kampanye, dan memutuskan apakah iklan TikTok memberikan nilai yang baik dibandingkan dengan platform lain."
+            },
+            "howItWorks": {
+                "title": "Bagaimana Kalkulator CPM TikTok Benar-Benar Bekerja",
+                "description": "Kalkulator bekerja dengan mengambil dua input dasar:",
+                "input1": "Total pengeluaran iklan",
+                "input2": "Total tayangan",
+                "conclusion": "Menggunakan nilai-nilai ini, ini menghitung berapa banyak yang Anda bayar untuk menjangkau 1.000 pengguna. Ini memberikan gambaran yang jelas tentang efisiensi jangkauan dan membantu pengiklan mengontrol pengeluaran tanpa menebak."
+            },
+            "formula": {
+                "title": "Rumus CPM TikTok Dijelaskan dalam Istilah Sederhana",
+                "equation": "CPM = (Total Pengeluaran Iklan ÷ Total Tayangan) × 1000",
+                "description": "Dengan kata sederhana, ini menunjukkan berapa banyak uang yang Anda habiskan untuk menampilkan konten Anda di depan 1.000 orang."
+            },
+            "stepByStep": {
+                "title": "Menghitung CPM TikTok Langkah demi Langkah",
+                "step1": "Catat total biaya iklan Anda",
+                "step2": "Periksa total tayangan yang diterima iklan Anda",
+                "step3": "Bagi biaya dengan tayangan",
+                "step4": "Kalikan hasilnya dengan 1.000",
+                "conclusion": "Perhitungan langkah demi langkah ini menghilangkan kebingungan dan membantu Anda melacak efisiensi iklan dengan jelas."
+            },
+            "lowOrHigh": {
+                "title": "Apa yang Dianggap CPM TikTok Rendah atau Tinggi?",
+                "low": "CPM rendah menunjukkan kinerja yang kuat, targeting yang baik, dan konten yang menarik",
+                "high": "CPM tinggi menunjukkan targeting yang buruk, engagement yang lemah, atau persaingan yang tinggi",
+                "conclusion": "Tidak ada yang permanen—CPM dapat membaik dengan strategi dan optimasi yang lebih baik."
+            },
+            "averageRates": {
+                "title": "Tarif CPM TikTok Rata-Rata dan Tolok Ukur",
+                "description": "Tarif CPM TikTok tidak tetap. Mereka bervariasi berdasarkan tujuan kampanye, lokasi audiens, persaingan industri, dan presisi targeting. Namun, berdasarkan pola periklanan umum, tolok ukur berikut memberikan gambaran realistis tentang apa yang dapat diharapkan pengiklan dan kreator:",
+                "table": {
+                    "campaignObjective": "Tujuan Kampanye",
+                    "estimatedCPM": "CPM TikTok Taksiran (USD)",
+                    "brandAwareness": "Kampanye Kesadaran Merek",
+                    "brandAwarenessCPM": "$1.20 – $3.50",
+                    "trafficClicks": "Lalu Lintas & Klik Situs Web",
+                    "trafficClicksCPM": "$3.00 – $6.50",
+                    "appInstalls": "Instalasi Aplikasi & Generasi Lead",
+                    "appInstallsCPM": "$4.50 – $8.00",
+                    "salesConversion": "Kampanye Penjualan & Konversi",
+                    "salesConversionCPM": "$6.00 – $12.00",
+                    "influencerPromotions": "Promosi Influencer & Kreator",
+                    "influencerPromotionsCPM": "$7.00 – $14.00"
+                },
+                "conclusion": "CPM yang lebih rendah biasanya terlihat dalam kampanye kesadaran luas dan niche yang kurang kompetitif, sementara CPM yang lebih tinggi umum terjadi pada iklan yang fokus pada konversi dan industri dengan permintaan tinggi. Targeting geografis juga memainkan peran utama—iklan yang ditampilkan di negara Tier-1 umumnya lebih mahal daripada yang ada di pasar berkembang. Memantau CPM Anda secara teratur memungkinkan Anda mengoptimalkan targeting, mengontrol pengeluaran iklan, dan meningkatkan profitabilitas kampanye secara keseluruhan."
+            },
+            "forUsers": {
+                "title": "CPM TikTok untuk Influencer, Merek, dan Bisnis",
+                "influencers": "Influencer menggunakan CPM untuk membuktikan nilai audiens kepada merek",
+                "brands": "Merek menggunakan CPM untuk mengukur efisiensi iklan",
+                "businesses": "Bisnis mengandalkan CPM untuk mengoptimalkan anggaran pemasaran",
+                "conclusion": "Setiap kelompok mendapat manfaat dengan memahami bagaimana tayangan diterjemahkan menjadi biaya dan pengembalian nyata."
+            },
+            "comparison": {
+                "title": "CPM TikTok Dibandingkan dengan Platform Sosial Lainnya",
+                "description": "Dibandingkan dengan platform seperti Facebook, Instagram, dan YouTube, TikTok sering menawarkan CPM yang lebih rendah dengan jangkauan organik yang lebih tinggi. Ini membuat TikTok menarik bagi merek yang mencari visibilitas yang hemat biaya, terutama untuk audiens yang lebih muda dan didorong tren."
+            },
+            "improveCPM": {
+                "title": "Cara Terbukti untuk Meningkatkan CPM TikTok Anda",
+                "intro": "Anda dapat meningkatkan CPM TikTok Anda dengan:",
+                "tip1": "Membuat konten yang menarik dan selaras dengan tren",
+                "tip2": "Menargetkan demografi audiens yang tepat",
+                "tip3": "Menguji format iklan yang berbeda",
+                "tip4": "Meningkatkan tingkat engagement",
+                "tip5": "Mengoptimalkan waktu posting",
+                "conclusion": "Ketika engagement meningkat, TikTok memberi penghargaan pada iklan dengan jangkauan yang lebih baik dengan biaya lebih rendah."
+            },
+            "faq": {
+                "title": "Pertanyaan yang Sering Diajukan",
+                "q1": {
+                    "question": "Seberapa akurat Kalkulator CPM TikTok?",
+                    "answer": "Kalkulator CPM TikTok memberikan perkiraan yang dekat berdasarkan pengeluaran iklan dan tayangan Anda. Meskipun ini bukan jumlah penagihan yang tepat, ini memberikan tolok ukur yang dapat diandalkan untuk memahami dan membandingkan biaya kampanye."
+                },
+                "q2": {
+                    "question": "Bisakah saya menggunakannya untuk industri apa pun?",
+                    "answer": "Ya, kalkulator bekerja untuk semua industri. Namun, hasil CPM dapat bervariasi tergantung pada persaingan niche, permintaan audiens, dan strategi targeting."
+                },
+                "q3": {
+                    "question": "Apakah CPM berbeda untuk influencer dan merek?",
+                    "answer": "Ya, CPM sering berbeda. Influencer mungkin melihat CPM yang lebih tinggi karena kepercayaan dan engagement audiens, sementara merek yang menjalankan iklan skala besar dapat mencapai CPM yang lebih rendah dengan targeting yang dioptimalkan."
+                },
+                "q4": {
+                    "question": "Apa yang mempengaruhi CPM di TikTok?",
+                    "answer": "CPM dipengaruhi oleh lokasi audiens, tujuan iklan, persaingan, kualitas konten, akurasi targeting, dan tingkat engagement keseluruhan."
+                },
+                "q5": {
+                    "question": "Bagaimana CPM membantu dalam perencanaan anggaran?",
+                    "answer": "CPM membantu memperkirakan berapa banyak anggaran yang dibutuhkan untuk menjangkau ukuran audiens tertentu. Ini memungkinkan pengiklan untuk merencanakan kampanye, mengontrol pengeluaran, dan menyesuaikan strategi untuk hasil yang lebih baik."
+                }
+            }
+        }
     },
     "contact": {
         "title": "Hubungi Kami",
@@ -168,9 +376,36 @@
         }
     },
     "about": {
-        "title": "Tentang TikCalulaator",
-        "description1": "TikCalulaator adalah estimator penghasilan ringan untuk kreator dan merek TikTok. Ini menggabungkan preset CPM, bagian platform, dan pengganda niche untuk membantu Anda mempertimbangkan potensi pendapatan sebelum menegosiasikan kesepakatan.",
-        "description2": "Dibangun dengan React, Tailwind CSS, dan API Express + MongoDB, ini berfokus pada kejelasan dan responsivitas sehingga Anda dapat menjalankan skenario what-if dengan cepat di perangkat apa pun."
+        "title": "Tentang Kami – Kalkulator Uang TikTok",
+        "welcome": "Selamat datang di Kalkulator Uang TikTok, platform utama untuk kreator, influencer, dan bisnis yang ingin memahami kinerja TikTok dan potensi penghasilan mereka. Kami menyederhanakan proses menganalisis akun Anda sehingga Anda dapat membuat keputusan yang lebih cerdas, menumbuhkan audiens, dan memaksimalkan peluang Anda di TikTok.",
+        "mission": {
+            "title": "Misi Kami",
+            "description": "Kami bertujuan untuk memberdayakan pengguna TikTok dengan wawasan yang jelas, akurat, dan dapat ditindaklanjuti. Baik Anda adalah kreator yang sedang naik, influencer, atau merek, alat kami membantu Anda mengukur engagement, melacak pertumbuhan, dan memperkirakan penghasilan, memberi Anda kepercayaan untuk merencanakan konten dan kampanye Anda secara efektif."
+        },
+        "whatWeOffer": {
+            "title": "Apa yang Kami Tawarkan",
+            "engagementCalculator": {
+                "title": "Kalkulator Engagement",
+                "description": "Ukur dengan cepat bagaimana audiens Anda berinteraksi dengan konten Anda untuk memahami postingan mana yang berkinerja terbaik."
+            },
+            "earningsCalculator": {
+                "title": "Kalkulator Penghasilan",
+                "description": "Perkirakan potensi pendapatan Anda berdasarkan tayangan, pengikut, dan engagement, sehingga Anda dapat merencanakan kolaborasi dan strategi monetisasi."
+            },
+            "guidesTips": {
+                "title": "Panduan & Tips",
+                "description": "Akses saran ahli tentang strategi TikTok, pembuatan konten, dan engagement audiens untuk meningkatkan kinerja Anda secara konsisten."
+            }
+        },
+        "ourTeam": {
+            "title": "Tim Kami",
+            "description": "Tim kami terdiri dari ahli media sosial, analis data, dan penggemar konten yang terus mempelajari tren dan analitik TikTok. Kami menggabungkan pengetahuan teknis dengan wawasan praktis untuk menyediakan alat yang mudah digunakan, akurat, dan relevan."
+        },
+        "joinUs": {
+            "title": "Bergabunglah dengan Kami",
+            "description": "TikTok berkembang pesat, dan peluang berkembang setiap hari. Dengan Kalkulator Uang TikTok, Anda dapat melacak, mengukur, dan mengoptimalkan kehadiran TikTok Anda seperti seorang profesional. Kami di sini untuk mendukung perjalanan Anda dan membantu Anda sukses dengan kejelasan dan kepercayaan diri.",
+            "thankYou": "Terima kasih telah mempercayai Kalkulator Uang TikTok—mari kita tumbuh, terlibat, dan menghasilkan bersama!"
+        }
     },
     "faq": {
         "title": "FAQ",

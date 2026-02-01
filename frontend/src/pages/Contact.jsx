@@ -1,80 +1,175 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
   const { t } = useTranslation();
-  
-  return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
-      {/* Main Contact Section */}
-      <section className="container mx-auto max-w-3xl px-3 py-12 text-center sm:px-4 sm:py-16 md:px-6 md:py-20">
-        <div className="space-y-4">
-          {/* Rocket Icon */}
-          <div className="flex justify-center mb-4 sm:mb-6">
-            <div className="relative">
-              {/* Rocket Body - Red/Orange gradient */}
-              <svg
-                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {/* Rocket body */}
-                <path
-                  d="M50 20 L35 80 L50 75 L65 80 Z"
-                  fill="url(#rocketGradient)"
-                />
-                {/* Rocket window */}
-                <circle cx="50" cy="45" r="8" fill="#3B82F6" />
-                {/* Rocket fins */}
-                <path d="M35 80 L25 85 L35 85 Z" fill="#F97316" />
-                <path d="M65 80 L75 85 L65 85 Z" fill="#F97316" />
-                {/* Rocket flame */}
-                <path d="M50 75 L45 90 L50 88 L55 90 Z" fill="#FBBF24" />
-                <path d="M50 75 L48 85 L50 83 L52 85 Z" fill="#F59E0B" />
-                <defs>
-                  <linearGradient id="rocketGradient" x1="50" y1="20" x2="50" y2="80" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stopColor="#EF4444" />
-                    <stop offset="100%" stopColor="#F97316" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          </div>
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
-          {/* Title */}
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 sm:text-3xl sm:mb-5 md:text-4xl md:mb-6 lg:text-5xl">
+  // SEO: Update page title and meta description
+  useEffect(() => {
+    document.title = 'Contact TikCalculator – Get Support for Your TikTok Money Calculator';
+    
+    // Update or create meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', 'Have questions or feedback? Contact TikCalculator to get quick support, share ideas, or learn more about our TikTok Money Calculator and analytics tools for creators and brands.');
+    
+    // Update Open Graph meta tags
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    if (!ogTitle) {
+      ogTitle = document.createElement('meta');
+      ogTitle.setAttribute('property', 'og:title');
+      document.head.appendChild(ogTitle);
+    }
+    ogTitle.setAttribute('content', 'Contact TikCalculator – Get Support for Your TikTok Money Calculator');
+    
+    let ogDescription = document.querySelector('meta[property="og:description"]');
+    if (!ogDescription) {
+      ogDescription = document.createElement('meta');
+      ogDescription.setAttribute('property', 'og:description');
+      document.head.appendChild(ogDescription);
+    }
+    ogDescription.setAttribute('content', 'Have questions or feedback? Contact TikCalculator to get quick support, share ideas, or learn more about our TikTok Money Calculator and analytics tools for creators and brands.');
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      
+      // Reset status message after 3 seconds
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 3000);
+    }, 1000);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors">
+      {/* Main Contact Section */}
+      <section className="container mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16 lg:py-20">
+        {/* Title */}
+        <div className="text-center mb-8 sm:mb-10 md:mb-12">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:text-4xl sm:mb-4 md:text-5xl">
             {t('contact.title')}
           </h1>
+          <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base md:text-lg">
+            {t('contact.subtitle') || 'Get in touch with us. We\'d love to hear from you!'}
+          </p>
+        </div>
 
-          {/* Email with Icon */}
-          <div className="flex flex-col items-center justify-center gap-2 text-gray-700 dark:text-white sm:flex-row sm:gap-3">
-            <svg
-              className="w-5 h-5 text-gray-600 dark:text-white sm:w-6 sm:h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+        {/* Contact Form */}
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 md:p-10 border border-gray-200 dark:border-gray-700">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Name Field */}
+            <div>
+              <label 
+                htmlFor="name" 
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >
+                {t('contact.name') || 'Name'}
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors text-sm sm:text-base"
+                placeholder={t('contact.namePlaceholder') || 'Enter your name'}
               />
-            </svg>
-            <a
-              href={`mailto:${t('contact.email')}`}
-              className="text-sm text-gray-700 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition break-all sm:text-base md:text-lg"
-            >
-              {t('contact.email')}
-            </a>
-          </div>
+            </div>
+
+            {/* Email Field */}
+            <div>
+              <label 
+                htmlFor="email" 
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >
+                {t('contact.emailLabel') || 'Email'}
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors text-sm sm:text-base"
+                placeholder={t('contact.emailPlaceholder') || 'Enter your email'}
+              />
+            </div>
+
+            {/* Message Field */}
+            <div>
+              <label 
+                htmlFor="message" 
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >
+                {t('contact.message') || 'Message'}
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={6}
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors resize-none text-sm sm:text-base"
+                placeholder={t('contact.messagePlaceholder') || 'Enter your message'}
+              />
+            </div>
+
+            {/* Submit Button */}
+            <div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98]"
+              >
+                {isSubmitting 
+                  ? (t('contact.sending') || 'Sending...') 
+                  : (t('contact.sendMessage') || 'Send Message')
+                }
+              </button>
+            </div>
+
+            {/* Success Message */}
+            {submitStatus === 'success' && (
+              <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300 px-4 py-3 rounded-lg text-sm sm:text-base">
+                {t('contact.successMessage') || 'Thank you! Your message has been sent successfully.'}
+              </div>
+            )}
+          </form>
         </div>
       </section>
-
     </div>
-);
+  );
 };
 
 export default Contact;

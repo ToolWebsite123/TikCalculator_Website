@@ -25,6 +25,45 @@ try {
 const CACHE_MAX_AGE_MS = 1 * 60 * 60 * 1000; // 1 hour (as specified)
 
 /**
+ * Request queue to handle concurrent requests for the same username
+ * Prevents duplicate scraping for the same user when multiple requests arrive simultaneously
+ */
+const activeRequests = new Map();
+
+/**
+ * Get or create a promise for an active request
+ * This ensures that if multiple users search for the same username simultaneously,
+ * only one actual scrape happens and all requests share the result
+ */
+const getOrCreateRequest = (username, requestFn) => {
+  const cleanUsername = username.trim().toLowerCase().replace('@', '');
+  
+  // If there's already an active request for this username, return its promise
+  if (activeRequests.has(cleanUsername)) {
+    console.log(`[Controller] Request for @${cleanUsername} already in progress, sharing result...`);
+    return activeRequests.get(cleanUsername);
+  }
+  
+  // Create new request promise
+  const requestPromise = requestFn()
+    .then((result) => {
+      // Remove from active requests on success
+      activeRequests.delete(cleanUsername);
+      return result;
+    })
+    .catch((error) => {
+      // Remove from active requests on error
+      activeRequests.delete(cleanUsername);
+      throw error;
+    });
+  
+  // Store the promise
+  activeRequests.set(cleanUsername, requestPromise);
+  
+  return requestPromise;
+};
+
+/**
  * Calculate earnings using exact TikCalculator.com formula
  * @param {number} avgViews - Average views per video
  * @param {number} engagementRate - Engagement rate (default 5%)
@@ -335,11 +374,15 @@ const getTikTokProfile = async (req, res) => {
     }
 
     // Fetch fresh data from TikTok
+    // Use request queue to prevent duplicate scraping for concurrent requests
     console.log(`[Controller] Fetching fresh data for @${cleanUsername}`);
 
     let scrapedData;
     try {
-      scrapedData = await scrapeTikTokProfile(cleanUsername);
+      // Use request queue to handle concurrent requests for the same username
+      scrapedData = await getOrCreateRequest(cleanUsername, async () => {
+        return await scrapeTikTokProfile(cleanUsername);
+      });
     } catch (scrapeErr) {
       // Handle specific scraper errors
       if (scrapeErr instanceof TikTokScraperError) {
@@ -970,6 +1013,7 @@ const healthCheck = async (req, res) => {
 
 /**
  * In-memory cache for earnings endpoint (60 seconds)
+ * Safe for concurrent access in Node.js single-threaded event loop
  */
 const earningsCache = {};
 const EARNINGS_CACHE_TTL = 60 * 1000; // 60 seconds
@@ -1087,7 +1131,10 @@ const getTikTokEarnings = async (req, res) => {
       // If no cached data, fetch fresh
       if (!profileData) {
         console.log(`[Earnings] Fetching fresh profile data for @${cleanUsername}`);
-        const scrapedData = await scrapeTikTokProfile(cleanUsername);
+        // Use request queue to prevent duplicate scraping for concurrent requests
+        const scrapedData = await getOrCreateRequest(cleanUsername, async () => {
+          return await scrapeTikTokProfile(cleanUsername);
+        });
 
         console.log(`[Earnings] Scraped data received - videos: ${(scrapedData.latestVideos || []).length}`);
 
@@ -1103,7 +1150,10 @@ const getTikTokEarnings = async (req, res) => {
         // If cached data has no videos, fetch fresh data
         if (videoCount === 0) {
           console.log(`[Earnings] ⚠ Cached data has no videos, fetching fresh data...`);
-          const scrapedData = await scrapeTikTokProfile(cleanUsername);
+          // Use request queue to prevent duplicate scraping for concurrent requests
+          const scrapedData = await getOrCreateRequest(cleanUsername, async () => {
+            return await scrapeTikTokProfile(cleanUsername);
+          });
 
           console.log(`[Earnings] Fresh scraped data - videos: ${(scrapedData.latestVideos || []).length}`);
 

@@ -11,40 +11,6 @@ const {
 const router = express.Router();
 
 /**
- * Rate limiting middleware (simple implementation)
- */
-const rateLimit = {};
-const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
-const MAX_REQUESTS = 30; // 30 requests per minute
-
-const rateLimitMiddleware = (req, res, next) => {
-    const ip = req.ip || req.connection.remoteAddress;
-    const now = Date.now();
-    
-    if (!rateLimit[ip]) {
-        rateLimit[ip] = { count: 1, resetTime: now + RATE_LIMIT_WINDOW };
-        return next();
-    }
-    
-    if (now > rateLimit[ip].resetTime) {
-        rateLimit[ip] = { count: 1, resetTime: now + RATE_LIMIT_WINDOW };
-        return next();
-    }
-    
-    if (rateLimit[ip].count >= MAX_REQUESTS) {
-        return res.status(429).json({
-            success: false,
-            error: 'Too many requests',
-            message: 'Please wait a moment before trying again',
-            retryAfter: Math.ceil((rateLimit[ip].resetTime - now) / 1000),
-        });
-    }
-    
-    rateLimit[ip].count++;
-    next();
-};
-
-/**
  * Health check endpoint
  * GET /api/tiktok/health
  */
@@ -55,16 +21,22 @@ router.get('/tiktok/health', healthCheck);
  * GET /api/tiktok/user/:username
  * Query params:
  *   - refresh=true (force refresh cache)
+ * 
+ * Note: Rate limiting is handled globally in app.js
+ * This endpoint supports concurrent requests from multiple users
  */
-router.get('/tiktok/user/:username', rateLimitMiddleware, getTikTokProfile);
+router.get('/tiktok/user/:username', getTikTokProfile);
 
 /**
  * Get TikTok user earnings (dedicated endpoint)
  * GET /api/tiktok/user/:username/earnings
  * Query params:
  *   - refresh=true (force refresh cache)
+ * 
+ * Note: Rate limiting is handled globally in app.js
+ * This endpoint supports concurrent requests from multiple users
  */
-router.get('/tiktok/user/:username/earnings', rateLimitMiddleware, getTikTokEarnings);
+router.get('/tiktok/user/:username/earnings', getTikTokEarnings);
 
 /**
  * Calculate earnings from views (TikCalculator.com style)
@@ -73,8 +45,11 @@ router.get('/tiktok/user/:username/earnings', rateLimitMiddleware, getTikTokEarn
  *   - views (required): Average views per video
  *   - engagementRate (optional): Engagement rate percentage
  *   - followers (optional): Follower count for CPM calculation
+ * 
+ * Note: Rate limiting is handled globally in app.js
+ * This endpoint supports concurrent requests from multiple users
  */
-router.get('/tiktok/earnings', rateLimitMiddleware, calculateEarningsFromViews);
+router.get('/tiktok/earnings', calculateEarningsFromViews);
 
 /**
  * Clear cache for specific user

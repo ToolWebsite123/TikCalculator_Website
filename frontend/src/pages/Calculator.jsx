@@ -52,8 +52,6 @@ const Calculator = () => {
   // This ensures earningsData is ALWAYS set when profile data is available
   useEffect(() => {
     if (result && result.profile && result.success !== false) {
-      console.log('[Frontend] [useEffect] result changed, calculating earnings...');
-      
       // Extract avgViews from multiple possible locations
       const avgViews = Number(result.avgViews) || 
                       Number(result.analytics?.avgViews) || 
@@ -61,13 +59,6 @@ const Calculator = () => {
       const engagementRate = Number(result.engagementRate) || 
                             Number(result.analytics?.engagementRate) || 
                             0;
-      
-      console.log('[Frontend] [useEffect] Extracted:', {
-        avgViews,
-        engagementRate,
-        'result.avgViews': result.avgViews,
-        'result.analytics?.avgViews': result.analytics?.avgViews,
-      });
       
       // Calculate earnings if we have data
       if (avgViews > 0 || result.profile.followers > 0) {
@@ -118,7 +109,6 @@ const Calculator = () => {
           source: 'useEffect_calculation',
         };
         
-        console.log('[Frontend] [useEffect] ✅ Setting earningsData:', calculatedEarningsData);
         setEarningsData(calculatedEarningsData);
       }
     }
@@ -126,17 +116,12 @@ const Calculator = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('========================================');
-    console.log('[Frontend] 🚀 handleSubmit CALLED for username:', username.trim());
-    console.log('========================================');
 
     if (!username.trim()) {
-      console.log('[Frontend] ❌ Username is empty!');
       setError('Please enter a TikTok username');
       return;
     }
 
-    console.log('[Frontend] Setting loading states...');
     setLoading(true);
     setEarningsLoading(true);
     setError('');
@@ -144,12 +129,8 @@ const Calculator = () => {
     // CRITICAL: Don't reset earningsData to null - keep previous value until new data is ready
     // This prevents the EarningsCard from showing $0.00 during loading
 
-    console.log('[Frontend] ========================================');
-    console.log('[Frontend] Starting search for:', username.trim());
-
     try {
       // Fetch profile and earnings in parallel
-      console.log('[Frontend] Calling fetchTikTokProfile and fetchTikTokEarnings...');
 
       const [profileData, earningsResponse] = await Promise.all([
         fetchTikTokProfile(username.trim()).catch(err => {
@@ -157,12 +138,7 @@ const Calculator = () => {
           throw err;
         }),
         fetchTikTokEarnings(username.trim()).catch(err => {
-          console.error('[Frontend] ❌ fetchTikTokEarnings failed:', err.message);
-          console.error('[Frontend] Error details:', err.response?.data || err);
-          console.error('[Frontend] Error status:', err.response?.status);
-          console.error('[Frontend] Error config:', err.config);
           // CRITICAL: Return safe fallback object instead of null
-          console.warn('[Frontend] ⚠ Returning safe fallback for earningsResponse');
           return {
             success: true,
             estimatedEarnings: 0,
@@ -183,111 +159,17 @@ const Calculator = () => {
         })
       ]);
       
-      // CRITICAL DEBUG: Log immediately after Promise.all
-      console.log('[Frontend] ========================================');
-      console.log('[Frontend] IMMEDIATELY AFTER Promise.all:');
-      console.log('[Frontend]   - earningsResponse exists:', !!earningsResponse);
-      console.log('[Frontend]   - earningsResponse type:', typeof earningsResponse);
-      console.log('[Frontend]   - earningsResponse:', earningsResponse);
-      console.log('[Frontend] ========================================');
-
       // STEP 1: Extract earningsData from API response
       // Backend returns: { success: true, profile: {...}, earningsData: {...} }
       // fetchTikTokProfile returns response.data, so profileData IS the response.data
-      console.log('[Frontend] ========================================');
-      console.log('[Frontend] STEP 1: EXTRACTING earningsData FROM API RESPONSE');
-      console.log('[Frontend]   - profileData exists:', !!profileData);
-      console.log('[Frontend]   - profileData type:', typeof profileData);
-      console.log('[Frontend]   - profileData.success:', profileData?.success);
-      console.log('[Frontend]   - profileData keys:', profileData ? Object.keys(profileData) : 'null');
-      console.log('[Frontend]   - profileData.earningsData exists:', !!profileData?.earningsData);
-      console.log('[Frontend]   - profileData.earningsData:', profileData?.earningsData);
       
       // CRITICAL: Extract earningsData from response.data.earningsData
       // Since fetchTikTokProfile returns response.data, profileData IS response.data
       const extractedEarningsData = profileData?.earningsData;
       
-      console.log('[Frontend] ========================================');
-      console.log('[Frontend] EXTRACTION RESULT:');
-      console.log('[Frontend]   - extractedEarningsData exists:', !!extractedEarningsData);
-      console.log('[Frontend]   - extractedEarningsData type:', typeof extractedEarningsData);
-      console.log('[Frontend]   - extractedEarningsData is object:', typeof extractedEarningsData === 'object');
-      console.log('[Frontend]   - extractedEarningsData:', extractedEarningsData);
-      
       if (extractedEarningsData && typeof extractedEarningsData === 'object') {
-        console.log('[Frontend] ✓✓✓ SUCCESS: Extracted earningsData from profileData.earningsData');
-        console.log('[Frontend]   - earningsData keys:', Object.keys(extractedEarningsData));
-        console.log('[Frontend]   - earningsData.avgViews:', extractedEarningsData.avgViews);
-        console.log('[Frontend]   - earningsData.engagementRate:', extractedEarningsData.engagementRate);
-        console.log('[Frontend]   - earningsData.cpm:', extractedEarningsData.cpm);
-        console.log('[Frontend]   - earningsData.platformFactor:', extractedEarningsData.platformFactor);
-        console.log('[Frontend]   - earningsData.estimatedEarnings:', extractedEarningsData.estimatedEarnings);
-        console.log('[Frontend]   - earningsData.earningPerVideo:', extractedEarningsData.earningPerVideo);
-        console.log('[Frontend]   - Full earningsData:', JSON.stringify(extractedEarningsData, null, 2));
-        
         // STEP 2: Set earningsData in state
-        console.log('[Frontend] STEP 2: CALLING setEarningsData()');
         setEarningsData(extractedEarningsData);
-        console.log('[Frontend] ✓✓✓ setEarningsData() CALLED SUCCESSFULLY');
-        console.log('[Frontend] FINAL RECEIVED (PARENT):', JSON.stringify(extractedEarningsData, null, 2));
-      } else {
-        console.error('[Frontend] ❌ ERROR: earningsData is missing or invalid!');
-        console.error('[Frontend]   - extractedEarningsData:', extractedEarningsData);
-        console.error('[Frontend]   - extractedEarningsData type:', typeof extractedEarningsData);
-        console.error('[Frontend]   - profileData:', profileData);
-        console.error('[Frontend]   - profileData.earningsData:', profileData?.earningsData);
-      }
-      
-      console.log('[Frontend] ========================================');
-
-      console.log('[Frontend] Profile data received:', {
-        success: profileData?.success,
-        hasProfile: !!profileData?.profile,
-        followers: profileData?.profile?.followers,
-      });
-
-      console.log('[Frontend] ========================================');
-      console.log('[Frontend] Earnings response received (RAW):', earningsResponse);
-      console.log('[Frontend] Earnings response type:', typeof earningsResponse);
-      console.log('[Frontend] Earnings response is null?', earningsResponse === null);
-      console.log('[Frontend] Earnings response is undefined?', earningsResponse === undefined);
-      console.log('[Frontend] Earnings response keys:', earningsResponse ? Object.keys(earningsResponse) : 'null');
-      console.log('[Frontend] Earnings response values:', {
-        success: earningsResponse?.success,
-        perVideoNet: earningsResponse?.perVideoNet,
-        earningPerVideo: earningsResponse?.earningPerVideo,
-        estimatedEarnings: earningsResponse?.estimatedEarnings,
-        earnings: earningsResponse?.earnings,
-        avgViews: earningsResponse?.avgViews,
-        engagementRate: earningsResponse?.engagementRate,
-        cpm: earningsResponse?.cpm,
-        CPM: earningsResponse?.CPM,
-        monthlyEarnings: earningsResponse?.monthlyEarnings,
-        monthlyEarning: earningsResponse?.monthlyEarning,
-        hasData: !!earningsResponse,
-        fullResponse: JSON.stringify(earningsResponse, null, 2),
-      });
-      console.log('[Frontend] ========================================');
-      
-      // CRITICAL DEBUG: Log if earningsResponse is actually received
-      if (!earningsResponse) {
-        console.error('[Frontend] ❌❌❌ earningsResponse is NULL/UNDEFINED!');
-      } else if (earningsResponse.success === false) {
-        console.error('[Frontend] ❌❌❌ earningsResponse.success is FALSE!');
-      } else {
-        console.log('[Frontend] ✓✓✓ earningsResponse is valid:', {
-          hasSuccess: earningsResponse.success !== undefined,
-          successValue: earningsResponse.success,
-          hasEarnings: !!earningsResponse.earnings,
-          earningsValue: earningsResponse.earnings,
-        });
-      }
-
-      // DEBUG: Log if earningsResponse is null
-      if (!earningsResponse) {
-        console.warn('[Frontend] ⚠ earningsResponse is NULL - API call may have failed');
-      } else if (!earningsResponse.success) {
-        console.warn('[Frontend] ⚠ earningsResponse.success is false:', earningsResponse);
       }
 
       if (!profileData || !profileData.success || !profileData.profile) {
@@ -308,10 +190,9 @@ const Calculator = () => {
 
       setResult(profileData);
       
-      // NOTE: earningsData was already extracted and set in state above (lines 204-220)
+      // NOTE: earningsData was already extracted and set in state above
       // Only use fallback if earningsData wasn't found in API response
       if (!earningsData || typeof earningsData !== 'object') {
-        console.warn('[Frontend] ⚠ earningsData not found in API response, using fallback');
         const profile = profileData.profile || {};
         const fallbackEarningsData = {
           avgViews: 0,
@@ -322,7 +203,6 @@ const Calculator = () => {
           earningPerVideo: 0,
         };
         setEarningsData(fallbackEarningsData);
-        console.log('[Frontend] ✓✓✓ setEarningsData() CALLED with fallback');
       }
       
       // DONE: earningsData is now set from API response or fallback
@@ -338,7 +218,6 @@ const Calculator = () => {
 
       // CRITICAL: On error, ALWAYS set earningsData (even if it's a fallback)
       // This ensures EarningsCard never receives null/undefined
-      console.log('[Frontend] Error occurred, creating fallback earningsData...');
       const profile = profileData?.profile || {};
 
       // Always create earningsData, even if profile data is missing
@@ -377,36 +256,12 @@ const Calculator = () => {
       };
 
       // CRITICAL: ALWAYS call setEarningsData in error handler
-      console.log('[Frontend] ✓✓✓ CALLING setEarningsData() in error handler:', errorEarningsData);
       setEarningsData(errorEarningsData);
-      console.log('[Frontend] ✓✓✓ setEarningsData() CALLED in error handler');
     } finally {
       // CRITICAL: Always set loading to false
       setLoading(false);
       setEarningsLoading(false);
       
-      // CRITICAL: Final safety check - ensure earningsData is NEVER null
-      // This runs after both try and catch blocks
-      setTimeout(() => {
-        // Use setTimeout to check after state update
-        // This is a last resort safety net
-        console.log('[Frontend] [Finally] Final safety check for earningsData');
-      }, 0);
-      
-      // CRITICAL: Final check - ensure earningsData is set
-      // If it's still null/undefined after all processing, log a warning
-      setTimeout(() => {
-        if (!earningsData) {
-          console.error('[Frontend] ❌❌❌ CRITICAL: earningsData is STILL null/undefined after handleSubmit!');
-          console.error('[Frontend] This should never happen - earningsData should always be set');
-        } else {
-          console.log('[Frontend] ✓✓✓ Final check: earningsData is set:', {
-            hasEarnings: !!earningsData.earnings,
-            earnings: earningsData.earnings,
-            estimatedEarnings: earningsData.estimatedEarnings,
-          });
-        }
-      }, 100);
     }
   };
 
@@ -445,24 +300,11 @@ const Calculator = () => {
 
         if (hasValidEarnings && hasValidViews && hasValidCPM) {
           finalEarningsData = earningsResponse;
-          console.log('[Frontend] ✓ Using backend earnings response (refresh):', {
-            estimatedEarnings: earningsResponse.estimatedEarnings,
-            avgViews: earningsResponse.avgViews,
-            cpm: earningsResponse.cpm,
-          });
-        } else {
-          console.warn('[Frontend] ⚠ Backend earnings response has invalid values (refresh), calculating fallback:', {
-            estimatedEarnings: earningsResponse.estimatedEarnings,
-            avgViews: earningsResponse.avgViews,
-            cpm: earningsResponse.cpm,
-          });
-          // Fall through to calculate fallback
         }
       }
 
       // Calculate fallback if backend response not available or invalid
       if (!finalEarningsData) {
-        console.log('[Frontend] ⚠ Backend earnings response not available (refresh), calculating fallback...');
 
         // Calculate avgViews from latest videos (last 30)
         let avgViews = 0;
@@ -535,12 +377,6 @@ const Calculator = () => {
           cpm: calculatedCPM,
           platformFactor: platformFactor,
         };
-
-        console.log('[Frontend] ✓ Calculated fallback earnings (refresh):', {
-          estimatedEarnings: finalEarningsData.estimatedEarnings,
-          avgViews: finalEarningsData.avgViews,
-          cpm: finalEarningsData.cpm,
-        });
       }
 
       // FINAL VALIDATION: Ensure all values are valid (never 0)
@@ -566,13 +402,6 @@ const Calculator = () => {
           finalEarningsData.earningPerVideo = finalEarningsData.estimatedEarnings;
           finalEarningsData.monthlyEarning = finalEarningsData.estimatedEarnings * 20;
         }
-
-        console.log('[Frontend] ✓ Final validated earnings data (refresh):', {
-          avgViews: finalEarningsData.avgViews,
-          engagementRate: finalEarningsData.engagementRate,
-          cpm: finalEarningsData.cpm,
-          estimatedEarnings: finalEarningsData.estimatedEarnings,
-        });
       } else {
         // Create default if still null
         const profile = profileData?.profile || {};
@@ -596,7 +425,6 @@ const Calculator = () => {
 
       // CRITICAL: Ensure finalEarningsData is NEVER null before setting
       if (!finalEarningsData) {
-        console.error('[Frontend] ❌ REFRESH: finalEarningsData is NULL! Creating emergency fallback...');
         const profile = profileData?.profile || {};
         const emergencyViews = Math.max((profile.followers || 0) * 0.08, 1000);
         const emergencyCPM = 5.0;
@@ -618,7 +446,6 @@ const Calculator = () => {
 
       // CRITICAL: Ensure finalEarningsData is NEVER null before setting
       if (!finalEarningsData) {
-        console.error('[Frontend] ❌ CRITICAL: finalEarningsData is NULL in refresh! Creating safe fallback...');
         finalEarningsData = {
           success: true,
           estimatedEarnings: 0,
@@ -639,7 +466,6 @@ const Calculator = () => {
 
       // ALWAYS set earningsData - guaranteed to be valid object
       setEarningsData(finalEarningsData);
-      console.log('[Frontend] ✓✓✓ setEarningsData() ALWAYS CALLED in refresh:', finalEarningsData);
     } catch (err) {
       const message =
         err?.response?.data?.error ||
@@ -649,7 +475,6 @@ const Calculator = () => {
       setError(message);
 
       // CRITICAL: Set earnings data even on error (safe fallback)
-      console.warn('[Frontend] ⚠ Setting safe fallback earningsData on refresh error');
       const refreshErrorEarningsData = {
         success: false,
         earnings: 0.01,
@@ -671,7 +496,6 @@ const Calculator = () => {
         source: 'error',
       };
       setEarningsData(refreshErrorEarningsData);
-      console.log('[Frontend] ✓ Set safe fallback earningsData in refresh error handler');
     } finally {
       setLoading(false);
       setEarningsLoading(false);

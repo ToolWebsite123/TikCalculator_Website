@@ -1,8 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const TikTokCPMCalculator = () => {
   const { t } = useTranslation();
+
+  // SEO: Update page title and meta description
+  useEffect(() => {
+    document.title = 'TikTok CPM Calculator – Instantly Calculate TikTok Ads Cost & Reach';
+
+    // Update or create meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', 'Calculate your TikTok CPM in seconds and find out how much you pay per 1,000 impressions. Plan smarter ads, control budgets, and boost reach.');
+
+    // Update Open Graph meta tags for better social sharing
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    if (!ogTitle) {
+      ogTitle = document.createElement('meta');
+      ogTitle.setAttribute('property', 'og:title');
+      document.head.appendChild(ogTitle);
+    }
+    ogTitle.setAttribute('content', 'TikTok CPM Calculator – Instantly Calculate TikTok Ads Cost & Reach');
+
+    let ogDescription = document.querySelector('meta[property="og:description"]');
+    if (!ogDescription) {
+      ogDescription = document.createElement('meta');
+      ogDescription.setAttribute('property', 'og:description');
+      document.head.appendChild(ogDescription);
+    }
+    ogDescription.setAttribute('content', 'Calculate your TikTok CPM in seconds and find out how much you pay per 1,000 impressions. Plan smarter ads, control budgets, and boost reach.');
+  }, []);
   const [totalCost, setTotalCost] = useState('');
   const [impressions, setImpressions] = useState('');
   const [industry, setIndustry] = useState('');
@@ -116,7 +147,7 @@ const TikTokCPMCalculator = () => {
       <div className="container mx-auto max-w-4xl px-3 py-8 sm:px-4 sm:py-10 md:px-6 md:py-12 lg:py-16">
         {/* Header Section */}
         <div className="text-center mb-6 sm:mb-8 md:mb-10">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:text-3xl sm:mb-4 md:text-4xl lg:text-5xl">
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white mb-3 sm:text-2xl sm:mb-4 md:text-3xl">
             {t('cpmCalculator.title')}
           </h1>
           <p className="text-sm text-gray-600 dark:text-white max-w-2xl mx-auto sm:text-base">
@@ -269,6 +300,271 @@ const TikTokCPMCalculator = () => {
               </div>
             )}
           </form>
+        </div>
+
+        {/* Content Section */}
+        <div className="mt-12 sm:mt-16 md:mt-20 space-y-8 sm:space-y-10 md:space-y-12">
+          {/* What is TikTok CPM */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('cpmCalculator.content.whatIsTikTokCPM.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('cpmCalculator.content.whatIsTikTokCPM.description')}
+            </p>
+          </article>
+
+          {/* Related Tools */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('cpmCalculator.content.relatedTools.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('cpmCalculator.content.relatedTools.moneyCalculator')}
+            </p>
+            <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              {t('cpmCalculator.content.relatedTools.engagementCalculator')}
+            </p>
+          </article>
+
+          {/* TikTok CPM Calculator: How It Helps */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('cpmCalculator.content.howItHelps.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('cpmCalculator.content.howItHelps.description')}
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              <li>{t('cpmCalculator.content.howItHelps.forCreators')}</li>
+              <li>{t('cpmCalculator.content.howItHelps.forBrands')}</li>
+            </ul>
+          </article>
+
+          {/* How a TikTok CPM Calculator Actually Works */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('cpmCalculator.content.howItWorks.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('cpmCalculator.content.howItWorks.description')}
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-base text-gray-700 dark:text-gray-300 sm:text-lg mb-4">
+              <li>{t('cpmCalculator.content.howItWorks.input1')}</li>
+              <li>{t('cpmCalculator.content.howItWorks.input2')}</li>
+            </ul>
+            <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              {t('cpmCalculator.content.howItWorks.conclusion')}
+            </p>
+          </article>
+
+          {/* TikTok CPM Formula Explained */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('cpmCalculator.content.formula.title')}
+            </h2>
+            <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg mb-4 sm:p-6">
+              <p className="text-lg font-mono text-center text-gray-900 dark:text-white sm:text-xl md:text-2xl">
+                {t('cpmCalculator.content.formula.equation')}
+              </p>
+            </div>
+            <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              {t('cpmCalculator.content.formula.description')}
+            </p>
+          </article>
+
+          {/* Calculating TikTok CPM Step by Step */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('cpmCalculator.content.stepByStep.title')}
+            </h2>
+            <ol className="list-decimal list-inside space-y-3 text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              <li>{t('cpmCalculator.content.stepByStep.step1')}</li>
+              <li>{t('cpmCalculator.content.stepByStep.step2')}</li>
+              <li>{t('cpmCalculator.content.stepByStep.step3')}</li>
+              <li>{t('cpmCalculator.content.stepByStep.step4')}</li>
+            </ol>
+            <p className="text-base text-gray-700 dark:text-gray-300 mt-4 sm:text-lg">
+              {t('cpmCalculator.content.stepByStep.conclusion')}
+            </p>
+          </article>
+
+          {/* What Is Considered a Low or High TikTok CPM */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('cpmCalculator.content.lowOrHigh.title')}
+            </h2>
+            <ul className="list-disc list-inside space-y-3 text-base text-gray-700 dark:text-gray-300 sm:text-lg mb-4">
+              <li>{t('cpmCalculator.content.lowOrHigh.low')}</li>
+              <li>{t('cpmCalculator.content.lowOrHigh.high')}</li>
+            </ul>
+            <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              {t('cpmCalculator.content.lowOrHigh.conclusion')}
+            </p>
+          </article>
+
+          {/* Average TikTok CPM Rates and Benchmarks */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('cpmCalculator.content.averageRates.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-6 sm:text-lg">
+              {t('cpmCalculator.content.averageRates.description')}
+            </p>
+            <div className="overflow-x-auto">
+              <table className="min-w-full border-collapse border border-gray-300 dark:border-gray-600">
+                <thead>
+                  <tr className="bg-gray-100 dark:bg-gray-800">
+                    <th className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white sm:text-base">
+                      {t('cpmCalculator.content.averageRates.table.campaignObjective')}
+                    </th>
+                    <th className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white sm:text-base">
+                      {t('cpmCalculator.content.averageRates.table.estimatedCPM')}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="bg-white dark:bg-gray-700">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('cpmCalculator.content.averageRates.table.brandAwareness')}
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('cpmCalculator.content.averageRates.table.brandAwarenessCPM')}
+                    </td>
+                  </tr>
+                  <tr className="bg-gray-50 dark:bg-gray-800">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('cpmCalculator.content.averageRates.table.trafficClicks')}
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('cpmCalculator.content.averageRates.table.trafficClicksCPM')}
+                    </td>
+                  </tr>
+                  <tr className="bg-white dark:bg-gray-700">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('cpmCalculator.content.averageRates.table.appInstalls')}
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('cpmCalculator.content.averageRates.table.appInstallsCPM')}
+                    </td>
+                  </tr>
+                  <tr className="bg-gray-50 dark:bg-gray-800">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('cpmCalculator.content.averageRates.table.salesConversion')}
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('cpmCalculator.content.averageRates.table.salesConversionCPM')}
+                    </td>
+                  </tr>
+                  <tr className="bg-white dark:bg-gray-700">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('cpmCalculator.content.averageRates.table.influencerPromotions')}
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('cpmCalculator.content.averageRates.table.influencerPromotionsCPM')}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-base text-gray-700 dark:text-gray-300 mt-6 sm:text-lg">
+              {t('cpmCalculator.content.averageRates.conclusion')}
+            </p>
+          </article>
+
+          {/* TikTok CPM for Influencers, Brands, and Businesses */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('cpmCalculator.content.forUsers.title')}
+            </h2>
+            <ul className="list-disc list-inside space-y-3 text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              <li>{t('cpmCalculator.content.forUsers.influencers')}</li>
+              <li>{t('cpmCalculator.content.forUsers.brands')}</li>
+              <li>{t('cpmCalculator.content.forUsers.businesses')}</li>
+            </ul>
+            <p className="text-base text-gray-700 dark:text-gray-300 mt-4 sm:text-lg">
+              {t('cpmCalculator.content.forUsers.conclusion')}
+            </p>
+          </article>
+
+          {/* TikTok CPM Compared to Other Social Platforms */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('cpmCalculator.content.comparison.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              {t('cpmCalculator.content.comparison.description')}
+            </p>
+          </article>
+
+          {/* Proven Ways to Improve Your TikTok CPM */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('cpmCalculator.content.improveCPM.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('cpmCalculator.content.improveCPM.intro')}
+            </p>
+            <ul className="list-disc list-inside space-y-3 text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              <li>{t('cpmCalculator.content.improveCPM.tip1')}</li>
+              <li>{t('cpmCalculator.content.improveCPM.tip2')}</li>
+              <li>{t('cpmCalculator.content.improveCPM.tip3')}</li>
+              <li>{t('cpmCalculator.content.improveCPM.tip4')}</li>
+              <li>{t('cpmCalculator.content.improveCPM.tip5')}</li>
+            </ul>
+            <p className="text-base text-gray-700 dark:text-gray-300 mt-4 sm:text-lg">
+              {t('cpmCalculator.content.improveCPM.conclusion')}
+            </p>
+          </article>
+
+          {/* FAQs */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-6 sm:text-xl md:text-2xl">
+              {t('cpmCalculator.content.faq.title')}
+            </h2>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2 sm:text-lg">
+                  {t('cpmCalculator.content.faq.q1.question')}
+                </h3>
+                <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+                  {t('cpmCalculator.content.faq.q1.answer')}
+                </p>
+              </div>
+              <div>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2 sm:text-lg">
+                  {t('cpmCalculator.content.faq.q2.question')}
+                </h3>
+                <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+                  {t('cpmCalculator.content.faq.q2.answer')}
+                </p>
+              </div>
+              <div>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2 sm:text-lg">
+                  {t('cpmCalculator.content.faq.q3.question')}
+                </h3>
+                <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+                  {t('cpmCalculator.content.faq.q3.answer')}
+                </p>
+              </div>
+              <div>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2 sm:text-lg">
+                  {t('cpmCalculator.content.faq.q4.question')}
+                </h3>
+                <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+                  {t('cpmCalculator.content.faq.q4.answer')}
+                </p>
+              </div>
+              <div>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2 sm:text-lg">
+                  {t('cpmCalculator.content.faq.q5.question')}
+                </h3>
+                <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+                  {t('cpmCalculator.content.faq.q5.answer')}
+                </p>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </div>

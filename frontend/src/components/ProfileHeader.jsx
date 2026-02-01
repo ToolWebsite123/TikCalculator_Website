@@ -65,19 +65,6 @@ const ProfileHeader = ({ profile }) => {
   const safeTiktokId = (tiktokId || '').toString().trim();
   const safeProfilePic = (profilePic || profilePictureUrl || profilePicThumb || '').toString().trim();
 
-  // Debug: Log bio data
-  console.log('[ProfileHeader] ========================================');
-  console.log('[ProfileHeader] Bio Debug:', {
-    bio,
-    description,
-    signature: actualProfile?.signature,
-    rawBio,
-    safeBio,
-    hasBio: !!safeBio && safeBio !== '',
-    profileKeys: Object.keys(actualProfile || {}),
-  });
-  console.log('[ProfileHeader] ========================================');
-
   if (!safeUsername || safeUsername === '') {
     return (
       <div className="rounded-2xl bg-amber-50 border border-amber-200 p-5 text-amber-700">

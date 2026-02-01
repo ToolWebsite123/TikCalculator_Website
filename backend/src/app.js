@@ -66,11 +66,12 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
 
-// Rate limiting: 100 requests per minute per IP
+// Rate limiting: Increased to support multiple concurrent users
+// 200 requests per minute per IP to allow multiple users searching simultaneously
 app.use(
   rateLimit({
     windowMs: 60 * 1000, // 1 minute
-    limit: 100, // 100 requests per minute per IP
+    limit: 200, // 200 requests per minute per IP (increased for concurrent users)
     standardHeaders: true,
     legacyHeaders: false,
     message: 'Too many requests from this IP, please try again later.',
@@ -78,6 +79,9 @@ app.use(
       // Skip rate limiting for health checks
       return req.path === '/api/v1/health' || req.path === '/api/tiktok/health';
     },
+    // Use standard rate limit store for better concurrent handling
+    standardHeaders: true,
+    legacyHeaders: false,
   })
 );
 

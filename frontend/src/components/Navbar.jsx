@@ -25,7 +25,7 @@ const Navbar = () => {
             className="h-7 w-auto sm:h-9 md:h-10 flex-shrink-0"
             loading="lazy"
           />
-          <h2 className='text-xs sm:text-sm md:text-base lg:text-lg xl:text-[20px] text-[#fff] dark:text-white font-semibold truncate'>TikTok Money Calculator</h2>
+          <p className='text-xs sm:text-sm md:text-base lg:text-lg xl:text-[20px] text-[#fff] dark:text-white font-semibold truncate'>TikTok Money Calculator</p>
         </Link>
 
         <div className="hidden items-center gap-3 lg:gap-4 text-sm font-medium text-[#fff] dark:text-white md:flex list-none">

@@ -12,7 +12,6 @@ const api = axios.create({
 // Request interceptor
 api.interceptors.request.use(
   (config) => {
-    console.log('[API] Request:', config.method?.toUpperCase(), config.url);
     return config;
   },
   (error) => {
@@ -132,40 +131,14 @@ export const fetchTikTokEarnings = async (username, params = {}) => {
   try {
     const cleanUsername = username.replace('@', '');
     const url = `/api/tiktok/user/${encodeURIComponent(cleanUsername)}/earnings`;
-    console.log('[API] ========================================');
-    console.log('[API] Calling earnings endpoint:', url);
-    console.log('[API] Params:', params);
     
     const response = await api.get(url, { params });
     
-    console.log('[API] ========================================');
-    console.log('[API] Earnings response received:');
-    console.log('[API]   - Status:', response.status);
-    console.log('[API]   - Has data:', !!response.data);
-    console.log('[API]   - Success:', response.data?.success);
-    console.log('[API]   - avgViews:', response.data?.avgViews, '(type:', typeof response.data?.avgViews, ')');
-    console.log('[API]   - engagementRate:', response.data?.engagementRate, '(type:', typeof response.data?.engagementRate, ')');
-    console.log('[API]   - cpm:', response.data?.cpm, '(type:', typeof response.data?.cpm, ')');
-    console.log('[API]   - platformFactor:', response.data?.platformFactor, '(type:', typeof response.data?.platformFactor, ')');
-    console.log('[API]   - estimatedEarnings:', response.data?.estimatedEarnings, '(type:', typeof response.data?.estimatedEarnings, ')');
-    console.log('[API]   - All keys:', Object.keys(response.data || {}));
-    console.log('[API]   - Full response:', JSON.stringify(response.data, null, 2));
-    console.log('[API] ========================================');
-    
     return response.data;
   } catch (error) {
-    console.error('[API] ========================================');
-    console.error('[API] ❌ Earnings endpoint ERROR:');
-    console.error('[API]   - Message:', error.message);
-    console.error('[API]   - Status:', error.response?.status);
-    console.error('[API]   - Response data:', error.response?.data);
-    console.error('[API]   - URL:', error.config?.url);
-    console.error('[API] ========================================');
-    
     // CRITICAL: Return safe fallback object instead of throwing
     // This ensures earningsData is never null/undefined
     const cleanUsername = username.replace('@', '');
-    console.warn('[API] ⚠ Returning safe fallback object for earnings');
     return {
       success: true,
       estimatedEarnings: 0,

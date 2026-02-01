@@ -1,8 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const TikTokEngagementCalculator = () => {
   const { t } = useTranslation();
+
+  // SEO: Update page title and meta description
+  useEffect(() => {
+    document.title = 'TikTok Engagement Rate Calculator (Free & Accurate Tool)';
+
+    // Update or create meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', 'Calculate your TikTok engagement rate instantly using likes, comments, shares, and followers. Analyze performance and grow smarter.');
+
+    // Update Open Graph meta tags
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    if (!ogTitle) {
+      ogTitle = document.createElement('meta');
+      ogTitle.setAttribute('property', 'og:title');
+      document.head.appendChild(ogTitle);
+    }
+    ogTitle.setAttribute('content', 'TikTok Engagement Rate Calculator (Free & Accurate Tool)');
+
+    let ogDescription = document.querySelector('meta[property="og:description"]');
+    if (!ogDescription) {
+      ogDescription = document.createElement('meta');
+      ogDescription.setAttribute('property', 'og:description');
+      document.head.appendChild(ogDescription);
+    }
+    ogDescription.setAttribute('content', 'Calculate your TikTok engagement rate instantly using likes, comments, shares, and followers. Analyze performance and grow smarter.');
+  }, []);
   const [totalLikes, setTotalLikes] = useState('');
   const [totalVideos, setTotalVideos] = useState('');
   const [totalFollowers, setTotalFollowers] = useState('');
@@ -77,29 +108,6 @@ const TikTokEngagementCalculator = () => {
     // Calculate using TikCalculator.com exact formula
     const finalRate = calculateEngagementRate(likes, followers, videos);
 
-    console.log('=== Engagement Rate Calculation ===');
-    console.log('Input Values:');
-    console.log('  Total Likes:', likes);
-    console.log('  Total Followers:', followers);
-    console.log('  Total Videos:', videos);
-    console.log('');
-    console.log('Formula: ((Total Likes / Total Followers) / Total Videos) * 100');
-    console.log('');
-    console.log('Step 1: (Likes / Followers)');
-    console.log('  =', likes, '/', followers);
-    console.log('  =', (likes / followers).toFixed(4));
-    console.log('');
-    console.log('Step 2: ((Likes / Followers) / Videos)');
-    console.log('  =', (likes / followers).toFixed(4), '/', videos);
-    console.log('  =', ((likes / followers) / videos).toFixed(6));
-    console.log('');
-    console.log('Step 3: Result * 100');
-    console.log('  =', ((likes / followers) / videos).toFixed(6), '* 100');
-    console.log('  =', (((likes / followers) / videos) * 100).toFixed(4));
-    console.log('');
-    console.log('Final Result (rounded to 2 decimals):', finalRate.toFixed(2) + '%');
-    console.log('===================================');
-
     setEngagementRate(finalRate);
   };
 
@@ -120,7 +128,7 @@ const TikTokEngagementCalculator = () => {
 
         {/* Title */}
         <div className="text-center mb-6 sm:mb-7 md:mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:text-3xl sm:mb-3 md:text-4xl lg:text-5xl">
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white mb-2 sm:text-2xl sm:mb-3 md:text-3xl">
             {t('engagementCalculator.title')}
           </h1>
           <p className="text-sm text-gray-600 dark:text-white sm:text-base">
@@ -197,7 +205,7 @@ const TikTokEngagementCalculator = () => {
 
         {/* Engagement Rate Result */}
         {engagementRate !== null && (
-          <div className="bg-white dark:bg-gray-800 rounded-lg border-2 border-gray-200 dark:border-gray-700 p-5 shadow-lg sm:rounded-xl sm:p-6 md:p-8 transition-colors">
+          <div className="bg-white dark:bg-gray-800 rounded-lg border-2 border-gray-200 dark:border-gray-700 p-5 shadow-lg sm:rounded-xl sm:p-6 md:p-8 transition-colors mb-6 sm:mb-8">
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
                 <svg
@@ -222,6 +230,265 @@ const TikTokEngagementCalculator = () => {
             </div>
           </div>
         )}
+
+        {/* Content Section */}
+        <div className="mt-12 sm:mt-16 md:mt-20 space-y-8 sm:space-y-10 md:space-y-12">
+          {/* What Is a TikTok Engagement Rate Calculator */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('engagementCalculator.content.whatIs.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('engagementCalculator.content.whatIs.description1')}
+            </p>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('engagementCalculator.content.whatIs.description2')}
+            </p>
+            <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              {t('engagementCalculator.content.whatIs.description3')}
+            </p>
+          </article>
+
+          {/* Calculate TikTok Engagement Rate – TikCalculator */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('engagementCalculator.content.tikCalculator.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('engagementCalculator.content.tikCalculator.description1')}
+            </p>
+            <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              {t('engagementCalculator.content.tikCalculator.description2')}
+            </p>
+          </article>
+
+          {/* Related Tools */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('engagementCalculator.content.relatedTools.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('engagementCalculator.content.relatedTools.moneyCalculator')}
+            </p>
+            <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              {t('engagementCalculator.content.relatedTools.cpmCalculator')}
+            </p>
+          </article>
+
+          {/* How to Manually Calculate */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('engagementCalculator.content.manualCalculation.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('engagementCalculator.content.manualCalculation.description')}
+            </p>
+            <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg mb-4 sm:p-6">
+              <p className="text-lg font-mono text-center text-gray-900 dark:text-white sm:text-xl md:text-2xl">
+                {t('engagementCalculator.content.manualCalculation.formula')}
+              </p>
+            </div>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('engagementCalculator.content.manualCalculation.explanation1')}
+            </p>
+            <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              {t('engagementCalculator.content.manualCalculation.explanation2')}
+            </p>
+          </article>
+
+          {/* TikTok Engagement Rate Benchmarks */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('engagementCalculator.content.benchmarks.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-6 sm:text-lg">
+              {t('engagementCalculator.content.benchmarks.description')}
+            </p>
+            <div className="overflow-x-auto">
+              <table className="min-w-full border-collapse border border-gray-300 dark:border-gray-600">
+                <thead>
+                  <tr className="bg-gray-100 dark:bg-gray-800">
+                    <th className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.followerRange')}
+                    </th>
+                    <th className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.averageRate')}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="bg-white dark:bg-gray-700">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.range1')}
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.rate1')}
+                    </td>
+                  </tr>
+                  <tr className="bg-gray-50 dark:bg-gray-800">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.range2')}
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.rate2')}
+                    </td>
+                  </tr>
+                  <tr className="bg-white dark:bg-gray-700">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.range3')}
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.rate3')}
+                    </td>
+                  </tr>
+                  <tr className="bg-gray-50 dark:bg-gray-800">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.range4')}
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.rate4')}
+                    </td>
+                  </tr>
+                  <tr className="bg-white dark:bg-gray-700">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.range5')}
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.rate5')}
+                    </td>
+                  </tr>
+                  <tr className="bg-gray-50 dark:bg-gray-800">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.range6')}
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 sm:text-base">
+                      {t('engagementCalculator.content.benchmarks.table.rate6')}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-base text-gray-700 dark:text-gray-300 mt-6 sm:text-lg">
+              {t('engagementCalculator.content.benchmarks.conclusion')}
+            </p>
+          </article>
+
+          {/* How to Use the Calculator Effectively */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('engagementCalculator.content.howToUse.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('engagementCalculator.content.howToUse.intro')}
+            </p>
+            <ul className="list-disc list-inside space-y-3 text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              <li>{t('engagementCalculator.content.howToUse.tip1')}</li>
+              <li>{t('engagementCalculator.content.howToUse.tip2')}</li>
+              <li>{t('engagementCalculator.content.howToUse.tip3')}</li>
+              <li>{t('engagementCalculator.content.howToUse.tip4')}</li>
+            </ul>
+            <p className="text-base text-gray-700 dark:text-gray-300 mt-4 sm:text-lg">
+              {t('engagementCalculator.content.howToUse.conclusion')}
+            </p>
+          </article>
+
+          {/* Why Engagement Rate Matters */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('engagementCalculator.content.whyMatters.title')}
+            </h2>
+            <ul className="list-disc list-inside space-y-3 text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              <li>{t('engagementCalculator.content.whyMatters.point1')}</li>
+              <li>{t('engagementCalculator.content.whyMatters.point2')}</li>
+              <li>{t('engagementCalculator.content.whyMatters.point3')}</li>
+              <li>{t('engagementCalculator.content.whyMatters.point4')}</li>
+            </ul>
+          </article>
+
+          {/* Industry-Specific Engagement */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('engagementCalculator.content.industrySpecific.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('engagementCalculator.content.industrySpecific.description1')}
+            </p>
+            <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              {t('engagementCalculator.content.industrySpecific.description2')}
+            </p>
+          </article>
+
+          {/* How to Improve Your TikTok Engagement Rate */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 sm:text-xl md:text-2xl">
+              {t('engagementCalculator.content.improveEngagement.title')}
+            </h2>
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-4 sm:text-lg">
+              {t('engagementCalculator.content.improveEngagement.intro')}
+            </p>
+            <ul className="list-disc list-inside space-y-3 text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              <li>{t('engagementCalculator.content.improveEngagement.tip1')}</li>
+              <li>{t('engagementCalculator.content.improveEngagement.tip2')}</li>
+              <li>{t('engagementCalculator.content.improveEngagement.tip3')}</li>
+              <li>{t('engagementCalculator.content.improveEngagement.tip4')}</li>
+              <li>{t('engagementCalculator.content.improveEngagement.tip5')}</li>
+              <li>{t('engagementCalculator.content.improveEngagement.tip6')}</li>
+              <li>{t('engagementCalculator.content.improveEngagement.tip7')}</li>
+            </ul>
+            <p className="text-base text-gray-700 dark:text-gray-300 mt-4 sm:text-lg">
+              {t('engagementCalculator.content.improveEngagement.conclusion')}
+            </p>
+          </article>
+
+          {/* FAQs */}
+          <article className="prose prose-gray dark:prose-invert max-w-none">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-6 sm:text-xl md:text-2xl">
+              {t('engagementCalculator.content.faq.title')}
+            </h2>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2 sm:text-lg">
+                  {t('engagementCalculator.content.faq.q1.question')}
+                </h3>
+                <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+                  {t('engagementCalculator.content.faq.q1.answer')}
+                </p>
+              </div>
+              <div>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2 sm:text-lg">
+                  {t('engagementCalculator.content.faq.q2.question')}
+                </h3>
+                <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+                  {t('engagementCalculator.content.faq.q2.answer')}
+                </p>
+              </div>
+              <div>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2 sm:text-lg">
+                  {t('engagementCalculator.content.faq.q3.question')}
+                </h3>
+                <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+                  {t('engagementCalculator.content.faq.q3.answer')}
+                </p>
+              </div>
+              <div>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2 sm:text-lg">
+                  {t('engagementCalculator.content.faq.q4.question')}
+                </h3>
+                <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+                  {t('engagementCalculator.content.faq.q4.answer')}
+                </p>
+              </div>
+              <div>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2 sm:text-lg">
+                  {t('engagementCalculator.content.faq.q5.question')}
+                </h3>
+                <p className="text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+                  {t('engagementCalculator.content.faq.q5.answer')}
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   );
