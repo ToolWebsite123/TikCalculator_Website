@@ -104,12 +104,12 @@ const TikTokEngagementCalculator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="container mx-auto max-w-3xl px-4 py-12 md:py-16">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
+      <div className="container mx-auto max-w-3xl px-3 py-8 sm:px-4 sm:py-10 md:px-6 md:py-12 lg:py-16">
         {/* TikTok Logo */}
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-4 sm:mb-6">
           <svg
-            className="w-12 h-12"
+            className="w-10 h-10 sm:w-12 sm:h-12"
             viewBox="0 0 24 24"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
@@ -119,21 +119,21 @@ const TikTokEngagementCalculator = () => {
         </div>
 
         {/* Title */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+        <div className="text-center mb-6 sm:mb-7 md:mb-8">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:text-3xl sm:mb-3 md:text-4xl lg:text-5xl">
             {t('engagementCalculator.title')}
           </h1>
-          <p className="text-base text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-white sm:text-base">
             {t('engagementCalculator.subtitle')}
           </p>
         </div>
 
         {/* Calculator Form */}
-        <div className="bg-white rounded-2xl border-2 border-dashed border-gray-300 p-6 md:p-8 shadow-lg mb-8">
-          <form onSubmit={handleCalculate} className="space-y-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 p-4 shadow-lg mb-6 sm:rounded-2xl sm:p-6 sm:mb-8 md:p-8 transition-colors">
+          <form onSubmit={handleCalculate} className="space-y-4 sm:space-y-5 md:space-y-6">
             {/* Total Likes */}
             <div>
-              <label htmlFor="totalLikes" className="block text-sm font-semibold text-gray-800 mb-2">
+              <label htmlFor="totalLikes" className="block text-xs font-semibold text-gray-800 dark:text-white mb-1.5 sm:text-sm sm:mb-2">
                 {t('engagementCalculator.totalLikes')}
               </label>
               <input
@@ -142,13 +142,13 @@ const TikTokEngagementCalculator = () => {
                 value={totalLikes}
                 onChange={(e) => setTotalLikes(e.target.value)}
                 placeholder={t('engagementCalculator.placeholderLikes')}
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 text-base text-gray-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2.5 text-sm text-gray-900 dark:text-white outline-none transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900 sm:px-4 sm:py-3 sm:text-base placeholder-gray-400 dark:placeholder-gray-500"
               />
             </div>
 
             {/* Total Videos */}
             <div>
-              <label htmlFor="totalVideos" className="block text-sm font-semibold text-gray-800 mb-2">
+              <label htmlFor="totalVideos" className="block text-xs font-semibold text-gray-800 dark:text-white mb-1.5 sm:text-sm sm:mb-2">
                 {t('engagementCalculator.totalVideos')}
               </label>
               <input
@@ -157,13 +157,13 @@ const TikTokEngagementCalculator = () => {
                 value={totalVideos}
                 onChange={(e) => setTotalVideos(e.target.value)}
                 placeholder={t('engagementCalculator.placeholderVideos')}
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 text-base text-gray-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2.5 text-sm text-gray-900 dark:text-white outline-none transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900 sm:px-4 sm:py-3 sm:text-base placeholder-gray-400 dark:placeholder-gray-500"
               />
             </div>
 
             {/* Total Followers */}
             <div>
-              <label htmlFor="totalFollowers" className="block text-sm font-semibold text-gray-800 mb-2">
+              <label htmlFor="totalFollowers" className="block text-xs font-semibold text-gray-800 dark:text-white mb-1.5 sm:text-sm sm:mb-2">
                 {t('engagementCalculator.totalFollowers')}
               </label>
               <input
@@ -172,14 +172,14 @@ const TikTokEngagementCalculator = () => {
                 value={totalFollowers}
                 onChange={(e) => setTotalFollowers(e.target.value)}
                 placeholder={t('engagementCalculator.placeholderFollowers')}
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 text-base text-gray-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2.5 text-sm text-gray-900 dark:text-white outline-none transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900 sm:px-4 sm:py-3 sm:text-base placeholder-gray-400 dark:placeholder-gray-500"
               />
             </div>
 
             {/* Error Message */}
             {error && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-sm text-red-800">{error}</p>
+              <div className="p-3 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg sm:p-4">
+                <p className="text-xs text-red-800 dark:text-red-300 sm:text-sm">{error}</p>
               </div>
             )}
 
@@ -187,7 +187,7 @@ const TikTokEngagementCalculator = () => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="w-full md:w-auto rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 text-base transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="w-full rounded-lg bg-[#14b8a6] hover:bg-[#0d9488] text-white font-semibold py-2.5 px-6 text-sm transition focus:outline-none focus:ring-2 focus:ring-[#14b8a6] focus:ring-offset-2 sm:py-3 sm:px-8 sm:text-base md:w-auto"
               >
                 {t('engagementCalculator.calculate')}
               </button>
@@ -197,11 +197,11 @@ const TikTokEngagementCalculator = () => {
 
         {/* Engagement Rate Result */}
         {engagementRate !== null && (
-          <div className="bg-white rounded-xl border-2 border-gray-200 p-8 shadow-lg">
+          <div className="bg-white dark:bg-gray-800 rounded-lg border-2 border-gray-200 dark:border-gray-700 p-5 shadow-lg sm:rounded-xl sm:p-6 md:p-8 transition-colors">
             <div className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-4">
+              <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
                 <svg
-                  className="w-6 h-6 text-gray-600"
+                  className="w-5 h-5 text-gray-600 dark:text-white sm:w-6 sm:h-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -214,9 +214,9 @@ const TikTokEngagementCalculator = () => {
                     d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
                   />
                 </svg>
-                <h2 className="text-lg font-semibold text-gray-800">{t('engagementCalculator.engagementRate')}</h2>
+                <h2 className="text-base font-semibold text-gray-800 dark:text-white sm:text-lg">{t('engagementCalculator.engagementRate')}</h2>
               </div>
-              <p className="text-5xl md:text-6xl font-bold text-gray-900">
+              <p className="text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
                 {engagementRate.toFixed(2)}%
               </p>
             </div>

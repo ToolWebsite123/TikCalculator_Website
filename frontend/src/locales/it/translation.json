@@ -8,7 +8,7 @@
   },
   "home": {
     "badge": "Calcolatore di Guadagni TikTok",
-    "title": "Controlla qualsiasi creatore TikTok",
+    "title": "Calcolatore di Denaro TikTok Gratuito",
     "subtitle": "Inserisci un nome utente TikTok per ottenere statistiche del profilo in tempo reale e guadagni stimati alimentati da RapidAPI.",
     "placeholder": "es. mrbeast",
     "button": "Ottieni guadagni",
@@ -30,6 +30,7 @@
     "quickLinks": "Link rapidi",
     "helpfulLinks": "Link utili",
     "information": "Informazioni",
+    "about": "Chi siamo",
     "tiktokMoneyCalculator": "Calcolatore di Denaro TikTok",
     "tiktokCpmCalculator": "Calcolatore CPM TikTok",
     "tiktokEngagementCalculator": "Calcolatore di Engagement TikTok",
@@ -70,10 +71,180 @@
     "email": "tikcalculator@proton.me"
   },
   "privacy": {
-    "title": "Informativa sulla Privacy per TikCalculator"
+    "title": "Informativa sulla Privacy",
+    "intro": "In TikCalculator, la tua privacy è importante per noi. Questa Informativa sulla Privacy spiega come gestiamo le informazioni quando utilizzi il nostro strumento di stima dei guadagni TikTok. Il nostro obiettivo è mantenere le cose trasparenti, semplici e affidabili.",
+    "infoWeCollect": {
+      "title": "Informazioni che Raccogliamo",
+      "description": "Non chiediamo né raccogliamo informazioni personali come il tuo nome, indirizzo email, numero di telefono o credenziali di accesso. Puoi usare TikCalculator liberamente senza creare un account o condividere dettagli privati."
+    },
+    "autoCollected": {
+      "title": "Informazioni Raccolte Automaticamente",
+      "description1": "Quando visiti il nostro sito web, alcune informazioni tecniche possono essere raccolte automaticamente. Questo può includere il tipo di browser, informazioni sul dispositivo, indirizzo IP e dati di utilizzo. Queste informazioni ci aiutano a capire come viene utilizzato lo strumento e migliorare le prestazioni.",
+      "description2": "Non ti identifica personalmente."
+    },
+    "cookies": {
+      "title": "Uso dei Cookie",
+      "description1": "TikCalculator può utilizzare cookie o tecnologie simili per migliorare l'esperienza utente, analizzare il traffico e ottimizzare la funzionalità. I cookie ci aiutano a capire come i visitatori interagiscono con il sito web.",
+      "description2": "Puoi disabilitare i cookie in qualsiasi momento tramite le impostazioni del browser se preferisci."
+    },
+    "howWeUseInfo": {
+      "title": "Come Utilizziamo le Informazioni",
+      "description": "Qualsiasi dato non personale raccolto viene utilizzato solo per:",
+      "item1": "Migliorare le prestazioni del sito web",
+      "item2": "Migliorare l'esperienza utente",
+      "item3": "Analizzare le tendenze di utilizzo",
+      "item4": "Mantenere sicurezza e stabilità",
+      "note": "Non vendiamo, scambiamo né abusiamo mai dei dati raccolti."
+    },
+    "thirdPartyLinks": {
+      "title": "Link di Terze Parti",
+      "description": "Il nostro sito web può includere link a strumenti o siti web di terze parti. Non siamo responsabili del loro contenuto o delle loro pratiche sulla privacy. Raccomandiamo di rivedere le loro politiche sulla privacy prima di utilizzare qualsiasi servizio esterno."
+    },
+    "dataSecurity": {
+      "title": "Sicurezza dei Dati",
+      "description": "Utilizziamo misure di sicurezza standard per proteggere il sito web e i suoi sistemi. Sebbene nessuna piattaforma online possa garantire una sicurezza completa, adottiamo misure ragionevoli per prevenire l'accesso non autorizzato o l'uso improprio."
+    },
+    "policyUpdates": {
+      "title": "Aggiornamenti della Politica",
+      "description": "Possiamo aggiornare questa Informativa sulla Privacy di volta in volta per riflettere cambiamenti nella funzionalità o nei requisiti legali. Eventuali aggiornamenti saranno pubblicati su questa pagina. L'uso continuato di TikCalculator significa che accetti la politica aggiornata."
+    },
+    "contactUs": {
+      "title": "Contattaci",
+      "description": "Se hai domande sulla nostra Informativa sulla Privacy, non esitare a contattarci tramite il nostro sito web."
+    }
   },
   "terms": {
-    "title": "Termini e Condizioni"
+    "title": "Termini e Condizioni",
+    "intro": "Benvenuto su TikCalculator. Ti preghiamo di prenderti un momento per leggere attentamente questi Termini e Condizioni prima di utilizzare il nostro strumento di stima dei guadagni TikTok. Accedendo o utilizzando TikCalculator, accetti di rispettare questi termini. Se non sei d'accordo, ti preghiamo di interrompere l'utilizzo del servizio.",
+    "acceptance": {
+      "title": "Accettazione dei Termini",
+      "description": "Utilizzando TikCalculator, confermi di comprendere e accettare questi Termini e Condizioni. Il tuo utilizzo continuato del sito web significa che accetti eventuali aggiornamenti apportati a questi termini in futuro."
+    },
+    "purposeOfService": {
+      "title": "Scopo del Servizio",
+      "description1": "TikCalculator è progettato per fornire stime dei guadagni TikTok basate su dati di account pubblicamente disponibili come follower, engagement e prestazioni video.",
+      "description2": "Tutti i risultati sono solo informativi e non devono essere considerati consulenza finanziaria, legale o professionale.",
+      "description3": "Sei responsabile di come utilizzi le informazioni fornite dallo strumento."
+    },
+    "userResponsibility": {
+      "title": "Responsabilità dell'Utente",
+      "description1": "Accetti di utilizzare TikCalculator in modo responsabile e solo per scopi legali.",
+      "description2": "Non devi:",
+      "item1": "Abusare dello strumento",
+      "item2": "Tentare di manipolare i risultati",
+      "item3": "Utilizzare il servizio per attività fraudolente o fuorvianti",
+      "description3": "Qualsiasi azione intrapresa sulla base dei risultati del calcolatore è interamente a tuo rischio e pericolo."
+    },
+    "intellectualPropertyRights": {
+      "title": "Diritti di Proprietà Intellettuale",
+      "description1": "Tutto il contenuto su TikCalculator, inclusi testo, design, loghi, grafiche e software, è di proprietà di TikCalculator e protetto dalle leggi applicabili sul copyright e la proprietà intellettuale.",
+      "description2": "Non puoi copiare, riprodurre, distribuire o modificare alcuna parte del sito web senza previa autorizzazione scritta."
+    },
+    "accuracyDisclaimer": {
+      "title": "Disclaimer sulla Precisione",
+      "description1": "Sebbene ci sforziamo di fornire stime realistiche e aggiornate, non garantiamo che i calcoli siano sempre accurati o completi. I guadagni TikTok possono variare a causa di molteplici fattori al di fuori del nostro controllo.",
+      "description2": "TikCalculator è fornito \"così com'è\" e \"come disponibile\"."
+    },
+    "limitationOfLiability": {
+      "title": "Limitazione di Responsabilità",
+      "description1": "TikCalculator non sarà ritenuto responsabile per eventuali danni diretti, indiretti o incidentali derivanti dall'uso del nostro strumento o dalla fiducia nelle sue stime.",
+      "description2": "Utilizza il servizio a tuo rischio e pericolo."
+    },
+    "thirdPartyLinks": {
+      "title": "Link a Siti Web di Terze Parti",
+      "description": "Il nostro sito web può includere link a siti web di terze parti per risorse o informazioni aggiuntive. Non controlliamo né ci assumiamo la responsabilità per il contenuto, le politiche o le pratiche di questi siti esterni."
+    },
+    "terminationOfAccess": {
+      "title": "Terminazione dell'Accesso",
+      "description": "Ci riserviamo il diritto di sospendere o terminare l'accesso a TikCalculator in qualsiasi momento, senza preavviso, se questi Termini e Condizioni vengono violati o per motivi operativi."
+    },
+    "changesToTerms": {
+      "title": "Modifiche ai Termini",
+      "description1": "TikCalculator può aggiornare questi Termini e Condizioni in qualsiasi momento. Eventuali modifiche saranno pubblicate su questa pagina e l'utilizzo continuato del servizio indica l'accettazione dei termini aggiornati.",
+      "description2": ""
+    },
+    "contactUs": {
+      "title": "Contattaci",
+      "description": "Se hai domande sui nostri Termini e Condizioni, non esitare a contattarci tramite il nostro sito web."
+    }
+  },
+  "infoSection": {
+    "whatIsTikTokMoneyCalculator": "Cos'è un Calcolatore di Denaro TikTok?",
+    "paragraph1": "Un Calcolatore di Denaro TikTok è uno strumento online che stima quanto può guadagnare un account TikTok. Analizza i dati pubblici dell'account, come il numero di follower, il tasso di coinvolgimento e le visualizzazioni medie dei video, per generare un intervallo di guadagni realistico. Invece di indovinare il reddito, il calcolatore fornisce informazioni rapide che aiutano creatori, marchi e marketer a prendere decisioni informate, specialmente quando si utilizzano strumenti come TikCalculator per valutare le prestazioni dell'account.",
+    "paragraph2": "Lo strumento è progettato per la semplicità. Non hai bisogno di conoscenze tecniche, software a pagamento o accesso all'account. Inserire un nome utente TikTok è sufficiente per iniziare, rendendo la stima dei guadagni accessibile a tutti.",
+    "howItWorksHeading": "Come Funziona il Calcolatore di Guadagni TikTok",
+    "howItWorksParagraph1": "Un Calcolatore di Denaro TikTok funziona utilizzando metriche TikTok pubblicamente disponibili e applicando formule di guadagno basate sull'industria. Valuta il numero di follower, il tasso di coinvolgimento, le visualizzazioni medie dei video e la coerenza delle prestazioni del contenuto per valutare il potenziale di guadagno, simile a come TikCalculator elabora i dati pubblici per generare stime.",
+    "howItWorksParagraph2": "Sulla base di questi segnali, il calcolatore stima quanto un creatore può guadagnare per post o collaborazione con un brand. Il risultato viene mostrato come un intervallo di guadagni piuttosto che un importo fisso, aiutando gli utenti a comprendere aspettative realistiche invece di affermazioni gonfiate.",
+    "howToCheckHeading": "Come Verificare i Guadagni TikTok Usando un Calcolatore",
+    "howToCheckIntro": "Verificare i guadagni TikTok con un calcolatore è veloce e adatto ai principianti.",
+    "howToCheckPoint1": "Prima, copia il nome utente TikTok che desideri analizzare.",
+    "howToCheckPoint2": "Successivamente, incolla il nome utente nello strumento calcolatore e fai clic sul pulsante calcola.",
+    "howToCheckPoint3": "In pochi secondi, lo strumento visualizza i guadagni stimati per post in un formato chiaro e leggibile, sia che tu stia usando TikCalculator o uno strumento simile di stima dei guadagni.",
+    "howToCheckPoint4": "Non sono richiesti login, download o installazioni.",
+    "howToCheckPoint5": "Il calcolatore funziona direttamente nel browser su dispositivi mobili, tablet e desktop, rendendo facile l'accesso in qualsiasi momento.",
+    "whyPeopleUseHeading": "Perché le Persone Usano i Calcolatori di Denaro TikTok",
+    "whyPeopleUseParagraph1": "Le persone usano i Calcolatori di Denaro TikTok per capire il valore dell'account senza confusione. I creatori si affidano a loro per stimare il loro valore prima di negoziare accordi con i brand, mentre i brand li usano per pianificare budget per influencer e confrontare i creatori in base all'engagement.",
+    "whyPeopleUseParagraph2": "Invece di affidarsi a supposizioni o numeri fuorvianti, strumenti come TikCalculator aiutano gli utenti a vedere stime di guadagno realistiche basate su dati di performance reali. Questo fa risparmiare tempo e rimuove le congetture dalla pianificazione della monetizzazione.",
+    "earningsPotentialHeading": "Quanto Puoi Guadagnare su TikTok?",
+    "earningsPotentialIntro": "I guadagni TikTok variano da creatore a creatore. Alcuni guadagnano un piccolo reddito secondario, mentre altri ottengono partnership con brand ben pagati. Il tuo potenziale di guadagno dipende da diversi fattori importanti che lavorano insieme:",
+    "followerCountLabel": "Numero di Follower:",
+    "followerCountDescription": "Un pubblico più ampio aumenta la visibilità, il che rende i brand più interessati a promozioni a pagamento e collaborazioni.",
+    "engagementRateLabel": "Tasso di Engagement:",
+    "engagementRateDescription": "Mi piace, commenti, condivisioni e visualizzazioni mostrano quanto attivo e fedele sia un pubblico. Un engagement forte spesso conta più del solo numero di follower.",
+    "monetizationMethodsLabel": "Metodi di Monetizzazione:",
+    "monetizationMethodsDescription": "I guadagni possono provenire da accordi con brand, post sponsorizzati, pagamenti del fondo creatore, regali in diretta, marketing di affiliazione e vendite di merchandising.",
+    "brandPartnershipsLabel": "Partnership con Brand:",
+    "brandPartnershipsDescription": "Le partnership con brand a lungo termine o esclusive di solito pagano più dei post sponsorizzati una tantum.",
+    "audienceLocationLabel": "Posizione del Pubblico:",
+    "audienceLocationDescription": "Gli spettatori da regioni con valore pubblicitario più alto possono avere un impatto positivo sui guadagni, specialmente per i pagamenti basati sulla piattaforma.",
+    "earningsPotentialConclusion": "Poiché i guadagni differiscono per ogni creatore, i calcolatori aiutano a stimare intervalli di reddito invece di promettere cifre esatte. I creatori con engagement forte e grandi audience possono guadagnare da poche centinaia a diverse migliaia di dollari per video di marca.",
+    "earningsByFollowersHeading": "Quanto Paga TikTok per 1.000 Follower?",
+    "earningsByFollowersIntro": "TikTok non paga direttamente i creatori in base al numero di follower, ma le stime del settore forniscono un riferimento generale di guadagno:",
+    "range1Label": "1.000–10.000 follower:",
+    "range1Value": "$5–$50 per post",
+    "range2Label": "10.000–100.000 follower:",
+    "range2Value": "$60–$90 per post",
+    "range3Label": "100.000–500.000 follower:",
+    "range3Value": "$200–$400 per post",
+    "range4Label": "500.000–1 milione di follower:",
+    "range4Value": "$400–$600 per post",
+    "range5Label": "Oltre 1 milione di follower:",
+    "range5Value": "$750–$1000+ per post",
+    "earningsByFollowersConclusion": "I guadagni effettivi dipendono fortemente dal tasso di engagement, dalla nicchia di contenuti e dalla domanda dei brand.",
+    "boostEarningsHeading": "Come Aumentare i Tuoi Guadagni TikTok",
+    "boostEarningsIntro": "Aumentare i guadagni TikTok richiede strategia e coerenza. I creatori di successo si concentrano su abitudini che attirano sia spettatori che brand:",
+    "stayConsistentLabel": "Resta Coerente:",
+    "stayConsistentDescription": "Pubblicare regolarmente migliora la visibilità e mantiene il pubblico coinvolto.",
+    "diversifyContentLabel": "Diversifica il Contenuto:",
+    "diversifyContentDescription": "Sperimentare con formati rimanendo all'interno di una nicchia aiuta a raggiungere nuovi pubblici.",
+    "engageWithFollowersLabel": "Interagisci con i Follower:",
+    "engageWithFollowersDescription": "Rispondere ai commenti e incoraggiare l'interazione costruisce fiducia e aumenta i tassi di engagement.",
+    "followTrendsLabel": "Segui le Tendenze:",
+    "followTrendsDescription": "Suoni e sfide di tendenza possono aumentare rapidamente la portata e la scopribilità.",
+    "collaborateWithOthersLabel": "Collabora con Altri:",
+    "collaborateWithOthersDescription": "Lavorare con altri creatori espande l'esposizione e aiuta a far crescere il numero di follower.",
+    "boostEarningsConclusion": "Questi passaggi rafforzano la crescita a lungo termine e aprono più opportunità di monetizzazione nel tempo.",
+    "faqHeading": "Domande Frequenti",
+    "faq1Question": "Come posso stimare i miei guadagni TikTok con TikCalculator?",
+    "faq1Answer": "Puoi stimare i tuoi guadagni TikTok inserendo il nome utente di qualsiasi account TikTok pubblico in TikCalculator. Lo strumento analizza i dati disponibili come il numero di follower e il tasso di engagement, quindi mostra un intervallo di guadagno stimato per post.",
+    "faq2Question": "Devo pagare per usare il calcolatore di denaro TikTok?",
+    "faq2Answer": "No, TikCalculator è completamente gratuito. Puoi controllare i guadagni stimati per più account TikTok senza pagare alcuna tariffa di abbonamento o utilizzo.",
+    "faq3Question": "Devo installare un'estensione per usare il calcolatore di denaro TikTok?",
+    "faq3Answer": "Non è richiesta alcuna installazione. TikCalculator funziona direttamente nel tuo browser web e hai solo bisogno del nome utente TikTok per ottenere stime di guadagno.",
+    "faq4Question": "È sicuro usare il calcolatore di denaro TikTok?",
+    "faq4Answer": "Sì, TikCalculator è sicuro da usare. Non richiede dettagli di accesso TikTok e non memorizza informazioni personali o relative all'account.",
+    "faq5Question": "TikTok è buono per guadagnare soldi?",
+    "faq5Answer": "Sì, TikTok può essere una buona piattaforma per guadagnare soldi se hai contenuti coinvolgenti e un pubblico attivo. Molti creatori guadagnano attraverso partnership con brand, regali in diretta e il TikTok Creator Fund.",
+    "faq6Question": "Come TikTok paga i suoi creatori?",
+    "faq6Answer": "TikTok paga i creatori attraverso diversi metodi, incluso il Creator Fund, regali di streaming live, collaborazioni con brand e contenuti sponsorizzati organizzati direttamente con le aziende.",
+    "faq7Question": "Chiunque può guadagnare da TikTok?",
+    "faq7Answer": "Sì, chiunque può potenzialmente guadagnare da TikTok, ma il successo dipende da pubblicazioni coerenti, qualità del contenuto, coinvolgimento del pubblico e selezione della nicchia.",
+    "faq8Question": "Quanto spesso dovrei usare la Calcolatrice TikTok?",
+    "faq8Answer": "Dovresti usare la Calcolatrice TikTok ogni volta che c'è un cambiamento notevole nel tuo numero di follower o engagement, o quando pianifichi accordi con brand e sponsorizzazioni.",
+    "faq9Question": "Quali fattori potrebbero influenzare i miei guadagni effettivi su TikTok?",
+    "faq9Answer": "I guadagni effettivi dipendono da fattori come il numero di follower, il tasso di engagement, la nicchia di contenuti, la posizione del pubblico, la coerenza delle pubblicazioni e il tipo di monetizzazione utilizzata.",
+    "faq10Question": "Come posso prelevare i guadagni da TikCalculator?",
+    "faq10Answer": "TikCalculator non elabora pagamenti o prelievi. Fornisce solo stime di guadagno, mentre i pagamenti effettivi sono gestiti direttamente da TikTok o tramite accordi con brand."
   }
 }
 

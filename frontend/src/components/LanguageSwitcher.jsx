@@ -14,6 +14,7 @@ const LanguageSwitcher = () => {
     { code: 'it', name: 'Italiano', flagSrc: 'https://flagcdn.com/it.svg' },
     { code: 'pt', name: 'Português (Brasil)', flagSrc: 'https://flagcdn.com/br.svg' },
     { code: 'ms', name: 'Malaysian', flagSrc: 'https://flagcdn.com/my.svg' },
+    { code: 'id', name: 'Bahasa Indonesia', flagSrc: 'https://flagcdn.com/id.svg' },
   ];
 
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
@@ -67,7 +68,7 @@ const LanguageSwitcher = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 rounded-lg border border-gray-100 bg-white p-2 shadow-lg z-50">
+        <div className="absolute right-0 mt-2 w-48 rounded-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 p-2 shadow-lg z-50">
           {languages.map((lang) => (
             <button
               key={lang.code}
@@ -75,8 +76,8 @@ const LanguageSwitcher = () => {
               onClick={() => changeLanguage(lang.code)}
               className={`w-full flex items-center gap-2 rounded-md px-3 py-2 text-left text-sm transition ${
                 i18n.language === lang.code
-                  ? 'bg-indigo-50 text-indigo-700 font-medium'
-                  : 'hover:bg-gray-50 text-gray-700'
+                  ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium'
+                  : 'hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-white'
               }`}
             >
               <img
@@ -88,7 +89,7 @@ const LanguageSwitcher = () => {
               <span>{lang.name}</span>
               {i18n.language === lang.code && (
                 <svg
-                  className="ml-auto h-4 w-4 text-indigo-600"
+                  className="ml-auto h-4 w-4 text-indigo-600 dark:text-indigo-400"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >

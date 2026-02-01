@@ -18,13 +18,13 @@ const round = (val, places = 2) =>
  */
 const averageViewsFromVideos = (latestVideos = []) => {
   if (!Array.isArray(latestVideos) || latestVideos.length === 0) return null;
-
+  
   const viewCounts = latestVideos
     .map((v) => Number(v?.views) || 0)
     .filter((v) => v > 0);
-
+  
   if (viewCounts.length === 0) return null;
-
+  
   const sum = viewCounts.reduce((acc, v) => acc + v, 0);
   return sum / viewCounts.length;
 };
@@ -35,28 +35,28 @@ const averageViewsFromVideos = (latestVideos = []) => {
  */
 const calculateEngagementRate = (latestVideos = []) => {
   if (!Array.isArray(latestVideos) || latestVideos.length === 0) return null;
-
+  
   const videosWithData = latestVideos.filter(
     v => v && Number(v.views) > 0 && (Number(v.likes) > 0 || Number(v.comments) > 0 || Number(v.shares) > 0)
   );
-
+  
   if (videosWithData.length === 0) return null;
-
+  
   let totalViews = 0;
   let totalEngagements = 0;
-
+  
   videosWithData.forEach(v => {
     const views = Number(v.views) || 0;
     const likes = Number(v.likes) || 0;
     const comments = Number(v.comments) || 0;
     const shares = Number(v.shares) || Number(v.share_count) || 0; // Include shares
-
+    
     totalViews += views;
     totalEngagements += (likes + comments + shares); // Formula B: includes shares
   });
-
+  
   if (totalViews === 0) return null;
-
+  
   // Formula B: engagementRate = ((likes + comments + shares) / views) * 100
   const engagementRate = (totalEngagements / totalViews) * 100;
   return engagementRate;
@@ -82,8 +82,8 @@ const calculateCPMRange = ({ region, engagementRate = 0, followers = 0 }) => {
   const regionCode = (region || '').toString().trim().toUpperCase();
   const base =
     TIER1_CODES.includes(regionCode) ? CPM_TIERS.tier1 :
-      TIER2_CODES.includes(regionCode) ? CPM_TIERS.tier2 :
-        CPM_TIERS.tier3;
+    TIER2_CODES.includes(regionCode) ? CPM_TIERS.tier2 :
+    CPM_TIERS.tier3;
 
   // Engagement adjustment: 0.9x–1.2x around ~7.5% baseline (0–15% mapped to 0–2)
   const normalizedEngagement = clamp(engagementRate / 7.5, 0, 2);
@@ -122,15 +122,30 @@ const calculatePlatformFactor = () => 1.0;
  * NEVER returns null - always provides fallback values
  */
 const computeAnalytics = ({ followers, likes, videos, latestVideos = [] }) => {
+  console.log('[calcEarnings] ========================================');
+  console.log('[calcEarnings] Computing analytics:', {
+    followers,
+    likes,
+    videos,
+    videoCount: latestVideos.length,
+  });
+  
   // Try to calculate from real video data first
   if (Array.isArray(latestVideos) && latestVideos.length > 0) {
     const videosWithViews = latestVideos.filter(v => v && Number(v.views) > 0);
-
+    console.log('[calcEarnings] Videos with views > 0:', videosWithViews.length);
+    
     if (videosWithViews.length > 0) {
       const avgViews = averageViewsFromVideos(videosWithViews);
       const engagementRate = calculateEngagementRate(videosWithViews);
-
+      
       if (avgViews && avgViews > 0) {
+        console.log('[calcEarnings] ✓ Calculated from real video data:', {
+          avgViews: round(avgViews, 2),
+          engagementRate: engagementRate ? round(engagementRate, 2) : 0,
+          sampleSize: videosWithViews.length,
+        });
+        
         return {
           avgViews: round(avgViews, 2),
           engagementRate: engagementRate ? round(engagementRate, 2) : 0,
@@ -139,14 +154,14 @@ const computeAnalytics = ({ followers, likes, videos, latestVideos = [] }) => {
       }
     }
   }
-
+  
   // Fallback: Estimate from profile stats (TikCalculator.com method)
   // Use last 12-20 videos average if available, otherwise use followers * 0.08
   let estimatedAvgViews = 0;
   if (followers > 0) {
     // Estimate avgViews as 8% of followers (realistic TikTok average)
     estimatedAvgViews = followers * 0.08;
-
+    
     // Ensure minimum views for small accounts
     if (estimatedAvgViews < 1000) {
       estimatedAvgViews = Math.max(1000, followers * 0.1);
@@ -155,7 +170,7 @@ const computeAnalytics = ({ followers, likes, videos, latestVideos = [] }) => {
     // Absolute minimum fallback
     estimatedAvgViews = 1000;
   }
-
+  
   // Estimate engagement from likes/videos
   let estimatedEngagement = 5.0; // Default 5%
   if (likes > 0 && videos > 0 && followers > 0) {
@@ -174,7 +189,14 @@ const computeAnalytics = ({ followers, likes, videos, latestVideos = [] }) => {
       estimatedEngagement = 8.0;
     }
   }
-
+  
+  console.log('[calcEarnings] ⚠ Using estimated values from profile:', {
+    avgViews: round(estimatedAvgViews, 2),
+    engagementRate: round(estimatedEngagement, 2),
+    sampleSize: 0,
+    reason: 'No video data available',
+  });
+  
   return {
     avgViews: round(estimatedAvgViews, 2),
     engagementRate: round(estimatedEngagement, 2),
@@ -193,9 +215,18 @@ const calculateEarnings = ({
   latestVideos = [],
   region = '',
 }) => {
+  console.log('[calcEarnings] ========================================');
+  console.log('[calcEarnings] Starting calculation with:', {
+    followers,
+    likes,
+    videos,
+    videoCount: latestVideos.length,
+    videosWithViews: latestVideos.filter(v => v && Number(v.views) > 0).length,
+  });
+  
   // Calculate analytics (NEVER returns null)
   let analytics = computeAnalytics({ followers, likes, videos, latestVideos });
-
+  
   // CRITICAL: Ensure analytics is valid - use fallback if needed
   if (!analytics || !analytics.avgViews || analytics.avgViews <= 0) {
     console.warn('[calcEarnings] ⚠ Analytics invalid, using emergency fallback');
@@ -206,12 +237,12 @@ const calculateEarnings = ({
       sampleSize: 0,
     };
   }
-
+  
   const { avgViews, engagementRate, sampleSize } = analytics;
-
+  
   // Ensure avgViews is never 0 (use 0 if truly no views, but ensure it's a number)
   const safeAvgViews = Math.max(avgViews || 0, 0);
-
+  
   // Dynamic CPM range
   const cpmRange = calculateCPMRange({
     region,
@@ -223,7 +254,7 @@ const calculateEarnings = ({
   const earningPerVideo = round((safeAvgViews / 1000) * cpmRange.used, 2);
   const earningPerVideoMin = round((safeAvgViews / 1000) * cpmRange.min, 2);
   const earningPerVideoMax = round((safeAvgViews / 1000) * cpmRange.max, 2);
-
+  
   const result = {
     earnings: earningPerVideo,
     earningPerVideo,
@@ -250,7 +281,22 @@ const calculateEarnings = ({
     },
     cpmRange,
   };
-
+  
+  console.log('[calcEarnings] ========================================');
+  console.log('[calcEarnings] ✓ CALCULATED EARNINGS:', result);
+  console.log('[calcEarnings] Earnings formula: (avgViews / 1000) * CPM');
+  console.log('[calcEarnings] INPUT:', {
+    avgViews: safeAvgViews,
+    cpm: cpmRange.used,
+    cpmRange: cpmRange,
+    engagementRate: engagementRate, // Display only
+  });
+  console.log('[calcEarnings] STEP 1: (avgViews / 1000) =', safeAvgViews / 1000);
+  console.log('[calcEarnings] STEP 2: earnings(avg) =', earningPerVideo);
+  console.log('[calcEarnings] RANGE:', { min: earningPerVideoMin, max: earningPerVideoMax });
+  console.log('[calcEarnings] FINAL RESULT (avg):', earningPerVideo);
+  console.log('[calcEarnings] ========================================');
+  
   return result;
 };
 

@@ -127,45 +127,15 @@ export const mapEarningsData = (data, profile = {}) => {
     });
   }
 
-  // Extract monthly earnings if available (backend now sends total monthly as primary)
-  const monthlyEarning = Number(data.monthlyEarning || data.monthlyEarnings) || 0;
-  const monthlyMin = Number(data.monthlyMin) || 0;
-  const monthlyMax = Number(data.monthlyMax) || 0;
-  
-  // Determine primary earnings: Use monthly total if available, otherwise calculate from per-video
-  // Backend now sends monthly total as primary earnings field
-  const primaryEarnings = monthlyEarning > 0 
-    ? monthlyEarning 
-    : (earnings || estimatedEarnings || earningPerVideo * 20 || 0);
-  
-  const primaryEarningsMin = monthlyMin > 0 
-    ? monthlyMin 
-    : (earningsMin || (earningPerVideo || 0) * 20 * 0.8 || 0);
-  
-  const primaryEarningsMax = monthlyMax > 0 
-    ? monthlyMax 
-    : (earningsMax || (earningPerVideo || 0) * 20 * 1.25 || 0);
-  
-  // Per video earnings (for reference/display)
-  const perVideoValue = earningPerVideo > 0 
-    ? earningPerVideo 
-    : (primaryEarnings / 20 || 0);
-  
   // Ensure all values are valid numbers (never 0 unless truly 0)
   const mappedData = {
     success: true,
-    // Primary earnings - NOW SHOWS TOTAL (monthly) instead of per video
-    earnings: Math.max(primaryEarnings, 0.01),
-    estimatedEarnings: Math.max(primaryEarnings, 0.01),
-    earningsMin: Math.max(primaryEarningsMin, 0),
-    earningsMax: Math.max(primaryEarningsMax, 0),
-    // Per video earnings (kept for reference)
-    earningPerVideo: Math.max(perVideoValue, 0.01),
-    perVideoNet: Math.max(perVideoValue, 0.01),
-    // Monthly/Total earnings (aliases)
-    monthlyEarning: Math.max(primaryEarnings, 0.20),
-    monthlyEarnings: Math.max(primaryEarnings, 0.20),
-    // Other fields
+    earnings: Math.max(earnings || estimatedEarnings || earningPerVideo || 0, 0.01),
+    earningPerVideo: Math.max(earningPerVideo || estimatedEarnings || earnings || 0, 0.01),
+    estimatedEarnings: Math.max(estimatedEarnings || earnings || earningPerVideo || 0, 0.01),
+    perVideoNet: Math.max(earningPerVideo || estimatedEarnings || earnings || 0, 0.01),
+    earningsMin: earningsMin || Math.max((earnings || estimatedEarnings || earningPerVideo || 0) * 0.8, 0),
+    earningsMax: earningsMax || Math.max((earnings || estimatedEarnings || earningPerVideo || 0) * 1.25, 0),
     avgViews: Math.max(avgViews, 0),
     engagementRate: Math.max(engagementRate, 0),
     cpm: Math.max(cpm, 0.8), // Keep a reasonable floor
@@ -173,6 +143,8 @@ export const mapEarningsData = (data, profile = {}) => {
     cpmMax: Math.max(cpmMax || cpm * 1.3, cpmMin || cpm, 1.0),
     CPM: Math.max(cpm, 0.8),
     platformFactor: Math.max(platformFactor, 1.0),
+    monthlyEarning: Math.max((estimatedEarnings || earnings || earningPerVideo || 0) * 20, 0.20),
+    monthlyEarnings: Math.max((estimatedEarnings || earnings || earningPerVideo || 0) * 20, 0.20),
     username: data.username || profile?.username || '',
     followers: Number(data.followers || profile?.followers || 0),
     likes: Number(data.likes || profile?.likes || 0),

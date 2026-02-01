@@ -5,16 +5,16 @@ const Contact = () => {
   const { t } = useTranslation();
   
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
       {/* Main Contact Section */}
-      <section className="container mx-auto max-w-3xl py-20 text-center">
+      <section className="container mx-auto max-w-3xl px-3 py-12 text-center sm:px-4 sm:py-16 md:px-6 md:py-20">
         <div className="space-y-4">
           {/* Rocket Icon */}
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-4 sm:mb-6">
             <div className="relative">
               {/* Rocket Body - Red/Orange gradient */}
               <svg
-                className="w-24 h-24"
+                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
                 viewBox="0 0 100 100"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -43,14 +43,14 @@ const Contact = () => {
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 sm:text-3xl sm:mb-5 md:text-4xl md:mb-6 lg:text-5xl">
             {t('contact.title')}
           </h1>
 
           {/* Email with Icon */}
-          <div className="flex items-center justify-center gap-3 text-gray-700">
+          <div className="flex flex-col items-center justify-center gap-2 text-gray-700 dark:text-white sm:flex-row sm:gap-3">
             <svg
-              className="w-6 h-6 text-gray-600"
+              className="w-5 h-5 text-gray-600 dark:text-white sm:w-6 sm:h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -65,7 +65,7 @@ const Contact = () => {
             </svg>
             <a
               href={`mailto:${t('contact.email')}`}
-              className="text-lg text-gray-700 hover:text-indigo-600 transition"
+              className="text-sm text-gray-700 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition break-all sm:text-base md:text-lg"
             >
               {t('contact.email')}
             </a>

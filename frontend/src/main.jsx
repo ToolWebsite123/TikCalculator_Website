@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './i18n'; // Initialize i18n
+import { ThemeProvider } from './contexts/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -16,25 +17,27 @@ import TikTokEngagementCalculator from './pages/TikTokEngagementCalculator';
 import './index.css';
 
 const App = () => (
-  <BrowserRouter>
-    <div className="flex min-h-screen flex-col bg-gray-50 text-gray-900">
-      <Navbar />
-      <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/calculator" element={<Calculator />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsAndConditions />} />
-          <Route path="/tiktok-cpm-calculator" element={<TikTokCPMCalculator />} />
-          <Route path="/tiktok-engagement-calculator" element={<TikTokEngagementCalculator />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
-  </BrowserRouter>
+  <ThemeProvider>
+    <BrowserRouter>
+      <div className="flex min-h-screen flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
+        <Navbar />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/calculator" element={<Calculator />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/tiktok-cpm-calculator" element={<TikTokCPMCalculator />} />
+            <Route path="/tiktok-engagement-calculator" element={<TikTokEngagementCalculator />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
+  </ThemeProvider>
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);

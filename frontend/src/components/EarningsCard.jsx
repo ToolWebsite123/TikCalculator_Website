@@ -23,9 +23,9 @@ const EarningsCard = ({ earningsData, isLoading = false }) => {
   // Loading state
   if (isLoading) {
     return (
-      <div className="w-full h-full flex flex-col justify-center rounded-xl bg-white p-5 ring-1 ring-gray-100 sm:rounded-2xl sm:p-6 md:p-8">
+      <div className="w-full h-full flex flex-col justify-center rounded-xl bg-white dark:bg-gray-800 p-5 ring-1 ring-gray-100 dark:ring-gray-700 sm:rounded-2xl sm:p-6 md:p-8 transition-colors">
         <div className="animate-pulse">
-          <div className="h-12 w-32 bg-gray-200 rounded-lg mx-auto sm:h-16 sm:w-48"></div>
+          <div className="h-12 w-32 bg-gray-200 dark:bg-gray-700 rounded-lg mx-auto sm:h-16 sm:w-48"></div>
         </div>
       </div>
     );
@@ -67,11 +67,11 @@ const EarningsCard = ({ earningsData, isLoading = false }) => {
       : `$${safeCpm.toFixed(2)}`;
 
   return (
-    <div className="w-full h-full flex flex-col justify-center rounded-xl bg-white p-5 ring-1 ring-gray-100 sm:rounded-2xl sm:p-6 md:p-8">
+    <div className="w-full h-full flex flex-col justify-center rounded-xl bg-white dark:bg-gray-800 p-5 ring-1 ring-gray-100 dark:ring-gray-700 sm:rounded-2xl sm:p-6 md:p-8 transition-colors">
       {/* Header Label */}
       <div className="flex items-center justify-center gap-2 mb-4 sm:mb-5">
         <svg
-          className="w-4 h-4 text-indigo-600 sm:w-5 sm:h-5"
+          className="w-4 h-4 text-indigo-600 dark:text-indigo-400 sm:w-5 sm:h-5"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -84,7 +84,7 @@ const EarningsCard = ({ earningsData, isLoading = false }) => {
             d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <p className="text-xs font-medium text-gray-600 uppercase tracking-wide sm:text-sm">
+        <p className="text-xs font-medium text-gray-600 dark:text-white uppercase tracking-wide sm:text-sm">
           Estimated TikTok Earnings
         </p>
       </div>
@@ -92,7 +92,7 @@ const EarningsCard = ({ earningsData, isLoading = false }) => {
       {/* Main Earnings Display */}
       <div className="text-center mb-4 sm:mb-5">
         <p 
-          className="text-3xl font-bold text-gray-900 tracking-tight sm:text-4xl md:text-5xl"
+          className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight sm:text-4xl md:text-5xl"
           aria-label={`Estimated TikTok earnings: ${formatCurrency(earnings)}`}
         >
           {formatCurrency(earnings)}

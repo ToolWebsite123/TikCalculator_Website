@@ -707,7 +707,7 @@ const Calculator = () => {
           />
           <button
             type="submit"
-            className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-5 py-3 text-base font-semibold text-white shadow-lg transition hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-300 disabled:cursor-not-allowed disabled:opacity-70"
+            className="inline-flex items-center justify-center rounded-xl bg-[#14b8a6] px-5 py-3 text-base font-semibold text-white shadow-lg transition hover:bg-[#0d9488] focus:outline-none focus:ring-2 focus:ring-[#14b8a6] disabled:cursor-not-allowed disabled:opacity-70"
             disabled={loading}
             aria-busy={loading}
           >

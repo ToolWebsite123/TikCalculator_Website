@@ -112,24 +112,24 @@ const TikTokCPMCalculator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="container mx-auto max-w-4xl px-4 py-12 md:py-16">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
+      <div className="container mx-auto max-w-4xl px-3 py-8 sm:px-4 sm:py-10 md:px-6 md:py-12 lg:py-16">
         {/* Header Section */}
-        <div className="text-center mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-6 sm:mb-8 md:mb-10">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:text-3xl sm:mb-4 md:text-4xl lg:text-5xl">
             {t('cpmCalculator.title')}
           </h1>
-          <p className="text-base text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm text-gray-600 dark:text-white max-w-2xl mx-auto sm:text-base">
             {t('cpmCalculator.subtitle')}
           </p>
         </div>
 
         {/* Calculator Form */}
-        <div className="bg-white rounded-2xl border-2 border-dashed border-gray-300 p-6 md:p-8 shadow-lg">
-          <form onSubmit={handleCalculate} className="space-y-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 p-4 shadow-lg sm:rounded-2xl sm:p-6 md:p-8 transition-colors">
+          <form onSubmit={handleCalculate} className="space-y-4 sm:space-y-5 md:space-y-6">
             {/* Total Cost */}
             <div>
-              <label htmlFor="totalCost" className="block text-sm font-semibold text-gray-800 mb-2">
+              <label htmlFor="totalCost" className="block text-xs font-semibold text-gray-800 dark:text-white mb-1.5 sm:text-sm sm:mb-2">
                 {t('cpmCalculator.totalCost')}
               </label>
               <input
@@ -140,13 +140,13 @@ const TikTokCPMCalculator = () => {
                 value={totalCost}
                 onChange={(e) => setTotalCost(e.target.value)}
                 placeholder={t('cpmCalculator.placeholderCost')}
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 text-base text-gray-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2.5 text-sm text-gray-900 dark:text-white outline-none transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900 sm:px-4 sm:py-3 sm:text-base placeholder-gray-400 dark:placeholder-gray-500"
               />
             </div>
 
             {/* Number of Ad Impressions */}
             <div>
-              <label htmlFor="impressions" className="block text-sm font-semibold text-gray-800 mb-2">
+              <label htmlFor="impressions" className="block text-xs font-semibold text-gray-800 mb-1.5 sm:text-sm sm:mb-2">
                 {t('cpmCalculator.impressions')}
               </label>
               <input
@@ -156,20 +156,20 @@ const TikTokCPMCalculator = () => {
                 value={impressions}
                 onChange={(e) => setImpressions(e.target.value)}
                 placeholder={t('cpmCalculator.placeholderImpressions')}
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 text-base text-gray-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2.5 text-sm text-gray-900 dark:text-white outline-none transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900 sm:px-4 sm:py-3 sm:text-base placeholder-gray-400 dark:placeholder-gray-500"
               />
             </div>
 
             {/* Industry Dropdown */}
             <div>
-              <label htmlFor="industry" className="block text-sm font-semibold text-gray-800 mb-2">
+              <label htmlFor="industry" className="block text-xs font-semibold text-gray-800 mb-1.5 sm:text-sm sm:mb-2">
                 {t('cpmCalculator.industry')}
               </label>
               <select
                 id="industry"
                 value={industry}
                 onChange={(e) => setIndustry(e.target.value)}
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 text-base text-gray-900 bg-white outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 px-3 py-2.5 text-sm text-gray-900 dark:text-white bg-white dark:bg-gray-700 outline-none transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900 sm:px-4 sm:py-3 sm:text-base"
               >
                 {industries.map((ind) => (
                   <option key={ind.value} value={ind.value}>
@@ -181,14 +181,14 @@ const TikTokCPMCalculator = () => {
 
             {/* Country Dropdown */}
             <div>
-              <label htmlFor="country" className="block text-sm font-semibold text-gray-800 mb-2">
+              <label htmlFor="country" className="block text-xs font-semibold text-gray-800 mb-1.5 sm:text-sm sm:mb-2">
                 {t('cpmCalculator.country')}
               </label>
               <select
                 id="country"
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 text-base text-gray-900 bg-white outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 px-3 py-2.5 text-sm text-gray-900 dark:text-white bg-white dark:bg-gray-700 outline-none transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900 sm:px-4 sm:py-3 sm:text-base"
               >
                 {countries.map((c) => (
                   <option key={c.value} value={c.value}>
@@ -200,14 +200,14 @@ const TikTokCPMCalculator = () => {
 
             {/* Channel Dropdown */}
             <div>
-              <label htmlFor="channel" className="block text-sm font-semibold text-gray-800 mb-2">
+              <label htmlFor="channel" className="block text-xs font-semibold text-gray-800 mb-1.5 sm:text-sm sm:mb-2">
                 {t('cpmCalculator.channel')}
               </label>
               <select
                 id="channel"
                 value={channel}
                 onChange={(e) => setChannel(e.target.value)}
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 text-base text-gray-900 bg-white outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 px-3 py-2.5 text-sm text-gray-900 dark:text-white bg-white dark:bg-gray-700 outline-none transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900 sm:px-4 sm:py-3 sm:text-base"
               >
                 {channels.map((ch) => (
                   <option key={ch.value} value={ch.value}>
@@ -219,14 +219,14 @@ const TikTokCPMCalculator = () => {
 
             {/* Currency Dropdown */}
             <div>
-              <label htmlFor="currency" className="block text-sm font-semibold text-gray-800 mb-2">
+              <label htmlFor="currency" className="block text-xs font-semibold text-gray-800 mb-1.5 sm:text-sm sm:mb-2">
                 {t('cpmCalculator.currency')}
               </label>
               <select
                 id="currency"
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value)}
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 text-base text-gray-900 bg-white outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 px-3 py-2.5 text-sm text-gray-900 dark:text-white bg-white dark:bg-gray-700 outline-none transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900 sm:px-4 sm:py-3 sm:text-base"
               >
                 {currencies.map((curr) => (
                   <option key={curr.value} value={curr.value}>
@@ -238,31 +238,31 @@ const TikTokCPMCalculator = () => {
 
             {/* Error Message */}
             {error && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-sm text-red-800">{error}</p>
+              <div className="p-3 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg sm:p-4">
+                <p className="text-xs text-red-800 dark:text-red-300 sm:text-sm">{error}</p>
               </div>
             )}
 
             {/* Calculate Button */}
             <button
               type="submit"
-              className="w-full rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 text-base transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="w-full rounded-lg bg-[#14b8a6] hover:bg-[#0d9488] text-white font-semibold py-2.5 px-4 text-sm transition focus:outline-none focus:ring-2 focus:ring-[#14b8a6] focus:ring-offset-2 sm:py-3 sm:px-6 sm:text-base"
             >
               {t('cpmCalculator.calculate')}
             </button>
 
             {/* CPM Result */}
             {cpm !== null && (
-              <div className="mt-6 p-6 bg-purple-50 rounded-xl border-2 border-purple-200">
+              <div className="mt-4 p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg border-2 border-purple-200 dark:border-purple-800 sm:mt-6 sm:p-6 sm:rounded-xl transition-colors">
                 <div className="text-center">
-                  <p className="text-xs font-semibold text-gray-600 mb-3 uppercase tracking-wider">
+                  <p className="text-[10px] font-semibold text-gray-600 dark:text-white mb-2 uppercase tracking-wider sm:text-xs sm:mb-3">
                     {t('cpmCalculator.calculatedCpm')}
                   </p>
-                  <p className="text-4xl md:text-5xl font-bold text-purple-700 mb-2">
+                  <p className="text-3xl font-bold text-purple-700 dark:text-purple-300 mb-1.5 sm:text-4xl sm:mb-2 md:text-5xl">
                     {getCurrencySymbol()}
                     {getConvertedCpm().toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-xs text-gray-600 dark:text-white sm:text-sm">
                     {t('cpmCalculator.costPerThousand')}
                   </p>
                 </div>

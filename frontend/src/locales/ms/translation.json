@@ -8,7 +8,7 @@
   },
   "home": {
     "badge": "Kalkulator Pendapatan TikTok",
-    "title": "Semak mana-mana pencipta TikTok",
+    "title": "Kalkulator Wang TikTok Percuma",
     "subtitle": "Masukkan nama pengguna TikTok untuk mendapatkan statistik profil langsung dan anggaran pendapatan yang dikuasakan oleh RapidAPI.",
     "placeholder": "cth. mrbeast",
     "button": "Dapatkan pendapatan",
@@ -30,6 +30,7 @@
     "quickLinks": "Pautan Pantas",
     "helpfulLinks": "Pautan Berguna",
     "information": "Maklumat",
+    "about": "Tentang",
     "tiktokMoneyCalculator": "Kalkulator Wang TikTok",
     "tiktokCpmCalculator": "Kalkulator CPM TikTok",
     "tiktokEngagementCalculator": "Kalkulator Engagement TikTok",
@@ -70,10 +71,180 @@
     "email": "tikcalculator@proton.me"
   },
   "privacy": {
-    "title": "Dasar Privasi untuk TikCalculator"
+    "title": "Dasar Privasi",
+    "intro": "Di TikCalculator, privasi anda penting bagi kami. Dasar Privasi ini menerangkan bagaimana kami mengendalikan maklumat apabila anda menggunakan alat anggaran pendapatan TikTok kami. Matlamat kami adalah untuk memastikan perkara-perkara telus, mudah, dan boleh dipercayai.",
+    "infoWeCollect": {
+      "title": "Maklumat yang Kami Kumpulkan",
+      "description": "Kami tidak meminta atau mengumpulkan maklumat peribadi seperti nama, alamat e-mel, nombor telefon, atau kredensial log masuk anda. Anda boleh menggunakan TikCalculator secara percuma tanpa membuat akaun atau berkongsi butiran peribadi."
+    },
+    "autoCollected": {
+      "title": "Maklumat yang Dikumpulkan Secara Automatik",
+      "description1": "Apabila anda melawat laman web kami, maklumat teknikal tertentu mungkin dikumpulkan secara automatik. Ini boleh termasuk jenis pelayar, maklumat peranti, alamat IP, dan data penggunaan. Maklumat ini membantu kami memahami bagaimana alat digunakan dan meningkatkan prestasi.",
+      "description2": "Ia tidak mengenal pasti anda secara peribadi."
+    },
+    "cookies": {
+      "title": "Penggunaan Kuki",
+      "description1": "TikCalculator mungkin menggunakan kuki atau teknologi serupa untuk meningkatkan pengalaman pengguna, menganalisis trafik, dan mengoptimumkan fungsi. Kuki membantu kami memahami bagaimana pelawat berinteraksi dengan laman web.",
+      "description2": "Anda boleh melumpuhkan kuki pada bila-bila masa melalui tetapan pelayar anda jika anda mahu."
+    },
+    "howWeUseInfo": {
+      "title": "Bagaimana Kami Menggunakan Maklumat",
+      "description": "Sebarang data bukan peribadi yang dikumpulkan digunakan hanya untuk:",
+      "item1": "Meningkatkan prestasi laman web",
+      "item2": "Meningkatkan pengalaman pengguna",
+      "item3": "Menganalisis trend penggunaan",
+      "item4": "Mengekalkan keselamatan dan kestabilan",
+      "note": "Kami tidak pernah menjual, memperdagangkan, atau menyalahgunakan data yang dikumpulkan."
+    },
+    "thirdPartyLinks": {
+      "title": "Pautan Pihak Ketiga",
+      "description": "Laman web kami mungkin termasuk pautan ke alat atau laman web pihak ketiga. Kami tidak bertanggungjawab untuk kandungan atau amalan privasi mereka. Kami mengesyorkan untuk meninjau dasar privasi mereka sebelum menggunakan sebarang perkhidmatan luaran."
+    },
+    "dataSecurity": {
+      "title": "Keselamatan Data",
+      "description": "Kami menggunakan langkah-langkah keselamatan standard untuk melindungi laman web dan sistemnya. Walaupun tiada platform dalam talian yang boleh menjamin keselamatan lengkap, kami mengambil langkah yang munasabah untuk mencegah akses tanpa kebenaran atau penyalahgunaan."
+    },
+    "policyUpdates": {
+      "title": "Kemas Kini Dasar",
+      "description": "Kami mungkin mengemas kini Dasar Privasi ini dari semasa ke semasa untuk mencerminkan perubahan dalam fungsi atau keperluan undang-undang. Sebarang kemas kini akan disiarkan di halaman ini. Penggunaan TikCalculator yang berterusan bermakna anda menerima dasar yang dikemas kini."
+    },
+    "contactUs": {
+      "title": "Hubungi Kami",
+      "description": "Jika anda mempunyai sebarang soalan mengenai Dasar Privasi kami, jangan ragu untuk menghubungi kami melalui laman web kami."
+    }
   },
   "terms": {
-    "title": "Terma dan Syarat"
+    "title": "Terma dan Syarat",
+    "intro": "Selamat datang ke TikCalculator. Sila luangkan masa sejenak untuk membaca Terma dan Syarat ini dengan teliti sebelum menggunakan alat anggaran pendapatan TikTok kami. Dengan mengakses atau menggunakan TikCalculator, anda bersetuju untuk mengikuti terma ini. Jika anda tidak bersetuju, sila hentikan penggunaan perkhidmatan.",
+    "acceptance": {
+      "title": "Penerimaan Terma",
+      "description": "Dengan menggunakan TikCalculator, anda mengesahkan bahawa anda memahami dan menerima Terma dan Syarat ini. Penggunaan berterusan laman web bermakna anda bersetuju dengan sebarang kemas kini yang dibuat pada terma ini pada masa hadapan."
+    },
+    "purposeOfService": {
+      "title": "Tujuan Perkhidmatan",
+      "description1": "TikCalculator direka untuk menyediakan anggaran pendapatan TikTok berdasarkan data akaun yang tersedia secara awam seperti pengikut, engagement, dan prestasi video.",
+      "description2": "Semua hasil adalah untuk maklumat sahaja dan tidak boleh dianggap sebagai nasihat kewangan, undang-undang, atau profesional.",
+      "description3": "Anda bertanggungjawab untuk cara anda menggunakan maklumat yang disediakan oleh alat."
+    },
+    "userResponsibility": {
+      "title": "Tanggungjawab Pengguna",
+      "description1": "Anda bersetuju untuk menggunakan TikCalculator dengan bertanggungjawab dan hanya untuk tujuan yang sah.",
+      "description2": "Anda tidak boleh:",
+      "item1": "Menyalahgunakan alat",
+      "item2": "Cuba memanipulasi hasil",
+      "item3": "Menggunakan perkhidmatan untuk aktiviti penipuan atau mengelirukan",
+      "description3": "Mana-mana tindakan yang diambil berdasarkan hasil kalkulator adalah sepenuhnya tanggungjawab anda."
+    },
+    "intellectualPropertyRights": {
+      "title": "Hak Harta Intelek",
+      "description1": "Semua kandungan di TikCalculator, termasuk teks, reka bentuk, logo, grafik, dan perisian, adalah milik TikCalculator dan dilindungi oleh undang-undang hak cipta dan harta intelek yang berkenaan.",
+      "description2": "Anda tidak boleh menyalin, menghasilkan semula, mengedarkan, atau mengubah suai mana-mana bahagian laman web tanpa kebenaran bertulis terlebih dahulu."
+    },
+    "accuracyDisclaimer": {
+      "title": "Penafian Ketepatan",
+      "description1": "Walaupun kami berusaha untuk menyediakan anggaran yang realistik dan terkini, kami tidak menjamin bahawa pengiraan sentiasa tepat atau lengkap. Pendapatan TikTok boleh berbeza-beza disebabkan oleh pelbagai faktor di luar kawalan kami.",
+      "description2": "TikCalculator disediakan \"sebagaimana adanya\" dan \"sebagaimana tersedia\"."
+    },
+    "limitationOfLiability": {
+      "title": "Had Liabiliti",
+      "description1": "TikCalculator tidak akan dipertanggungjawabkan untuk sebarang kerosakan langsung, tidak langsung, atau sampingan yang disebabkan oleh penggunaan alat kami atau pergantungan pada anggarannya.",
+      "description2": "Gunakan perkhidmatan mengikut budi bicara dan risiko anda sendiri."
+    },
+    "thirdPartyLinks": {
+      "title": "Pautan Pihak Ketiga",
+      "description": "Laman web kami mungkin termasuk pautan ke laman web pihak ketiga untuk sumber atau maklumat tambahan. Kami tidak mengawal atau mengambil tanggungjawab untuk kandungan, dasar, atau amalan laman luaran ini."
+    },
+    "terminationOfAccess": {
+      "title": "Penamatan Akses",
+      "description": "Kami berhak menggantung atau menamatkan akses ke TikCalculator pada bila-bila masa, tanpa notis, jika Terma dan Syarat ini dilanggar atau atas sebab operasi."
+    },
+    "changesToTerms": {
+      "title": "Perubahan pada Terma",
+      "description1": "TikCalculator boleh mengemas kini Terma dan Syarat ini pada bila-bila masa. Sebarang perubahan akan disiarkan di halaman ini, dan penggunaan berterusan perkhidmatan menunjukkan penerimaan terma yang dikemas kini.",
+      "description2": ""
+    },
+    "contactUs": {
+      "title": "Hubungi Kami",
+      "description": "Jika anda mempunyai sebarang soalan mengenai Terma dan Syarat kami, jangan ragu untuk menghubungi kami melalui laman web kami."
+    }
+  },
+  "infoSection": {
+    "whatIsTikTokMoneyCalculator": "Apakah Kalkulator Wang TikTok?",
+    "paragraph1": "Kalkulator Wang TikTok ialah alat dalam talian yang menganggarkan berapa banyak akaun TikTok boleh memperoleh. Ia menganalisis data akaun awam, seperti bilangan pengikut, kadar engagement, dan purata tontonan video, untuk menjana julat pendapatan yang realistik. Daripada meneka pendapatan, kalkulator menyediakan pandangan pantas yang membantu pencipta, jenama, dan pemasar membuat keputusan termaklum, terutamanya apabila menggunakan alat seperti TikCalculator untuk menilai prestasi akaun.",
+    "paragraph2": "Alat ini direka untuk kesederhanaan. Anda tidak memerlukan pengetahuan teknikal, perisian berbayar, atau akses akaun. Memasukkan nama pengguna TikTok sudah cukup untuk bermula, menjadikan anggaran pendapatan boleh diakses oleh semua orang.",
+    "howItWorksHeading": "Bagaimana Kalkulator Pendapatan TikTok Berfungsi",
+    "howItWorksParagraph1": "Kalkulator Wang TikTok berfungsi dengan menggunakan metrik TikTok yang tersedia secara awam dan menerapkan formula pendapatan berdasarkan industri. Ia menilai bilangan pengikut, kadar engagement, purata tontonan video, dan konsistensi prestasi kandungan untuk menilai potensi pendapatan, serupa dengan cara TikCalculator memproses data awam untuk menjana anggaran.",
+    "howItWorksParagraph2": "Berdasarkan isyarat ini, kalkulator menganggarkan berapa banyak pencipta boleh memperoleh setiap siaran atau kolaborasi jenama. Hasilnya ditunjukkan sebagai julat pendapatan dan bukannya jumlah tetap, membantu pengguna memahami jangkaan yang realistik daripada tuntutan yang berlebihan.",
+    "howToCheckHeading": "Cara Memeriksa Pendapatan TikTok Menggunakan Kalkulator",
+    "howToCheckIntro": "Memeriksa pendapatan TikTok dengan kalkulator adalah pantas dan mesra pemula.",
+    "howToCheckPoint1": "Pertama, salin nama pengguna TikTok yang ingin anda analisis.",
+    "howToCheckPoint2": "Seterusnya, tampal nama pengguna ke dalam alat kalkulator dan klik butang kira.",
+    "howToCheckPoint3": "Dalam beberapa saat, alat memaparkan anggaran pendapatan setiap siaran dalam format yang jelas dan boleh dibaca, sama ada anda menggunakan TikCalculator atau alat anggaran pendapatan yang serupa.",
+    "howToCheckPoint4": "Tiada log masuk, muat turun, atau pemasangan diperlukan.",
+    "howToCheckPoint5": "Kalkulator berfungsi terus dalam pelayar pada peranti mudah alih, tablet, dan desktop, memudahkan akses pada bila-bila masa.",
+    "whyPeopleUseHeading": "Mengapa Orang Menggunakan Kalkulator Wang TikTok",
+    "whyPeopleUseParagraph1": "Orang menggunakan Kalkulator Wang TikTok untuk memahami nilai akaun tanpa kekeliruan. Pencipta bergantung pada mereka untuk menganggarkan nilai mereka sebelum merundingkan tawaran jenama, manakala jenama menggunakannya untuk merancang belanjawan influencer dan membandingkan pencipta berdasarkan engagement.",
+    "whyPeopleUseParagraph2": "Daripada bergantung pada andaian atau nombor yang mengelirukan, alat seperti TikCalculator membantu pengguna melihat anggaran pendapatan yang realistik berdasarkan data prestasi sebenar. Ini menjimatkan masa dan menghilangkan tekaan dari perancangan monetisasi.",
+    "earningsPotentialHeading": "Berapa Banyak yang Boleh Anda Perolehi di TikTok?",
+    "earningsPotentialIntro": "Pendapatan TikTok berbeza dari pencipta ke pencipta. Sesetengah memperoleh pendapatan sampingan kecil, manakala yang lain mendapat perkongsian jenama dengan bayaran tinggi. Potensi pendapatan anda bergantung pada beberapa faktor penting yang bekerja bersama:",
+    "followerCountLabel": "Bilangan Pengikut:",
+    "followerCountDescription": "Audiens yang lebih besar meningkatkan keterlihatan, yang menjadikan jenama lebih berminat dengan promosi berbayar dan kolaborasi.",
+    "engagementRateLabel": "Kadar Engagement:",
+    "engagementRateDescription": "Suka, komen, kongsi, dan tontonan menunjukkan betapa aktif dan setia audiens. Engagement yang kuat sering kali lebih penting daripada bilangan pengikut sahaja.",
+    "monetizationMethodsLabel": "Kaedah Monetisasi:",
+    "monetizationMethodsDescription": "Pendapatan mungkin datang dari tawaran jenama, siaran sponsor, pembayaran dana pencipta, hadiah langsung, pemasaran gabungan, dan jualan barangan.",
+    "brandPartnershipsLabel": "Perkongsian Jenama:",
+    "brandPartnershipsDescription": "Perkongsian jenama jangka panjang atau eksklusif biasanya membayar lebih daripada siaran sponsor satu kali.",
+    "audienceLocationLabel": "Lokasi Audiens:",
+    "audienceLocationDescription": "Penonton dari wilayah dengan nilai iklan yang lebih tinggi boleh memberi kesan positif pada pendapatan, terutamanya untuk pembayaran berdasarkan platform.",
+    "earningsPotentialConclusion": "Oleh kerana pendapatan berbeza untuk setiap pencipta, kalkulator membantu menganggarkan julat pendapatan daripada menjanjikan angka yang tepat. Pencipta dengan engagement yang kuat dan audiens besar boleh memperoleh dari beberapa ratus hingga beberapa ribu dolar setiap video jenama.",
+    "earningsByFollowersHeading": "Berapa Banyak yang Dibayar TikTok untuk 1,000 Pengikut?",
+    "earningsByFollowersIntro": "TikTok tidak membayar pencipta secara langsung berdasarkan bilangan pengikut, tetapi anggaran industri menyediakan rujukan pendapatan umum:",
+    "range1Label": "1,000–10,000 pengikut:",
+    "range1Value": "$5–$50 setiap siaran",
+    "range2Label": "10,000–100,000 pengikut:",
+    "range2Value": "$60–$90 setiap siaran",
+    "range3Label": "100,000–500,000 pengikut:",
+    "range3Value": "$200–$400 setiap siaran",
+    "range4Label": "500,000–1 juta pengikut:",
+    "range4Value": "$400–$600 setiap siaran",
+    "range5Label": "Lebih dari 1 juta pengikut:",
+    "range5Value": "$750–$1000+ setiap siaran",
+    "earningsByFollowersConclusion": "Pendapatan sebenar sangat bergantung pada kadar engagement, niche kandungan, dan permintaan jenama.",
+    "boostEarningsHeading": "Cara Meningkatkan Pendapatan TikTok Anda",
+    "boostEarningsIntro": "Meningkatkan pendapatan TikTok memerlukan strategi dan konsistensi. Pencipta yang berjaya memberi tumpuan kepada tabiat yang menarik kedua-dua penonton dan jenama:",
+    "stayConsistentLabel": "Kekal Konsisten:",
+    "stayConsistentDescription": "Menyiarkan secara berkala meningkatkan keterlihatan dan mengekalkan audiens terlibat.",
+    "diversifyContentLabel": "Pelbagaikan Kandungan:",
+    "diversifyContentDescription": "Bereksperimen dengan format sambil kekal dalam niche membantu menjangkau audiens baru.",
+    "engageWithFollowersLabel": "Berinteraksi dengan Pengikut:",
+    "engageWithFollowersDescription": "Membalas komen dan menggalakkan interaksi membina kepercayaan dan meningkatkan kadar engagement.",
+    "followTrendsLabel": "Ikuti Tren:",
+    "followTrendsDescription": "Bunyi dan cabaran yang sedang tren boleh meningkatkan jangkauan dan kebolehcarian dengan cepat.",
+    "collaborateWithOthersLabel": "Berkolaborasi dengan Orang Lain:",
+    "collaborateWithOthersDescription": "Bekerja dengan pencipta lain memperluas pendedahan dan membantu meningkatkan bilangan pengikut.",
+    "boostEarningsConclusion": "Langkah-langkah ini mengukuhkan pertumbuhan jangka panjang dan membuka lebih banyak peluang monetisasi dari masa ke masa.",
+    "faqHeading": "Soalan Lazim",
+    "faq1Question": "Bagaimanakah saya boleh menganggarkan pendapatan TikTok saya dengan TikCalculator?",
+    "faq1Answer": "Anda boleh menganggarkan pendapatan TikTok anda dengan memasukkan nama pengguna mana-mana akaun TikTok awam ke dalam TikCalculator. Alat ini menganalisis data yang tersedia seperti bilangan pengikut dan kadar engagement, kemudian menunjukkan anggaran julat pendapatan setiap siaran.",
+    "faq2Question": "Adakah saya perlu membayar untuk menggunakan kalkulator wang TikTok?",
+    "faq2Answer": "Tidak, TikCalculator adalah percuma sepenuhnya. Anda boleh memeriksa anggaran pendapatan untuk pelbagai akaun TikTok tanpa membayar sebarang yuran langganan atau penggunaan.",
+    "faq3Question": "Adakah saya perlu memasang sambungan untuk menggunakan kalkulator wang TikTok?",
+    "faq3Answer": "Tiada pemasangan diperlukan. TikCalculator berfungsi terus dalam pelayar web anda, dan anda hanya memerlukan nama pengguna TikTok untuk mendapatkan anggaran pendapatan.",
+    "faq4Question": "Adakah selamat menggunakan kalkulator wang TikTok?",
+    "faq4Answer": "Ya, TikCalculator selamat digunakan. Ia tidak memerlukan butiran log masuk TikTok dan tidak menyimpan maklumat peribadi atau berkaitan akaun.",
+    "faq5Question": "Adakah TikTok baik untuk memperoleh wang?",
+    "faq5Answer": "Ya, TikTok boleh menjadi platform yang baik untuk memperoleh wang jika anda mempunyai kandungan yang menarik dan audiens yang aktif. Ramai pencipta memperoleh melalui perkongsian jenama, hadiah langsung, dan TikTok Creator Fund.",
+    "faq6Question": "Bagaimanakah TikTok membayar penciptanya?",
+    "faq6Answer": "TikTok membayar pencipta melalui pelbagai kaedah, termasuk Creator Fund, hadiah strim langsung, kolaborasi jenama, dan kandungan sponsor yang diatur terus dengan syarikat.",
+    "faq7Question": "Bolehkah sesiapa memperoleh wang dari TikTok?",
+    "faq7Answer": "Ya, sesiapa sahaja berpotensi memperoleh wang dari TikTok, tetapi kejayaan bergantung pada penyiaran yang konsisten, kualiti kandungan, engagement audiens, dan pemilihan niche.",
+    "faq8Question": "Berapa kerap saya harus menggunakan Kalkulator TikTok?",
+    "faq8Answer": "Anda harus menggunakan Kalkulator TikTok setiap kali terdapat perubahan yang ketara dalam bilangan pengikut atau engagement anda, atau semasa merancang tawaran jenama dan penajaan.",
+    "faq9Question": "Faktor apa yang boleh mempengaruhi pendapatan sebenar saya di TikTok?",
+    "faq9Answer": "Pendapatan sebenar bergantung pada faktor seperti bilangan pengikut, kadar engagement, niche kandungan, lokasi audiens, konsistensi penyiaran, dan jenis monetisasi yang digunakan.",
+    "faq10Question": "Bagaimanakah saya boleh mengeluarkan pendapatan dari TikCalculator?",
+    "faq10Answer": "TikCalculator tidak memproses pembayaran atau pengeluaran. Ia hanya menyediakan anggaran pendapatan, manakala pembayaran sebenar ditangani terus oleh TikTok atau melalui perjanjian jenama."
   }
 }
 

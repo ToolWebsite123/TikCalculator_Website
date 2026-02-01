@@ -14,11 +14,18 @@
     background-color: var(--brand-surface);
 }
 
+.dark {
+    --brand-surface: #111827;
+    color: #ffffff;
+    background-color: var(--brand-surface);
+}
+
 body {
     margin: 0;
     background-color: var(--brand-surface);
     overflow-x: hidden;
     /* Prevent horizontal scrolling */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Ensure no horizontal overflow on all elements */

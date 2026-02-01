@@ -32,15 +32,15 @@ const formatNumber = (value) => {
  * Individual Stat Card Component
  */
 const Stat = ({ label, value, helpText }) => (
-  <div className="rounded-xl bg-white p-3 shadow-sm ring-1 ring-gray-100 sm:rounded-2xl sm:p-4">
-    <p className="text-[10px] font-medium uppercase tracking-wide text-slate-500 sm:text-xs">
+  <div className="rounded-xl bg-white dark:bg-gray-800 p-3 shadow-sm ring-1 ring-gray-100 dark:ring-gray-700 sm:rounded-2xl sm:p-4 transition-colors">
+    <p className="text-[10px] font-medium uppercase tracking-wide text-slate-500 dark:text-white sm:text-xs">
       {label}
     </p>
-    <p className="mt-1.5 text-lg font-semibold text-slate-900 sm:mt-2 sm:text-xl md:text-2xl">
+    <p className="mt-1.5 text-lg font-semibold text-slate-900 dark:text-white sm:mt-2 sm:text-xl md:text-2xl">
       {value}
     </p>
     {helpText && (
-      <p className="mt-1 text-[9px] text-slate-400 sm:text-[10px]">{helpText}</p>
+      <p className="mt-1 text-[9px] text-slate-400 dark:text-white sm:text-[10px]">{helpText}</p>
     )}
   </div>
 );

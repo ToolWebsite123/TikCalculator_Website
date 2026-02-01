@@ -10,6 +10,7 @@ import frTranslations from './locales/fr/translation.json';
 import itTranslations from './locales/it/translation.json';
 import ptTranslations from './locales/pt/translation.json';
 import msTranslations from './locales/ms/translation.json';
+import idTranslations from './locales/id/translation.json';
 
 i18n
     // Detect user language
@@ -39,6 +40,9 @@ i18n
             },
             ms: {
                 translation: msTranslations,
+            },
+            id: {
+                translation: idTranslations,
             },
         },
         lng: localStorage.getItem('i18nextLng') || 'en', // Default language

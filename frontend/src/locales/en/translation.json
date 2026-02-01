@@ -7,7 +7,7 @@
     "language": "Language"
   },
   "home": {
-    "title": "TikTok Money Calculator",
+    "title": "TikTok Money Calculator Free",
     "subtitle": "Free TikTok earnings estimator. Get profile-based earnings estimates for any TikTok account in seconds.",
     "placeholder": "e.g. mrbeast",
     "button": "Get Estimate",
@@ -29,6 +29,7 @@
     "quickLinks": "Quick Links",
     "helpfulLinks": "Helpful Links",
     "information": "Information",
+    "about": "About",
     "tiktokMoneyCalculator": "TikTok Money Calculator",
     "tiktokCpmCalculator": "TikTok CPM Calculator",
     "tiktokEngagementCalculator": "TikTok Engagement Calculator",
@@ -69,9 +70,198 @@
     "email": "tikcalculator@proton.me"
   },
   "privacy": {
-    "title": "Privacy Policy"
+    "title": "Privacy Policy",
+    "intro": "At TikCalculator, your privacy matters to us. This Privacy Policy explains how we handle information when you use our TikTok earnings estimation tool. Our goal is to keep things transparent, simple, and trustworthy.",
+    "infoWeCollect": {
+      "title": "Information We Collect",
+      "description": "We do not ask for or collect personal information such as your name, email address, phone number, or login credentials. You can use TikCalculator freely without creating an account or sharing private details."
+    },
+    "autoCollected": {
+      "title": "Automatically Collected Information",
+      "description1": "When you visit our website, certain technical information may be collected automatically. This can include browser type, device information, IP address, and usage data. This information helps us understand how the tool is used and improve performance.",
+      "description2": "It does not identify you personally."
+    },
+    "cookies": {
+      "title": "Use of Cookies",
+      "description1": "TikCalculator may use cookies or similar technologies to improve user experience, analyze traffic, and optimize functionality. Cookies help us understand how visitors interact with the website.",
+      "description2": "You can disable cookies anytime through your browser settings if you prefer."
+    },
+    "howWeUseInfo": {
+      "title": "How We Use Information",
+      "description": "Any non-personal data collected is used only to:",
+      "item1": "Improve website performance",
+      "item2": "Enhance user experience",
+      "item3": "Analyze usage trends",
+      "item4": "Maintain security and stability",
+      "note": "We never sell, trade, or misuse collected data."
+    },
+    "thirdPartyLinks": {
+      "title": "Third-Party Links",
+      "description": "Our website may include links to third-party tools or websites. We are not responsible for their content or privacy practices. We recommend reviewing their privacy policies before using any external services."
+    },
+    "dataSecurity": {
+      "title": "Data Security",
+      "description": "We use standard security measures to protect the website and its systems. While no online platform can guarantee complete security, we take reasonable steps to prevent unauthorized access or misuse."
+    },
+    "policyUpdates": {
+      "title": "Policy Updates",
+      "description": "We may update this Privacy Policy from time to time to reflect changes in functionality or legal requirements. Any updates will be posted on this page. Continued use of TikCalculator means you accept the updated policy."
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "description": "If you have any questions about our Privacy Policy, feel free to contact us through our website."
+    }
   },
   "terms": {
-    "title": "Terms and Conditions"
+    "title": "Terms and Conditions",
+    "intro": "Welcome to TikCalculator. Please take a moment to read these Terms and Conditions carefully before using our TikTok earnings estimation tool. By accessing or using TikCalculator, you agree to follow these terms. If you do not agree, please discontinue using the service.",
+    "acceptance": {
+      "title": "Acceptance of Terms",
+      "description": "By using TikCalculator, you confirm that you understand and accept these Terms and Conditions. Your continued use of the website means you agree to any updates made to these terms in the future."
+    },
+    "purposeOfService": {
+      "title": "Purpose of the Service",
+      "description1": "TikCalculator is designed to provide estimated TikTok earnings based on publicly available account data such as followers, engagement, and video performance.",
+      "description2": "All results are informational only and should not be considered financial, legal, or professional advice.",
+      "description3": "You are responsible for how you use the information provided by the tool."
+    },
+    "userResponsibility": {
+      "title": "User Responsibility",
+      "description1": "You agree to use TikCalculator responsibly and only for lawful purposes.",
+      "description2": "You must not:",
+      "item1": "Misuse the tool",
+      "item2": "Attempt to manipulate results",
+      "item3": "Use the service for fraudulent or misleading activities",
+      "description3": "Any actions taken based on calculator results are entirely your responsibility."
+    },
+    "intellectualPropertyRights": {
+      "title": "Intellectual Property Rights",
+      "description1": "All content on TikCalculator — including text, design, logos, graphics, and software — is the property of TikCalculator and protected by applicable copyright and intellectual property laws.",
+      "description2": "You may not copy, reproduce, distribute, or modify any part of the website without prior written permission."
+    },
+    "accuracyDisclaimer": {
+      "title": "Accuracy Disclaimer",
+      "description1": "While we strive to provide realistic and updated estimates, we do not guarantee that calculations are always accurate or complete. TikTok earnings can vary due to multiple factors beyond our control.",
+      "description2": "TikCalculator is provided \"as is\" and \"as available.\""
+    },
+    "limitationOfLiability": {
+      "title": "Limitation of Liability",
+      "description1": "TikCalculator shall not be held liable for any direct, indirect, or incidental damages resulting from the use of our tool or reliance on its estimates.",
+      "description2": "Use the service at your own discretion and risk."
+    },
+    "thirdPartyLinks": {
+      "title": "Third-Party Links",
+      "description": "Our website may include links to third-party websites for additional resources or information. We do not control or take responsibility for the content, policies, or practices of these external sites."
+    },
+    "terminationOfAccess": {
+      "title": "Termination of Access",
+      "description": "We reserve the right to suspend or terminate access to TikCalculator at any time, without notice, if these Terms and Conditions are violated or for operational reasons."
+    },
+    "changesToTerms": {
+      "title": "Changes to Terms",
+      "description1": "TikCalculator may update these Terms and Conditions at any time. Any changes will be posted on this page, and continued use of the service indicates acceptance of the updated terms.",
+      "description2": ""
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "description": "If you have any questions about our Terms and Conditions, feel free to contact us through our website."
+    }
+  },
+  "about": {
+    "title": "About TikCalulaator",
+    "description1": "TikCalulaator is a lightweight earnings estimator for TikTok creators and brands. It combines CPM presets, platform share, and niche multipliers to help you reason about revenue potential before negotiating deals.",
+    "description2": "Built with React, Tailwind CSS, and an Express + MongoDB API, it focuses on clarity and responsiveness so you can run quick what-if scenarios on any device."
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "How it works",
+    "questions": {
+      "q1": "How is the estimate calculated?",
+      "a1": "We use (views/1000) * CPM * (1 - platform share) * niche multiplier, then multiply by videos per month.",
+      "q2": "Where do CPM values come from?",
+      "a2": "Preset CPMs are seeded for select countries (US, UK, IN, PK). You can override with your own CPM.",
+      "q3": "Is my data stored?",
+      "a3": "We store only the inputs and results to generate a shareable link. No login is required.",
+      "q4": "Can I change currency?",
+      "a4": "Currently we assume USD formatting. You can note this in the shared link."
+    }
+  },
+  "infoSection": {
+    "whatIsTikTokMoneyCalculator": "What Is a TikTok Money Calculator?",
+    "paragraph1": "A TikTok Money Calculator is an online tool that estimates how much a TikTok account can earn. It analyses public account data, such as follower count, engagement rate, and average video views, to generate a realistic earnings range. Instead of guessing income, the calculator provides quick insights that help creators, brands, and marketers make informed decisions, especially when using tools like TikCalculator to evaluate account performance.",
+    "paragraph2": "The tool is designed for simplicity. You don't need technical knowledge, paid software, or account access. Entering a TikTok username is enough to get started, making earning estimation accessible for everyone.",
+    "howItWorksHeading": "How the TikTok Earnings Calculator Works",
+    "howItWorksParagraph1": "A TikTok Money Calculator works by using publicly available TikTok metrics and applying industry-based earning formulas. It evaluates follower count, engagement rate, average video views, and content performance consistency to assess earning potential, similar to how TikCalculator processes public data to generate estimates.",
+    "howItWorksParagraph2": "Based on these signals, the calculator estimates how much a creator may earn per post or brand collaboration. The result is shown as an earning range rather than a fixed amount, helping users understand realistic expectations instead of inflated claims.",
+    "howToCheckHeading": "How to Check TikTok Earnings Using a Calculator",
+    "howToCheckIntro": "Checking TikTok earnings with a calculator is quick and beginner-friendly.",
+    "howToCheckPoint1": "First, copy the TikTok username you want to analyze.",
+    "howToCheckPoint2": "Next, paste the username into the calculator tool and click the calculate button.",
+    "howToCheckPoint3": "Within seconds, the tool displays estimated earnings per post in a clear and readable format, whether you are using TikCalculator or a similar earnings estimation tool.",
+    "howToCheckPoint4": "No login, downloads, or installations are required.",
+    "howToCheckPoint5": "The calculator works directly in the browser on mobile, tablet, and desktop devices, making it easy to access anytime.",
+    "whyPeopleUseHeading": "Why People Use TikTok Money Calculators",
+    "whyPeopleUseParagraph1": "People use TikTok Money Calculators to understand account value without confusion. Creators rely on them to estimate their worth before negotiating brand deals, while brands use them to plan influencer budgets and compare creators based on engagement.",
+    "whyPeopleUseParagraph2": "Instead of relying on assumptions or misleading numbers, tools like TikCalculator help users view realistic earning estimates based on actual performance data. This saves time and removes guesswork from monetization planning.",
+    "earningsPotentialHeading": "How Much Can You Earn on TikTok?",
+    "earningsPotentialIntro": "TikTok earnings vary from creator to creator. Some earn a small side income, while others secure high-paying brand partnerships. Your earning potential depends on several important factors working together:",
+    "followerCountLabel": "Follower Count:",
+    "followerCountDescription": "A larger audience increases visibility, which makes brands more interested in paid promotions and collaborations.",
+    "engagementRateLabel": "Engagement Rate:",
+    "engagementRateDescription": "Likes, comments, shares, and views show how active and loyal an audience is. Strong engagement often matters more than follower numbers alone.",
+    "monetizationMethodsLabel": "Monetization Methods:",
+    "monetizationMethodsDescription": "Earnings may come from brand deals, sponsored posts, creator fund payouts, live gifts, affiliate marketing, and merchandise sales.",
+    "brandPartnershipsLabel": "Brand Partnerships:",
+    "brandPartnershipsDescription": "Long-term or exclusive brand partnerships usually pay more than one-time sponsored posts.",
+    "audienceLocationLabel": "Audience Location:",
+    "audienceLocationDescription": "Viewers from higher ad-value regions can positively impact earnings, especially for platform-based payouts.",
+    "earningsPotentialConclusion": "Because earnings differ for every creator, calculators help estimate income ranges instead of promising exact figures. Creators with strong engagement and large audiences can earn anywhere from a few hundred to several thousand dollars per branded video.",
+    "earningsByFollowersHeading": "How Much Does TikTok Pay for 1,000 Followers?",
+    "earningsByFollowersIntro": "TikTok does not pay creators directly based on follower count, but industry estimates provide a general earning reference:",
+    "range1Label": "1,000–10,000 followers:",
+    "range1Value": "$5–$50 per post",
+    "range2Label": "10,000–100,000 followers:",
+    "range2Value": "$60–$90 per post",
+    "range3Label": "100,000–500,000 followers:",
+    "range3Value": "$200–$400 per post",
+    "range4Label": "500,000–1 million followers:",
+    "range4Value": "$400–$600 per post",
+    "range5Label": "Over 1 million followers:",
+    "range5Value": "$750–$1000+ per post",
+    "earningsByFollowersConclusion": "Actual earnings depend heavily on engagement rate, content niche, and brand demand.",
+    "boostEarningsHeading": "How to Boost Your TikTok Earnings",
+    "boostEarningsIntro": "Increasing TikTok income requires strategy and consistency. Successful creators focus on habits that attract both viewers and brands:",
+    "stayConsistentLabel": "Stay Consistent:",
+    "stayConsistentDescription": "Regular posting improves visibility and keeps audiences engaged.",
+    "diversifyContentLabel": "Diversify Content:",
+    "diversifyContentDescription": "Experimenting with formats while staying within a niche helps reach new audiences.",
+    "engageWithFollowersLabel": "Engage With Followers:",
+    "engageWithFollowersDescription": "Replying to comments and encouraging interaction builds trust and boosts engagement rates.",
+    "followTrendsLabel": "Follow Trends:",
+    "followTrendsDescription": "Trending sounds and challenges can quickly increase reach and discoverability.",
+    "collaborateWithOthersLabel": "Collaborate With Others:",
+    "collaborateWithOthersDescription": "Working with other creators expands exposure and helps grow follower count.",
+    "boostEarningsConclusion": "These steps strengthen long-term growth and open more monetization opportunities over time.",
+    "faqHeading": "FAQs",
+    "faq1Question": "How can I estimate my TikTok earnings with TikCalculator?",
+    "faq1Answer": "You can estimate your TikTok earnings by entering the username of any public TikTok account into TikCalculator. The tool analyzes available data such as follower count and engagement rate, then shows an estimated earning range per post.",
+    "faq2Question": "Do I need to pay to use the TikTok money calculator?",
+    "faq2Answer": "No, TikCalculator is completely free to use. You can check estimated earnings for multiple TikTok accounts without paying any subscription or usage fee.",
+    "faq3Question": "Do I need to install an extension to use the TikTok money calculator?",
+    "faq3Answer": "No installation is required. TikCalculator works directly in your web browser, and you only need the TikTok username to get earnings estimates.",
+    "faq4Question": "Is it safe to use the TikTok money calculator?",
+    "faq4Answer": "Yes, TikCalculator is safe to use. It does not require TikTok login details and does not store personal or account-related information.",
+    "faq5Question": "Is TikTok good for earning money?",
+    "faq5Answer": "Yes, TikTok can be a good platform for earning money if you have engaging content and an active audience. Many creators earn through brand partnerships, live gifts, and the TikTok Creator Fund.",
+    "faq6Question": "How does TikTok pay its creators?",
+    "faq6Answer": "TikTok pays creators through different methods, including the Creator Fund, live stream gifts, brand collaborations, and sponsored content arranged directly with companies.",
+    "faq7Question": "Can anyone earn from TikTok?",
+    "faq7Answer": "Yes, anyone can potentially earn from TikTok, but success depends on consistent posting, content quality, audience engagement, and niche selection.",
+    "faq8Question": "How often should I use the TikTok Calculator?",
+    "faq8Answer": "You should use the TikTok Calculator whenever there is a noticeable change in your follower count or engagement, or when planning brand deals and sponsorships.",
+    "faq9Question": "What factors could affect my actual earnings on TikTok?",
+    "faq9Answer": "Actual earnings depend on factors such as follower count, engagement rate, content niche, audience location, posting consistency, and the type of monetization used.",
+    "faq10Question": "How can I withdraw earnings from TikCalculator?",
+    "faq10Answer": "TikCalculator does not process payments or withdrawals. It only provides estimated earnings, while actual payments are handled directly by TikTok or through brand agreements."
   }
 }

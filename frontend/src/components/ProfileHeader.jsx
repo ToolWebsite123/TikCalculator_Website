@@ -91,7 +91,7 @@ const ProfileHeader = ({ profile }) => {
   const avatar = safeProfilePic;
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center gap-3 rounded-xl bg-white p-5 ring-1 ring-gray-100 text-center sm:gap-4 sm:rounded-2xl sm:p-6 md:p-7">
+    <div className="w-full h-full flex flex-col justify-center items-center gap-3 rounded-xl bg-white dark:bg-gray-800 p-5 ring-1 ring-gray-100 dark:ring-gray-700 text-center sm:gap-4 sm:rounded-2xl sm:p-6 md:p-7 transition-colors">
       {/* Profile Picture */}
       <div className="relative h-24 w-24 overflow-hidden rounded-full bg-gradient-to-br from-indigo-100 via-blue-100 to-purple-100 shadow-inner sm:h-28 sm:w-28 md:h-32 md:w-32">
         {avatar ? (
@@ -120,14 +120,14 @@ const ProfileHeader = ({ profile }) => {
       </div>
 
       {/* Profile Info */}
-      <div className="flex w-full flex-col items-center gap-1.5 sm:gap-2">
+        <div className="flex w-full flex-col items-center gap-1.5 sm:gap-2">
         {/* Name and Verification Badge */}
         <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
-          <h3 className="text-xl font-semibold text-slate-900 sm:text-2xl md:text-3xl">
+          <h3 className="text-xl font-semibold text-slate-900 dark:text-white sm:text-2xl md:text-3xl">
             {safeFullName || safeUsername}
           </h3>
           {verified && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700 sm:px-2.5 sm:py-1">
+            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 px-2 py-0.5 text-xs font-semibold text-emerald-700 dark:text-emerald-300 sm:px-2.5 sm:py-1">
               <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   fillRule="evenodd"
@@ -141,17 +141,17 @@ const ProfileHeader = ({ profile }) => {
         </div>
 
         {/* Username only */}
-        <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-600 sm:text-sm">
+        <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-600 dark:text-white sm:text-sm">
           <span className="font-medium">@{safeUsername}</span>
         </div>
 
         {/* Bio/Description - Display directly under username */}
         {safeBio && safeBio.trim() !== '' && safeBio !== 'Signature (Required):' ? (
-          <p className="mt-1.5 max-w-3xl text-xs leading-relaxed text-slate-700 text-center px-3 sm:mt-2 sm:text-sm sm:px-4">
+          <p className="mt-1.5 max-w-3xl text-xs leading-relaxed text-slate-700 dark:text-white text-center px-3 sm:mt-2 sm:text-sm sm:px-4">
             {safeBio}
           </p>
         ) : (
-          <p className="mt-1.5 text-xs italic text-slate-400 text-center sm:mt-2 sm:text-sm">No bio provided.</p>
+          <p className="mt-1.5 text-xs italic text-slate-400 dark:text-white text-center sm:mt-2 sm:text-sm">No bio provided.</p>
         )}
       </div>
     </div>
