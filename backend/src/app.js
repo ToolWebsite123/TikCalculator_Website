@@ -13,7 +13,7 @@ const app = express();
 
 // CORS Configuration - UPDATED
 const allowedOrigins = [
-  'https://tik-calculator-website.vercel.app',
+  'https://kalkulatortiktok.vercel.app',
   'http://localhost:5173',
   'http://localhost:3000',
   'http://localhost:5000',
