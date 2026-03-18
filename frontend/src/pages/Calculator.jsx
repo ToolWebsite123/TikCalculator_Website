@@ -23,7 +23,6 @@ const LoadingSkeleton = () => (
 const Calculator = () => {
   const [username, setUsername] = useState('');
   const [result, setResult] = useState(null);
-  // CRITICAL: Initialize with default object instead of null to prevent undefined errors
   const [earningsData, setEarningsData] = useState({
     success: false,
     earnings: 0,
@@ -48,11 +47,8 @@ const Calculator = () => {
   const [earningsLoading, setEarningsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // CRITICAL: useEffect to calculate earnings whenever result changes
-  // This ensures earningsData is ALWAYS set when profile data is available
   useEffect(() => {
     if (result && result.profile && result.success !== false) {
-      // Extract avgViews from multiple possible locations
       const avgViews = Number(result.avgViews) || 
                       Number(result.analytics?.avgViews) || 
                       0;
@@ -60,11 +56,9 @@ const Calculator = () => {
                             Number(result.analytics?.engagementRate) || 
                             0;
       
-      // Calculate earnings if we have data
       if (avgViews > 0 || result.profile.followers > 0) {
         const views = avgViews > 0 ? avgViews : Math.max((result.profile.followers || 0) * 0.08, 1000);
         
-        // Calculate CPM
         let cpm = 1.0;
         if (views >= 5_000_000) cpm = 4.0;
         else if (views >= 1_000_000) cpm = 3.0;
@@ -73,18 +67,14 @@ const Calculator = () => {
         else if (views >= 10_000) cpm = 1.5;
         else cpm = 1.0;
         
-        // Calculate platform factor
         const platformFactor = engagementRate > 0 
           ? Math.min(0.8 + (Math.min(engagementRate / 10, 1.0) * 0.4), 1.2)
           : 1.0;
         
-        // Calculate earnings
         let earnings = 0;
         if (engagementRate > 0) {
-          // Formula B: (views * engagementRate * cpm) / 1000
           earnings = (views * engagementRate * cpm) / 1000 * platformFactor;
         } else {
-          // Formula A: (views / 1000) * rpm (rpm = 0.03)
           earnings = (views / 1000) * 0.03 * platformFactor;
         }
         
@@ -112,7 +102,7 @@ const Calculator = () => {
         setEarningsData(calculatedEarningsData);
       }
     }
-  }, [result]); // Recalculate whenever result changes
+  }, [result]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -126,19 +116,14 @@ const Calculator = () => {
     setEarningsLoading(true);
     setError('');
     setResult(null);
-    // CRITICAL: Don't reset earningsData to null - keep previous value until new data is ready
-    // This prevents the EarningsCard from showing $0.00 during loading
 
     try {
-      // Fetch profile and earnings in parallel
-
       const [profileData, earningsResponse] = await Promise.all([
         fetchTikTokProfile(username.trim()).catch(err => {
           console.error('[Frontend] ❌ fetchTikTokProfile failed:', err.message);
           throw err;
         }),
         fetchTikTokEarnings(username.trim()).catch(err => {
-          // CRITICAL: Return safe fallback object instead of null
           return {
             success: true,
             estimatedEarnings: 0,
@@ -159,16 +144,9 @@ const Calculator = () => {
         })
       ]);
       
-      // STEP 1: Extract earningsData from API response
-      // Backend returns: { success: true, profile: {...}, earningsData: {...} }
-      // fetchTikTokProfile returns response.data, so profileData IS the response.data
-      
-      // CRITICAL: Extract earningsData from response.data.earningsData
-      // Since fetchTikTokProfile returns response.data, profileData IS response.data
       const extractedEarningsData = profileData?.earningsData;
       
       if (extractedEarningsData && typeof extractedEarningsData === 'object') {
-        // STEP 2: Set earningsData in state
         setEarningsData(extractedEarningsData);
       }
 
@@ -180,20 +158,19 @@ const Calculator = () => {
         profileData.profile.username = username.trim();
       }
 
-      if (!profileData || !profileData.success || !profileData.profile) {
-        throw new Error('Invalid response from server');
-      }
+      // ── Inject joinedAt into profile from ALL possible sources ──
+      const joinedAt =
+        profileData.profile?.joinedAt ||
+        profileData.profile?.joined_at ||
+        profileData.profile?.createTime ||
+        profileData.joinedAt ||
+        null;
 
-      if (!profileData.profile.username || profileData.profile.username.trim() === '') {
-        profileData.profile.username = username.trim();
-      }
+      profileData.profile.joinedAt = joinedAt;
 
       setResult(profileData);
       
-      // NOTE: earningsData was already extracted and set in state above
-      // Only use fallback if earningsData wasn't found in API response
       if (!earningsData || typeof earningsData !== 'object') {
-        const profile = profileData.profile || {};
         const fallbackEarningsData = {
           avgViews: 0,
           engagementRate: 5,
@@ -204,9 +181,7 @@ const Calculator = () => {
         };
         setEarningsData(fallbackEarningsData);
       }
-      
-      // DONE: earningsData is now set from API response or fallback
-      // All the duplicate logic below has been removed
+
     } catch (err) {
       const message =
         err?.response?.data?.error ||
@@ -216,11 +191,7 @@ const Calculator = () => {
       setError(message);
       setResult(null);
 
-      // CRITICAL: On error, ALWAYS set earningsData (even if it's a fallback)
-      // This ensures EarningsCard never receives null/undefined
-      const profile = profileData?.profile || {};
-
-      // Always create earningsData, even if profile data is missing
+      const profile = {};
       const errorFallbackViews = Math.max((profile.followers || 0) * 0.08, 1000);
       let errorFallbackCPM = 0.8;
       if (errorFallbackViews >= 5_000_000) errorFallbackCPM = 3.5;
@@ -229,10 +200,7 @@ const Calculator = () => {
       else if (errorFallbackViews >= 100_000) errorFallbackCPM = 1.2;
       else if (errorFallbackViews >= 10_000) errorFallbackCPM = 1.0;
 
-        const errorFallbackEarnings = (errorFallbackViews / 1000) * errorFallbackCPM;
-      const errorFallbackEngagement = profile.likes > 0 && profile.followers > 0 && profile.videos > 0
-        ? Math.min((profile.likes / profile.videos / profile.followers) * 100, 50)
-          : 5.0;
+      const errorFallbackEarnings = (errorFallbackViews / 1000) * errorFallbackCPM;
 
       const errorEarningsData = {
         success: false,
@@ -240,28 +208,25 @@ const Calculator = () => {
         earningPerVideo: Math.max(errorFallbackEarnings, 0.01),
         estimatedEarnings: Math.max(errorFallbackEarnings, 0.01),
         perVideoNet: Math.max(errorFallbackEarnings, 0.01),
-          avgViews: errorFallbackViews,
-          engagementRate: errorFallbackEngagement,
-          cpm: errorFallbackCPM,
+        avgViews: errorFallbackViews,
+        engagementRate: 5.0,
+        cpm: errorFallbackCPM,
         CPM: errorFallbackCPM,
-          platformFactor: 1.0,
-        username: profile.username || username.trim(),
-        followers: profile.followers || 0,
-        likes: profile.likes || 0,
-        following: profile.following || 0,
-        videos: profile.videos || 0,
+        platformFactor: 1.0,
+        username: username.trim(),
+        followers: 0,
+        likes: 0,
+        following: 0,
+        videos: 0,
         monthlyEarning: Math.max(errorFallbackEarnings * 20, 0.20),
         monthlyEarnings: Math.max(errorFallbackEarnings * 20, 0.20),
         source: 'error_fallback',
       };
 
-      // CRITICAL: ALWAYS call setEarningsData in error handler
       setEarningsData(errorEarningsData);
     } finally {
-      // CRITICAL: Always set loading to false
       setLoading(false);
       setEarningsLoading(false);
-      
     }
   };
 
@@ -282,18 +247,26 @@ const Calculator = () => {
         fetchTikTokEarnings(username.trim(), { refresh: 'true' }).catch(() => null)
       ]);
 
+      // ── Inject joinedAt on refresh too ──
+      if (profileData?.profile) {
+        const joinedAt =
+          profileData.profile?.joinedAt ||
+          profileData.profile?.joined_at ||
+          profileData.profile?.createTime ||
+          profileData.joinedAt ||
+          null;
+        profileData.profile.joinedAt = joinedAt;
+      }
+
       setResult(profileData);
 
-      // Always calculate earnings - use API response if valid, otherwise calculate from profile
       const profile = profileData.profile || {};
       const analytics = profileData.analytics || {};
       const latestVideos = profileData.latestVideos || [];
 
-      // Always use backend earnings response if available AND valid (non-zero values)
       let finalEarningsData = null;
 
       if (earningsResponse && earningsResponse.success) {
-        // CRITICAL: Validate that backend response has valid (non-zero) values
         const hasValidEarnings = earningsResponse.estimatedEarnings > 0;
         const hasValidViews = earningsResponse.avgViews > 0;
         const hasValidCPM = earningsResponse.cpm > 0;
@@ -303,10 +276,7 @@ const Calculator = () => {
         }
       }
 
-      // Calculate fallback if backend response not available or invalid
       if (!finalEarningsData) {
-
-        // Calculate avgViews from latest videos (last 30)
         let avgViews = 0;
         if (latestVideos.length > 0) {
           const videosWithViews = latestVideos.filter(v => v && Number(v.views) > 0);
@@ -317,17 +287,10 @@ const Calculator = () => {
           }
         }
 
-        // Fallback: use followers * 0.08
-        if (!avgViews || avgViews === 0) {
-          avgViews = (profile.followers || 0) * 0.08;
-        }
-
-        // Ensure avgViews is never 0
         if (!avgViews || avgViews === 0) {
           avgViews = Math.max((profile.followers || 0) * 0.08, 1000);
         }
 
-        // Calculate engagement rate
         let engagementRate = analytics.engagementRate || 0;
         if ((!engagementRate || engagementRate === 0) && latestVideos.length > 0) {
           const videosWithData = latestVideos.filter(v => v && Number(v.views) > 0);
@@ -343,19 +306,12 @@ const Calculator = () => {
           }
         }
 
-        // Calculate CPM (exact same logic as backend)
         let calculatedCPM = 5.0;
-        if (avgViews >= 10_000_000) {
-          calculatedCPM = 12.0;
-        } else if (avgViews >= 5_000_000) {
-          calculatedCPM = 10.0;
-        } else if (avgViews >= 1_000_000) {
-          calculatedCPM = 8.0;
-        } else if (avgViews >= 500_000) {
-          calculatedCPM = 7.0;
-        } else if (avgViews >= 100_000) {
-          calculatedCPM = 6.0;
-        }
+        if (avgViews >= 10_000_000) calculatedCPM = 12.0;
+        else if (avgViews >= 5_000_000) calculatedCPM = 10.0;
+        else if (avgViews >= 1_000_000) calculatedCPM = 8.0;
+        else if (avgViews >= 500_000) calculatedCPM = 7.0;
+        else if (avgViews >= 100_000) calculatedCPM = 6.0;
 
         const platformFactor = 1.0;
         const { calculateEarning } = await import('../utils/earnings');
@@ -379,36 +335,10 @@ const Calculator = () => {
         };
       }
 
-      // FINAL VALIDATION: Ensure all values are valid (never 0)
-      if (finalEarningsData) {
-        // Ensure avgViews is never 0
-        if (!finalEarningsData.avgViews || finalEarningsData.avgViews <= 0) {
-          finalEarningsData.avgViews = Math.max((finalEarningsData.followers || 0) * 0.08, 1000);
-        }
-
-        // Ensure engagementRate is never negative
-        if (finalEarningsData.engagementRate < 0) {
-          finalEarningsData.engagementRate = 5.0;
-        }
-
-        // Ensure CPM is never 0
-        if (!finalEarningsData.cpm || finalEarningsData.cpm <= 0) {
-          finalEarningsData.cpm = 5.0;
-        }
-
-        // Recalculate earnings if invalid
-        if (!finalEarningsData.estimatedEarnings || finalEarningsData.estimatedEarnings <= 0) {
-          finalEarningsData.estimatedEarnings = (finalEarningsData.avgViews / 1000) * finalEarningsData.cpm;
-          finalEarningsData.earningPerVideo = finalEarningsData.estimatedEarnings;
-          finalEarningsData.monthlyEarning = finalEarningsData.estimatedEarnings * 20;
-        }
-      } else {
-        // Create default if still null
-        const profile = profileData?.profile || {};
+      if (!finalEarningsData) {
         const fallbackViews = Math.max((profile.followers || 0) * 0.08, 1000);
         const fallbackCPM = 5.0;
         const fallbackEarnings = (fallbackViews / 1000) * fallbackCPM;
-
         finalEarningsData = {
           success: true,
           username: profile.username || username.trim(),
@@ -423,48 +353,6 @@ const Calculator = () => {
         };
       }
 
-      // CRITICAL: Ensure finalEarningsData is NEVER null before setting
-      if (!finalEarningsData) {
-        const profile = profileData?.profile || {};
-        const emergencyViews = Math.max((profile.followers || 0) * 0.08, 1000);
-        const emergencyCPM = 5.0;
-        const emergencyEarnings = (emergencyViews / 1000) * emergencyCPM;
-
-        finalEarningsData = {
-          success: true,
-          username: profile.username || username.trim(),
-          followers: profile.followers || 0,
-          avgViews: emergencyViews,
-          engagementRate: 5.0,
-          estimatedEarnings: emergencyEarnings,
-          earningPerVideo: emergencyEarnings,
-          monthlyEarning: emergencyEarnings * 20,
-          cpm: emergencyCPM,
-          platformFactor: 1.0,
-        };
-      }
-
-      // CRITICAL: Ensure finalEarningsData is NEVER null before setting
-      if (!finalEarningsData) {
-        finalEarningsData = {
-          success: true,
-          estimatedEarnings: 0,
-          earningPerVideo: 0,
-          avgViews: 0,
-          engagementRate: 0,
-          cpm: 0,
-          platformFactor: 1.0,
-          username: username.trim(),
-          followers: 0,
-          likes: 0,
-          following: 0,
-          videos: 0,
-          monthlyEarning: 0,
-          source: 'fallback',
-        };
-      }
-
-      // ALWAYS set earningsData - guaranteed to be valid object
       setEarningsData(finalEarningsData);
     } catch (err) {
       const message =
@@ -474,7 +362,6 @@ const Calculator = () => {
         'Failed to refresh profile';
       setError(message);
 
-      // CRITICAL: Set earnings data even on error (safe fallback)
       const refreshErrorEarningsData = {
         success: false,
         earnings: 0.01,
@@ -543,7 +430,6 @@ const Calculator = () => {
           Estimates only. Data fetched from public TikTok pages. If a profile is private we'll let you know.
         </p>
 
-        {/* Error Message */}
         {error && (
           <div className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-800">
             <p className="font-semibold">Error:</p>
@@ -558,7 +444,6 @@ const Calculator = () => {
       {/* Results */}
       {result && !loading && result.profile && (
         <div className="space-y-6">
-          {/* Profile Header */}
           {result.profile && typeof result.profile === 'object' ? (
             <ProfileHeader profile={result.profile} />
           ) : (
@@ -568,7 +453,6 @@ const Calculator = () => {
             </div>
           )}
 
-          {/* Stats Grid - Only show: Followers, Following, Likes, Videos, Avg Views, Engagement Rate */}
           <StatsGrid
             stats={{
               followers: result.profile.followers,
@@ -580,13 +464,11 @@ const Calculator = () => {
             }}
           />
 
-          {/* Earnings Card - ALWAYS VISIBLE after search */}
           <EarningsCard
             earningsData={earningsData}
             isLoading={earningsLoading}
           />
 
-          {/* Refresh Button */}
           <div className="flex justify-center">
             <button
               type="button"
@@ -601,7 +483,6 @@ const Calculator = () => {
         </div>
       )}
 
-      {/* No Results Message */}
       {result && !loading && !result.profile && (
         <div className="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 text-sm text-amber-800">
           <p>No profile data available. Please try again.</p>

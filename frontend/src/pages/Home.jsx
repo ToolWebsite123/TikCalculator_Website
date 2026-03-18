@@ -16,7 +16,7 @@ const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const cleanUsername = username.trim().replace(/^@/, ''); // Remove @ if present
+    const cleanUsername = username.trim().replace(/^@/, '');
     
     if (!cleanUsername) {
       setError(t('home.error'));
@@ -55,10 +55,23 @@ const Home = () => {
 
       const cleanBio = bioFromResponse.replace(/^Signature\s*\(Required\)\s*:\s*/i, '').trim();
 
+      // ── Extract joinedAt from ALL possible sources ──
+      const joinedAt =
+        response.profile?.joinedAt ||
+        response.profile?.joined_at ||
+        response.profile?.createTime ||
+        profileData?.joinedAt ||
+        profileData?.joined_at ||
+        profileData?.createTime ||
+        response.joinedAt ||
+        null;
+
       const mergedProfile = {
         ...profileData,
         bio: cleanBio || profileData?.bio || profileData?.description || '',
         description: cleanBio || profileData?.description || profileData?.bio || '',
+        // ── Always carry joinedAt forward ──
+        joinedAt: joinedAt,
       };
 
       setStats(mergedProfile);
@@ -125,9 +138,9 @@ const Home = () => {
                   type="text"
                   value={username}
                   onChange={(e) => {
-                    const value = e.target.value.replace(/^@/, ''); // Remove @ if user types it
+                    const value = e.target.value.replace(/^@/, '');
                     setUsername(value);
-                    if (error) setError(''); // Clear error when user types
+                    if (error) setError('');
                   }}
                   placeholder={t('home.placeholder')}
                   aria-describedby="username-helper username-status"
@@ -178,7 +191,6 @@ const Home = () => {
             </button>
           </form>
         </div>
-
       </div>
 
       {/* Results Section */}
