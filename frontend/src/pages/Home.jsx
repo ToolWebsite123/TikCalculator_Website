@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { fetchTikTokStats } from '../utils/api';
 import ProfileHeader from '../components/ProfileHeader';
@@ -13,6 +13,7 @@ const Home = () => {
   const [error, setError] = useState('');
   const [stats, setStats] = useState(null);
   const [earningsData, setEarningsData] = useState(null);
+  const resultsRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,6 +76,11 @@ const Home = () => {
       };
 
       setStats(mergedProfile);
+
+      // ── Auto scroll to results ──
+      setTimeout(() => {
+        resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
     } catch (err) {
       setError(err?.response?.data?.error || err?.message || t('home.errorFetch'));
     } finally {
@@ -195,7 +201,7 @@ const Home = () => {
 
       {/* Results Section */}
       {profile && (
-        <div className="mt-6 flex w-full flex-col gap-4 sm:mt-8 sm:gap-5 md:mt-10 md:gap-6">
+        <div ref={resultsRef} className="mt-6 flex w-full flex-col gap-4 sm:mt-8 sm:gap-5 md:mt-10 md:gap-6">
           {/* Section Header */}
           <div className="text-center">
             <h2 className="text-lg font-semibold text-slate-800 dark:text-white sm:text-xl">
@@ -207,11 +213,11 @@ const Home = () => {
           </div>
 
           {/* Profile + Earnings - Side by Side */}
-          <div className="flex flex-col lg:flex-row items-stretch gap-6 w-full">
-            <div className="flex-1 flex w-full">
+          <div className="flex flex-col lg:flex-row items-stretch gap-4 w-full">
+            <div className="flex-1 flex w-full max-h-80">
               <ProfileHeader profile={profile} />
             </div>
-            <div className="flex-1 flex w-full">
+            <div className="flex-1 flex w-full max-h-80">
               <EarningsCard earningsData={earningsData} />
             </div>
           </div>

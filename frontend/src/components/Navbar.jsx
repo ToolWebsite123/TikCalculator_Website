@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeSwitcher from './ThemeSwitcher';
@@ -7,6 +7,7 @@ import ThemeSwitcher from './ThemeSwitcher';
 const Navbar = () => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navLinks = [
     { key: 'engagementCalculator', href: '/tiktok-engagement-calculator' },
@@ -15,10 +16,21 @@ const Navbar = () => {
 
   const toggleMenu = () => setOpen((v) => !v);
 
+  // Logo click: go to home and force full reset
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    navigate('/');
+    window.location.href = '/';
+  };
+
   return (
     <header className="sticky top-0 z-30 bg-[#0f2942] dark:bg-gray-900 shadow-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-2.5 sm:px-4 sm:py-3 md:px-6">
-        <Link to="/" className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0 min-w-0">
+        <a
+          href="/"
+          onClick={handleLogoClick}
+          className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0 min-w-0 cursor-pointer"
+        >
           <img
             src="/imgi_1_tik-tok.webp"
             alt="Tikcalculator logo"
@@ -26,7 +38,7 @@ const Navbar = () => {
             loading="lazy"
           />
           <p className='text-xs sm:text-sm md:text-base lg:text-lg xl:text-[20px] text-[#fff] dark:text-white font-semibold truncate'>TikTok Money Calculator</p>
-        </Link>
+        </a>
 
         <div className="hidden items-center gap-3 lg:gap-4 text-sm font-medium text-[#fff] dark:text-white md:flex list-none">
           {navLinks.map((link) => (
@@ -50,24 +62,9 @@ const Navbar = () => {
           aria-expanded={open}
         >
           <div className="relative w-5 h-5">
-            <span
-              className={`absolute left-0 w-full h-0.5 bg-current transition-all duration-300 ease-in-out ${open
-                ? 'top-2 rotate-45'
-                : 'top-0'
-                }`}
-            />
-            <span
-              className={`absolute left-0 top-2 w-full h-0.5 bg-current transition-all duration-300 ease-in-out ${open
-                ? 'opacity-0 scale-0'
-                : 'opacity-100 scale-100'
-                }`}
-            />
-            <span
-              className={`absolute left-0 w-full h-0.5 bg-current transition-all duration-300 ease-in-out ${open
-                ? 'top-2 -rotate-45'
-                : 'top-4'
-                }`}
-            />
+            <span className={`absolute left-0 w-full h-0.5 bg-current transition-all duration-300 ease-in-out ${open ? 'top-2 rotate-45' : 'top-0'}`} />
+            <span className={`absolute left-0 top-2 w-full h-0.5 bg-current transition-all duration-300 ease-in-out ${open ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`} />
+            <span className={`absolute left-0 w-full h-0.5 bg-current transition-all duration-300 ease-in-out ${open ? 'top-2 -rotate-45' : 'top-4'}`} />
           </div>
         </button>
       </div>

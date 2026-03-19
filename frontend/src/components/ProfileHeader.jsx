@@ -110,10 +110,10 @@ const ProfileHeader = ({ profile }) => {
   const avatar = safeProfilePic;
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center gap-3 rounded-xl bg-white dark:bg-gray-800 p-5 ring-1 ring-gray-100 dark:ring-gray-700 text-center sm:gap-4 sm:rounded-2xl sm:p-6 md:p-7 transition-colors">
+    <div className="w-full h-full flex flex-col justify-center items-center gap-2 rounded-xl bg-white dark:bg-gray-800 p-4 ring-1 ring-gray-100 dark:ring-gray-700 text-center sm:gap-3 sm:rounded-2xl sm:p-5 transition-colors">
 
       {/* Profile Picture */}
-      <div className="relative h-24 w-24 overflow-hidden rounded-full bg-gradient-to-br from-indigo-100 via-blue-100 to-purple-100 shadow-inner sm:h-28 sm:w-28 md:h-32 md:w-32">
+      <div className="relative h-16 w-16 overflow-hidden rounded-full bg-gradient-to-br from-indigo-100 via-blue-100 to-purple-100 shadow-inner sm:h-20 sm:w-20 md:h-24 md:w-24">
         {avatar ? (
           <img
             src={avatar}
@@ -144,7 +144,7 @@ const ProfileHeader = ({ profile }) => {
 
         {/* Name + Verified Badge */}
         <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
-          <h3 className="text-xl font-semibold text-slate-900 dark:text-white sm:text-2xl md:text-3xl">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white sm:text-xl md:text-2xl">
             {safeFullName || safeUsername}
           </h3>
           {verified && (
