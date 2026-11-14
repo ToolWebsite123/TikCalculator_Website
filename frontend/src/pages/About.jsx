@@ -1,39 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
+import useSEO from '../utils/useSEO';
 
 const About = () => {
   const { t } = useTranslation();
 
-  // SEO: Update page title and meta description
-  useEffect(() => {
-    document.title = 'About TikCalculator | Smart & Reliable TikTok Money Calculator';
-    
-    // Update or create meta description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', 'Discover TikCalculator, a trusted TikTok Money Calculator built to help creators and brands estimate earnings, analyze engagement, and grow smarter on TikTok.');
-    
-    // Update Open Graph meta tags
-    let ogTitle = document.querySelector('meta[property="og:title"]');
-    if (!ogTitle) {
-      ogTitle = document.createElement('meta');
-      ogTitle.setAttribute('property', 'og:title');
-      document.head.appendChild(ogTitle);
-    }
-    ogTitle.setAttribute('content', 'About TikCalculator | Smart & Reliable TikTok Money Calculator');
-    
-    let ogDescription = document.querySelector('meta[property="og:description"]');
-    if (!ogDescription) {
-      ogDescription = document.createElement('meta');
-      ogDescription.setAttribute('property', 'og:description');
-      document.head.appendChild(ogDescription);
-    }
-    ogDescription.setAttribute('content', 'Discover TikCalculator, a trusted TikTok Money Calculator built to help creators and brands estimate earnings, analyze engagement, and grow smarter on TikTok.');
-  }, []);
+  useSEO({
+    title: 'About TikCalculator | Smart & Reliable TikTok Money Calculator',
+    description: 'Discover TikCalculator, a trusted TikTok Money Calculator built to help creators and brands estimate earnings, analyze engagement, and grow smarter on TikTok.',
+    canonicalPath: '/about',
+  });
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">

@@ -2,6 +2,8 @@
 
 React + Vite + Tailwind frontend for the TikTok earnings calculator.
 
+Live Website: [https://www.kalkulatortik.com](https://www.kalkulatortik.com)
+
 ## Getting started
 
 ```bash

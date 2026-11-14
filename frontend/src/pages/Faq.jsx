@@ -1,9 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import useSEO from '../utils/useSEO';
 
 const Faq = () => {
   const { t } = useTranslation();
-  
+
+  useSEO({
+    title: 'FAQ – TikTok Money Calculator Questions & Answers',
+    description: 'Frequently asked questions about TikTok earnings, engagement rates, CPM calculations, and how to monetize your TikTok account.',
+    canonicalPath: '/faq',
+  });
+
   const faqs = [
     {
       q: t('faq.questions.q1'),

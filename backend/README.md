@@ -16,7 +16,7 @@ Environment variables:
 - `MONGO_URI` MongoDB connection string (Atlas recommended)
 - `PORT` API port (default 5000)
 - `JWT_SECRET` secret for admin JWTs
-- `FRONTEND_URL` comma-separated origins for CORS (e.g., http://localhost:5173)
+- `FRONTEND_URL` comma-separated origins for CORS (e.g., https://www.kalkulatortik.com,http://localhost:5173)
 - `SCRAPER_USER_AGENT` (optional) custom UA for TikTok scraping
 - `ADMIN_EMAIL`, `ADMIN_PASSWORD` credentials seeded for `/admin/login`
 

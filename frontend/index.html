@@ -4,24 +4,84 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-site-verification" content="googlef1f232663b9c7949" />
+
+    <!-- Canonical Host Redirect (non-www and old vercel domain to www.kalkulatortik.com) -->
+    <script>
+      (function() {
+        var host = window.location.hostname;
+        if (host === 'kalkulatortik.com' || host === 'kalkulatortiktok.vercel.app') {
+          window.location.replace('https://www.kalkulatortik.com' + window.location.pathname + window.location.search + window.location.hash);
+        }
+      })();
+    </script>
+
     <title>TikTok Money Calculator – Check Real TikTok Earnings & Engagement Instantly</title>
-     <link rel="canonical" href="https://kalkulatortiktok.vercel.app" />
+    <link rel="canonical" href="https://www.kalkulatortik.com/" />
     <meta
       name="description"
       content="Check real TikTok earnings using engagement, views, and follower data. Enter any TikTok username and instantly see estimated earnings with this free TikTok Money Calculator."
     />
-    <meta property="og:title" content="TikCalulaator" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.kalkulatortik.com/" />
+    <meta property="og:title" content="TikTok Money Calculator – Check Real TikTok Earnings & Engagement Instantly" />
     <meta
       property="og:description"
       content="Check real TikTok earnings using engagement, views, and follower data. Enter any TikTok username and instantly see estimated earnings with this free TikTok Money Calculator."
     />
-    <meta property="og:image" content="/og.png" />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://www.kalkulatortik.com/og.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content="www.kalkulatortik.com" />
+    <meta name="twitter:url" content="https://www.kalkulatortik.com/" />
+    <meta name="twitter:title" content="TikTok Money Calculator – Check Real TikTok Earnings & Engagement Instantly" />
+    <meta
+      name="twitter:description"
+      content="Check real TikTok earnings using engagement, views, and follower data. Enter any TikTok username and instantly see estimated earnings with this free TikTok Money Calculator."
+    />
+    <meta name="twitter:image" content="https://www.kalkulatortik.com/og.png" />
+
     <link rel="icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://www.kalkulatortik.com/#website",
+          "url": "https://www.kalkulatortik.com/",
+          "name": "TikTok Money Calculator",
+          "description": "Check real TikTok earnings using engagement, views, and follower data. Enter any TikTok username and instantly see estimated earnings with this free TikTok Money Calculator.",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.kalkulatortik.com/?username={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://www.kalkulatortik.com/#webapp",
+          "name": "TikTok Money Calculator",
+          "url": "https://www.kalkulatortik.com/",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body class="bg-gray-50">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
-

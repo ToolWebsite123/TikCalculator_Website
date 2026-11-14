@@ -1,39 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import useSEO from '../utils/useSEO';
 
 const TikTokCPMCalculator = () => {
   const { t } = useTranslation();
 
-  // SEO: Update page title and meta description
-  useEffect(() => {
-    document.title = 'TikTok CPM Calculator – Instantly Calculate TikTok Ads Cost & Reach';
-
-    // Update or create meta description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', 'Calculate your TikTok CPM in seconds and find out how much you pay per 1,000 impressions. Plan smarter ads, control budgets, and boost reach.');
-
-    // Update Open Graph meta tags for better social sharing
-    let ogTitle = document.querySelector('meta[property="og:title"]');
-    if (!ogTitle) {
-      ogTitle = document.createElement('meta');
-      ogTitle.setAttribute('property', 'og:title');
-      document.head.appendChild(ogTitle);
-    }
-    ogTitle.setAttribute('content', 'TikTok CPM Calculator – Instantly Calculate TikTok Ads Cost & Reach');
-
-    let ogDescription = document.querySelector('meta[property="og:description"]');
-    if (!ogDescription) {
-      ogDescription = document.createElement('meta');
-      ogDescription.setAttribute('property', 'og:description');
-      document.head.appendChild(ogDescription);
-    }
-    ogDescription.setAttribute('content', 'Calculate your TikTok CPM in seconds and find out how much you pay per 1,000 impressions. Plan smarter ads, control budgets, and boost reach.');
-  }, []);
+  useSEO({
+    title: 'TikTok CPM Calculator – Instantly Calculate TikTok Ads Cost & Reach',
+    description: 'Calculate your TikTok CPM in seconds and find out how much you pay per 1,000 impressions. Plan smarter ads, control budgets, and boost reach.',
+    canonicalPath: '/tiktok-cpm-calculator',
+  });
   const [totalCost, setTotalCost] = useState('');
   const [impressions, setImpressions] = useState('');
   const [industry, setIndustry] = useState('');

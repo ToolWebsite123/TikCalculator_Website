@@ -90,7 +90,9 @@ const Footer = () => {
         {/* Copyright */}
         <div className="text-center">
           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-            {t('footer.copyright')}
+            <a href="https://www.kalkulatortik.com/" className="hover:underline transition-colors">
+              {t('footer.copyright')}
+            </a>
           </p>
         </div>
       </div>

@@ -1,39 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import useSEO from '../utils/useSEO';
 
 const TikTokEngagementCalculator = () => {
   const { t } = useTranslation();
 
-  // SEO: Update page title and meta description
-  useEffect(() => {
-    document.title = 'TikTok Engagement Rate Calculator (Free & Accurate Tool)';
-
-    // Update or create meta description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', 'Calculate your TikTok engagement rate instantly using likes, comments, shares, and followers. Analyze performance and grow smarter.');
-
-    // Update Open Graph meta tags
-    let ogTitle = document.querySelector('meta[property="og:title"]');
-    if (!ogTitle) {
-      ogTitle = document.createElement('meta');
-      ogTitle.setAttribute('property', 'og:title');
-      document.head.appendChild(ogTitle);
-    }
-    ogTitle.setAttribute('content', 'TikTok Engagement Rate Calculator (Free & Accurate Tool)');
-
-    let ogDescription = document.querySelector('meta[property="og:description"]');
-    if (!ogDescription) {
-      ogDescription = document.createElement('meta');
-      ogDescription.setAttribute('property', 'og:description');
-      document.head.appendChild(ogDescription);
-    }
-    ogDescription.setAttribute('content', 'Calculate your TikTok engagement rate instantly using likes, comments, shares, and followers. Analyze performance and grow smarter.');
-  }, []);
+  useSEO({
+    title: 'TikTok Engagement Rate Calculator (Free & Accurate Tool)',
+    description: 'Calculate your TikTok engagement rate instantly using likes, comments, shares, and followers. Analyze performance and grow smarter.',
+    canonicalPath: '/tiktok-engagement-calculator',
+  });
   const [totalLikes, setTotalLikes] = useState('');
   const [totalVideos, setTotalVideos] = useState('');
   const [totalFollowers, setTotalFollowers] = useState('');

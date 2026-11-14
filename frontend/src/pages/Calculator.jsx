@@ -4,6 +4,7 @@ import StatsGrid from '../components/StatsGrid';
 import EarningsCard from '../components/EarningsCard';
 import { fetchTikTokProfile, fetchTikTokEarnings, clearTikTokCache, calculateEarningsFromViews } from '../utils/api';
 import { mapEarningsData } from '../utils/earningsMapper';
+import useSEO from '../utils/useSEO';
 
 const LoadingSkeleton = () => (
   <div
@@ -21,6 +22,12 @@ const LoadingSkeleton = () => (
 );
 
 const Calculator = () => {
+  useSEO({
+    title: 'TikTok Earnings Calculator – Calculate Estimated TikTok Income',
+    description: 'Estimate your TikTok earnings with our free calculator. Analyze views, engagement, and potential revenue.',
+    canonicalPath: '/calculator',
+  });
+
   const [username, setUsername] = useState('');
   const [result, setResult] = useState(null);
   const [earningsData, setEarningsData] = useState({

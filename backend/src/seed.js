@@ -115,7 +115,7 @@ const seed = async () => {
     // ====== SEED ADMIN USER ======
     console.log('👤 Seeding Admin User...');
     
-    const adminEmail = process.env.ADMIN_EMAIL || 'admin@tikcalculator.com';
+    const adminEmail = process.env.ADMIN_EMAIL || 'admin@kalkulatortik.com';
     const adminPassword = process.env.ADMIN_PASSWORD || 'Admin@123';
     
     // Hash password

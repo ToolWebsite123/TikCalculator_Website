@@ -1,8 +1,32 @@
 {
-    "rewrites": [
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
         {
-            "source": "/(.*)",
-            "destination": "/index.html"
+          "type": "host",
+          "value": "kalkulatortik.com"
         }
-    ]
+      ],
+      "destination": "https://www.kalkulatortik.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "kalkulatortiktok.vercel.app"
+        }
+      ],
+      "destination": "https://www.kalkulatortik.com/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }

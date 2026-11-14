@@ -13,6 +13,8 @@ const app = express();
 
 // CORS Configuration - UPDATED
 const allowedOrigins = [
+  'https://www.kalkulatortik.com',
+  'https://kalkulatortik.com',
   'https://kalkulatortiktok.vercel.app',
   'http://localhost:5173',
   'http://localhost:3000',

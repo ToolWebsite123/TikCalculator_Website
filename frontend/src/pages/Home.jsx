@@ -5,9 +5,15 @@ import ProfileHeader from '../components/ProfileHeader';
 import StatsGrid from '../components/StatsGrid';
 import EarningsCard from '../components/EarningsCard';
 import InfoSection from '../components/InfoSection';
+import useSEO from '../utils/useSEO';
 
 const Home = () => {
   const { t } = useTranslation();
+  useSEO({
+    title: 'TikTok Money Calculator – Check Real TikTok Earnings & Engagement Instantly',
+    description: 'Check real TikTok earnings using engagement, views, and follower data. Enter any TikTok username and instantly see estimated earnings with this free TikTok Money Calculator.',
+    canonicalPath: '/',
+  });
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');

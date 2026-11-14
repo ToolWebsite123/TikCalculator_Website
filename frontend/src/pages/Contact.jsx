@@ -1,8 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import useSEO from '../utils/useSEO';
 
 const Contact = () => {
   const { t } = useTranslation();
+
+  useSEO({
+    title: 'Contact TikCalculator – Get Support for Your TikTok Money Calculator',
+    description: 'Have questions or feedback? Contact TikCalculator to get quick support, share ideas, or learn more about our TikTok Money Calculator and analytics tools for creators and brands.',
+    canonicalPath: '/contact',
+  });
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -10,37 +18,6 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
-
-  // SEO: Update page title and meta description
-  useEffect(() => {
-    document.title = 'Contact TikCalculator – Get Support for Your TikTok Money Calculator';
-    
-    // Update or create meta description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', 'Have questions or feedback? Contact TikCalculator to get quick support, share ideas, or learn more about our TikTok Money Calculator and analytics tools for creators and brands.');
-    
-    // Update Open Graph meta tags
-    let ogTitle = document.querySelector('meta[property="og:title"]');
-    if (!ogTitle) {
-      ogTitle = document.createElement('meta');
-      ogTitle.setAttribute('property', 'og:title');
-      document.head.appendChild(ogTitle);
-    }
-    ogTitle.setAttribute('content', 'Contact TikCalculator – Get Support for Your TikTok Money Calculator');
-    
-    let ogDescription = document.querySelector('meta[property="og:description"]');
-    if (!ogDescription) {
-      ogDescription = document.createElement('meta');
-      ogDescription.setAttribute('property', 'og:description');
-      document.head.appendChild(ogDescription);
-    }
-    ogDescription.setAttribute('content', 'Have questions or feedback? Contact TikCalculator to get quick support, share ideas, or learn more about our TikTok Money Calculator and analytics tools for creators and brands.');
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

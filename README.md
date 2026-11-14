@@ -2,6 +2,8 @@
 
 Full-stack TikTok earnings calculator with React/Tailwind frontend and Express + MongoDB backend.
 
+Live Website: [https://www.kalkulatortik.com](https://www.kalkulatortik.com)
+
 ## Quick start
 
 ```bash
