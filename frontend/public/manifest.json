@@ -18,10 +18,9 @@
       "type": "image/png"
     }
   ],
-  "start_url": "https://www.kalkulatortik.com/",
-  "scope": "https://www.kalkulatortik.com/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "theme_color": "#0f2942",
   "background_color": "#ffffff"
 }
-

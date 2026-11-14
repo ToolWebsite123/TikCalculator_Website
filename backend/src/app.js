@@ -50,6 +50,18 @@ const corsOptions = {
       return callback(null, true);
     }
     
+    // Allow any Vercel deployment domain (*.vercel.app)
+    if (/^https:\/\/[a-zA-Z0-9-_.]+\.vercel\.app$/.test(origin)) {
+      console.log('CORS: Allowing Vercel origin:', origin);
+      return callback(null, true);
+    }
+
+    // Allow kalkulatortik.com domains
+    if (/^https:\/\/(www\.)?kalkulatortik\.com$/.test(origin)) {
+      console.log('CORS: Allowing kalkulatortik origin:', origin);
+      return callback(null, true);
+    }
+    
     console.error('CORS: Blocking origin:', origin);
     return callback(new Error('Not allowed by CORS'));
   },
