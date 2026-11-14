@@ -1,8 +1,12 @@
 import axios from 'axios';
 
-// API base configuration - FIXED: Use VITE_API_BASE_URL instead of VITE_API_URL
+// API base configuration - Auto-detect production backend vs local dev
+const defaultBaseURL = import.meta.env.PROD
+  ? 'https://tik-calculator-website-ljy6.vercel.app'
+  : 'http://localhost:5000';
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000',
+  baseURL: import.meta.env.VITE_API_BASE_URL || defaultBaseURL,
   timeout: 30000, // 30 seconds
   headers: {
     'Content-Type': 'application/json',
