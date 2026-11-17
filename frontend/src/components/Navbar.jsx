@@ -62,7 +62,7 @@ const Navbar = () => {
             <rect x="20.5" y="7.5" width="4" height="17" rx="1.5" fill="#FFFFFF" />
           </svg>
           <span className="text-base sm:text-[17px] text-white font-bold tracking-tight truncate">
-            KalkulatorTik<span className="text-teal-400 font-semibold">.com</span>
+            Kalkulator<span className="text-teal-400">Tik</span>
           </span>
         </a>
 

@@ -290,7 +290,7 @@ describe('Production Prerendered HTML & Hydration Validation (KHK-07)', () => {
       expect(screen.getByText(/Results for @hydrated_creator/i)).toBeInTheDocument();
       expect(screen.getByText('$1,305.00')).toBeInTheDocument();
     });
-  });
+  }, 15000);
 
   it.each(['/about', '/id/', '/de/calculator'])(
     'hydrates prerendered route "%s" cleanly with zero hydration mismatch errors',

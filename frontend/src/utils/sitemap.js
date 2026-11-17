@@ -16,7 +16,7 @@ export const SITEMAP_ROUTE_META = {
   '/terms': { changefreq: 'monthly', priority: '0.4' },
 };
 
-const DEFAULT_LASTMOD = '2026-11-16T00:00:00+00:00';
+const DEFAULT_LASTMOD = '2026-11-17T00:00:00+00:00';
 
 const escapeXml = (str) =>
   String(str)
@@ -65,6 +65,7 @@ export const generateSitemapXml = (lastmod = DEFAULT_LASTMOD) => {
 
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
+    '<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>',
     '<urlset',
     '  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
     '  xmlns:xhtml="http://www.w3.org/1999/xhtml"',
