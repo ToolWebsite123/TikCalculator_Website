@@ -136,6 +136,9 @@ export default defineConfig({
               return 'vendor-react';
             }
           }
+          if (id.includes('InfoSection')) {
+            return 'info-section';
+          }
         },
       },
     },

@@ -1088,19 +1088,42 @@ const InfoSection = () => {
                   : "Because advertiser demand varies across regions, KalkulatorTik assigns an internal starting USD baseline CPM bracket from the profile's exposed region code (or defaults to Tier 3 when region metadata is unavailable):"}
               </p>
 
-              {/* Mobile Scroll Hint */}
-              <div className="mt-4 flex items-center justify-between gap-1 pb-1 text-[11px] font-medium text-slate-500 sm:hidden">
-                <span className="inline-flex items-center gap-1.5">
-                  <svg className="h-3.5 w-3.5 text-teal-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                  <span>{isId ? 'Geser tabel ke samping' : 'Swipe table horizontally'}</span>
-                </span>
-                <span className="font-mono text-[10px] text-slate-400">5 columns</span>
+              {/* Mobile View: Vertical Card Stack (No horizontal scroll needed) */}
+              <div className="mt-4 sm:hidden space-y-3">
+                {activeCpmTiers.map((item) => (
+                  <div
+                    key={item.tier}
+                    className={`rounded-xl border p-4 shadow-sm bg-white ${
+                      item.featured ? 'border-teal-300 ring-1 ring-teal-500/20' : 'border-slate-200'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between border-b border-slate-100 pb-2 mb-2">
+                      <span className="font-bold text-slate-900 text-sm">{item.tier}</span>
+                      <span className="font-mono text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200">
+                        {isId ? 'Rata-rata: ' : 'Avg: '}{item.avg}
+                      </span>
+                    </div>
+                    <div className="mb-2 text-xs text-slate-600">
+                      <span className="font-medium text-slate-500">{isId ? idCopy.calculation.thCountries : 'Region Codes'}: </span>
+                      <code className="text-xs break-words">{item.regions}</code>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 rounded-lg bg-slate-50 p-2 text-xs font-mono">
+                      <div>
+                        <span className="text-slate-500 block text-[10px] font-sans">{isId ? idCopy.calculation.thMin : 'Baseline Min'}</span>
+                        <span className="font-semibold text-slate-800">{item.min}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-500 block text-[10px] font-sans">{isId ? idCopy.calculation.thMax : 'Baseline Max'}</span>
+                        <span className="font-semibold text-slate-800">{item.max}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              <div className="table-scroll-container rounded-xl border border-slate-200 bg-white shadow-sm">
-                <table className="min-w-[620px] w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
+              {/* Desktop View: Full Data Table */}
+              <div className="mt-4 hidden sm:block overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+                <table className="min-w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
                   <caption className="sr-only">
                     {isId ? idCopy.calculation.tableCaption : 'Internal KalkulatorTik baseline CPM assumptions (USD per 1,000 views).'}
                   </caption>
@@ -1547,19 +1570,52 @@ const InfoSection = () => {
             <h3 className="text-lg font-bold font-display text-slate-800 sm:text-xl">
               {isId ? idCopy.channels.compareTitle : 'Side-by-Side Comparison: Brand Deals vs. Platform Monetization'}
             </h3>
-            {/* Mobile Scroll Hint */}
-            <div className="mt-3 flex items-center justify-between gap-1 pb-1 text-[11px] font-medium text-slate-500 sm:hidden">
-              <span className="inline-flex items-center gap-1.5">
-                <svg className="h-3.5 w-3.5 text-teal-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-                <span>{isId ? 'Geser tabel ke samping' : 'Swipe table horizontally'}</span>
-              </span>
-              <span className="font-mono text-[10px] text-slate-400">3 columns</span>
+            {/* Mobile View: Comparison Cards (No horizontal scroll needed) */}
+            <div className="mt-4 sm:hidden space-y-3">
+              {activeChannelRows.map((row) => (
+                <div key={row.feature} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <p className="font-bold text-slate-900 text-sm border-b border-slate-100 pb-2 mb-2.5">
+                    {row.feature}
+                  </p>
+                  <div className="space-y-2 text-xs">
+                    <div className="rounded-lg bg-teal-50/70 border border-teal-200/60 p-2.5">
+                      <span className="font-bold text-teal-900 block text-[11px] mb-1">
+                        {isId ? idCopy.channels.thSponsor : 'Brand Sponsorships'}:
+                      </span>
+                      <div className="text-teal-950 leading-relaxed font-medium">
+                        {row.isStatusRow ? (
+                          <span className="inline-flex items-center gap-1.5 font-semibold text-teal-700">
+                            <span className="h-2 w-2 rounded-full bg-teal-500" aria-hidden="true" />
+                            {row.sponsorships}
+                          </span>
+                        ) : (
+                          row.sponsorships
+                        )}
+                      </div>
+                    </div>
+                    <div className="rounded-lg bg-slate-50 border border-slate-200 p-2.5">
+                      <span className="font-bold text-slate-700 block text-[11px] mb-1">
+                        {isId ? idCopy.channels.thRewards : 'TikTok Creator Rewards'}:
+                      </span>
+                      <div className="text-slate-600 leading-relaxed">
+                        {row.isStatusRow ? (
+                          <span className="inline-flex items-center gap-1.5 font-medium text-slate-600">
+                            <span className="h-2 w-2 rounded-full bg-slate-400" aria-hidden="true" />
+                            {row.rewards}
+                          </span>
+                        ) : (
+                          row.rewards
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
-            <div className="table-scroll-container rounded-xl border border-slate-200 bg-white shadow-sm">
-              <table className="min-w-[620px] w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
+            {/* Desktop / Tablet View: Full Data Table */}
+            <div className="mt-4 hidden sm:block overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+              <table className="min-w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
                 <caption className="sr-only">
                   {isId
                     ? idCopy.channels.tableCaption
@@ -1843,19 +1899,42 @@ const InfoSection = () => {
                 ? idCopy.followersVsViews.compareTitle
                 : 'Model Comparison: High Followers vs. Consistent Video Views'}
             </h3>
-            {/* Mobile Scroll Hint */}
-            <div className="mt-3 flex items-center justify-between gap-1 pb-1 text-[11px] font-medium text-slate-500 sm:hidden">
-              <span className="inline-flex items-center gap-1.5">
-                <svg className="h-3.5 w-3.5 text-teal-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-                <span>{isId ? 'Geser tabel ke samping' : 'Swipe table horizontally'}</span>
-              </span>
-              <span className="font-mono text-[10px] text-slate-400">4 columns</span>
+            {/* Mobile View: Creator Comparison Cards (No horizontal scroll needed) */}
+            <div className="mt-4 sm:hidden space-y-3">
+              {activeCreatorRows.map((row) => (
+                <div
+                  key={row.metric}
+                  className={`rounded-xl border p-4 shadow-sm bg-white ${
+                    row.highlight ? 'border-teal-300 ring-1 ring-teal-500/20 bg-teal-50/20' : 'border-slate-200'
+                  }`}
+                >
+                  <p className="font-bold text-slate-900 text-sm border-b border-slate-100 pb-2 mb-2.5">
+                    {row.metric}
+                  </p>
+                  <div className="grid grid-cols-2 gap-2 text-xs mb-2.5">
+                    <div className="rounded-lg bg-slate-50 p-2.5 border border-slate-200">
+                      <span className="font-semibold text-slate-500 block text-[10px]">
+                        Creator A (500K)
+                      </span>
+                      <span className="font-bold text-slate-800 text-sm mt-0.5 block">{row.creatorA}</span>
+                    </div>
+                    <div className="rounded-lg bg-teal-50/80 p-2.5 border border-teal-200">
+                      <span className="font-semibold text-teal-700 block text-[10px]">
+                        Creator B (50K)
+                      </span>
+                      <span className="font-bold text-teal-800 text-sm mt-0.5 block">{row.creatorB}</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-slate-600 bg-slate-50/80 rounded-lg p-2.5 border border-slate-100">
+                    <span className="font-semibold text-slate-700">Takeaway: </span>{row.insight}
+                  </p>
+                </div>
+              ))}
             </div>
 
-            <div className="table-scroll-container rounded-xl border border-slate-200 bg-white shadow-sm">
-              <table className="min-w-[620px] w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
+            {/* Desktop View: Full Data Table */}
+            <div className="mt-4 hidden sm:block overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+              <table className="min-w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
                 <caption className="sr-only">
                   {isId
                     ? idCopy.followersVsViews.compareCaption

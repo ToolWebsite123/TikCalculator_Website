@@ -239,6 +239,37 @@ const Contact = ({ enabled }) => {
 
         {/* Contact Form Card */}
         <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-8 md:p-10 border border-slate-200">
+          {/* Direct Email Support Box */}
+          <div className="mb-6 rounded-xl border border-teal-200 bg-teal-50/70 p-4 sm:p-5">
+            <div className="flex items-start gap-3.5">
+              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-teal-600 text-white shadow-sm">
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h2 className="text-sm sm:text-base font-bold text-teal-950">
+                  {t('contact.directEmailTitle', 'Direct Email Support')}
+                </h2>
+                <p className="mt-1 text-xs sm:text-sm text-teal-900/90 leading-relaxed">
+                  {t(
+                    'contact.directEmailDesc',
+                    'For creator questions, calculation inquiries, partnership proposals, or general feedback, email us directly at:'
+                  )}
+                </p>
+                <div className="mt-2.5">
+                  <a
+                    href="mailto:kalkulatortik@gmail.com"
+                    className="inline-flex items-center gap-2 rounded-lg bg-white px-3.5 py-1.5 font-mono text-sm sm:text-base font-bold text-teal-700 shadow-sm border border-teal-200 hover:border-teal-300 hover:text-teal-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 transition"
+                  >
+                    <span>kalkulatortik@gmail.com</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {!isFormEnabled && (
             <div
               role="status"

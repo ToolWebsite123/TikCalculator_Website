@@ -871,19 +871,75 @@ const TikTokCPMCalculator = () => {
             )}
           />
 
-          {/* Mobile Scroll Hint */}
-          <div className="mt-6 flex items-center justify-between gap-1 pb-1 text-[11px] font-medium text-slate-500 sm:hidden">
-            <span className="inline-flex items-center gap-1.5">
-              <svg className="h-3.5 w-3.5 text-teal-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-              <span>Swipe table horizontally &rarr;</span>
-            </span>
-            <span className="font-mono text-[10px] text-slate-400">5 columns</span>
+          {/* Mobile View: Clean Card Stack (Zero horizontal scroll needed!) */}
+          <div className="mt-6 sm:hidden space-y-3.5">
+            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-2.5 mb-2.5">
+                <span className="font-bold text-teal-800 text-sm">TikTok Ad CPM</span>
+                <span className="font-mono text-xs font-bold text-slate-900 bg-slate-100 px-2.5 py-0.5 rounded border border-slate-200">$3.00 – $10.00</span>
+              </div>
+              <div className="space-y-1.5 text-xs text-slate-700">
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-500 font-medium">Perspective:</span>
+                  <span className="font-semibold text-slate-800">Advertiser / Brand</span>
+                </div>
+                <div className="flex items-start justify-between gap-2">
+                  <span className="text-slate-500 font-medium flex-shrink-0">Who Pays:</span>
+                  <span className="text-right text-slate-700">Advertiser pays TikTok Ads Manager</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-500 font-medium">Denominator:</span>
+                  <span className="font-mono text-slate-800">Per 1,000 Ad Impressions</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-2.5 mb-2.5">
+                <span className="font-bold text-teal-800 text-sm">Creator Rewards RPM</span>
+                <span className="font-mono text-xs font-bold text-slate-900 bg-slate-100 px-2.5 py-0.5 rounded border border-slate-200">$0.40 – $1.80</span>
+              </div>
+              <div className="space-y-1.5 text-xs text-slate-700">
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-500 font-medium">Perspective:</span>
+                  <span className="font-semibold text-slate-800">Creator / Publisher</span>
+                </div>
+                <div className="flex items-start justify-between gap-2">
+                  <span className="text-slate-500 font-medium flex-shrink-0">Who Pays:</span>
+                  <span className="text-right text-slate-700">TikTok pays Creator</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-500 font-medium">Denominator:</span>
+                  <span className="font-mono text-slate-800">Per 1,000 Qualified Views (&gt;1 min)</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-2.5 mb-2.5">
+                <span className="font-bold text-teal-800 text-sm">Sponsorship CPM</span>
+                <span className="font-mono text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded border border-teal-200">$12.00 – $42.00</span>
+              </div>
+              <div className="space-y-1.5 text-xs text-slate-700">
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-500 font-medium">Perspective:</span>
+                  <span className="font-semibold text-slate-800">Influencer / Creator</span>
+                </div>
+                <div className="flex items-start justify-between gap-2">
+                  <span className="text-slate-500 font-medium flex-shrink-0">Who Pays:</span>
+                  <span className="text-right text-slate-700">Brand pays Creator directly</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-500 font-medium">Denominator:</span>
+                  <span className="font-mono text-slate-800">Per 1,000 Expected Views</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="table-scroll-container rounded-xl border border-slate-200 bg-white shadow-sm">
-            <table className="min-w-[650px] w-full border-collapse text-left text-xs sm:text-sm">
+          {/* Desktop View: Full Data Table */}
+          <div className="mt-6 hidden sm:block overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+            <table className="min-w-full border-collapse text-left text-xs sm:text-sm">
               <caption className="sr-only">Comparison of TikTok Ad CPM, Creator RPM, and Brand Sponsorship CPM</caption>
               <thead>
                 <tr className="bg-slate-50 border-b border-slate-200">
@@ -943,19 +999,55 @@ const TikTokCPMCalculator = () => {
             )}
           />
 
-          {/* Mobile Scroll Hint */}
-          <div className="mt-6 flex items-center justify-between gap-1 pb-1 text-[11px] font-medium text-slate-500 sm:hidden">
-            <span className="inline-flex items-center gap-1.5">
-              <svg className="h-3.5 w-3.5 text-teal-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-              <span>Swipe table horizontally &rarr;</span>
-            </span>
-            <span className="font-mono text-[10px] text-slate-400">3 columns</span>
+          {/* Mobile View: Clean Card Stack (Zero horizontal scroll needed!) */}
+          <div className="mt-6 sm:hidden space-y-3">
+            {[
+              {
+                objective: 'Brand Awareness & Reach',
+                range: '$1.50 – $3.50',
+                notes: 'Broadest audience reach; lowest cost per impression.',
+              },
+              {
+                objective: 'Video Views & Hook Focus',
+                range: '$2.00 – $4.50',
+                notes: 'Optimized for watch time and 2s / 6s completion rate.',
+              },
+              {
+                objective: 'Traffic & Landing Page Clicks',
+                range: '$3.00 – $6.50',
+                notes: 'Targets users likely to click external link buttons.',
+              },
+              {
+                objective: 'Lead Generation & App Installs',
+                range: '$5.00 – $9.00',
+                notes: 'Higher bid density due to direct conversion value.',
+              },
+              {
+                objective: 'Conversions & Catalog Sales',
+                range: '$7.00 – $14.00+',
+                notes: 'High intent; competitive auction bids in checkout funnels.',
+              },
+              {
+                objective: 'Spark Ads (Creator UGC Boost)',
+                range: '$3.50 – $7.50',
+                notes: 'High organic engagement frequently lowers effective CPM.',
+              },
+            ].map((item) => (
+              <div key={item.objective} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-2 mb-2">
+                  <span className="font-bold text-slate-900 text-xs sm:text-sm">{item.objective}</span>
+                  <span className="font-mono text-xs font-bold text-teal-800 bg-teal-50 px-2 py-0.5 rounded border border-teal-200">
+                    {item.range}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">{item.notes}</p>
+              </div>
+            ))}
           </div>
 
-          <div className="table-scroll-container rounded-xl border border-slate-200 bg-white shadow-sm">
-            <table className="min-w-[580px] w-full border-collapse text-left text-xs sm:text-sm">
+          {/* Desktop View: Full Data Table */}
+          <div className="mt-6 hidden sm:block overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+            <table className="min-w-full border-collapse text-left text-xs sm:text-sm">
               <caption className="sr-only">TikTok Advertising CPM Benchmarks by Campaign Objective</caption>
               <thead>
                 <tr className="bg-slate-50 border-b border-slate-200">

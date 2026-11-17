@@ -770,19 +770,30 @@ const TikTokEngagementCalculator = () => {
                 {t('engagementCalculator.content.goodRate.scaleTitle')}
               </h3>
 
-              {/* Mobile Scroll Hint */}
-              <div className="mt-3 flex items-center justify-between gap-1 pb-1 text-[11px] font-medium text-slate-500 sm:hidden">
-                <span className="inline-flex items-center gap-1.5">
-                  <svg className="h-3.5 w-3.5 text-teal-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                  <span>{activeLang === 'id' ? 'Geser tabel ke samping' : 'Swipe table horizontally'} &rarr;</span>
-                </span>
-                <span className="font-mono text-[10px] text-slate-400">3 columns</span>
+              {/* Mobile View: Clean Card Stack (Zero horizontal scroll needed!) */}
+              <div className="mt-3 sm:hidden space-y-3">
+                {tableRows.map((row, rowIdx) => {
+                  const cells = toArray(row);
+                  const tier = cells[0];
+                  const rate = cells[1];
+                  const note = cells[2];
+                  return (
+                    <div key={rowIdx} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                      <div className="flex items-center justify-between border-b border-slate-100 pb-2 mb-2">
+                        <span className="font-bold text-slate-900 text-xs sm:text-sm">{tier}</span>
+                        <span className="font-mono text-xs font-bold text-teal-800 bg-teal-50 px-2 py-0.5 rounded border border-teal-200">
+                          {rate}
+                        </span>
+                      </div>
+                      {note && <p className="text-xs text-slate-600 leading-relaxed">{note}</p>}
+                    </div>
+                  );
+                })}
               </div>
 
-              <div className="table-scroll-container rounded-xl border border-slate-200 bg-white shadow-sm">
-                <table className="min-w-[540px] w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
+              {/* Desktop View: Full Data Table */}
+              <div className="mt-3 hidden sm:block overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+                <table className="min-w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
                   <thead className="bg-slate-50">
                     <tr>
                       {tableHeaders.map((header, idx) => (
