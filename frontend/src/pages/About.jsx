@@ -1,20 +1,44 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import LocaleLink from '../components/LocaleLink';
 import useSEO from '../utils/useSEO';
+import { useActiveLang } from '../contexts/LocaleContext';
+import { BASE_URL, buildLocalizedPath } from '../utils/localeRouting';
 
 const About = () => {
   const { t } = useTranslation();
+  const activeLang = useActiveLang();
+
+  const localizedAboutSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    inLanguage: activeLang,
+    '@id': `${BASE_URL}${buildLocalizedPath('/about', activeLang)}#webpage`,
+    url: `${BASE_URL}${buildLocalizedPath('/about', activeLang)}`,
+    name: t('seo.about.title', 'About KalkulatorTik | Free TikTok Analytics & Tools'),
+    description: t(
+      'seo.about.description',
+      'Discover KalkulatorTik, a trusted TikTok Money Calculator built to help creators and brands estimate earnings, analyze engagement, and grow smarter on TikTok.'
+    ),
+    publisher: {
+      '@type': 'Organization',
+      name: 'KalkulatorTik',
+      url: BASE_URL,
+      logo: `${BASE_URL}/favicon.svg`,
+    },
+  };
 
   useSEO({
     title: t(
       'seo.about.title',
-      'About KalkulatorTik | Smart & Reliable TikTok Money Calculator'
+      'About KalkulatorTik | Free TikTok Analytics & Tools'
     ),
     description: t(
       'seo.about.description',
       'Discover KalkulatorTik, a trusted TikTok Money Calculator built to help creators and brands estimate earnings, analyze engagement, and grow smarter on TikTok.'
     ),
     canonicalPath: '/about',
+    structuredData: localizedAboutSchema,
   });
 
   return (
@@ -46,21 +70,71 @@ const About = () => {
           </article>
 
           {/* What We Offer */}
-          <article className="prose prose-slate max-w-none mb-8 sm:mb-10">
+          <article className="mb-8 sm:mb-10">
             <h2 className="text-xl font-bold text-slate-900 mb-4 sm:text-2xl md:text-3xl">
               {t('about.whatWeOffer.title')}
             </h2>
-            <ul className="list-disc list-inside space-y-3 text-base text-slate-700 sm:text-lg">
-              <li>
-                <strong className="text-slate-900">{t('about.whatWeOffer.engagementCalculator.title')}:</strong> {t('about.whatWeOffer.engagementCalculator.description')}
-              </li>
-              <li>
-                <strong className="text-slate-900">{t('about.whatWeOffer.earningsCalculator.title')}:</strong> {t('about.whatWeOffer.earningsCalculator.description')}
-              </li>
-              <li>
-                <strong className="text-slate-900">{t('about.whatWeOffer.guidesTips.title')}:</strong> {t('about.whatWeOffer.guidesTips.description')}
-              </li>
-            </ul>
+            <div className="grid gap-4 sm:grid-cols-2 mt-4">
+              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-4 sm:p-5 transition hover:border-teal-300 hover:bg-white hover:shadow-sm">
+                <h3 className="text-base font-semibold text-slate-900 mb-1.5 sm:text-lg">
+                  <LocaleLink
+                    to="/"
+                    className="inline-flex items-center text-teal-700 hover:text-teal-800 underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 rounded"
+                  >
+                    <span>{t('about.whatWeOffer.earningsCalculator.title')}</span>
+                    <span className="ml-1" aria-hidden="true">&rarr;</span>
+                  </LocaleLink>
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {t('about.whatWeOffer.earningsCalculator.description')}
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-4 sm:p-5 transition hover:border-teal-300 hover:bg-white hover:shadow-sm">
+                <h3 className="text-base font-semibold text-slate-900 mb-1.5 sm:text-lg">
+                  <LocaleLink
+                    to="/tiktok-cpm-calculator"
+                    className="inline-flex items-center text-teal-700 hover:text-teal-800 underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 rounded"
+                  >
+                    <span>{t('about.whatWeOffer.cpmCalculator.title')}</span>
+                    <span className="ml-1" aria-hidden="true">&rarr;</span>
+                  </LocaleLink>
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {t('about.whatWeOffer.cpmCalculator.description')}
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-4 sm:p-5 transition hover:border-teal-300 hover:bg-white hover:shadow-sm">
+                <h3 className="text-base font-semibold text-slate-900 mb-1.5 sm:text-lg">
+                  <LocaleLink
+                    to="/tiktok-engagement-calculator"
+                    className="inline-flex items-center text-teal-700 hover:text-teal-800 underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 rounded"
+                  >
+                    <span>{t('about.whatWeOffer.engagementCalculator.title')}</span>
+                    <span className="ml-1" aria-hidden="true">&rarr;</span>
+                  </LocaleLink>
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {t('about.whatWeOffer.engagementCalculator.description')}
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-4 sm:p-5 transition hover:border-teal-300 hover:bg-white hover:shadow-sm">
+                <h3 className="text-base font-semibold text-slate-900 mb-1.5 sm:text-lg">
+                  <LocaleLink
+                    to="/faq"
+                    className="inline-flex items-center text-teal-700 hover:text-teal-800 underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 rounded"
+                  >
+                    <span>{t('about.whatWeOffer.guidesTips.title')}</span>
+                    <span className="ml-1" aria-hidden="true">&rarr;</span>
+                  </LocaleLink>
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {t('about.whatWeOffer.guidesTips.description')}
+                </p>
+              </div>
+            </div>
           </article>
 
           {/* Our Team */}
@@ -81,7 +155,7 @@ const About = () => {
             <p className="text-base text-slate-700 leading-relaxed mb-4 sm:text-lg">
               {t('about.joinUs.description')}
             </p>
-            <p className="text-base text-slate-700 leading-relaxed sm:text-lg">
+            <p className="text-base text-slate-700 leading-relaxed sm:text-lg font-medium text-teal-900">
               {t('about.joinUs.thankYou')}
             </p>
           </article>
@@ -92,4 +166,3 @@ const About = () => {
 };
 
 export default About;
-

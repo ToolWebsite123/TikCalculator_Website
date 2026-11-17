@@ -686,6 +686,10 @@
       "guidesTips": {
         "title": "Guias e Dicas",
         "description": "Acesse conselhos de especialistas sobre estratégia TikTok, criação de conteúdo e engajamento do público para melhorar seu desempenho consistentemente."
+      },
+      "cpmCalculator": {
+        "title": "Calculadora de CPM",
+        "description": "Planeje orçamentos de publicidade, calcule o custo por mil impressões e avalie patrocínios de criadores com nossa ferramenta 3 em 1."
       }
     },
     "ourTeam": {

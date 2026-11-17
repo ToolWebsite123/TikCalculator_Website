@@ -3,6 +3,8 @@ import Link from '../components/LocaleLink';
 import { useTranslation } from 'react-i18next';
 import useSEO from '../utils/useSEO';
 import parseMetricNumber from '../utils/parseMetricNumber';
+import { useActiveLang } from '../contexts/LocaleContext';
+import { BASE_URL, buildLocalizedPath } from '../utils/localeRouting';
 
 // Calculate Engagement Rate - Follower-based formula
 // Formula: Engagement Rate = ((Total Likes / Total Followers) / Total Videos) * 100
@@ -197,6 +199,30 @@ const stripTrailingColon = (text) => String(text || '').replace(/[:：]\s*$/, ''
 
 const TikTokEngagementCalculator = () => {
   const { t } = useTranslation();
+  const activeLang = useActiveLang();
+
+  const toArray = (value) => (Array.isArray(value) ? value : []);
+  const faqItems = toArray(
+    t('engagementCalculator.content.faq.items', { returnObjects: true })
+  );
+
+  const localizedFaqSchema =
+    faqItems && faqItems.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          inLanguage: activeLang,
+          '@id': `${BASE_URL}${buildLocalizedPath('/tiktok-engagement-calculator', activeLang)}#faq`,
+          mainEntity: faqItems.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: item.answer,
+            },
+          })),
+        }
+      : null;
 
   useSEO({
     title: t('seo.engagementCalculator.title', 'TikTok Engagement Rate Calculator | KalkulatorTik'),
@@ -205,6 +231,7 @@ const TikTokEngagementCalculator = () => {
       'Calculate your TikTok engagement rate instantly using likes, followers, and video count. Analyze performance and improve strategy with KalkulatorTik.'
     ),
     canonicalPath: '/tiktok-engagement-calculator',
+    structuredData: localizedFaqSchema,
   });
   const [totalLikes, setTotalLikes] = useState('');
   const [totalVideos, setTotalVideos] = useState('');
@@ -213,8 +240,6 @@ const TikTokEngagementCalculator = () => {
   const [submittedInputs, setSubmittedInputs] = useState(null);
   const [error, setError] = useState('');
   const [openFaqIndices, setOpenFaqIndices] = useState({ 0: true });
-
-  const toArray = (value) => (Array.isArray(value) ? value : []);
 
   const whyPoints = toArray(
     t('engagementCalculator.content.whyCalculate.points', { returnObjects: true })
@@ -239,9 +264,6 @@ const TikTokEngagementCalculator = () => {
   );
   const improveTips = toArray(
     t('engagementCalculator.content.improve.tips', { returnObjects: true })
-  );
-  const faqItems = toArray(
-    t('engagementCalculator.content.faq.items', { returnObjects: true })
   );
 
   const toggleFaq = (idx) => {

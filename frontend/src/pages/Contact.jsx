@@ -65,11 +65,11 @@ const Contact = ({ enabled }) => {
   useSEO({
     title: t(
       'seo.contact.title',
-      'Contact KalkulatorTik – Get Support for Your TikTok Money Calculator'
+      'Contact KalkulatorTik – Creator Support & Feedback'
     ),
     description: t(
       'seo.contact.description',
-      'Have questions or feedback? Contact KalkulatorTik to get quick support, share ideas, or learn more about our TikTok Money Calculator and analytics tools for creators and brands.'
+      'Get in touch with KalkulatorTik. Contact our team for support, feature requests, or questions about our free TikTok money calculators and creator tools.'
     ),
     canonicalPath: '/contact',
   });

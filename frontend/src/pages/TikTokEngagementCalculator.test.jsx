@@ -7,6 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import i18n from '../i18n';
 import { LocaleProvider } from '../contexts/LocaleContext';
+import { SEOProvider } from '../contexts/SEOContext';
 import TikTokEngagementCalculator from './TikTokEngagementCalculator';
 
 const SUPPORTED_LANGS = ['en', 'id', 'de', 'es', 'fr', 'it', 'ms', 'pt'];
@@ -148,6 +149,25 @@ describe('/tiktok-engagement-calculator Content, Formula & Localization Verifica
       expect(serialized).not.toContain('TikCalculator');
       expect(serialized).not.toContain('(Likes + Comments + Shares) ÷ Followers × 100');
     });
+  });
+
+  it('provides structured FAQPage schema with 8 questions and self-referencing @id', () => {
+    let collectedSeo = null;
+    render(
+      <MemoryRouter initialEntries={['/tiktok-engagement-calculator']}>
+        <SEOProvider onCollect={(seo) => { collectedSeo = seo; }}>
+          <LocaleProvider lang="en">
+            <TikTokEngagementCalculator />
+          </LocaleProvider>
+        </SEOProvider>
+      </MemoryRouter>
+    );
+
+    expect(collectedSeo).toBeTruthy();
+    expect(collectedSeo.structuredData).toBeTruthy();
+    expect(collectedSeo.structuredData['@type']).toBe('FAQPage');
+    expect(collectedSeo.structuredData.mainEntity).toHaveLength(8);
+    expect(collectedSeo.structuredData['@id']).toBe('https://www.kalkulatortik.com/tiktok-engagement-calculator#faq');
   });
 });
 

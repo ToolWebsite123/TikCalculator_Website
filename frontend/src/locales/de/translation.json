@@ -686,6 +686,10 @@
       "guidesTips": {
         "title": "Anleitungen & Tipps",
         "description": "Greifen Sie auf Expertenrat zu TikTok-Strategie, Content-Erstellung und Publikumsengagement zu, um Ihre Leistung kontinuierlich zu verbessern."
+      },
+      "cpmCalculator": {
+        "title": "CPM-Rechner",
+        "description": "Planen Sie Werbebudgets, berechnen Sie TKP/CPM-Kosten und vergleichen Sie Sponsoring-Preise mit unserem 3-in-1-Rechner."
       }
     },
     "ourTeam": {

@@ -686,6 +686,10 @@
       "guidesTips": {
         "title": "Guides & Tips",
         "description": "Access expert advice on TikTok strategy, content creation, and audience engagement to improve your performance consistently."
+      },
+      "cpmCalculator": {
+        "title": "CPM Calculator",
+        "description": "Plan advertising budgets, calculate ad cost per thousand impressions, and benchmark creator sponsorship rates with our 3-in-1 workbench."
       }
     },
     "ourTeam": {
@@ -778,7 +782,7 @@
       "description": "Calculate your TikTok engagement rate instantly using likes, followers, and video count. Analyze performance and improve strategy with KalkulatorTik."
     },
     "about": {
-      "title": "About KalkulatorTik | Smart & Reliable TikTok Money Calculator",
+      "title": "About KalkulatorTik | Free TikTok Analytics & Tools",
       "description": "Discover KalkulatorTik, a trusted TikTok Money Calculator built to help creators and brands estimate earnings, analyze engagement, and grow smarter on TikTok."
     },
     "faq": {
@@ -786,8 +790,8 @@
       "description": "Find verified answers on TikTok Creator Rewards eligibility, qualified views, RPM calculation, and how KalkulatorTik calculates creator earning metrics."
     },
     "contact": {
-      "title": "Contact KalkulatorTik – Get Support for Your TikTok Money Calculator",
-      "description": "Have questions or feedback? Contact KalkulatorTik to get quick support, share ideas, or learn more about our TikTok Money Calculator and analytics tools for creators and brands."
+      "title": "Contact KalkulatorTik – Creator Support & Feedback",
+      "description": "Get in touch with KalkulatorTik. Contact our team for support, feature requests, or questions about our free TikTok money calculators and creator tools."
     },
     "privacy": {
       "title": "Privacy Policy | KalkulatorTik",
