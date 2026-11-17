@@ -44,8 +44,8 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 transition-colors">
-      <div className="container mx-auto max-w-4xl px-3 py-8 sm:px-4 sm:py-10 md:px-6 md:py-12 lg:py-16">
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 md:p-10">
+      <div className="container mx-auto max-w-4xl px-3 py-6 sm:px-4 sm:py-10 md:px-6 md:py-12 lg:py-16">
+        <div className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-8 md:p-10 shadow-sm">
           {/* Title */}
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <h1 className="text-2xl font-bold text-slate-900 mb-3 sm:text-3xl sm:mb-4 md:text-4xl lg:text-5xl">

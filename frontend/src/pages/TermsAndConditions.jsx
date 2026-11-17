@@ -12,8 +12,8 @@ const TermsAndConditions = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 transition-colors">
-      <div className="container mx-auto max-w-4xl px-3 py-8 sm:px-4 sm:py-10 md:px-6 md:py-12 lg:py-16">
-        <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 md:p-10 lg:p-12">
+      <div className="container mx-auto max-w-4xl px-3 py-6 sm:px-4 sm:py-10 md:px-6 md:py-12 lg:py-16">
+        <article className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-8 md:p-10 lg:p-12 shadow-sm">
           {/* Header Metadata */}
           <header className="border-b border-slate-100 pb-6 mb-8 sm:pb-8 sm:mb-10">
             <div className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-800 mb-3">

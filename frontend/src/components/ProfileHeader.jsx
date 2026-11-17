@@ -152,8 +152,8 @@ const ProfileHeader = ({ profile }) => {
       <div className="flex w-full flex-col items-center gap-1.5 sm:gap-2">
 
         {/* Name + Verified Badge */}
-        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
-          <h3 className="text-lg font-bold tracking-tight text-slate-900 dark:text-white sm:text-xl">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 max-w-full">
+          <h3 className="text-lg font-bold tracking-tight text-slate-900 dark:text-white sm:text-xl break-words">
             {safeFullName || safeUsername}
           </h3>
           {verified && (
@@ -171,15 +171,15 @@ const ProfileHeader = ({ profile }) => {
         </div>
 
         {/* Username, Region, and ID */}
-        <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-600 dark:text-slate-300 sm:text-sm">
-          <span className="font-mono font-medium text-slate-800 dark:text-slate-200">@{safeUsername}</span>
+        <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-600 dark:text-slate-300 sm:text-sm max-w-full">
+          <span className="font-mono font-medium text-slate-800 dark:text-slate-200 break-all">@{safeUsername}</span>
           {safeRegion && (
             <span className="inline-flex items-center rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-2 py-0.5 text-[11px] font-medium text-slate-600 dark:text-slate-300">
               {safeRegion}
             </span>
           )}
           {safeTiktokId && (
-            <span className="inline-flex items-center font-mono text-[11px] text-slate-600 dark:text-slate-400">
+            <span className="inline-flex items-center font-mono text-[11px] text-slate-600 dark:text-slate-400 break-all">
               {t('home.idPrefix', {
                 id: safeTiktokId,
                 defaultValue: `ID: ${safeTiktokId}`,
@@ -190,7 +190,7 @@ const ProfileHeader = ({ profile }) => {
 
         {/* Bio */}
         {safeBio && safeBio.trim() !== '' && safeBio !== 'Signature (Required):' ? (
-          <p className="mt-1 max-w-md text-xs leading-relaxed text-slate-700 text-center px-2 sm:text-sm">
+          <p className="mt-1 max-w-md text-xs leading-relaxed text-slate-700 text-center px-2 sm:text-sm break-words">
             {safeBio}
           </p>
         ) : (

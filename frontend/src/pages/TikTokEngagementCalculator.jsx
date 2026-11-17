@@ -769,12 +769,34 @@ const TikTokEngagementCalculator = () => {
               <h3 className="font-display text-lg font-bold text-slate-800 sm:text-xl">
                 {t('engagementCalculator.content.goodRate.scaleTitle')}
               </h3>
-              <div className="mt-3 overflow-x-auto rounded-xl border border-slate-200">
-                <table className="min-w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
+
+              {/* Mobile Scroll Hint */}
+              <div className="mt-3 flex items-center justify-between gap-1 pb-1 text-[11px] font-medium text-slate-500 sm:hidden">
+                <span className="inline-flex items-center gap-1.5">
+                  <svg className="h-3.5 w-3.5 text-teal-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                  <span>{activeLang === 'id' ? 'Geser tabel ke samping' : 'Swipe table horizontally'} &rarr;</span>
+                </span>
+                <span className="font-mono text-[10px] text-slate-400">3 columns</span>
+              </div>
+
+              <div className="table-scroll-container rounded-xl border border-slate-200 bg-white shadow-sm">
+                <table className="min-w-[540px] w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
                   <thead className="bg-slate-50">
                     <tr>
                       {tableHeaders.map((header, idx) => (
-                        <th key={idx} scope="col" className="px-4 py-3 font-semibold text-slate-900">
+                        <th
+                          key={idx}
+                          scope="col"
+                          className={`px-4 py-3 font-semibold text-slate-900 ${
+                            idx === 0
+                              ? 'whitespace-nowrap min-w-[150px]'
+                              : idx === 1
+                              ? 'whitespace-nowrap min-w-[140px]'
+                              : 'min-w-[220px]'
+                          }`}
+                        >
                           {header}
                         </th>
                       ))}
@@ -792,6 +814,10 @@ const TikTokEngagementCalculator = () => {
                             >
                               {cell}
                             </th>
+                          ) : cellIdx === 1 ? (
+                            <td key={cellIdx} className="whitespace-nowrap px-4 py-3 font-mono font-medium text-teal-700">
+                              {cell}
+                            </td>
                           ) : (
                             <td key={cellIdx} className="px-4 py-3 text-slate-600">
                               {cell}

@@ -1088,26 +1088,37 @@ const InfoSection = () => {
                   : "Because advertiser demand varies across regions, KalkulatorTik assigns an internal starting USD baseline CPM bracket from the profile's exposed region code (or defaults to Tier 3 when region metadata is unavailable):"}
               </p>
 
-              <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-white">
-                <table className="min-w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
+              {/* Mobile Scroll Hint */}
+              <div className="mt-4 flex items-center justify-between gap-1 pb-1 text-[11px] font-medium text-slate-500 sm:hidden">
+                <span className="inline-flex items-center gap-1.5">
+                  <svg className="h-3.5 w-3.5 text-teal-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                  <span>{isId ? 'Geser tabel ke samping' : 'Swipe table horizontally'}</span>
+                </span>
+                <span className="font-mono text-[10px] text-slate-400">5 columns</span>
+              </div>
+
+              <div className="table-scroll-container rounded-xl border border-slate-200 bg-white shadow-sm">
+                <table className="min-w-[620px] w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
                   <caption className="sr-only">
                     {isId ? idCopy.calculation.tableCaption : 'Internal KalkulatorTik baseline CPM assumptions (USD per 1,000 views).'}
                   </caption>
                   <thead className="bg-slate-50">
                     <tr>
-                      <th scope="col" className="px-4 py-3 font-semibold text-slate-900">
+                      <th scope="col" className="whitespace-nowrap px-4 py-3 font-semibold text-slate-900">
                         {isId ? idCopy.calculation.thTier : 'Market Tier'}
                       </th>
                       <th scope="col" className="px-4 py-3 font-semibold text-slate-700">
                         {isId ? idCopy.calculation.thCountries : 'Profile Region Codes'}
                       </th>
-                      <th scope="col" className="px-4 py-3 font-semibold tabular-nums text-slate-700">
+                      <th scope="col" className="whitespace-nowrap px-4 py-3 font-semibold tabular-nums text-slate-700">
                         {isId ? idCopy.calculation.thMin : 'Baseline Min'}
                       </th>
-                      <th scope="col" className="px-4 py-3 font-semibold tabular-nums text-teal-700">
+                      <th scope="col" className="whitespace-nowrap px-4 py-3 font-semibold tabular-nums text-teal-700">
                         {isId ? idCopy.calculation.thAvg : 'Baseline Avg'}
                       </th>
-                      <th scope="col" className="px-4 py-3 font-semibold tabular-nums text-slate-700">
+                      <th scope="col" className="whitespace-nowrap px-4 py-3 font-semibold tabular-nums text-slate-700">
                         {isId ? idCopy.calculation.thMax : 'Baseline Max'}
                       </th>
                     </tr>
@@ -1118,12 +1129,12 @@ const InfoSection = () => {
                         <th scope="row" className="whitespace-nowrap px-4 py-3 font-semibold text-slate-900">
                           {item.tier}
                         </th>
-                        <td className="px-4 py-3 text-slate-600">
-                          <code className="text-xs">{item.regions}</code>
+                        <td className="px-4 py-3 text-slate-600 min-w-[200px]">
+                          <code className="text-xs break-words">{item.regions}</code>
                         </td>
-                        <td className="px-4 py-3 font-mono tabular-nums text-slate-700">{item.min}</td>
-                        <td className="px-4 py-3 font-mono font-bold tabular-nums text-teal-700">{item.avg}</td>
-                        <td className="px-4 py-3 font-mono tabular-nums text-slate-700">{item.max}</td>
+                        <td className="whitespace-nowrap px-4 py-3 font-mono tabular-nums text-slate-700">{item.min}</td>
+                        <td className="whitespace-nowrap px-4 py-3 font-mono font-bold tabular-nums text-teal-700">{item.avg}</td>
+                        <td className="whitespace-nowrap px-4 py-3 font-mono tabular-nums text-slate-700">{item.max}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -1536,8 +1547,19 @@ const InfoSection = () => {
             <h3 className="text-lg font-bold font-display text-slate-800 sm:text-xl">
               {isId ? idCopy.channels.compareTitle : 'Side-by-Side Comparison: Brand Deals vs. Platform Monetization'}
             </h3>
-            <div className="mt-3 overflow-x-auto rounded-xl border border-slate-200">
-              <table className="min-w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
+            {/* Mobile Scroll Hint */}
+            <div className="mt-3 flex items-center justify-between gap-1 pb-1 text-[11px] font-medium text-slate-500 sm:hidden">
+              <span className="inline-flex items-center gap-1.5">
+                <svg className="h-3.5 w-3.5 text-teal-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+                <span>{isId ? 'Geser tabel ke samping' : 'Swipe table horizontally'}</span>
+              </span>
+              <span className="font-mono text-[10px] text-slate-400">3 columns</span>
+            </div>
+
+            <div className="table-scroll-container rounded-xl border border-slate-200 bg-white shadow-sm">
+              <table className="min-w-[620px] w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
                 <caption className="sr-only">
                   {isId
                     ? idCopy.channels.tableCaption
@@ -1545,13 +1567,13 @@ const InfoSection = () => {
                 </caption>
                 <thead className="bg-slate-50">
                   <tr>
-                    <th scope="col" className="px-4 py-3 font-semibold text-slate-900">
+                    <th scope="col" className="whitespace-nowrap px-4 py-3 font-semibold text-slate-900 min-w-[140px]">
                       {isId ? idCopy.channels.thFeature : 'Feature'}
                     </th>
-                    <th scope="col" className="px-4 py-3 font-semibold text-teal-800">
+                    <th scope="col" className="px-4 py-3 font-semibold text-teal-800 min-w-[240px]">
                       {isId ? idCopy.channels.thSponsor : 'Brand Sponsorships (Sponsored Videos)'}
                     </th>
-                    <th scope="col" className="px-4 py-3 font-semibold text-slate-800">
+                    <th scope="col" className="px-4 py-3 font-semibold text-slate-800 min-w-[240px]">
                       {isId ? idCopy.channels.thRewards : 'TikTok Creator Rewards (Platform Monetization)'}
                     </th>
                   </tr>
@@ -1562,7 +1584,7 @@ const InfoSection = () => {
                       <th scope="row" className="whitespace-nowrap px-4 py-3 font-semibold text-slate-900">
                         {row.feature}
                       </th>
-                      <td className="px-4 py-3 text-slate-700">
+                      <td className="px-4 py-3 text-slate-700 min-w-[240px]">
                         {row.isStatusRow ? (
                           <span className="inline-flex items-center gap-1.5 font-semibold text-teal-700">
                             <span className="h-2 w-2 rounded-full bg-teal-500" aria-hidden="true" />
@@ -1572,7 +1594,7 @@ const InfoSection = () => {
                           row.sponsorships
                         )}
                       </td>
-                      <td className="px-4 py-3 text-slate-600">
+                      <td className="px-4 py-3 text-slate-600 min-w-[240px]">
                         {row.isStatusRow ? (
                           <span className="inline-flex items-center gap-1.5 font-medium text-slate-600">
                             <span className="h-2 w-2 rounded-full bg-slate-400" aria-hidden="true" />
@@ -1821,8 +1843,19 @@ const InfoSection = () => {
                 ? idCopy.followersVsViews.compareTitle
                 : 'Model Comparison: High Followers vs. Consistent Video Views'}
             </h3>
-            <div className="mt-3 overflow-x-auto rounded-xl border border-slate-200">
-              <table className="min-w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
+            {/* Mobile Scroll Hint */}
+            <div className="mt-3 flex items-center justify-between gap-1 pb-1 text-[11px] font-medium text-slate-500 sm:hidden">
+              <span className="inline-flex items-center gap-1.5">
+                <svg className="h-3.5 w-3.5 text-teal-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+                <span>{isId ? 'Geser tabel ke samping' : 'Swipe table horizontally'}</span>
+              </span>
+              <span className="font-mono text-[10px] text-slate-400">4 columns</span>
+            </div>
+
+            <div className="table-scroll-container rounded-xl border border-slate-200 bg-white shadow-sm">
+              <table className="min-w-[620px] w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
                 <caption className="sr-only">
                   {isId
                     ? idCopy.followersVsViews.compareCaption
@@ -1830,16 +1863,16 @@ const InfoSection = () => {
                 </caption>
                 <thead className="bg-slate-50">
                   <tr>
-                    <th scope="col" className="px-4 py-3 font-semibold text-slate-900">
+                    <th scope="col" className="whitespace-nowrap px-4 py-3 font-semibold text-slate-900 min-w-[130px]">
                       {isId ? idCopy.followersVsViews.thMetric : 'Metric / Model Step'}
                     </th>
-                    <th scope="col" className="px-4 py-3 font-semibold text-slate-700">
+                    <th scope="col" className="whitespace-nowrap px-4 py-3 font-semibold text-slate-700 min-w-[140px]">
                       {isId ? idCopy.followersVsViews.thCreatorA : 'Creator A (500K Followers)'}
                     </th>
-                    <th scope="col" className="px-4 py-3 font-semibold text-teal-800">
+                    <th scope="col" className="whitespace-nowrap px-4 py-3 font-semibold text-teal-800 min-w-[140px]">
                       {isId ? idCopy.followersVsViews.thCreatorB : 'Creator B (50K Followers)'}
                     </th>
-                    <th scope="col" className="px-4 py-3 font-semibold text-slate-900">
+                    <th scope="col" className="px-4 py-3 font-semibold text-slate-900 min-w-[190px]">
                       {isId ? idCopy.followersVsViews.thWhy : 'Why It Matters'}
                     </th>
                   </tr>
@@ -1853,9 +1886,9 @@ const InfoSection = () => {
                       <th scope="row" className="whitespace-nowrap px-4 py-3 font-semibold text-slate-900">
                         {row.metric}
                       </th>
-                      <td className="px-4 py-3 tabular-nums text-slate-600">{row.creatorA}</td>
-                      <td className="px-4 py-3 font-semibold tabular-nums text-teal-800">{row.creatorB}</td>
-                      <td className="px-4 py-3 text-slate-600">{row.insight}</td>
+                      <td className="whitespace-nowrap px-4 py-3 tabular-nums text-slate-600">{row.creatorA}</td>
+                      <td className="whitespace-nowrap px-4 py-3 font-semibold tabular-nums text-teal-800">{row.creatorB}</td>
+                      <td className="px-4 py-3 text-slate-600 min-w-[190px]">{row.insight}</td>
                     </tr>
                   ))}
                 </tbody>

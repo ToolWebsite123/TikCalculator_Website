@@ -238,7 +238,7 @@ const Contact = ({ enabled }) => {
         </div>
 
         {/* Contact Form Card */}
-        <div className="bg-white rounded-2xl shadow-sm p-6 sm:p-8 md:p-10 border border-slate-200">
+        <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-8 md:p-10 border border-slate-200">
           {!isFormEnabled && (
             <div
               role="status"

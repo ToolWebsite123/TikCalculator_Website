@@ -15,6 +15,13 @@
 
 @layer base {
   html,
+  body {
+    overflow-x: hidden;
+    max-width: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html,
   body,
   button,
   input,
@@ -38,6 +45,8 @@
     font-size: 0.875em;
     font-weight: 600;
     color: #0f766e;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   :where(
@@ -62,13 +71,13 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   background-color: var(--brand-surface);
-  overflow-x: clip;
+  overflow-x: hidden;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
@@ -135,6 +144,33 @@ pre,
   max-width: 100%;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+/* Touch-optimized horizontal scrolling for responsive content tables */
+.table-scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.table-scroll-container::-webkit-scrollbar {
+  height: 5px;
+}
+
+.table-scroll-container::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 9999px;
+}
+
+.table-scroll-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.table-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 @media (min-width: 640px) {

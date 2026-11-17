@@ -871,39 +871,50 @@ const TikTokCPMCalculator = () => {
             )}
           />
 
-          <div className="mt-6 overflow-x-auto rounded-xl border border-slate-200">
-            <table className="min-w-full border-collapse text-left text-xs sm:text-sm">
+          {/* Mobile Scroll Hint */}
+          <div className="mt-6 flex items-center justify-between gap-1 pb-1 text-[11px] font-medium text-slate-500 sm:hidden">
+            <span className="inline-flex items-center gap-1.5">
+              <svg className="h-3.5 w-3.5 text-teal-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+              <span>Swipe table horizontally &rarr;</span>
+            </span>
+            <span className="font-mono text-[10px] text-slate-400">5 columns</span>
+          </div>
+
+          <div className="table-scroll-container rounded-xl border border-slate-200 bg-white shadow-sm">
+            <table className="min-w-[650px] w-full border-collapse text-left text-xs sm:text-sm">
               <caption className="sr-only">Comparison of TikTok Ad CPM, Creator RPM, and Brand Sponsorship CPM</caption>
               <thead>
                 <tr className="bg-slate-50 border-b border-slate-200">
-                  <th scope="col" className="px-4 py-3 font-bold text-slate-900">Metric</th>
-                  <th scope="col" className="px-4 py-3 font-bold text-slate-900">Perspective</th>
-                  <th scope="col" className="px-4 py-3 font-bold text-slate-900">Who Pays?</th>
-                  <th scope="col" className="px-4 py-3 font-bold text-slate-900">Denominator / Basis</th>
-                  <th scope="col" className="px-4 py-3 font-bold text-slate-900">Typical Range (USD)</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3 font-bold text-slate-900 min-w-[140px]">Metric</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3 font-bold text-slate-900 min-w-[130px]">Perspective</th>
+                  <th scope="col" className="px-4 py-3 font-bold text-slate-900 min-w-[160px]">Who Pays?</th>
+                  <th scope="col" className="px-4 py-3 font-bold text-slate-900 min-w-[160px]">Denominator / Basis</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3 font-bold text-slate-900 min-w-[130px]">Typical Range (USD)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
                 <tr className="bg-white">
-                  <th scope="row" className="px-4 py-3 font-bold text-teal-800">TikTok Ad CPM</th>
-                  <td className="px-4 py-3 text-slate-700">Advertiser / Brand</td>
+                  <th scope="row" className="whitespace-nowrap px-4 py-3 font-bold text-teal-800">TikTok Ad CPM</th>
+                  <td className="whitespace-nowrap px-4 py-3 text-slate-700">Advertiser / Brand</td>
                   <td className="px-4 py-3 text-slate-700">Advertiser pays TikTok Ads Manager</td>
                   <td className="px-4 py-3 text-slate-700 font-mono">Per 1,000 Ad Impressions</td>
-                  <td className="px-4 py-3 text-slate-900 font-mono font-semibold">$3.00 – $10.00</td>
+                  <td className="whitespace-nowrap px-4 py-3 text-slate-900 font-mono font-semibold">$3.00 – $10.00</td>
                 </tr>
                 <tr className="bg-slate-50/50">
-                  <th scope="row" className="px-4 py-3 font-bold text-teal-800">Creator Rewards RPM</th>
-                  <td className="px-4 py-3 text-slate-700">Creator / Publisher</td>
+                  <th scope="row" className="whitespace-nowrap px-4 py-3 font-bold text-teal-800">Creator Rewards RPM</th>
+                  <td className="whitespace-nowrap px-4 py-3 text-slate-700">Creator / Publisher</td>
                   <td className="px-4 py-3 text-slate-700">TikTok pays Creator</td>
                   <td className="px-4 py-3 text-slate-700 font-mono">Per 1,000 Qualified Views (&gt;1 min)</td>
-                  <td className="px-4 py-3 text-slate-900 font-mono font-semibold">$0.40 – $1.80</td>
+                  <td className="whitespace-nowrap px-4 py-3 text-slate-900 font-mono font-semibold">$0.40 – $1.80</td>
                 </tr>
                 <tr className="bg-white">
-                  <th scope="row" className="px-4 py-3 font-bold text-teal-800">Sponsorship CPM</th>
-                  <td className="px-4 py-3 text-slate-700">Influencer / Creator</td>
+                  <th scope="row" className="whitespace-nowrap px-4 py-3 font-bold text-teal-800">Sponsorship CPM</th>
+                  <td className="whitespace-nowrap px-4 py-3 text-slate-700">Influencer / Creator</td>
                   <td className="px-4 py-3 text-slate-700">Brand pays Creator directly</td>
                   <td className="px-4 py-3 text-slate-700 font-mono">Per 1,000 Expected Views</td>
-                  <td className="px-4 py-3 text-slate-900 font-mono font-semibold">$12.00 – $42.00</td>
+                  <td className="whitespace-nowrap px-4 py-3 text-slate-900 font-mono font-semibold">$12.00 – $42.00</td>
                 </tr>
               </tbody>
             </table>
@@ -932,45 +943,56 @@ const TikTokCPMCalculator = () => {
             )}
           />
 
-          <div className="mt-6 overflow-x-auto rounded-xl border border-slate-200">
-            <table className="min-w-full border-collapse text-left text-xs sm:text-sm">
+          {/* Mobile Scroll Hint */}
+          <div className="mt-6 flex items-center justify-between gap-1 pb-1 text-[11px] font-medium text-slate-500 sm:hidden">
+            <span className="inline-flex items-center gap-1.5">
+              <svg className="h-3.5 w-3.5 text-teal-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+              <span>Swipe table horizontally &rarr;</span>
+            </span>
+            <span className="font-mono text-[10px] text-slate-400">3 columns</span>
+          </div>
+
+          <div className="table-scroll-container rounded-xl border border-slate-200 bg-white shadow-sm">
+            <table className="min-w-[580px] w-full border-collapse text-left text-xs sm:text-sm">
               <caption className="sr-only">TikTok Advertising CPM Benchmarks by Campaign Objective</caption>
               <thead>
                 <tr className="bg-slate-50 border-b border-slate-200">
-                  <th scope="col" className="px-4 py-3 font-bold text-slate-900">Campaign Objective</th>
-                  <th scope="col" className="px-4 py-3 font-bold text-slate-900">Typical Benchmark (USD)</th>
-                  <th scope="col" className="px-4 py-3 font-bold text-slate-900">Targeting & Strategy Notes</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3 font-bold text-slate-900 min-w-[190px]">Campaign Objective</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3 font-bold text-slate-900 min-w-[160px]">Typical Benchmark (USD)</th>
+                  <th scope="col" className="px-4 py-3 font-bold text-slate-900 min-w-[230px]">Targeting & Strategy Notes</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
                 <tr className="bg-white">
-                  <th scope="row" className="px-4 py-3 font-bold text-slate-800">Brand Awareness & Reach</th>
-                  <td className="px-4 py-3 font-mono font-semibold text-teal-800">$1.50 – $3.50</td>
+                  <th scope="row" className="whitespace-nowrap px-4 py-3 font-bold text-slate-800">Brand Awareness & Reach</th>
+                  <td className="whitespace-nowrap px-4 py-3 font-mono font-semibold text-teal-800">$1.50 – $3.50</td>
                   <td className="px-4 py-3 text-slate-600">Broadest audience reach; lowest cost per impression.</td>
                 </tr>
                 <tr className="bg-slate-50/50">
-                  <th scope="row" className="px-4 py-3 font-bold text-slate-800">Video Views & Hook Focus</th>
-                  <td className="px-4 py-3 font-mono font-semibold text-teal-800">$2.00 – $4.50</td>
+                  <th scope="row" className="whitespace-nowrap px-4 py-3 font-bold text-slate-800">Video Views & Hook Focus</th>
+                  <td className="whitespace-nowrap px-4 py-3 font-mono font-semibold text-teal-800">$2.00 – $4.50</td>
                   <td className="px-4 py-3 text-slate-600">Optimized for watch time and 2s / 6s completion rate.</td>
                 </tr>
                 <tr className="bg-white">
-                  <th scope="row" className="px-4 py-3 font-bold text-slate-800">Traffic & Landing Page Clicks</th>
-                  <td className="px-4 py-3 font-mono font-semibold text-teal-800">$3.00 – $6.50</td>
+                  <th scope="row" className="whitespace-nowrap px-4 py-3 font-bold text-slate-800">Traffic & Landing Page Clicks</th>
+                  <td className="whitespace-nowrap px-4 py-3 font-mono font-semibold text-teal-800">$3.00 – $6.50</td>
                   <td className="px-4 py-3 text-slate-600">Targets users likely to click external link buttons.</td>
                 </tr>
                 <tr className="bg-slate-50/50">
-                  <th scope="row" className="px-4 py-3 font-bold text-slate-800">Lead Generation & App Installs</th>
-                  <td className="px-4 py-3 font-mono font-semibold text-teal-800">$5.00 – $9.00</td>
+                  <th scope="row" className="whitespace-nowrap px-4 py-3 font-bold text-slate-800">Lead Generation & App Installs</th>
+                  <td className="whitespace-nowrap px-4 py-3 font-mono font-semibold text-teal-800">$5.00 – $9.00</td>
                   <td className="px-4 py-3 text-slate-600">Higher bid density due to direct conversion value.</td>
                 </tr>
                 <tr className="bg-white">
-                  <th scope="row" className="px-4 py-3 font-bold text-slate-800">Conversions & Catalog Sales</th>
-                  <td className="px-4 py-3 font-mono font-semibold text-teal-800">$7.00 – $14.00+</td>
+                  <th scope="row" className="whitespace-nowrap px-4 py-3 font-bold text-slate-800">Conversions & Catalog Sales</th>
+                  <td className="whitespace-nowrap px-4 py-3 font-mono font-semibold text-teal-800">$7.00 – $14.00+</td>
                   <td className="px-4 py-3 text-slate-600">High intent; competitive auction bids in checkout funnels.</td>
                 </tr>
                 <tr className="bg-slate-50/50">
-                  <th scope="row" className="px-4 py-3 font-bold text-slate-800">Spark Ads (Creator UGC Boost)</th>
-                  <td className="px-4 py-3 font-mono font-semibold text-teal-800">$3.50 – $7.50</td>
+                  <th scope="row" className="whitespace-nowrap px-4 py-3 font-bold text-slate-800">Spark Ads (Creator UGC Boost)</th>
+                  <td className="whitespace-nowrap px-4 py-3 font-mono font-semibold text-teal-800">$3.50 – $7.50</td>
                   <td className="px-4 py-3 text-slate-600">High organic engagement frequently lowers effective CPM.</td>
                 </tr>
               </tbody>
