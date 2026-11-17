@@ -325,7 +325,8 @@
     "errorRequired": "Si prega di compilare tutti i campi (Totale Mi Piace, Totale Video, Totale Follower).",
     "errorInvalid": "Si prega di inserire numeri validi (es. 50000, 10K, 1.5M).",
     "errorZeroVideos": "Il numero di video deve essere maggiore di zero.",
-    "errorZeroFollowers": "Il numero di follower deve essere maggiore di zero."
+    "errorZeroFollowers": "Il numero di follower deve essere maggiore di zero.",
+    "rateSubtitle": "Rapporto Like-per-Follower per Video • Esclude commenti, condivisioni e visualizzazioni"
   },
   "cpmCalculator": {
     "title": "Calcolatore CPM TikTok",

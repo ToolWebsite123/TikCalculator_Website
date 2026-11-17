@@ -465,6 +465,12 @@ const TikTokEngagementCalculator = () => {
                 <p className="tabular-nums text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl md:text-[52px]">
                   {engagementRate.toFixed(2)}%
                 </p>
+                <p className="mt-1.5 text-xs font-medium text-slate-600 sm:text-sm">
+                  {t(
+                    'engagementCalculator.rateSubtitle',
+                    'Likes-to-Followers Ratio per Video • Excludes comments, shares & views'
+                  )}
+                </p>
               </div>
 
               {submittedInputs && (

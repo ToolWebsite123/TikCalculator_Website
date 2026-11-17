@@ -325,7 +325,8 @@
     "errorRequired": "Veuillez remplir tous les champs (Total des J'aime, Total des Vidéos, Total des Abonnés).",
     "errorInvalid": "Veuillez saisir des nombres valides (ex. : 50000, 10K, 1.5M).",
     "errorZeroVideos": "Le nombre de vidéos doit être supérieur à zéro.",
-    "errorZeroFollowers": "Le nombre d'abonnés doit être supérieur à zéro."
+    "errorZeroFollowers": "Le nombre d'abonnés doit être supérieur à zéro.",
+    "rateSubtitle": "Ratio J'aime/Abonnés par Vidéo • Exclut les commentaires, partages et vues"
   },
   "cpmCalculator": {
     "title": "Calculateur CPM TikTok",

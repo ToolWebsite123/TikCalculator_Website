@@ -325,7 +325,8 @@
     "errorRequired": "Please fill in all fields (Total Likes, Total Videos, Total Followers).",
     "errorInvalid": "Please enter valid numbers (e.g. 50000, 10K, 1.5M).",
     "errorZeroVideos": "Number of videos must be greater than zero.",
-    "errorZeroFollowers": "Number of followers must be greater than zero."
+    "errorZeroFollowers": "Number of followers must be greater than zero.",
+    "rateSubtitle": "Likes-to-Followers Ratio per Video • Excludes comments, shares & views"
   },
   "cpmCalculator": {
     "title": "TikTok CPM Calculator",

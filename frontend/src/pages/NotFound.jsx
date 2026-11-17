@@ -10,6 +10,7 @@ const NotFound = () => {
   useSEO({
     title: pageTitle,
     description: 'The requested page could not be found on KalkulatorTik.',
+    canonicalPath: '/404',
     robots: 'noindex, nofollow',
     omitCanonical: true,
     omitHreflang: true,

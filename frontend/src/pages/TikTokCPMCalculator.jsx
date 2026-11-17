@@ -194,13 +194,15 @@ const SectionHeader = ({ id, icon, title, description, noDivider = false }) => (
 );
 
 const CURRENCIES = [
-  { value: 'USD', label: '$ USD', symbol: '$', rate: 1 },
-  { value: 'EUR', label: '€ EUR', symbol: '€', rate: 0.92 },
-  { value: 'GBP', label: '£ GBP', symbol: '£', rate: 0.79 },
-  { value: 'INR', label: '₹ INR', symbol: '₹', rate: 83.12 },
-  { value: 'CAD', label: '$ CAD', symbol: '$', rate: 1.36 },
-  { value: 'AUD', label: '$ AUD', symbol: '$', rate: 1.53 },
-  { value: 'PKR', label: '₨ PKR', symbol: '₨', rate: 278.5 },
+  { value: 'USD', label: '$ USD', symbol: '$' },
+  { value: 'EUR', label: '€ EUR', symbol: '€' },
+  { value: 'GBP', label: '£ GBP', symbol: '£' },
+  { value: 'CAD', label: '$ CAD', symbol: '$' },
+  { value: 'AUD', label: '$ AUD', symbol: '$' },
+  { value: 'INR', label: '₹ INR', symbol: '₹' },
+  { value: 'PKR', label: '₨ PKR', symbol: '₨' },
+  { value: 'IDR', label: 'Rp IDR', symbol: 'Rp ' },
+  { value: 'BRL', label: 'R$ BRL', symbol: 'R$ ' },
 ];
 
 const TikTokCPMCalculator = () => {
@@ -395,23 +397,22 @@ const TikTokCPMCalculator = () => {
   const copyRateSummary = async () => {
     if (!resultData || resultData.result === null) return;
     const symbol = selectedCurr.symbol;
-    const rate = selectedCurr.rate;
 
     let summaryText = `TikTok CPM Calculation Summary (KalkulatorTik):\n`;
     if (mode === 'cpm') {
-      const formattedCpm = (resultData.result * rate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const formattedCpm = resultData.result.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       summaryText += `• Calculated CPM: ${symbol}${formattedCpm} per 1,000 impressions\n`;
-      summaryText += `• Ad Spend: ${symbol}${Number(resultData.costNum * rate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\n`;
+      summaryText += `• Ad Spend: ${symbol}${Number(resultData.costNum).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\n`;
       summaryText += `• Impressions: ${Math.round(resultData.impNum).toLocaleString()}\n`;
     } else if (mode === 'spend') {
-      const formattedSpend = (resultData.result * rate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const formattedSpend = resultData.result.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       summaryText += `• Required Ad Spend: ${symbol}${formattedSpend}\n`;
-      summaryText += `• Target CPM: ${symbol}${Number(resultData.cpmNum * rate).toFixed(2)}\n`;
+      summaryText += `• Target CPM: ${symbol}${Number(resultData.cpmNum).toFixed(2)}\n`;
       summaryText += `• Target Impressions: ${Math.round(resultData.impNum).toLocaleString()}\n`;
     } else if (mode === 'impressions') {
       summaryText += `• Delivered Impressions: ${Math.round(resultData.result).toLocaleString()}\n`;
-      summaryText += `• Ad Spend Budget: ${symbol}${Number(resultData.costNum * rate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\n`;
-      summaryText += `• Target CPM: ${symbol}${Number(resultData.cpmNum * rate).toFixed(2)}\n`;
+      summaryText += `• Ad Spend Budget: ${symbol}${Number(resultData.costNum).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\n`;
+      summaryText += `• Target CPM: ${symbol}${Number(resultData.cpmNum).toFixed(2)}\n`;
     }
     summaryText += `• Verified at: https://www.kalkulatortik.com/tiktok-cpm-calculator`;
 
@@ -649,12 +650,12 @@ const TikTokCPMCalculator = () => {
                   {/* Primary Calculated Metric */}
                   <p className="my-2 text-3xl font-extrabold text-teal-900 font-display tabular-nums sm:text-4xl md:text-5xl">
                     {mode === 'cpm' &&
-                      `${selectedCurr.symbol}${(resultData.result * selectedCurr.rate).toLocaleString(undefined, {
+                      `${selectedCurr.symbol}${resultData.result.toLocaleString(undefined, {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
                       })}`}
                     {mode === 'spend' &&
-                      `${selectedCurr.symbol}${(resultData.result * selectedCurr.rate).toLocaleString(undefined, {
+                      `${selectedCurr.symbol}${resultData.result.toLocaleString(undefined, {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
                       })}`}
@@ -664,9 +665,9 @@ const TikTokCPMCalculator = () => {
                   <p className="text-xs text-slate-600 sm:text-sm max-w-lg mx-auto">
                     {mode === 'cpm' && t('cpmCalculator.costPerThousand', 'Cost per 1,000 impressions')}
                     {mode === 'spend' &&
-                      `Total ad spend needed to generate ${Math.round(resultData.impNum).toLocaleString()} impressions at ${selectedCurr.symbol}${Number(resultData.cpmNum * selectedCurr.rate).toFixed(2)} CPM.`}
+                      `Total ad spend needed to generate ${Math.round(resultData.impNum).toLocaleString()} impressions at ${selectedCurr.symbol}${Number(resultData.cpmNum).toFixed(2)} CPM.`}
                     {mode === 'impressions' &&
-                      `Delivered ad impressions for a ${selectedCurr.symbol}${Number(resultData.costNum * selectedCurr.rate).toLocaleString()} budget at ${selectedCurr.symbol}${Number(resultData.cpmNum * selectedCurr.rate).toFixed(2)} CPM.`}
+                      `Delivered ad impressions for a ${selectedCurr.symbol}${Number(resultData.costNum).toLocaleString()} budget at ${selectedCurr.symbol}${Number(resultData.cpmNum).toFixed(2)} CPM.`}
                   </p>
 
                   {/* Dynamic Benchmark Context Badge (for CPM mode or target CPM) */}

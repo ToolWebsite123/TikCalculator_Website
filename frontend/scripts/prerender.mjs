@@ -81,11 +81,14 @@ const updateStaticGraphJsonLd = (html, seo) => {
     try {
       const parsed = JSON.parse(rawJson.trim());
       if (Array.isArray(parsed['@graph'])) {
+        const isNoIndexNoFollow = String(seo.robots || '').includes('noindex, nofollow');
         const isToolOrHome =
-          seo.basePath === '/' ||
-          seo.basePath === '/calculator' ||
-          seo.basePath === '/tiktok-cpm-calculator' ||
-          seo.basePath === '/tiktok-engagement-calculator';
+          !isNoIndexNoFollow &&
+          seo.basePath !== '/404' &&
+          (seo.basePath === '/' ||
+            seo.basePath === '/calculator' ||
+            seo.basePath === '/tiktok-cpm-calculator' ||
+            seo.basePath === '/tiktok-engagement-calculator');
 
         parsed['@graph'] = parsed['@graph']
           .filter((node) => isToolOrHome || node['@type'] !== 'WebApplication')
@@ -94,7 +97,10 @@ const updateStaticGraphJsonLd = (html, seo) => {
               return {
                 ...node,
                 inLanguage: seo.lang,
-                description: seo.basePath === '/' ? seo.description || node.description : node.description,
+                description:
+                  seo.basePath === '/' && !isNoIndexNoFollow
+                    ? seo.description || node.description
+                    : node.description,
               };
             }
             if (node['@type'] === 'WebApplication') {

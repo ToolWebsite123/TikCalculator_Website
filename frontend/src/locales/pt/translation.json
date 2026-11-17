@@ -325,7 +325,8 @@
     "errorRequired": "Por favor, preencha todos os campos (Total de Curtidas, Total de Vídeos, Total de Seguidores).",
     "errorInvalid": "Por favor, insira números válidos (ex.: 50000, 10K, 1.5M).",
     "errorZeroVideos": "O número de vídeos deve ser maior que zero.",
-    "errorZeroFollowers": "O número de seguidores deve ser maior que zero."
+    "errorZeroFollowers": "O número de seguidores deve ser maior que zero.",
+    "rateSubtitle": "Proporção de Curtidas por Seguidor por Vídeo • Exclui comentários, compartilhamentos e visualizações"
   },
   "cpmCalculator": {
     "title": "Calculadora de CPM do TikTok",

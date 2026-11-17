@@ -325,7 +325,8 @@
     "errorRequired": "Por favor, complete todos los campos (Total de Me gusta, Total de Videos, Total de Seguidores).",
     "errorInvalid": "Por favor, introduzca números válidos (p. ej., 50000, 10K, 1.5M).",
     "errorZeroVideos": "El número de videos debe ser mayor que cero.",
-    "errorZeroFollowers": "El número de seguidores debe ser mayor que cero."
+    "errorZeroFollowers": "El número de seguidores debe ser mayor que cero.",
+    "rateSubtitle": "Ratio de Me Gusta por Seguidor por Video • Excluye comentarios, compartidos y vistas"
   },
   "cpmCalculator": {
     "title": "Calculadora de CPM de TikTok",
@@ -786,7 +787,7 @@
       "description": "Conoce KalkulatorTik, la herramienta analítica para que creadores y marcas estimen patrocinios en TikTok."
     },
     "faq": {
-      "title": "Preguntas Frecuentes sobre Monetización en TikTok | KalkulatorTik",
+      "title": "Preguntas Frecuentes Monetización TikTok | KalkulatorTik",
       "description": "Respuestas claras sobre Creator Rewards, vistas calificadas y la metodología de estimación de KalkulatorTik."
     },
     "contact": {

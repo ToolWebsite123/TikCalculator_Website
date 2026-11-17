@@ -22,9 +22,10 @@ const About = () => {
     ),
     publisher: {
       '@type': 'Organization',
+      '@id': `${BASE_URL}/#organization`,
       name: 'KalkulatorTik',
-      url: BASE_URL,
-      logo: `${BASE_URL}/favicon.svg`,
+      url: `${BASE_URL}/`,
+      logo: `${BASE_URL}/icon-512.png`,
     },
   };
 

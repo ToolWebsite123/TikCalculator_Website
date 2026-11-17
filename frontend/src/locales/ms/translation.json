@@ -325,7 +325,8 @@
     "errorRequired": "Sila isi semua ruangan (Jumlah Suka, Jumlah Video, Jumlah Pengikut).",
     "errorInvalid": "Sila masukkan nombor yang sah (cth. 50000, 10K, 1.5M).",
     "errorZeroVideos": "Jumlah video mestilah lebih daripada sifar.",
-    "errorZeroFollowers": "Jumlah pengikut mestilah lebih daripada sifar."
+    "errorZeroFollowers": "Jumlah pengikut mestilah lebih daripada sifar.",
+    "rateSubtitle": "Nisbah Suka-kepada-Pengikut setiap Video • Tidak termasuk komen, kongsi & tontonan"
   },
   "cpmCalculator": {
     "title": "Kalkulator CPM TikTok",
