@@ -2263,4 +2263,4 @@ const InfoSection = () => {
   );
 };
 
-export default InfoSection;
+export default React.memo(InfoSection);

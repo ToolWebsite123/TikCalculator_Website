@@ -2,7 +2,6 @@ import {
   INDEXABLE_PAGE_PATHS,
   SUPPORTED_LANGS,
   buildCanonicalUrl,
-  getHreflangAlternates,
 } from './localeRouting.js';
 
 export const SITEMAP_ROUTE_META = {
@@ -27,27 +26,18 @@ const escapeXml = (str) =>
     .replace(/'/g, '&apos;');
 
 /**
- * Generate standards-compliant XML sitemap entries for all indexable localized routes
- * with reciprocal xhtml:link hreflang alternates (including x-default).
+ * Generate standards-compliant XML sitemap entries for all indexable localized routes.
  */
 export const generateSitemapXml = (lastmod = DEFAULT_LASTMOD) => {
   const urlBlocks = [];
 
   INDEXABLE_PAGE_PATHS.forEach((basePath) => {
     const meta = SITEMAP_ROUTE_META[basePath] || { changefreq: 'monthly', priority: '0.5' };
-    const alternates = getHreflangAlternates(basePath);
 
     SUPPORTED_LANGS.forEach((lang) => {
       const loc = buildCanonicalUrl(basePath, lang);
       const priority =
         basePath === '/' && lang !== 'en' ? '0.9' : meta.priority;
-
-      const xhtmlLinks = alternates
-        .map(
-          ({ hreflang, href }) =>
-            `    <xhtml:link rel="alternate" hreflang="${escapeXml(hreflang)}" href="${escapeXml(href)}" />`
-        )
-        .join('\n');
 
       urlBlocks.push(
         [
@@ -56,7 +46,6 @@ export const generateSitemapXml = (lastmod = DEFAULT_LASTMOD) => {
           `    <lastmod>${escapeXml(lastmod)}</lastmod>`,
           `    <changefreq>${escapeXml(meta.changefreq)}</changefreq>`,
           `    <priority>${escapeXml(priority)}</priority>`,
-          xhtmlLinks,
           '  </url>',
         ].join('\n')
       );
@@ -65,13 +54,7 @@ export const generateSitemapXml = (lastmod = DEFAULT_LASTMOD) => {
 
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>',
-    '<urlset',
-    '  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
-    '  xmlns:xhtml="http://www.w3.org/1999/xhtml"',
-    '  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"',
-    '  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"',
-    '>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     ...urlBlocks,
     '</urlset>',
     '',

@@ -370,7 +370,7 @@ describe('Multilingual URL Routing, Language Switcher, Hreflang & Sitemap (KHK-0
   });
 
   describe('Sitemap Validity', () => {
-    it('contains all 64 indexable localized URLs with reciprocal hreflang alternates and excludes noindex /calculator', () => {
+    it('contains all 64 indexable localized URLs in standard XML sitemap protocol and excludes noindex /calculator', () => {
       const sitemapPath = path.resolve(__dirname, '../../public/sitemap.xml');
       const xmlContent = fs.readFileSync(sitemapPath, 'utf8');
 
@@ -390,16 +390,14 @@ describe('Multilingual URL Routing, Language Switcher, Hreflang & Sitemap (KHK-0
         expect(locs).toContain(`${BASE_URL}${buildLocalizedPath('/tiktok-cpm-calculator', code)}`);
       });
 
-      // Every <url> block has all 8 languages + x-default
+      // Every <url> block has loc, lastmod, changefreq, priority
       const urlBlocks = xmlContent.split('<url>').slice(1);
       expect(urlBlocks).toHaveLength(64);
       urlBlocks.forEach((block) => {
-        const links = Array.from(block.matchAll(/<xhtml:link[^>]*hreflang="([^"]+)"/g)).map(
-          (m) => m[1]
-        );
-        expect(links).toHaveLength(9);
-        expect(links).toContain('x-default');
-        SUPPORTED_LANGS.forEach((code) => expect(links).toContain(code));
+        expect(block).toContain('<loc>');
+        expect(block).toContain('<lastmod>');
+        expect(block).toContain('<changefreq>');
+        expect(block).toContain('<priority>');
       });
 
       // Hreflang generator never emits alternates for /calculator or unknown routes

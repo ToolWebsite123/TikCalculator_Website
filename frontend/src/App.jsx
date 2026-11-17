@@ -5,6 +5,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { LocaleProvider } from './contexts/LocaleContext';
 import { getHomeLocalePack, loadHomeLocalePack } from './locales/homeContentRegistry';
 import { NON_DEFAULT_LANGS, normalizeLang, parseLocalizedPath } from './utils/localeRouting';
+import { scrollToTop } from './utils/scrollHelper';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -167,6 +168,12 @@ export const AppShell = ({ routeComponents = null }) => {
     };
   }, [i18n, routeLang]);
 
+  useEffect(() => {
+    if (!location.hash) {
+      scrollToTop(true);
+    }
+  }, [location.pathname]);
+
   // Normalize missing trailing slashes on localized homepages (/id -> /id/) and extra slashes on subpages (/de/about/ -> /de/about)
   if (parsed.isKnownRoute && location.pathname !== parsed.normalizedPath) {
     return (
@@ -206,7 +213,7 @@ export const AppShell = ({ routeComponents = null }) => {
 
 const App = () => (
   <ThemeProvider>
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <AppShell />
     </BrowserRouter>
   </ThemeProvider>

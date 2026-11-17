@@ -5,6 +5,7 @@ import LanguageSwitcher from './LanguageSwitcher';
 import LocaleLink from './LocaleLink';
 import { useActiveLang } from '../contexts/LocaleContext';
 import { buildLocalizedPath } from '../utils/localeRouting';
+import { scrollToTop } from '../utils/scrollHelper';
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -27,9 +28,7 @@ const Navbar = () => {
     e.preventDefault();
     setOpen(false);
     navigate(homePath);
-    if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    scrollToTop(true);
   };
 
   return (

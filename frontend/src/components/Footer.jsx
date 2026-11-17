@@ -1,12 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import LocaleLink from './LocaleLink';
+import { scrollToTop } from '../utils/scrollHelper';
 
 const Footer = () => {
   const { t } = useTranslation();
 
   const linkClass =
     'inline-block rounded-md px-1 py-0.5 text-sm sm:text-base text-slate-700 hover:text-teal-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:text-teal-700 transition-colors';
+
+  const handleLinkClick = () => {
+    scrollToTop(true);
+  };
 
   return (
     <footer className="border-t border-slate-200 bg-white py-8 sm:py-10 md:py-12 transition-colors">
@@ -20,17 +25,17 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2.5 sm:space-y-3">
               <li>
-                <LocaleLink to="/" className={linkClass}>
+                <LocaleLink to="/" className={linkClass} onClick={handleLinkClick}>
                   {t('footer.tiktokMoneyCalculator')}
                 </LocaleLink>
               </li>
               <li>
-                <LocaleLink to="/tiktok-cpm-calculator" className={linkClass}>
+                <LocaleLink to="/tiktok-cpm-calculator" className={linkClass} onClick={handleLinkClick}>
                   {t('footer.tiktokCpmCalculator')}
                 </LocaleLink>
               </li>
               <li>
-                <LocaleLink to="/tiktok-engagement-calculator" className={linkClass}>
+                <LocaleLink to="/tiktok-engagement-calculator" className={linkClass} onClick={handleLinkClick}>
                   {t('footer.tiktokEngagementCalculator')}
                 </LocaleLink>
               </li>
@@ -44,22 +49,22 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2.5 sm:space-y-3">
               <li>
-                <LocaleLink to="/about" className={linkClass}>
+                <LocaleLink to="/about" className={linkClass} onClick={handleLinkClick}>
                   {t('footer.about')}
                 </LocaleLink>
               </li>
               <li>
-                <LocaleLink to="/contact" className={linkClass}>
+                <LocaleLink to="/contact" className={linkClass} onClick={handleLinkClick}>
                   {t('footer.contactUs')}
                 </LocaleLink>
               </li>
               <li>
-                <LocaleLink to="/privacy" className={linkClass}>
+                <LocaleLink to="/privacy" className={linkClass} onClick={handleLinkClick}>
                   {t('footer.privacyPolicy')}
                 </LocaleLink>
               </li>
               <li>
-                <LocaleLink to="/terms" className={linkClass}>
+                <LocaleLink to="/terms" className={linkClass} onClick={handleLinkClick}>
                   {t('footer.termsAndConditions')}
                 </LocaleLink>
               </li>
@@ -76,6 +81,7 @@ const Footer = () => {
             <LocaleLink
               to="/"
               className="rounded-md px-1 py-0.5 text-slate-700 hover:text-teal-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 transition-colors"
+              onClick={handleLinkClick}
             >
               {t('footer.copyright')}
             </LocaleLink>
