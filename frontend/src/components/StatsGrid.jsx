@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Format large numbers with K/M/B suffixes
@@ -31,16 +32,28 @@ const formatNumber = (value) => {
 /**
  * Individual Stat Card Component
  */
-const Stat = ({ label, value, helpText }) => (
-  <div className="rounded-xl bg-white dark:bg-gray-800 p-3 shadow-sm ring-1 ring-gray-100 dark:ring-gray-700 sm:rounded-2xl sm:p-4 transition-colors">
-    <p className="text-[10px] font-medium uppercase tracking-wide text-slate-500 dark:text-white sm:text-xs">
+const Stat = ({ label, value, helpText, featured = false }) => (
+  <div
+    className={`rounded-xl border bg-white p-3.5 shadow-sm sm:p-4 transition-colors ${
+      featured
+        ? 'border-slate-200 border-t-2 border-t-teal-600'
+        : 'border-slate-200'
+    }`}
+  >
+    <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-600">
       {label}
     </p>
-    <p className="mt-1.5 text-lg font-semibold text-slate-900 dark:text-white sm:mt-2 sm:text-xl md:text-2xl">
+    <p
+      className={`mt-1.5 tabular-nums text-lg font-bold tracking-tight sm:text-xl md:text-2xl ${
+        featured ? 'text-teal-700' : 'text-slate-900'
+      }`}
+    >
       {value}
     </p>
     {helpText && (
-      <p className="mt-1 text-[9px] text-slate-400 dark:text-white sm:text-[10px]">{helpText}</p>
+      <p className="mt-1 text-[11px] text-slate-600">
+        {helpText}
+      </p>
     )}
   </div>
 );
@@ -51,6 +64,8 @@ const Stat = ({ label, value, helpText }) => (
  * Shows: Followers, Following, Likes, Videos
  */
 const StatsGrid = ({ stats }) => {
+  const { t } = useTranslation();
+
   if (!stats || typeof stats !== 'object') {
     return null;
   }
@@ -60,33 +75,57 @@ const StatsGrid = ({ stats }) => {
   const following = Number(stats.following) || 0;
   const likes = Number(stats.likes) || 0;
   const videos = Number(stats.videos) || 0;
+  const avgViews = Number(stats.avgViews) || 0;
+  const engagementRate = Number(stats.engagementRate) || 0;
+
+  const hasExtraMetrics = avgViews > 0 || engagementRate > 0;
 
   return (
     <div 
-      className="grid w-full grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4"
+      className={`grid w-full gap-3 sm:gap-4 ${
+        hasExtraMetrics 
+          ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6' 
+          : 'grid-cols-2 sm:grid-cols-4'
+      }`}
       role="region"
-      aria-label="Profile statistics"
+      aria-label={t('home.statsAriaLabel', 'Profile statistics')}
     >
       <Stat 
-        label="Followers" 
+        label={t('home.statFollowers', 'Followers')} 
         value={formatNumber(followers)} 
-        helpText="Total followers"
+        helpText={t('home.statFollowersHelp', 'Audience reach')}
       />
       <Stat 
-        label="Following" 
-        value={formatNumber(following)} 
-        helpText="Accounts followed"
-      />
-      <Stat 
-        label="Total Likes" 
+        label={t('home.statLikes', 'Total Likes')} 
         value={formatNumber(likes)} 
-        helpText="Likes received"
+        helpText={t('home.statLikesHelp', 'Lifetime likes')}
       />
       <Stat 
-        label="Videos" 
+        label={t('home.statVideos', 'Total Videos')} 
         value={formatNumber(videos)} 
-        helpText="Videos posted"
+        helpText={t('home.statVideosHelp', 'Uploaded videos')}
       />
+      <Stat 
+        label={t('home.statFollowing', 'Following')} 
+        value={formatNumber(following)} 
+        helpText={t('home.statFollowingHelp', 'Accounts followed')}
+      />
+      {avgViews > 0 && (
+        <Stat 
+          label={t('home.statAvgViews', 'Est. Avg Views')} 
+          value={formatNumber(avgViews)} 
+          helpText={t('home.statAvgViewsHelp', 'Views per video')}
+          featured
+        />
+      )}
+      {engagementRate > 0 && (
+        <Stat 
+          label={t('home.statEngagement', 'Engagement')} 
+          value={`${engagementRate.toFixed(2)}%`} 
+          helpText={t('home.statEngagementHelp', 'Interaction rate')}
+          featured
+        />
+      )}
     </div>
   );
 };

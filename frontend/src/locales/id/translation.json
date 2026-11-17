@@ -1,502 +1,808 @@
 {
-    "navbar": {
-        "moneyCalculator": "Kalkulator Uang TikTok",
-        "engagementCalculator": "Kalkulator Engagement TikTok",
-        "cpmCalculator": "Kalkulator CPM TikTok",
-        "aboutUs": "Tentang Kami",
-        "language": "Bahasa"
+  "navbar": {
+    "moneyCalculator": "Kalkulator Uang TikTok",
+    "engagementCalculator": "Kalkulator Engagement TikTok",
+    "cpmCalculator": "Kalkulator CPM TikTok",
+    "aboutUs": "Tentang Kami",
+    "language": "Bahasa",
+    "navAriaLabel": "Navigasi utama",
+    "mobileNavAriaLabel": "Navigasi seluler",
+    "openMenu": "Buka menu",
+    "closeMenu": "Tutup menu"
+  },
+  "home": {
+    "title": "Kalkulator Uang TikTok",
+    "subtitle": "Masukkan nama pengguna TikTok publik apa pun untuk menghitung perkiraan pendapatan sponsor merek dan penghasilan kreator per video.",
+    "placeholder": "mis., khaby.lame atau mrbeast",
+    "button": "Hitung Nilai Sponsor",
+    "buttonCalculate": "Hitung Nilai Sponsor",
+    "buttonLoading": "Menganalisis Profil Publik...",
+    "usernameLabel": "Masukkan Nama Pengguna TikTok Publik",
+    "error": "Harap masukkan nama pengguna TikTok publik yang valid untuk menjalankan penghitungan.",
+    "errorSpaces": "Nama pengguna tidak boleh mengandung spasi. Periksa kembali handle dan coba lagi.",
+    "errorRateLimit": "Permintaan dibatasi sementara karena trafik tinggi. Tunggu sebentar lalu coba lagi.",
+    "errorFetch": "Tidak dapat mengambil data profil saat ini. Periksa koneksi Anda lalu coba lagi sebentar.",
+    "errorNotFound": "Tidak dapat menemukan data publik untuk \"@{{username}}\". Pastikan ejaan sudah benar dan akun bersifat publik.",
+    "loadingStatus": "Mengambil metrik profil publik...",
+    "loadedStatus": "Metrik profil publik dimuat untuk @{{handle}}",
+    "assuranceFree": "Gratis & tanpa perlu login",
+    "assuranceLookup": "Pencarian nama pengguna publik",
+    "assuranceBenchmark": "Patokan sponsor per video",
+    "liveBenchmarkBadge": "Patokan Profil Langsung",
+    "resultsFor": "Hasil untuk @{{handle}}",
+    "sourceLiveVideo": "Dihitung dari aktivitas video publik terbaru.",
+    "sourceFallback": "Diperkirakan dari total profil publik (feed tayangan video terbaru tidak tersedia).",
+    "metricsHeading": "Ringkasan Akun & Patokan Aktivitas",
+    "howToReadLink": "Cara membaca metrik ini ↓",
+    "earningsBadge": "PERKIRAAN NILAI SPONSOR PER VIDEO",
+    "estimatedRange": "Rentang Perkiraan",
+    "cpmBenchmark": "Patokan CPM",
+    "earningsFootnote": "Perkiraan tarif kerja sama merek berdasarkan jangkauan audiens publik. Bukan merupakan pembayaran langsung dari Program TikTok Creator Rewards.",
+    "verifiedBadge": "Terverifikasi",
+    "joinedPrefix": "Bergabung {{date}}",
+    "idPrefix": "ID: {{id}}",
+    "noBio": "Tidak ada bio publik.",
+    "statFollowers": "Pengikut",
+    "statFollowersHelp": "Jangkauan audiens",
+    "statLikes": "Total Suka",
+    "statLikesHelp": "Suka seumur hidup",
+    "statVideos": "Total Video",
+    "statVideosHelp": "Video diunggah",
+    "statFollowing": "Mengikuti",
+    "statFollowingHelp": "Akun diikuti",
+    "statAvgViews": "Est. Rata-Rata Tayangan",
+    "statAvgViewsHelp": "Tayangan per video",
+    "statEngagement": "Engagement",
+    "statEngagementHelp": "Tingkat interaksi",
+    "profileDetails": "Detail profil",
+    "category": "Kategori",
+    "region": "Wilayah",
+    "tiktokId": "ID TikTok",
+    "joined": "Bergabung",
+    "bio": "Bio",
+    "notSpecified": "Tidak ditentukan",
+    "helperText": "Masukkan handle TikTok publik dengan atau tanpa simbol @.",
+    "formAriaLabel": "Formulir pencarian username kalkulator uang TikTok",
+    "inputAriaLabel": "Input username TikTok",
+    "assurancesAriaLabel": "Jaminan utama kalkulator",
+    "earningsAriaLabel": "Perkiraan penghasilan TikTok: {{amount}}",
+    "statsAriaLabel": "Statistik profil",
+    "avatarAlt": "Foto profil TikTok untuk @{{username}}",
+    "incompleteProfileTitle": "Peringatan: Data profil tidak lengkap",
+    "incompleteProfileDesc": "Username tidak tersedia pada profil",
+    "copySummary": "Salin ringkasan",
+    "copiedSummary": "Tersalin!"
+  },
+  "footer": {
+    "navigation": "Navigasi Footer",
+    "contactUs": "Hubungi Kami",
+    "quickLinks": "Tautan Cepat",
+    "helpfulLinks": "Tautan Bermanfaat",
+    "information": "Informasi",
+    "about": "Tentang",
+    "tiktokMoneyCalculator": "Kalkulator Uang TikTok",
+    "tiktokCpmCalculator": "Kalkulator CPM TikTok",
+    "tiktokEngagementCalculator": "Kalkulator Engagement TikTok",
+    "boostEngagement": "Tingkatkan engagement TikTok Anda",
+    "privacyPolicy": "Kebijakan Privasi",
+    "termsAndConditions": "Syarat dan Ketentuan",
+    "copyright": "© 2026 www.kalkulatortik.com. Semua Hak Dilindungi."
+  },
+  "engagementCalculator": {
+    "title": "Kalkulator Tingkat Engagement TikTok",
+    "subtitle": "Cek tingkat engagement TikTok Anda menggunakan total like, jumlah video, dan pengikut. Alat ini gratis dan bisa langsung dipakai tanpa perlu login.",
+    "totalLikes": "Total Suka:",
+    "totalVideos": "Total Video:",
+    "totalFollowers": "Total Pengikut:",
+    "calculate": "Hitung",
+    "engagementRate": "Tingkat Engagement",
+    "placeholderLikes": "mis., 4.2M atau 4200000",
+    "placeholderVideos": "mis., 221",
+    "placeholderFollowers": "mis., 277.8K atau 277800",
+    "content": {
+      "whatIs": {
+        "title": "Apa Itu Tingkat Engagement TikTok?",
+        "p1": "Tingkat engagement TikTok menunjukkan seberapa aktif penonton berinteraksi dengan video Anda dibanding jumlah pengikut. Alih-alih hanya melihat jumlah pengikut atau total like saja, metrik ini mengubah rata-rata like per video menjadi persentase sederhana. Dengan begitu, Anda bisa langsung tahu seberapa kuat respons audiens terhadap konten Anda.",
+        "p2": "Jumlah pengikut saja bisa menipu. Dua kreator bisa sama-sama punya 100.000 pengikut, tetapi satu hanya mendapat rata-rata 800 like per video sementara lainnya meraih 12.000 like. Membandingkan rata-rata like per video dengan pengikut langsung membuka perbedaan 15 kali lipat tersebut.",
+        "p3": "TikTok bekerja berbeda dari media sosial lama karena halaman For You (FYP) menampilkan video ke banyak orang yang belum mengikuti Anda. Like menjadi sinyal cepat ketertarikan penonton pada tiap video. Sementara itu, komentar, bagikan, dan simpan menunjukkan percakapan dan penyebaran yang lebih dalam."
+      },
+      "whyCalculate": {
+        "title": "Mengapa Anda Perlu Menghitung Tingkat Engagement TikTok?",
+        "intro": "Jumlah pengikut hanya mencatat orang yang menekan tombol ikuti di masa lalu. Menghitung tingkat engagement memberi kreator, manajer, dan brand gambaran yang jauh lebih jelas soal minat audiens saat ini:",
+        "points": [
+          "Tanpa login atau tautkan akun: Banyak alat pemindai otomatis gagal membaca akun baru atau gagal memuat data terbaru. Memasukkan Total Like, Jumlah Video, dan Pengikut secara manual langsung bekerja menggunakan angka yang sudah Anda miliki.",
+          "Uji satu video atau unggahan terbaru: Masukkan 1 pada Total Video, atau jumlahkan like dari 10 video terbaru Anda. Cara ini menunjukkan reaksi audiens hari ini tanpa tertutup video viral lama.",
+          "Perkuat media kit kreator: Brand mencari interaksi yang stabil per video saat menentukan bayaran sponsorship. Data engagement nyata jauh lebih bernilai daripada jumlah pengikut lama yang pasif.",
+          "Bandingkan akun secara adil: Mengubah angka mentah menjadi persentase mempermudah perbandingan akun kecil, menengah, dan besar secara berdampingan."
+        ]
+      },
+      "howToCalculate": {
+        "title": "Cara Menghitung Tingkat Engagement TikTok",
+        "formulaTitle": "Rumus di Balik Kalkulator Ini",
+        "formulaIntro": "Kalkulator ini mengukur rata-rata like per video dibandingkan total pengikut. Ada tiga angka sederhana dari profil yang dipakai:",
+        "formula": "Tingkat Engagement (%) = ((Total Like ÷ Total Pengikut) ÷ Total Video) × 100",
+        "formulaNote": "Perhatikan batasan alat ini saat membaca skor Anda. Kalkulator hanya memakai Total Like, Total Video, dan Total Pengikut karena angka tersebut cepat dimasukkan. Komentar, bagikan, simpan, dan jumlah tayangan tidak dihitung di sini.",
+        "stepsTitle": "Contoh Perhitungan Langkah demi Langkah",
+        "stepsIntro": "Misalnya sebuah profil TikTok punya 4,2 juta total like (4.200.000), 221 video, dan 277,8 ribu pengikut (277.800). Anda bisa mengetik singkatan seperti 4.2M dan 277.8K langsung ke kolom kalkulator di atas:",
+        "steps": [
+          "Langkah 1 — Cari rata-rata like per video: Bagi Total Like dengan Total Video (4.200.000 ÷ 221 = 19.004,52 rata-rata like per video).",
+          "Langkah 2 — Bandingkan dengan Total Pengikut: Bagi rata-rata like tersebut dengan Total Pengikut (19.004,52 ÷ 277.800 = 0,06841).",
+          "Langkah 3 — Ubah menjadi persentase: Kalikan 100 hingga mendapat tingkat engagement 6,84% per video."
+        ],
+        "singleVideoTip": "Tips untuk satu video atau postingan terbaru: Anda tidak harus mengukur seluruh riwayat akun setiap kali mengecek. Masukkan 1 pada Total Video untuk menguji satu klip, atau isi 10 dengan gabungan like dari 10 video terakhir. Gabungkan dengan Total Pengikut saat ini agar terlihat performa terkininya.",
+        "findMetricsTitle": "Di Mana Menemukan Angka TikTok Anda dengan Akurat",
+        "findMetricsP1": "Anda bisa melihat Total Pengikut dan Total Like tepat di bawah bio pada halaman profil TikTok. Setiap kolom input menerima angka penuh seperti 4200000 maupun singkatan dengan huruf K, M, atau B.",
+        "findMetricsP2": "Aplikasi TikTok di ponsel tidak selalu menampilkan total seluruh video di bagian atas profil. Anda bisa mengecek jumlah total video lewat TikTok Creator Tools atau membuka profil di web desktop. Cara yang lebih praktis lagi, jumlahkan like dari 10 atau 12 video terbaru lalu isi 10 atau 12 pada Total Video."
+      },
+      "followersVsViews": {
+        "title": "Tingkat Engagement TikTok Berdasarkan Pengikut vs. Tayangan",
+        "intro": "Kreator dan brand sering heran saat dua kalkulator TikTok menampilkan skor berbeda untuk akun yang sama. Ini terjadi karena platform memakai tiga rumus berbeda:",
+        "methods": [
+          {
+            "name": "1. Like per Video vs. Pengikut (Alat Manual KalkulatorTik)",
+            "formula": "((Total Like ÷ Total Pengikut) ÷ Total Video) × 100",
+            "explanation": "Dibuat untuk pengecekan manual yang cepat serta batch video khusus hanya dari Like, Jumlah Video, dan Pengikut. Karena komentar dan bagikan tidak dihitung, hasilnya bisa berbeda dari alat yang menarik banyak metrik sekaligus."
+          },
+          {
+            "name": "2. Tingkat Multi-Aksi per Pengikut (12–30 Video Terakhir)",
+            "formula": "(Rata-rata Like + Komentar + Bagikan per video) ÷ Total Pengikut × 100",
+            "explanation": "Banyak digunakan oleh platform analisis influencer otomatis. Menjumlahkan komentar dan bagikan membuat persentase lebih tinggi, sementara membatasi sampel ke 12–30 video terakhir mencegah hit lama mengacaukan skor hari ini."
+          },
+          {
+            "name": "3. Tingkat Engagement Berdasarkan Tayangan (Performa Jangkauan)",
+            "formula": "(Like + Komentar + Bagikan [+ Simpan]) ÷ Total Tayangan × 100",
+            "explanation": "Menunjukkan seberapa kuat video terhubung dengan semua orang yang menontonnya, baik pengikut maupun bukan. Karena halaman For You membawa banyak non-pengikut, skor berbasis tayangan lebih mencerminkan kualitas video dibanding kesetiaan pengikut."
+          }
+        ],
+        "summary": "Selalu sesuaikan rumus dengan hal yang ingin Anda ukur. Pakai skor pengikut untuk menilai kesetiaan audiens, pakai skor tayangan untuk menilai kualitas konten, dan jangan bandingkan angka dari rumus yang berbeda."
+      },
+      "howToUnderstand": {
+        "title": "Cara Memahami Tingkat Engagement TikTok Anda",
+        "intro": "Angka persentase akan jauh lebih bermakna jika Anda melihat cerita di balik datanya. Ingat empat hal ini saat membaca hasil Anda:",
+        "points": [
+          {
+            "label": "Mengapa skor bisa lebih dari 100%:",
+            "text": "Di TikTok, video di halaman For You bisa meraih jauh lebih banyak like daripada jumlah pengikut kreatornya. Jika akun dengan 5.000 pengikut mendapat rata-rata 8.000 like per video, skornya mencapai 160,00%. Hal ini menandakan temuan kuat dari non-pengikut, bukan kesalahan hitung."
+          },
+          {
+            "label": "Mengapa total seumur hidup bisa menutupi penurunan baru:",
+            "text": "Satu video viral dua tahun lalu dengan 3 juta like akan menjaga rata-rata seumur hidup tetap tinggi meski video baru hanya mendapat 1.500 like. Cobalah cek 10 video terbaru saja agar terlihat daya tarik yang sesungguhnya hari ini."
+          },
+          {
+            "label": "Mengapa akun besar sering punya persentase lebih rendah:",
+            "text": "Akun dengan ratusan ribu atau jutaan pengikut seiring waktu mengumpulkan banyak penonton kasual atau pasif. Basis pengikut yang besar itu menarik persentase turun meski total like dan tayangan tetap sangat tinggi."
+          },
+          {
+            "label": "Cara melihat ikatan audiens yang lemah:",
+            "text": "Waspadai akun dengan pengikut sangat banyak tetapi like per videonya sedikit, misalnya jauh di bawah 1% pada klip terbaru. Jarak besar itu bisa menandakan pengikut lama tidak aktif, akun palsu, atau perubahan topik konten yang drastis."
+          }
+        ]
+      },
+      "goodRate": {
+        "title": "Berapa Tingkat Engagement TikTok yang Bagus?",
+        "p1": "Tidak ada satu angka tunggal yang otomatis berarti bagus untuk semua akun TikTok. Nilai yang dianggap kuat bergantung pada ukuran akun, topik konten, dan rumus yang dipakai.",
+        "p2": "Sebagian besar tabel benchmark di internet tidak bisa dibandingkan langsung dengan kalkulator manual ini. Banyak di antaranya menjumlahkan like, komentar, dan bagikan hanya dari 12 hingga 30 video terakhir. Sebagian lain membagi interaksi dengan total tayangan, bukan jumlah pengikut.",
+        "scaleTitle": "Bagaimana Ukuran Akun Mengubah Tingkat Engagement",
+        "tableHeaders": [
+          "Tingkat Pengikut",
+          "Pola Umum",
+          "Cara Membacanya dengan Rumus Kami"
+        ],
+        "tableRows": [
+          [
+            "Nano (1K – 10K)",
+            "Naik turun paling tinggi",
+            "Audiens kecil yang akrab dan lonjakan halaman For You sering menghasilkan rasio like-per-pengikut tinggi. Klip viral bisa mengangkat rata-rata melewati 10% bahkan 100%."
+          ],
+          [
+            "Mikro (10K – 100K)",
+            "Minat stabil yang kuat",
+            "Kreator mikro yang aktif sering menjaga like per video tetap baik tanpa mengandalkan satu video viral lama. Cek batch 10 postingan untuk memastikan konsistensi."
+          ],
+          [
+            "Menengah (100K – 500K)",
+            "Persentase perlahan melandai",
+            "Setelah melewati 100K pengikut, pengikut kasual bertambah lebih cepat dibanding pemberi like rutin. Wajar jika persentase berbasis pengikut turun bertahap."
+          ],
+          [
+            "Makro & Mega (500K+)",
+            "Persentase pengikut paling rendah",
+            "Jumlah pengikut raksasa secara alami mengencerkan persentase dari waktu ke waktu. Brand melihat rata-rata like dan tayangan terbaru di samping angka persentase."
+          ]
+        ],
+        "industryTitle": "Mengapa Tolok Ukur Berbeda Antar Niche dan Industri",
+        "industryP1": "Kebiasaan penonton berubah drastis dari satu topik ke topik lain. Video komedi, hewan peliharaan, mode, kecantikan, dan makanan memancing ketukan like cepat sambil menggulir layar. Sebaliknya, tips B2B, pemrograman, keuangan, dan tutorial detail sering mendapat lebih sedikit like per penonton meski menghasilkan lebih banyak simpanan atau klik tautan.",
+        "industryP2": "Riset dari pihak luar menunjukkan betapa lebar perbedaan antar topik tersebut. Sebagai contoh, studi Social Cat menjumlahkan like, komentar, dan bagikan dari 12 video terbaru, sehingga rata-rata di bidang fashion (~17,5%) dan kecantikan (~15,2%) lebih tinggi dibanding kebugaran (~11,1%). Anggap angka seperti itu sekadar panduan kasar, bukan perbandingan langsung untuk skor khusus like."
+      },
+      "factors": {
+        "title": "Faktor Apa Saja yang Memengaruhi Tingkat Engagement TikTok?",
+        "intro": "Dua kreator dengan jumlah pengikut persis sama bisa punya tingkat engagement jauh berbeda. Lima faktor harian berikut menjelaskan sebagian besar selisih tersebut:",
+        "items": [
+          {
+            "label": "Jenis konten dan kebiasaan penonton:",
+            "text": "Sketsa lucu, padu padan pakaian, dan resep cepat mengundang tap like seketika. Tutorial langkah demi langkah justru sering disimpan secara diam-diam."
+          },
+          {
+            "label": "Ukuran akun dan usia profil:",
+            "text": "Kanal yang sudah lama berdiri alami menampung pengikut yang kini jarang membuka TikTok setiap hari. Profil baru yang fokus sering memiliki penggemar lebih aktif."
+          },
+          {
+            "label": "Jangkauan halaman For You:",
+            "text": "Video yang didorong ke banyak non-pengikut mengumpulkan like dari luar daftar subscriber Anda. Jangkauan ekstra ini mendorong skor berbasis pengikut lebih tinggi."
+          },
+          {
+            "label": "Hook kuat dan waktu tonton:",
+            "text": "TikTok menguji video pada grup kecil dulu lalu menyebarkannya lebih luas jika penonton menonton sampai selesai atau mengulang klip. Tayangan lebih banyak otomatis membuka peluang like lebih besar."
+          },
+          {
+            "label": "Ritme unggah dan lonjakan viral:",
+            "text": "Satu video viral besar dapat mendongkrak rata-rata sepanjang masa secara drastis. Menguji beberapa format baru dalam seminggu bisa menurunkan rata-rata sementara sampai format unggulan ditemukan."
+          }
+        ]
+      },
+      "improve": {
+        "title": "Cara Meningkatkan Tingkat Engagement TikTok Anda",
+        "intro": "Meningkatkan engagement dimulai dari menarik perhatian lebih awal. Beri penonton alasan sederhana untuk menonton sampai habis lalu merespons:",
+        "tips": [
+          {
+            "label": "Tarik perhatian di 2 detik pertama:",
+            "text": "Mulai langsung dengan aksi, hasil yang jelas, atau pertanyaan tajam di layar. Lewati pembukaan yang lambat agar orang tidak langsung swipe."
+          },
+          {
+            "label": "Jaga potongan video padat dari awal hingga akhir:",
+            "text": "Potong jeda hening dan jaga alur tetap padat untuk mendorong jangkauan FYP dan volume like."
+          },
+          {
+            "label": "Buat konten layak disimpan dan dibagikan:",
+            "text": "Checklist ringkas, perbandingan alat yang jujur, dan video sebelum-sesudah mendorong orang menyimpan atau mengirim video ke teman."
+          },
+          {
+            "label": "Tulis pertanyaan ringan di caption:",
+            "text": "Ajak penonton memilih opsi A atau B yang sederhana di caption atau komentar disematkan. Lalu balas komentar teratas dengan video lanjutan singkat."
+          },
+          {
+            "label": "Ulangi format seri yang berhasil:",
+            "text": "Mengubah ide bagus menjadi seri Bagian 1, Bagian 2 memberi alasan kuat bagi penonton baru untuk mengikuti dan menantikan video berikutnya."
+          },
+          {
+            "label": "Cek 10 video terbaru setiap bulan:",
+            "text": "Masukkan 10 klip terbaru Anda ke kalkulator ini sebulan sekali. Dengan begitu Anda tahu topik mana yang benar-benar menaikkan like per video."
+          }
+        ],
+        "conclusion": "Sekadar mengejar audio tren acak jarang bertahan lama. Hook yang jelas dipadukan dengan format video berulang membangun engagement yang konsisten dari waktu ke waktu."
+      },
+      "brandsAndCreators": {
+        "title": "Cara Brand Menggunakan Tingkat Engagement untuk Menilai Kreator",
+        "brandsTitle": "Untuk Brand dan Perencana Kampanye",
+        "brandsP1": "Brand mengecek tingkat engagement sebelum mengontrak kreator agar anggaran iklan menjangkau penonton yang aktif. Membandingkan rata-rata like per video dengan pengikut cepat menyaring akun yang sehat di tahap awal pencarian. Anda bisa menyingkirkan akun kurang cocok bahkan sebelum meminta tangkapan layar TikTok Analytics.",
+        "brandsCtaPrefix": "Setelah satu akun terlihat menjanjikan, bandingkan tarif yang ditawarkan dengan standar biaya iklan. Cek nilai impresinya dengan cepat lewat ",
+        "brandsCtaLink": "Kalkulator CPM TikTok",
+        "brandsCtaSuffix": " sebelum mengunci anggaran kampanye Anda.",
+        "creatorsTitle": "Untuk Kreator dan Manajer Talent",
+        "creatorsP1": "Kreator dapat mencantumkan persentase engagement di media kit sebagai bukti basis penggemar yang aktif. Ini terutama membantu kreator kecil karena rasio interaksi mereka sering mengalahkan kanal yang jauh lebih besar. Brand langsung melihat respons penggemar yang konsisten.",
+        "creatorsCtaPrefix": "Ingin melihat perkiraan pendapatan dari tayangan video publik terbaru, wilayah audiens, dan interaksi? Cari username publik mana pun lewat ",
+        "creatorsCtaLink": "Kalkulator Uang TikTok",
+        "creatorsCtaSuffix": " di beranda kami."
+      },
+      "faq": {
+        "title": "Pertanyaan yang Sering Diajukan",
+        "items": [
+          {
+            "question": "Rumus apa yang digunakan Kalkulator Tingkat Engagement TikTok ini?",
+            "answer": "Kalkulator ini memakai ((Total Like ÷ Total Pengikut) ÷ Total Video) × 100. Membagi Total Like dengan Total Video menghasilkan rata-rata like per video. Membagi rata-rata tersebut dengan Total Pengikut mengubah engagement per video menjadi persentase."
+          },
+          {
+            "question": "Mengapa kalkulator ini tidak menghitung komentar, bagikan, atau tayangan video?",
+            "answer": "Profil TikTok hanya menampilkan Pengikut dan Total Like secara langsung tanpa menjumlahkan total komentar, bagikan, atau tayangan seumur hidup di satu tempat. Menggunakan Like, Total Video, dan Pengikut memungkinkan pengecekan cepat kapan pun Anda sudah punya ketiga angka itu. Untuk statistik video publik terbaru yang mencakup tayangan, komentar, dan bagikan, coba Kalkulator Uang TikTok di beranda kami."
+          },
+          {
+            "question": "Bisakah saya menghitung tingkat engagement untuk satu video atau 10 video terakhir?",
+            "answer": "Ya, Anda bisa menguji keduanya dengan mudah. Masukkan 1 pada Total Video beserta like klip tersebut dan jumlah pengikut saat ini untuk memeriksa satu postingan. Atau masukkan 10 dengan gabungan like dari 10 video terbaru guna melihat momentum terkini."
+          },
+          {
+            "question": "Mengapa berbagai kalkulator engagement TikTok memberi hasil berbeda?",
+            "answer": "Setiap alat mengukur engagement dengan cara berbeda. Sebagian membagi dengan tayangan video alih-alih pengikut, sementara lainnya turut menghitung komentar, bagikan, dan simpan di samping like. Banyak alat juga merata-ratakan hanya 12 sampai 30 video terakhir, bukan total seumur hidup."
+          },
+          {
+            "question": "Mengapa tingkat engagement TikTok saya melebihi 100%?",
+            "answer": "Halaman For You sering menampilkan video ke banyak orang yang belum menjadi pengikut Anda. Berkat jangkauan temuan tersebut, akun kecil atau yang sedang berkembang pesat bisa meraih lebih banyak like per video dibanding jumlah pengikutnya. Kapan pun rata-rata like per video melampaui total pengikut, persentasenya naik di atas 100%."
+          },
+          {
+            "question": "Mengapa akun TikTok besar sering menunjukkan persentase engagement lebih rendah?",
+            "answer": "Saat akun bertumbuh hingga ratusan ribu atau jutaan pengikut, banyak subscriber lama berhenti membuka aplikasi setiap hari. Pengikut tidak aktif tersebut bertambah lebih cepat dari pemberi like rutin sehingga menekan persentase turun. Bandingkan akun di kelas pengikut yang setara dan cek juga rata-rata like per video."
+          },
+          {
+            "question": "Di mana menemukan Total Video jika TikTok menyembunyikannya di ponsel?",
+            "answer": "Aplikasi seluler TikTok tidak selalu memperlihatkan jumlah total video Anda secara langsung. Anda bisa menemukan angka tersebut di dalam TikTok Creator Tools atau membuka profil lewat web desktop. Atau lewati hitungan seumur hidup dengan menjumlahkan like dari 10 video terbaru lalu mengatur Total Video ke 10."
+          },
+          {
+            "question": "Apakah tingkat engagement yang tinggi membantu kreator menghasilkan lebih banyak di TikTok?",
+            "answer": "Ya, engagement yang kuat membantu kreator menegosiasikan bayaran lebih tinggi untuk kerja sama brand. Pengiklan bersedia membayar lebih saat melihat audiens yang aktif merespons postingan. Sebaliknya, pembayaran langsung dari TikTok Creator Rewards bergantung terutama pada tayangan yang memenuhi syarat dan RPM, bukan rasio like berbasis pengikut."
+          }
+        ]
+      }
     },
-    "home": {
-        "title": "Kalkulator Uang TikTok Gratis",
-        "subtitle": "Estimator penghasilan TikTok gratis. Dapatkan perkiraan penghasilan berbasis profil untuk akun TikTok apa pun dalam hitungan detik.",
-        "placeholder": "mis. mrbeast",
-        "button": "Dapatkan Perkiraan",
-        "buttonCalculate": "Dapatkan Perkiraan",
-        "buttonLoading": "Menganalisis profil...",
-        "usernameLabel": "Masukkan Nama Pengguna TikTok",
-        "error": "Harap masukkan nama pengguna TikTok yang valid.",
-        "errorFetch": "Tidak dapat mengambil profil. Harap periksa nama pengguna dan coba lagi.",
-        "profileDetails": "Detail profil",
-        "category": "Kategori",
-        "region": "Wilayah",
-        "tiktokId": "ID TikTok",
-        "joined": "Bergabung",
-        "bio": "Bio",
-        "notSpecified": "Tidak ditentukan"
+    "errorRequired": "Harap isi semua kolom (Total Suka, Total Video, Total Pengikut).",
+    "errorInvalid": "Harap masukkan angka yang valid (contoh: 50000, 10K, 1.5M).",
+    "errorZeroVideos": "Jumlah video harus lebih besar dari nol.",
+    "errorZeroFollowers": "Jumlah pengikut harus lebih besar dari nol."
+  },
+  "cpmCalculator": {
+    "title": "Kalkulator CPM TikTok",
+    "subtitle": "Hitung Biaya Per Seribu Tayangan (CPM), anggaran belanja iklan, atau estimasi impresi di berbagai mata uang dengan tolok ukur lelang.",
+    "totalCost": "Total Biaya Iklan:",
+    "impressions": "Jumlah Impresi:",
+    "industry": "Pilih Industri (opsional)",
+    "country": "Pilih Negara (opsional)",
+    "channel": "Pilih Saluran (opsional)",
+    "currency": "Mata Uang",
+    "calculate": "Hitung",
+    "calculatedCpm": "ESTIMASI CPM",
+    "costPerThousand": "Biaya per 1.000 impresi",
+    "placeholderCost": "cth., 500 atau 1.200",
+    "placeholderImpressions": "cth., 100.000 atau 100K",
+    "modes": {
+      "cpm": "Hitung CPM",
+      "spend": "Hitung Anggaran Iklan",
+      "impressions": "Hitung Impresi"
     },
-    "footer": {
-        "contactUs": "Hubungi Kami",
-        "quickLinks": "Tautan Cepat",
-        "helpfulLinks": "Tautan Bermanfaat",
-        "information": "Informasi",
-        "about": "Tentang",
-        "tiktokMoneyCalculator": "Kalkulator Uang TikTok",
-        "tiktokCpmCalculator": "Kalkulator CPM TikTok",
-        "tiktokEngagementCalculator": "Kalkulator Engagement TikTok",
-        "boostEngagement": "Tingkatkan engagement TikTok Anda",
-        "privacyPolicy": "Kebijakan Privasi",
-        "termsAndConditions": "Syarat dan Ketentuan",
-        "copyright": "© 2026 www.kalkulatortik.com. Semua Hak Dilindungi."
+    "presets": {
+      "label": "Preset Cepat:",
+      "awareness": "Kesadaran ($500 / 100K imp)",
+      "traffic": "Lalu Lintas ($1.200 / 250K imp)",
+      "conversions": "Konversi ($2.500 / 200K imp)"
+    },
+    "form": {
+      "totalCost": "Total Anggaran Iklan",
+      "targetCpm": "Target CPM",
+      "impressions": "Jumlah Impresi Iklan",
+      "currency": "Mata Uang",
+      "calculate": "Hitung",
+      "reset": "Reset",
+      "copySummary": "Salin Ringkasan Tarif",
+      "copied": "Berhasil Disalin!",
+      "placeholderCost": "cth., 500 atau 1.200",
+      "placeholderCpm": "cth., 5.00",
+      "placeholderImpressions": "cth., 100.000 atau 100K",
+      "errorEmpty": "Harap isi semua kolom yang diperlukan untuk mode perhitungan ini.",
+      "errorPositive": "Angka harus berupa nilai positif lebih besar dari nol.",
+      "errorInvalid": "Masukkan nilai numerik yang valid (cth., 500, 100000, 100K, 1.5M)."
+    },
+    "results": {
+      "cpmLabel": "HASIL KALKULASI CPM TIKTOK",
+      "spendLabel": "ANGGARAN IKLAN YANG DIBUTUHKAN",
+      "impressionsLabel": "ESTIMASI IMPRESI TAYANGAN",
+      "benchmarkTitle": "Status Tolok Ukur Lelang",
+      "benchmarkLow": "Rendah / Sangat Efisien Biaya",
+      "benchmarkLowDesc": "Di bawah median lelang umum. Biasa ditemukan pada kampanye kesadaran merek luas atau pasar negara berkembang.",
+      "benchmarkTypical": "CPM Lelang Standar",
+      "benchmarkTypicalDesc": "Dalam kisaran normal ($3,00 – $7,00) untuk iklan In-Feed standar di pasar utama.",
+      "benchmarkCompetitive": "CPM Kompetitif / Konversi",
+      "benchmarkCompetitiveDesc": "Di atas rata-rata ($7,00 – $12,00). Umum untuk lead generation, instal aplikasi, dan ceruk e-commerce bersaing tinggi.",
+      "benchmarkPremium": "CPM Premium / Niat Beli Tinggi",
+      "benchmarkPremiumDesc": "Tingkat premium ($12,00+). Umum pada ceruk keuangan/SaaS, Spark Ads dengan niat konversi tinggi, atau TopView.",
+      "formulaTrace": "Rumus yang Diterapkan:",
+      "summaryNote": "CPM menunjukkan biaya per 1.000 tayangan. Biaya aktual bervariasi menurut penargetan audiens, relevansi materi iklan, dan strategi lelang."
+    },
+    "content": {
+      "whatIsTikTokCPM": {
+        "title": "Apa Itu CPM TikTok dan Bagaimana Cara Kerjanya?",
+        "description": "CPM TikTok adalah singkatan dari Cost Per Mille (Biaya Per Seribu Tayangan), metrik standar periklanan digital yang menunjukkan biaya untuk menayangkan 1.000 impresi iklan di TikTok. Suatu impresi tercatat setiap kali video iklan Anda muncul di layar pengguna. CPM memberikan pengiklan, agensi, dan kreator tolok ukur terstandarisasi untuk mengukur efisiensi jangkauan audiens lintas format kampanye.",
+        "p2": "Dalam pembelian media periklanan, 1.000 impresi menjadi patokan universal karena satu impresi berharga pecahan sen yang sangat kecil. Mengelompokkannya per seribu memudahkan perencana media membandingkan alokasi anggaran antanegara dan format materi iklan."
+      },
+      "formula": {
+        "title": "3 Rumus Perhitungan CPM Iklan TikTok",
+        "description": "Hubungan antara total anggaran belanja iklan, jumlah impresi, dan CPM saling terkait secara matematis. Tergantung pada dua variabel yang sudah Anda ketahui, Anda dapat mencari variabel ketiga dengan persamaan standar berikut:",
+        "cpmFormula": "CPM = (Total Anggaran Iklan ÷ Total Impresi) × 1.000",
+        "spendFormula": "Anggaran Iklan = (Target CPM × Total Impresi) ÷ 1.000",
+        "impressionsFormula": "Total Impresi = (Total Anggaran Iklan ÷ Target CPM) × 1.000",
+        "workedExampleTitle": "Langkah Demi Langkah Contoh Perhitungan",
+        "exampleIntro": "Misalkan sebuah brand menganggarkan $1.200 untuk kampanye In-Feed TikTok dan menghasilkan 250.000 impresi:",
+        "step1": "1. Tentukan total biaya iklan: $1.200 USD.",
+        "step2": "2. Tentukan total impresi tayangan: 250.000 tayangan.",
+        "step3": "3. Bagi total biaya dengan impresi: 1.200 ÷ 250.000 = 0,0048 per tayangan tunggal.",
+        "step4": "4. Kalikan dengan 1.000 untuk mendapatkan CPM: 0,0048 × 1.000 = $4,80 CPM.",
+        "conclusion": "Artinya pengiklan membayar $4,80 untuk setiap seribu kali iklan mereka ditampilkan di layar pengguna TikTok."
+      },
+      "adCpmVsCreatorRpm": {
+        "title": "CPM Iklan TikTok vs. RPM Kreator vs. CPM Endorsement",
+        "description": "Kekeliruan umum di kalangan pengguna TikTok adalah menyamakan biaya yang dibayar pengiklan dengan penghasilan yang diterima kreator. Meskipun ketiganya mengukur biaya atau pendapatan per 1.000 tayangan, ketiganya mewakili transaksi yang sangat berbeda:",
+        "adCpm": "CPM Iklan TikTok: Biaya yang dibayar pengiklan ke TikTok Ads Manager untuk menampilkan iklan lelang (In-Feed, Spark Ads, TopView) ke 1.000 pengguna.",
+        "creatorRpm": "RPM Program Kreator: Pendapatan yang dibayarkan TikTok kepada kreator per 1.000 tayangan video yang memenuhi syarat (durasi >1 menit dan standar autentik).",
+        "sponsorshipCpm": "CPM Sponsorship / Endorsement: Tarif yang dibayar langsung oleh brand kepada kreator per 1.000 estimasi penayangan untuk video kolaborasi berbayar.",
+        "table": {
+          "caption": "Perbandingan CPM Iklan TikTok, RPM Kreator, dan CPM Sponsorship",
+          "thMetric": "Metrik",
+          "thPerspective": "Sudut Pandang",
+          "thPayer": "Siapa yang Membayar?",
+          "thDenominator": "Dasar / Pembagi",
+          "thRange": "Kisaran Umum (USD)",
+          "row1Metric": "CPM Iklan TikTok",
+          "row1Perspective": "Pengiklan / Agensi",
+          "row1Payer": "Pengiklan membayar TikTok",
+          "row1Basis": "Per 1.000 Impresi Iklan",
+          "row1Range": "$3,00 – $10,00",
+          "row2Metric": "RPM Kreator Hadiah",
+          "row2Perspective": "Kreator / Pembuat Konten",
+          "row2Payer": "TikTok membayar Kreator",
+          "row2Basis": "Per 1.000 Tayangan Memenuhi Syarat",
+          "row2Range": "$0,40 – $1,80",
+          "row3Metric": "CPM Sponsorship",
+          "row3Perspective": "Influencer / Mitra Brand",
+          "row3Payer": "Brand membayar Kreator langsung",
+          "row3Basis": "Per 1.000 Estimasi Tayangan Video",
+          "row3Range": "$12,00 – $42,00"
+        }
+      },
+      "averageRates": {
+        "title": "Tolok Ukur Rata-Rata Tarif CPM TikTok Berdasarkan Tujuan Kampanye",
+        "description": "Tarif lelang CPM TikTok bersifat dinamis dan berfluktuasi menurut tujuan kampanye, demografi penargetan, negara target, dan persaingan industri. Tabel di bawah memetakan tolok ukur standar di pasar Tier-1:",
+        "table": {
+          "caption": "Tolok Ukur CPM Iklan TikTok Berdasarkan Sasaran Pemasaran",
+          "campaignObjective": "Tujuan Kampanye",
+          "estimatedCPM": "Tolok Ukur CPM (USD)",
+          "notes": "Catatan Penargetan & Strategi",
+          "brandAwareness": "Kesadaran Merek & Jangkauan",
+          "brandAwarenessCPM": "$1,50 – $3,50",
+          "brandAwarenessNotes": "Jangkauan audiens terluas; biaya per impresi paling ekonomis.",
+          "videoViews": "Tayangan Video & Hook 6 Detik",
+          "videoViewsCPM": "$2,00 – $4,50",
+          "videoViewsNotes": "Dioptimalkan untuk waktu tonton dan rasio penyelesaian video.",
+          "trafficClicks": "Lalu Lintas & Klik Tautan",
+          "trafficClicksCPM": "$3,00 – $6,50",
+          "trafficClicksNotes": "Menargetkan pengguna yang cenderung mengklik tautan eksternal.",
+          "appInstalls": "Instal Aplikasi & Prospek",
+          "appInstallsCPM": "$5,00 – $9,00",
+          "appInstallsNotes": "Persaingan lelang lebih ketat karena nilai konversi langsung.",
+          "salesConversion": "Konversi & Penjualan Katalog",
+          "salesConversionCPM": "$7,00 – $14,00+",
+          "salesConversionNotes": "Niat beli tinggi; penawaran lelang ketat di corong checkout.",
+          "sparkAds": "Spark Ads (Boost Konten UGC)",
+          "sparkAdsCPM": "$3,50 – $7,50",
+          "sparkAdsNotes": "Keterlibatan organik tinggi seringkali menurunkan CPM efektif."
+        },
+        "conclusion": "Faktor geografis sangat menentukan besaran CPM. Negara Tier-1 (AS, Inggris, Kanada, Australia) mencatat CPM $5,00–$12,00, Tier-2 (Eropa Barat, Jepang) $3,00–$7,00, dan Tier-3 pasar berkembang $0,50–$2,50."
+      },
+      "drivers": {
+        "title": "5 Faktor Utama yang Mempengaruhi Naik Turunnya CPM TikTok",
+        "description": "Lelang iklan TikTok menggunakan algoritma otomatis yang menyeimbangkan tawaran harga, estimasi rasio tindakan, dan skor kualitas iklan. Faktor-faktor berikut paling mempengaruhi CPM Anda:",
+        "factor1Title": "Geografi & Daya Beli Audiens",
+        "factor1Desc": "Menargetkan audiens di negara berekonomi kuat (seperti AS, Inggris, Jerman) meningkatkan CPM karena persaingan lelang yang tinggi.",
+        "factor2Title": "Kategori Industri & Persaingan Lelang",
+        "factor2Desc": "Ceruk dengan nilai transaksi tinggi seperti keuangan, SaaS, kecantikan, dan asuransi membutuhkan tawaran CPM lebih tinggi dibanding hiburan umum.",
+        "factor3Title": "CTR Kreatif & Durasi Tonton",
+        "factor3Desc": "TikTok memprioritaskan iklan interaktif. Video dengan rasio tonton selesai tinggi dan CTR kuat menerima bonus lelang sehingga CPM menjadi lebih murah.",
+        "factor4Title": "Musim Belanja & Periode Liburan",
+        "factor4Desc": "CPM melonjak signifikan selama Q4 (Black Friday, Cyber Monday, Natal) ketika anggaran brand membanjiri lelang, lalu turun tajam di awal Q1.",
+        "factor5Title": "Format Iklan & Penempatan",
+        "factor5Desc": "Iklan In-Feed lelang standar paling terjangkau, Spark Ads lebih efisien berkat bukti sosial autentik, sedangkan TopView memiliki tarif premium tetap."
+      },
+      "strategies": {
+        "title": "5 Strategi Terbukti untuk Menurunkan CPM Iklan TikTok",
+        "intro": "Untuk mengoptimalkan efisiensi biaya kampanye dan memaksimalkan jumlah impresi dari anggaran Anda, terapkan praktik media-buying berikut:",
+        "tip1Title": "1. Tarik Perhatian dalam 2 Detik Pertama",
+        "tip1Desc": "Algoritma TikTok sangat menghargai retensi awal. Iklan dengan hook pembuka yang kuat mencegah penonton langsung melakukan swipe.",
+        "tip2Title": "2. Manfaatkan Spark Ads Dibandingkan Iklan Biasa",
+        "tip2Desc": "Spark Ads memungkinkan Anda mempromosikan postingan kreator asli. Bukti sosial autentik sering menghasilkan CTR 20–40% lebih tinggi dan CPM lebih rendah.",
+        "tip3Title": "3. Hindari Penargetan yang Terlalu Sempit di Awal",
+        "tip3Desc": "Memasukkan terlalu banyak batasan minat mempersempit likuiditas lelang dan menaikkan CPM. Biarkan algoritma menemukan segmen audiens optimal.",
+        "tip4Title": "4. Perbarui Materi Iklan Setiap 7–14 Hari",
+        "tip4Desc": "Kejenuhan kreatif terjadi sangat cepat di TikTok. Saat CTR menurun, CPM otomatis naik. Rotasi sudut pandang video baru secara rutin.",
+        "tip5Title": "5. Buat Video Vertikal Format 9:16 yang Autentik",
+        "tip5Desc": "Video iklan horizontal yang dipaksakan terlihat asing bagi pengguna. Gunakan gaya vertikal native dengan audio tren untuk interaksi maksimal."
+      },
+      "metricsComparison": {
+        "title": "Perbandingan CPM TikTok vs. CPC, CPV, dan CTR",
+        "description": "CPM merupakan salah satu komponen penting dari kartu skor analitik periklanan TikTok Anda. Berikut keterkaitannya dengan metrik utama lainnya:",
+        "cpc": "CPM vs. CPC (Cost Per Click): CPM mengukur biaya jangkauan visibilitas, sedangkan CPC mengukur biaya tindakan nyata pengguna. Jika CPM rendah tetapi CPC tinggi, materi iklan Anda kurang mendorong klik.",
+        "cpv": "CPM vs. CPV (Cost Per View): CPV mengukur biaya per penayangan video 2 detik atau 6 detik, sementara CPM mengukur penayangan di layar.",
+        "ctr": "Hubungan CPM dan CTR (Rasio Klik): CTR yang tinggi secara langsung menurunkan CPM Anda dari waktu ke waktu karena algoritma lelang mengutamakan iklan yang disukai pengguna."
+      },
+      "relatedTools": {
+        "title": "Jelajahi Alat Kalkulator TikTok Gratis Lainnya",
+        "description": "Gabungkan perencanaan CPM iklan Anda dengan alat pendukung kami untuk mengevaluasi valuasi kreator dan interaksi audiens:",
+        "moneyCalculator": "Kalkulator Uang TikTok: Periksa username TikTok publik mana pun untuk mengestimasi nilai komersial sponsorship per video berdasarkan metrik langsung.",
+        "engagementCalculator": "Kalkulator Engagement Rate TikTok: Hitung rasio keterlibatan audiens secara akurat menggunakan jumlah suka, total video, dan pengikut tanpa perlu login."
+      },
+      "faq": {
+        "title": "Pertanyaan yang Sering Diajukan Seputar CPM TikTok",
+        "q1": {
+          "question": "Bagaimana cara Kalkulator CPM TikTok menghitung biaya iklan?",
+          "answer": "Kalkulator menggunakan rumus standar periklanan digital: CPM = (Total Anggaran Iklan ÷ Total Impresi) × 1.000. Anda juga dapat menghitung balik anggaran yang dibutuhkan atau estimasi impresi tayangan."
+        },
+        "q2": {
+          "question": "Berapa rata-rata CPM TikTok yang wajar di tahun 2026?",
+          "answer": "Untuk iklan lelang In-Feed standar di negara Tier-1, CPM umumnya berkisar antara $3,50 hingga $7,50 untuk lalu lintas web, dan $1,50 hingga $3,50 untuk kesadaran merek. Kampanye konversi ceruk khusus berkisar $8,00 hingga $14,00+."
+        },
+        "q3": {
+          "question": "Apa perbedaan mendasar antara CPM TikTok dan RPM TikTok?",
+          "answer": "CPM adalah biaya yang dibayar pengiklan kepada TikTok per 1.000 tayangan iklan. RPM adalah pendapatan yang diterima kreator per 1.000 penayangan video terverifikasi melalui Program Hadiah Kreator."
+        },
+        "q4": {
+          "question": "Apakah keterlibatan video yang tinggi dapat menurunkan CPM iklan?",
+          "answer": "Ya. Sistem lelang TikTok memperhitungkan skor relevansi. Iklan dengan durasi tonton tinggi, rasio penyelesaian penuh, dan CTR tinggi diprioritaskan dalam lelang sehingga menghasilkan CPM lebih murah."
+        },
+        "q5": {
+          "question": "Dapatkah kreator menggunakan kalkulator ini untuk menetapkan tarif sponsorship?",
+          "answer": "Tentu. Meskipun program bagi hasil resmi memakai RPM, kerja sama endorsement brand dinegosiasikan berbasis estimasi tayangan dan CPM komersial (umumnya berkisar $15–$35 per 1.000 penayangan)."
+        },
+        "q6": {
+          "question": "Mengapa CPM TikTok berfluktuasi tajam pada musim liburan?",
+          "answer": "Lelang iklan diatur oleh hukum penawaran dan permintaan. Pada kuartal 4 (Q4), merek ritel membelanjakan anggaran besar yang meningkatkan kompetisi lelang, sementara pada kuartal 1 (Q1) tarif kembali normal."
+        }
+      },
+      "closing": {
+        "title": "Siap Menghitung CPM & Jangkauan Iklan TikTok Anda?",
+        "description": "Gunakan kalkulator di atas untuk menguji berbagai skenario anggaran kampanye, atau jelajahi alat pendukung kami untuk mengevaluasi tarif kreator.",
+        "button": "Kembali ke Kalkulator"
+      }
+    }
+  },
+  "contact": {
+    "subtitle": "Hubungi kami. Kami senang mendengar masukan Anda!",
+    "name": "Nama",
+    "namePlaceholder": "Masukkan nama Anda",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Masukkan alamat email Anda",
+    "message": "Pesan",
+    "messagePlaceholder": "Tulis pesan Anda",
+    "sendMessage": "Kirim Pesan",
+    "sending": "Mengirim...",
+    "successMessage": "Terima kasih! Pesan Anda berhasil dikirim.",
+    "title": "Hubungi Kami",
+    "notice": "Pengiriman pesan online saat ini tidak tersedia karena kotak masuk dukungan belum dihubungkan. Selama dinonaktifkan, formulir ini tidak mengumpulkan, menyimpan, atau mengirimkan data pribadi Anda.",
+    "submitDisabled": "Pengiriman Saat Ini Tidak Tersedia",
+    "subject": "Subjek (Opsional)",
+    "subjectPlaceholder": "Topik pertanyaan Anda",
+    "resourcesTitle": "Sumber Bantuan Saat Dukungan Offline",
+    "resourcesDesc": "Temukan jawaban mengenai rumus perhitungan, metrik, dan kebijakan di halaman berikut:",
+    "resourceFaq": "Pertanyaan yang Sering Diajukan (FAQ)",
+    "resourceAbout": "Tentang KalkulatorTik",
+    "resourcePrivacy": "Kebijakan Privasi",
+    "resourceTerms": "Syarat & Ketentuan",
+    "errorNameRequired": "Masukkan nama minimal 2 karakter.",
+    "errorEmailInvalid": "Masukkan alamat email yang valid.",
+    "errorMessageLength": "Pesan harus terdiri dari 10 hingga 2.000 karakter.",
+    "errorUnavailable": "Pengiriman pesan online saat ini tidak tersedia.",
+    "errorRateLimit": "Terlalu banyak percobaan pengiriman. Silakan tunggu beberapa saat sebelum mencoba lagi.",
+    "errorDeliveryFailed": "Pesan Anda belum dapat dikirim saat ini. Silakan coba lagi nanti.",
+    "messageCharCount": "{{count}} / 2.000 karakter"
+  },
+  "privacy": {
+    "title": "Kebijakan Privasi",
+    "intro": "Di KalkulatorTik, privasi Anda penting bagi kami. Kebijakan Privasi ini menjelaskan bagaimana kami menangani informasi saat Anda menggunakan alat estimasi penghasilan TikTok kami. Tujuan kami adalah menjaga semuanya transparan, sederhana, dan dapat dipercaya.",
+    "infoWeCollect": {
+      "title": "Informasi yang Kami Kumpulkan",
+      "description": "Kami tidak meminta atau mengumpulkan informasi pribadi seperti nama, alamat email, nomor telepon, atau kredensial login Anda. Anda dapat menggunakan KalkulatorTik secara bebas tanpa membuat akun atau membagikan detail pribadi."
+    },
+    "autoCollected": {
+      "title": "Informasi yang Dikumpulkan Secara Otomatis",
+      "description1": "Saat Anda mengunjungi situs web kami, informasi teknis tertentu mungkin dikumpulkan secara otomatis. Ini dapat mencakup jenis browser, informasi perangkat, alamat IP, dan data penggunaan. Informasi ini membantu kami memahami bagaimana alat digunakan dan meningkatkan kinerja.",
+      "description2": "Ini tidak mengidentifikasi Anda secara pribadi."
+    },
+    "cookies": {
+      "title": "Penggunaan Cookie",
+      "description1": "KalkulatorTik dapat menggunakan cookie atau teknologi serupa untuk meningkatkan pengalaman pengguna, menganalisis lalu lintas, dan mengoptimalkan fungsionalitas. Cookie membantu kami memahami bagaimana pengunjung berinteraksi dengan situs web.",
+      "description2": "Anda dapat menonaktifkan cookie kapan saja melalui pengaturan browser Anda jika Anda mau."
+    },
+    "howWeUseInfo": {
+      "title": "Bagaimana Kami Menggunakan Informasi",
+      "description": "Data non-pribadi yang dikumpulkan hanya digunakan untuk:",
+      "item1": "Meningkatkan kinerja situs web",
+      "item2": "Meningkatkan pengalaman pengguna",
+      "item3": "Menganalisis tren penggunaan",
+      "item4": "Mempertahankan keamanan dan stabilitas",
+      "note": "Kami tidak pernah menjual, memperdagangkan, atau menyalahgunakan data yang dikumpulkan."
+    },
+    "thirdPartyLinks": {
+      "title": "Tautan Pihak Ketiga",
+      "description": "Situs web kami mungkin menyertakan tautan ke alat atau situs web pihak ketiga. Kami tidak bertanggung jawab atas konten atau praktik privasi mereka. Kami merekomendasikan untuk meninjau kebijakan privasi mereka sebelum menggunakan layanan eksternal apa pun."
+    },
+    "dataSecurity": {
+      "title": "Keamanan Data",
+      "description": "Kami menggunakan langkah-langkah keamanan standar untuk melindungi situs web dan sistemnya. Meskipun tidak ada platform online yang dapat menjamin keamanan lengkap, kami mengambil langkah-langkah yang wajar untuk mencegah akses tidak sah atau penyalahgunaan."
+    },
+    "policyUpdates": {
+      "title": "Pembaruan Kebijakan",
+      "description": "Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu untuk mencerminkan perubahan dalam fungsionalitas atau persyaratan hukum. Setiap pembaruan akan diposting di halaman ini. Penggunaan KalkulatorTik yang berkelanjutan berarti Anda menerima kebijakan yang diperbarui."
+    },
+    "contactUs": {
+      "title": "Hubungi Kami",
+      "description": "Jika Anda memiliki pertanyaan tentang Kebijakan Privasi kami, jangan ragu untuk menghubungi kami melalui situs web kami."
+    }
+  },
+  "terms": {
+    "title": "Syarat dan Ketentuan",
+    "intro": "Selamat datang di KalkulatorTik. Harap luangkan waktu sejenak untuk membaca Syarat dan Ketentuan ini dengan seksama sebelum menggunakan alat estimasi penghasilan TikTok kami. Dengan mengakses atau menggunakan KalkulatorTik, Anda setuju untuk mengikuti ketentuan ini. Jika Anda tidak setuju, harap hentikan penggunaan layanan.",
+    "acceptance": {
+      "title": "Penerimaan Syarat",
+      "description": "Dengan menggunakan KalkulatorTik, Anda mengonfirmasi bahwa Anda memahami dan menerima Syarat dan Ketentuan ini. Penggunaan berkelanjutan situs web berarti Anda setuju dengan setiap pembaruan yang dibuat pada ketentuan ini di masa depan."
+    },
+    "purposeOfService": {
+      "title": "Tujuan Layanan",
+      "description1": "KalkulatorTik dirancang untuk menyediakan estimasi penghasilan TikTok berdasarkan data akun yang tersedia untuk umum seperti pengikut, engagement, dan kinerja video.",
+      "description2": "Semua hasil hanya bersifat informatif dan tidak boleh dianggap sebagai nasihat keuangan, hukum, atau profesional.",
+      "description3": "Anda bertanggung jawab atas cara Anda menggunakan informasi yang disediakan oleh alat ini."
+    },
+    "userResponsibility": {
+      "title": "Tanggung Jawab Pengguna",
+      "description1": "Anda setuju untuk menggunakan KalkulatorTik secara bertanggung jawab dan hanya untuk tujuan yang sah.",
+      "description2": "Anda tidak boleh:",
+      "item1": "Menyalahgunakan alat",
+      "item2": "Mencoba memanipulasi hasil",
+      "item3": "Menggunakan layanan untuk aktivitas penipuan atau menyesatkan",
+      "description3": "Setiap tindakan yang diambil berdasarkan hasil kalkulator sepenuhnya menjadi tanggung jawab Anda."
+    },
+    "intellectualPropertyRights": {
+      "title": "Hak Kekayaan Intelektual",
+      "description1": "Semua konten di KalkulatorTik — termasuk teks, desain, logo, grafik, dan perangkat lunak — adalah milik KalkulatorTik dan dilindungi oleh undang-undang hak cipta dan kekayaan intelektual yang berlaku.",
+      "description2": "Anda tidak boleh menyalin, mereproduksi, mendistribusikan, atau memodifikasi bagian mana pun dari situs web tanpa izin tertulis sebelumnya."
+    },
+    "accuracyDisclaimer": {
+      "title": "Penyangkalan Akurasi",
+      "description1": "Meskipun kami berusaha memberikan estimasi yang realistis dan diperbarui, kami tidak menjamin bahwa perhitungan selalu akurat atau lengkap. Penghasilan TikTok dapat bervariasi karena berbagai faktor di luar kendali kami.",
+      "description2": "KalkulatorTik disediakan \"sebagaimana adanya\" dan \"sebagaimana tersedia\"."
+    },
+    "limitationOfLiability": {
+      "title": "Pembatasan Tanggung Jawab",
+      "description1": "KalkulatorTik tidak akan bertanggung jawab atas kerusakan langsung, tidak langsung, atau insidental yang diakibatkan dari penggunaan alat kami atau ketergantungan pada estimasinya.",
+      "description2": "Gunakan layanan atas kebijakan dan risiko Anda sendiri."
+    },
+    "thirdPartyLinks": {
+      "title": "Tautan Pihak Ketiga",
+      "description": "Situs web kami mungkin menyertakan tautan ke situs web pihak ketiga untuk sumber daya atau informasi tambahan. Kami tidak mengontrol atau mengambil tanggung jawab atas konten, kebijakan, atau praktik situs eksternal ini."
+    },
+    "terminationOfAccess": {
+      "title": "Penghentian Akses",
+      "description": "Kami berhak menangguhkan atau menghentikan akses ke KalkulatorTik kapan saja, tanpa pemberitahuan, jika Syarat dan Ketentuan ini dilanggar atau karena alasan operasional."
+    },
+    "changesToTerms": {
+      "title": "Perubahan pada Ketentuan",
+      "description1": "KalkulatorTik dapat memperbarui Syarat dan Ketentuan ini kapan saja. Setiap perubahan akan diposting di halaman ini, dan penggunaan layanan yang berkelanjutan menunjukkan penerimaan ketentuan yang diperbarui.",
+      "description2": ""
+    },
+    "contactUs": {
+      "title": "Hubungi Kami",
+      "description": "Jika Anda memiliki pertanyaan tentang Syarat dan Ketentuan kami, jangan ragu untuk menghubungi kami melalui situs web kami."
+    }
+  },
+  "about": {
+    "title": "Tentang Kami – KalkulatorTik",
+    "welcome": "Selamat datang di KalkulatorTik, platform utama untuk kreator, influencer, dan bisnis yang ingin memahami kinerja TikTok dan potensi penghasilan mereka. Kami menyederhanakan proses menganalisis akun Anda sehingga Anda dapat membuat keputusan yang lebih cerdas, menumbuhkan audiens, dan memaksimalkan peluang Anda di TikTok.",
+    "mission": {
+      "title": "Misi Kami",
+      "description": "Kami bertujuan untuk memberdayakan pengguna TikTok dengan wawasan yang jelas, akurat, dan dapat ditindaklanjuti. Baik Anda adalah kreator yang sedang naik, influencer, atau merek, alat kami membantu Anda mengukur engagement, melacak pertumbuhan, dan memperkirakan penghasilan, memberi Anda kepercayaan untuk merencanakan konten dan kampanye Anda secara efektif."
+    },
+    "whatWeOffer": {
+      "title": "Apa yang Kami Tawarkan",
+      "engagementCalculator": {
+        "title": "Kalkulator Engagement",
+        "description": "Ukur dengan cepat bagaimana audiens Anda berinteraksi dengan konten Anda untuk memahami postingan mana yang berkinerja terbaik."
+      },
+      "earningsCalculator": {
+        "title": "Kalkulator Penghasilan",
+        "description": "Perkirakan potensi pendapatan Anda berdasarkan tayangan, pengikut, dan engagement, sehingga Anda dapat merencanakan kolaborasi dan strategi monetisasi."
+      },
+      "guidesTips": {
+        "title": "Panduan & Tips",
+        "description": "Akses saran ahli tentang strategi TikTok, pembuatan konten, dan engagement audiens untuk meningkatkan kinerja Anda secara konsisten."
+      }
+    },
+    "ourTeam": {
+      "title": "Tim Kami",
+      "description": "Tim kami terdiri dari ahli media sosial, analis data, dan penggemar konten yang terus mempelajari tren dan analitik TikTok. Kami menggabungkan pengetahuan teknis dengan wawasan praktis untuk menyediakan alat yang mudah digunakan, akurat, dan relevan."
+    },
+    "joinUs": {
+      "title": "Bergabunglah dengan Kami",
+      "description": "TikTok berkembang pesat, dan peluang berkembang setiap hari. Dengan KalkulatorTik, Anda dapat melacak, mengukur, dan mengoptimalkan kehadiran TikTok Anda seperti seorang profesional. Kami di sini untuk mendukung perjalanan Anda dan membantu Anda sukses dengan kejelasan dan kepercayaan diri.",
+      "thankYou": "Terima kasih telah mempercayai KalkulatorTik—mari kita tumbuh, terlibat, dan menghasilkan bersama!"
+    }
+  },
+  "faq": {
+    "pageTitle": "Tanya Jawab (FAQ) — Monetisasi TikTok, Penghasilan Kreator & Kalkulator",
+    "pageSubtitle": "Jawaban terverifikasi mengenai syarat Program TikTok Creator Rewards, penayangan yang memenuhi syarat, perhitungan RPM, serta kalkulator KalkulatorTik.",
+    "sections": {
+      "section1": {
+        "title": "1. Monetisasi Resmi TikTok & Persyaratannya",
+        "q1": {
+          "question": "Apa itu Program TikTok Creator Rewards?",
+          "answer": "Program TikTok Creator Rewards adalah inisiatif monetisasi resmi dari TikTok untuk pembuat konten video yang secara resmi menggantikan Creator Fund pada awal tahun 2024. Berbeda dari sistem terdahulu yang membagikan anggaran harian statis, program ini secara khusus memberikan imbalan bagi konten orisinal dengan durasi video lebih dari 1 menit. TikTok menentukan besaran imbalan secara dinamis berdasarkan empat faktor kinerja utama: orisinalitas, durasi pemutaran dan tingkat penyelesaian, nilai pencarian, serta wilayah geografis audiens dan kualitas keterlibatan. Program ini saat ini tersedia di negara-negara tertentu, termasuk Amerika Serikat, Inggris, Jerman, Prancis, Jepang, Korea Selatan, dan Brasil."
+        },
+        "q2": {
+          "question": "Apa syarat untuk mendapatkan bayaran dari TikTok?",
+          "answer": "Untuk mendaftar ke Program TikTok Creator Rewards, akun Anda harus memenuhi semua kriteria berikut: berusia sekurang-kurangnya 18 tahun (19 tahun di Korea Selatan), memiliki minimal 10.000 pengikut asli, mengumpulkan sedikitnya 100.000 penayangan video yang valid dalam 30 hari berturut-turut terakhir, akun dalam status baik tanpa pelanggaran berulang, terdaftar di negara yang mendukung program secara resmi, dan menerbitkan video orisinal berdurasi lebih dari 1 menit. Pendaftaran dilakukan langsung di aplikasi TikTok melalui Alat Kreator > Program Creator Rewards."
+        },
+        "q3": {
+          "question": "Apa yang dihitung sebagai penayangan yang memenuhi syarat (qualified view)?",
+          "answer": "TikTok menerapkan aturan ketat untuk menentukan penayangan mana yang berhak mendapatkan imbalan: penayangan harus berasal dari feed Untuk Anda (FYP), penonton harus menyaksikan video selama minimal 5 detik, dan penayangan harus berasal dari penonton unik untuk setiap video (penayangan berulang dari orang yang sama tidak dihitung ganda). Penayangan manipulatif, bot, dan promosi berbayar (seperti TikTok Promote) dikecualikan, serta video wajib mematuhi Panduan Komunitas dan hak cipta."
+        }
+      },
+      "section2": {
+        "title": "2. Berapa Penghasilan Kreator di TikTok",
+        "q1": {
+          "question": "Berapa penghasilan kreator di TikTok?",
+          "answer": "Penghasilan di TikTok sangat bervariasi karena platform ini tidak menetapkan gaji pokok maupun tarif flat per penayangan. Pada Program Creator Rewards, kreator umumnya memperoleh RPM antara $0,20 hingga $1,00+ per 1.000 penayangan yang memenuhi syarat. Di luar program resmi, kreator juga memperoleh pendapatan melalui kolaborasi merek (endorsement), komisi afiliasi TikTok Shop, dan Hadiah LIVE. Jumlah pengikut tidak menghasilkan bayaran video otomatis, namun memperluas jangkauan kerja sama sponsor."
+        },
+        "q2": {
+          "question": "Apa itu RPM dan mengapa nilainya berfluktuasi?",
+          "answer": "RPM merupakan singkatan dari Revenue Per Mille, yaitu estimasi pendapatan bersih untuk setiap 1.000 penayangan yang memenuhi syarat. TikTok tidak menerapkan rumus hitungan kaku, melainkan menggunakan algoritma dinamis. Sebagai gambaran edukatif, hubungan ini biasa dirumuskan sebagai: Perkiraan Imbalan ≈ (Penayangan Memenuhi Syarat / 1.000) × RPM. Nilai RPM berfluktuasi karena faktor lokasi audiens, durasi tonton dan retensi, relevansi topik pencarian, serta musim belanja iklan."
+        },
+        "q3": {
+          "question": "Bagaimana cara kerja Hadiah LIVE dan Berlian?",
+          "answer": "Saat siaran langsung, penonton dapat mengirimkan hadiah virtual kepada kreator. TikTok kemudian mengalokasikan sejumlah Berlian (Diamonds) kepada kreator berdasarkan hadiah yang diterima. Berdasarkan Kebijakan Item Virtual TikTok, Berlian merupakan indikator virtual untuk mengukur popularitas siaran tanpa nilai tunai mandiri, bukan merupakan hak milik pribadi, dan tidak menjamin secara otomatis kompensasi moneter atau nilai konversi kas yang tetap. Di negara yang memenuhi ketentuan, kreator dewasa dapat mengajukan penukaran berdasarkan diskresi TikTok, batas penarikan minimum, dan biaya administrasi terkait."
+        }
+      },
+      "section3": {
+        "title": "3. Cara Kerja KalkulatorTik",
+        "q1": {
+          "question": "Bagaimana Kalkulator Uang KalkulatorTik memperkirakan penghasilan?",
+          "answer": "Kalkulator Uang TikTok di KalkulatorTik merupakan sarana estimasi independen yang dirancang untuk memberikan gambaran tolak ukur potensi pendapatan kreator. Alat ini mengevaluasi indikator profil publik (jumlah pengikut, rata-rata penayangan, dan kategori keterlibatan) guna memproyeksikan rentang nilai kerja sama sponsor serta potensi penayangan video. Alat ini bukan sistem penggajian resmi dari TikTok."
+        },
+        "q2": {
+          "question": "Apa perbedaan antara CPM dan RPM?",
+          "answer": "CPM (Cost Per Mille) adalah biaya yang dikeluarkan pengiklan untuk menampilkan 1.000 tayangan iklan; Anda dapat merencanakan anggaran menggunakan Kalkulator CPM TikTok. RPM (Revenue Per Mille) adalah pendapatan bersih yang diterima kreator per 1.000 penayangan yang memenuhi syarat setelah potongan platform. Pengiklan menginginkan CPM rendah, sedangkan kreator menginginkan RPM tinggi."
+        },
+        "q3": {
+          "question": "Bagaimana cara menghitung tingkat engagement di KalkulatorTik?",
+          "answer": "Pada Kalkulator Engagement TikTok kami, tingkat interaksi dihitung berdasarkan formula: Tingkat Engagement (%) = ((Total Suka / Total Pengikut) / Jumlah Video) * 100. Formula ini secara khusus hanya mengevaluasi data suka, pengikut, dan jumlah video yang dianalisis. Rumus ini tidak memasukkan komentar atau pembagian (shares) guna menyajikan perbandingan tolok ukur yang konsisten."
+        },
+        "q4": {
+          "question": "Apakah saya perlu memasukkan kata sandi akun?",
+          "answer": "Tidak. KalkulatorTik tidak pernah meminta kata sandi, kode verifikasi, maupun izin login akun TikTok Anda. Semua perkiraan dilakukan murni berdasarkan informasi publik atau nilai angka yang Anda masukkan secara manual pada formulir. Lihat Kebijakan Privasi kami untuk informasi selengkapnya."
+        }
+      },
+      "section4": {
+        "title": "4. Pembayaran & Panduan Penggunaan",
+        "q1": {
+          "question": "Kapan dan bagaimana TikTok membayar kreator?",
+          "answer": "Bagi kreator di Program Creator Rewards, pencairan dana diatur secara bulanan. Di sejumlah negara seperti AS, dana biasanya diproses sekitar tanggal 15 pada bulan berikutnya. Jadwal pencairan pasti, metode transfer (PayPal, transfer bank), serta batas penarikan minimum (biasanya antara $10 hingga $50) bervariasi menurut negara pendaftaran, aturan perbankan setempat, dan kewajiban pajak."
+        },
+        "q2": {
+          "question": "Apakah KalkulatorTik gratis digunakan?",
+          "answer": "Ya. Seluruh alat hitung di KalkulatorTik dapat digunakan secara online tanpa dipungut biaya apa pun dan tanpa pendaftaran akun. Kebijakan pembatasan frekuensi wajar (rate limiting) diterapkan pada server guna mencegah beban lalu lintas berlebih."
+        }
+      }
+    }
+  },
+  "theme": {
+    "switchToDark": "Beralih ke mode gelap",
+    "switchToLight": "Beralih ke mode terang"
+  },
+  "seo": {
+    "cpmCalculator": {
+      "title": "Kalkulator CPM TikTok – Hitung Biaya Iklan & Jangkauan",
+      "description": "Hitung CPM TikTok, anggaran belanja iklan, atau estimasi impresi tayangan. Kalkulator 3-in-1 gratis dengan tolok ukur lelang dan konversi mata uang."
     },
     "engagementCalculator": {
-        "title": "Kalkulator Tingkat Engagement TikTok",
-        "subtitle": "Hitung tingkat engagement TikTok Anda secara instan. Kalkulator engagement gratis untuk kreator dan merek.",
-        "totalLikes": "Total Suka:",
-        "totalVideos": "Total Video:",
-        "totalFollowers": "Total Pengikut:",
-        "calculate": "Hitung",
-        "engagementRate": "Tingkat Engagement",
-        "placeholderLikes": "mis., 4.2M atau 4200000",
-        "placeholderVideos": "mis., 221",
-        "placeholderFollowers": "mis., 277.8K atau 277800",
-        "content": {
-            "whatIs": {
-                "title": "Apa itu Kalkulator Tingkat Engagement TikTok?",
-                "description1": "Kalkulator Tingkat Engagement TikTok adalah alat analitik yang mengukur interaksi audiens di profil TikTok Anda.",
-                "description2": "Ini mengubah metrik mentah menjadi persentase sederhana yang mencerminkan seberapa menarik konten Anda.",
-                "description3": "Ini membantu kreator, merek, dan pemasar memahami apakah video mereka beresonansi dengan penonton atau perlu perbaikan."
-            },
-            "tikCalculator": {
-                "title": "Hitung Tingkat Engagement TikTok – TikCalculator",
-                "description1": "TikCalculator membantu Anda menghitung tingkat engagement TikTok secara instan menggunakan data kinerja nyata.",
-                "description2": "Dengan memasukkan suka, komentar, bagikan, video, dan pengikut, Anda mendapatkan persentase yang jelas yang menunjukkan seberapa aktif audiens Anda berinteraksi dengan konten Anda. Ini menghilangkan tebakan dan memberi Anda wawasan yang dapat diandalkan untuk mengevaluasi kinerja akun."
-            },
-            "relatedTools": {
-                "title": "Alat Terkait",
-                "moneyCalculator": "Penasaran dengan potensi penghasilan TikTok Anda? Coba Kalkulator Uang TikTok kami untuk memperkirakan kemungkinan pendapatan menggunakan data engagement dan kinerja akun. Ini membantu kreator memahami nilai monetisasi mereka sebelum bekerja dengan merek.",
-                "cpmCalculator": "Anda juga dapat memeriksa nilai iklan dengan Kalkulator CPM TikTok, yang menunjukkan pembayaran rata-rata yang mungkin ditawarkan pengiklan untuk setiap 1.000 tayangan. Ini berguna untuk merencanakan kampanye berbayar dan kesepakatan sponsor."
-            },
-            "manualCalculation": {
-                "title": "Cara Menghitung Tingkat Engagement di TikTok Secara Manual",
-                "description": "Rumus tingkat engagement manual sederhana dan banyak digunakan:",
-                "formula": "Tingkat Engagement (%) = (Suka + Komentar + Bagikan) ÷ Pengikut × 100",
-                "explanation1": "Rumus ini menunjukkan seberapa terlibat pengikut Anda dengan konten Anda.",
-                "explanation2": "Persentase yang lebih tinggi berarti interaksi dan loyalitas audiens yang lebih kuat."
-            },
-            "benchmarks": {
-                "title": "Tolok Ukur Tingkat Engagement TikTok berdasarkan Jumlah Pengikut",
-                "description": "Tingkat engagement bervariasi tergantung pada ukuran audiens. Akun yang lebih kecil biasanya melihat engagement yang lebih tinggi, sementara akun yang lebih besar mengalami penurunan bertahap saat mereka tumbuh.",
-                "table": {
-                    "followerRange": "Rentang Pengikut",
-                    "averageRate": "Tingkat Engagement Rata-Rata",
-                    "range1": "1K – 5K pengikut",
-                    "rate1": "18% – 22%",
-                    "range2": "5K – 20K pengikut",
-                    "rate2": "15% – 19%",
-                    "range3": "20K – 100K pengikut",
-                    "rate3": "13% – 16%",
-                    "range4": "100K – 500K pengikut",
-                    "rate4": "12% – 15%",
-                    "range5": "500K – 1M pengikut",
-                    "rate5": "14% – 17%",
-                    "range6": "1M+ pengikut",
-                    "rate6": "13% – 17%"
-                },
-                "conclusion": "Rentang tolok ukur ini membantu kreator dan merek mengevaluasi kinerja secara realistis menggunakan kalkulator engagement TikTok. Engagement secara alami berfluktuasi berdasarkan niche, kualitas konten, dan perilaku audiens, jadi hasil harus dibandingkan dalam rentang pengikut yang serupa."
-            },
-            "howToUse": {
-                "title": "Cara Menggunakan Kalkulator Secara Efektif",
-                "intro": "Untuk mendapatkan hasil yang akurat:",
-                "tip1": "Masukkan data yang benar dan terkini",
-                "tip2": "Gunakan total pengikut, bukan tayangan video",
-                "tip3": "Bandingkan beberapa postingan, bukan satu",
-                "tip4": "Lacak engagement secara konsisten dari waktu ke waktu",
-                "conclusion": "Penggunaan rutin membantu mengidentifikasi tren dan meningkatkan keputusan konten."
-            },
-            "whyMatters": {
-                "title": "Mengapa Tingkat Engagement Penting",
-                "point1": "Tingkat engagement adalah salah satu metrik kinerja terpenting TikTok.",
-                "point2": "Ini secara langsung mempengaruhi jangkauan, visibilitas, dan kinerja algoritma.",
-                "point3": "Merek juga menggunakan tingkat engagement untuk mengevaluasi kreator untuk kemitraan dan sponsor.",
-                "point4": "Engagement tinggi menandakan kepercayaan, relevansi, dan koneksi audiens yang kuat."
-            },
-            "industrySpecific": {
-                "title": "Engagement Spesifik Industri di TikTok",
-                "description1": "Tingkat engagement bervariasi menurut niche. Konten hiburan dan gaya hidup sering melihat interaksi yang lebih tinggi.",
-                "description2": "Niche bisnis, pendidikan, dan keuangan biasanya memiliki engagement yang lebih rendah tetapi lebih ditargetkan. Membandingkan engagement dalam industri Anda memberikan wawasan kinerja yang lebih akurat daripada rata-rata global."
-            },
-            "improveEngagement": {
-                "title": "Cara Meningkatkan Tingkat Engagement TikTok Anda",
-                "intro": "Meningkatkan engagement memerlukan konsistensi dan strategi:",
-                "tip1": "Posting secara teratur",
-                "tip2": "Gunakan hook yang kuat di detik-detik pertama",
-                "tip3": "Ikuti tren dengan orisinalitas",
-                "tip4": "Gunakan hashtag yang relevan",
-                "tip5": "Berinteraksi dengan komentar",
-                "tip6": "Dorong interaksi melalui pertanyaan",
-                "tip7": "Berkolaborasi dengan kreator lain",
-                "conclusion": "Engagement yang kuat datang dari koneksi, bukan hanya tayangan."
-            },
-            "faq": {
-                "title": "Pertanyaan yang Sering Diajukan",
-                "q1": {
-                    "question": "Apa yang dilakukan Kalkulator Tingkat Engagement TikTok?",
-                    "answer": "Ini menghitung seberapa aktif pengguna berinteraksi dengan konten TikTok Anda menggunakan suka, komentar, bagikan, dan pengikut."
-                },
-                "q2": {
-                    "question": "Apakah alat ini gratis digunakan?",
-                    "answer": "Ya, kalkulator sepenuhnya gratis dan tidak memerlukan pendaftaran."
-                },
-                "q3": {
-                    "question": "Seberapa sering saya harus memeriksa tingkat engagement saya?",
-                    "answer": "Periksa secara mingguan atau bulanan untuk melacak tren kinerja secara akurat."
-                },
-                "q4": {
-                    "question": "Bisakah merek menggunakannya untuk pemilihan influencer?",
-                    "answer": "Ya, merek menggunakan tingkat engagement untuk mengevaluasi kualitas influencer dan keaslian audiens."
-                },
-                "q5": {
-                    "question": "Apa yang dianggap sebagai tingkat engagement yang sangat baik?",
-                    "answer": "Tingkat engagement di atas 10% dianggap sangat baik di TikTok."
-                }
-            }
-        }
-    },
-    "cpmCalculator": {
-        "title": "Kalkulator CPM TikTok",
-        "subtitle": "Hitung biaya per 1.000 tayangan untuk iklan TikTok. Kalkulator CPM gratis untuk pengiklan.",
-        "totalCost": "Total Biaya Iklan:",
-        "impressions": "Jumlah Tayangan:",
-        "industry": "Pilih Industri (opsional)",
-        "country": "Pilih Negara (opsional)",
-        "channel": "Pilih Saluran (opsional)",
-        "currency": "Mata Uang",
-        "calculate": "Hitung CPM",
-        "calculatedCpm": "CPM TAKSIRAN",
-        "costPerThousand": "Biaya per 1.000 tayangan",
-        "placeholderCost": "Masukkan total biaya",
-        "placeholderImpressions": "Masukkan tayangan",
-        "content": {
-            "whatIsTikTokCPM": {
-                "title": "Apa itu TikTok CPM dan Mengapa Penting?",
-                "description": "TikTok CPM adalah singkatan dari Cost Per Mille, yang berarti biaya yang dibayar pengiklan untuk setiap 1.000 tayangan di TikTok. Tayangan dihitung setiap kali iklan atau konten promosi Anda ditampilkan kepada pengguna. CPM penting karena membantu kreator, merek, dan bisnis memahami efisiensi biaya jangkauan mereka. CPM yang dioptimalkan dengan baik berarti Anda menjangkau lebih banyak orang sambil menghabiskan lebih sedikit, yang secara langsung mempengaruhi kinerja dan profitabilitas kampanye."
-            },
-            "relatedTools": {
-                "title": "Alat Terkait",
-                "moneyCalculator": "Gunakan Kalkulator Uang TikTok kami untuk mendapatkan perkiraan rentang penghasilan berdasarkan jumlah pengikut, tayangan video, dan engagement keseluruhan Anda. Ini membantu kreator memahami berapa nilai konten mereka sebelum bekerja dengan merek.",
-                "engagementCalculator": "Untuk mengevaluasi seberapa baik konten Anda terhubung dengan audiens, coba Kalkulator Engagement TikTok kami. Alat ini menganalisis suka, komentar, bagikan, dan tayangan untuk menunjukkan seberapa aktif pengguna berinteraksi dengan video Anda—faktor penting yang secara langsung mempengaruhi CPM dan kinerja iklan."
-            },
-            "howItHelps": {
-                "title": "Kalkulator CPM TikTok: Bagaimana Ini Membantu Kreator dan Merek",
-                "description": "Kalkulator CPM TikTok membantu pengguna memperkirakan biaya iklan sebelum menjalankan kampanye.",
-                "forCreators": "Untuk kreator: Ini menunjukkan seberapa berharga audiens mereka bagi pengiklan.",
-                "forBrands": "Untuk merek: Ini membantu merencanakan anggaran, membandingkan kinerja kampanye, dan memutuskan apakah iklan TikTok memberikan nilai yang baik dibandingkan dengan platform lain."
-            },
-            "howItWorks": {
-                "title": "Bagaimana Kalkulator CPM TikTok Benar-Benar Bekerja",
-                "description": "Kalkulator bekerja dengan mengambil dua input dasar:",
-                "input1": "Total pengeluaran iklan",
-                "input2": "Total tayangan",
-                "conclusion": "Menggunakan nilai-nilai ini, ini menghitung berapa banyak yang Anda bayar untuk menjangkau 1.000 pengguna. Ini memberikan gambaran yang jelas tentang efisiensi jangkauan dan membantu pengiklan mengontrol pengeluaran tanpa menebak."
-            },
-            "formula": {
-                "title": "Rumus CPM TikTok Dijelaskan dalam Istilah Sederhana",
-                "equation": "CPM = (Total Pengeluaran Iklan ÷ Total Tayangan) × 1000",
-                "description": "Dengan kata sederhana, ini menunjukkan berapa banyak uang yang Anda habiskan untuk menampilkan konten Anda di depan 1.000 orang."
-            },
-            "stepByStep": {
-                "title": "Menghitung CPM TikTok Langkah demi Langkah",
-                "step1": "Catat total biaya iklan Anda",
-                "step2": "Periksa total tayangan yang diterima iklan Anda",
-                "step3": "Bagi biaya dengan tayangan",
-                "step4": "Kalikan hasilnya dengan 1.000",
-                "conclusion": "Perhitungan langkah demi langkah ini menghilangkan kebingungan dan membantu Anda melacak efisiensi iklan dengan jelas."
-            },
-            "lowOrHigh": {
-                "title": "Apa yang Dianggap CPM TikTok Rendah atau Tinggi?",
-                "low": "CPM rendah menunjukkan kinerja yang kuat, targeting yang baik, dan konten yang menarik",
-                "high": "CPM tinggi menunjukkan targeting yang buruk, engagement yang lemah, atau persaingan yang tinggi",
-                "conclusion": "Tidak ada yang permanen—CPM dapat membaik dengan strategi dan optimasi yang lebih baik."
-            },
-            "averageRates": {
-                "title": "Tarif CPM TikTok Rata-Rata dan Tolok Ukur",
-                "description": "Tarif CPM TikTok tidak tetap. Mereka bervariasi berdasarkan tujuan kampanye, lokasi audiens, persaingan industri, dan presisi targeting. Namun, berdasarkan pola periklanan umum, tolok ukur berikut memberikan gambaran realistis tentang apa yang dapat diharapkan pengiklan dan kreator:",
-                "table": {
-                    "campaignObjective": "Tujuan Kampanye",
-                    "estimatedCPM": "CPM TikTok Taksiran (USD)",
-                    "brandAwareness": "Kampanye Kesadaran Merek",
-                    "brandAwarenessCPM": "$1.20 – $3.50",
-                    "trafficClicks": "Lalu Lintas & Klik Situs Web",
-                    "trafficClicksCPM": "$3.00 – $6.50",
-                    "appInstalls": "Instalasi Aplikasi & Generasi Lead",
-                    "appInstallsCPM": "$4.50 – $8.00",
-                    "salesConversion": "Kampanye Penjualan & Konversi",
-                    "salesConversionCPM": "$6.00 – $12.00",
-                    "influencerPromotions": "Promosi Influencer & Kreator",
-                    "influencerPromotionsCPM": "$7.00 – $14.00"
-                },
-                "conclusion": "CPM yang lebih rendah biasanya terlihat dalam kampanye kesadaran luas dan niche yang kurang kompetitif, sementara CPM yang lebih tinggi umum terjadi pada iklan yang fokus pada konversi dan industri dengan permintaan tinggi. Targeting geografis juga memainkan peran utama—iklan yang ditampilkan di negara Tier-1 umumnya lebih mahal daripada yang ada di pasar berkembang. Memantau CPM Anda secara teratur memungkinkan Anda mengoptimalkan targeting, mengontrol pengeluaran iklan, dan meningkatkan profitabilitas kampanye secara keseluruhan."
-            },
-            "forUsers": {
-                "title": "CPM TikTok untuk Influencer, Merek, dan Bisnis",
-                "influencers": "Influencer menggunakan CPM untuk membuktikan nilai audiens kepada merek",
-                "brands": "Merek menggunakan CPM untuk mengukur efisiensi iklan",
-                "businesses": "Bisnis mengandalkan CPM untuk mengoptimalkan anggaran pemasaran",
-                "conclusion": "Setiap kelompok mendapat manfaat dengan memahami bagaimana tayangan diterjemahkan menjadi biaya dan pengembalian nyata."
-            },
-            "comparison": {
-                "title": "CPM TikTok Dibandingkan dengan Platform Sosial Lainnya",
-                "description": "Dibandingkan dengan platform seperti Facebook, Instagram, dan YouTube, TikTok sering menawarkan CPM yang lebih rendah dengan jangkauan organik yang lebih tinggi. Ini membuat TikTok menarik bagi merek yang mencari visibilitas yang hemat biaya, terutama untuk audiens yang lebih muda dan didorong tren."
-            },
-            "improveCPM": {
-                "title": "Cara Terbukti untuk Meningkatkan CPM TikTok Anda",
-                "intro": "Anda dapat meningkatkan CPM TikTok Anda dengan:",
-                "tip1": "Membuat konten yang menarik dan selaras dengan tren",
-                "tip2": "Menargetkan demografi audiens yang tepat",
-                "tip3": "Menguji format iklan yang berbeda",
-                "tip4": "Meningkatkan tingkat engagement",
-                "tip5": "Mengoptimalkan waktu posting",
-                "conclusion": "Ketika engagement meningkat, TikTok memberi penghargaan pada iklan dengan jangkauan yang lebih baik dengan biaya lebih rendah."
-            },
-            "faq": {
-                "title": "Pertanyaan yang Sering Diajukan",
-                "q1": {
-                    "question": "Seberapa akurat Kalkulator CPM TikTok?",
-                    "answer": "Kalkulator CPM TikTok memberikan perkiraan yang dekat berdasarkan pengeluaran iklan dan tayangan Anda. Meskipun ini bukan jumlah penagihan yang tepat, ini memberikan tolok ukur yang dapat diandalkan untuk memahami dan membandingkan biaya kampanye."
-                },
-                "q2": {
-                    "question": "Bisakah saya menggunakannya untuk industri apa pun?",
-                    "answer": "Ya, kalkulator bekerja untuk semua industri. Namun, hasil CPM dapat bervariasi tergantung pada persaingan niche, permintaan audiens, dan strategi targeting."
-                },
-                "q3": {
-                    "question": "Apakah CPM berbeda untuk influencer dan merek?",
-                    "answer": "Ya, CPM sering berbeda. Influencer mungkin melihat CPM yang lebih tinggi karena kepercayaan dan engagement audiens, sementara merek yang menjalankan iklan skala besar dapat mencapai CPM yang lebih rendah dengan targeting yang dioptimalkan."
-                },
-                "q4": {
-                    "question": "Apa yang mempengaruhi CPM di TikTok?",
-                    "answer": "CPM dipengaruhi oleh lokasi audiens, tujuan iklan, persaingan, kualitas konten, akurasi targeting, dan tingkat engagement keseluruhan."
-                },
-                "q5": {
-                    "question": "Bagaimana CPM membantu dalam perencanaan anggaran?",
-                    "answer": "CPM membantu memperkirakan berapa banyak anggaran yang dibutuhkan untuk menjangkau ukuran audiens tertentu. Ini memungkinkan pengiklan untuk merencanakan kampanye, mengontrol pengeluaran, dan menyesuaikan strategi untuk hasil yang lebih baik."
-                }
-            }
-        }
-    },
-    "contact": {
-        "title": "Hubungi Kami",
-        "email": "tikcalculator@proton.me"
-    },
-    "privacy": {
-        "title": "Kebijakan Privasi",
-        "intro": "Di TikCalculator, privasi Anda penting bagi kami. Kebijakan Privasi ini menjelaskan bagaimana kami menangani informasi saat Anda menggunakan alat estimasi penghasilan TikTok kami. Tujuan kami adalah menjaga semuanya transparan, sederhana, dan dapat dipercaya.",
-        "infoWeCollect": {
-            "title": "Informasi yang Kami Kumpulkan",
-            "description": "Kami tidak meminta atau mengumpulkan informasi pribadi seperti nama, alamat email, nomor telepon, atau kredensial login Anda. Anda dapat menggunakan TikCalculator secara bebas tanpa membuat akun atau membagikan detail pribadi."
-        },
-        "autoCollected": {
-            "title": "Informasi yang Dikumpulkan Secara Otomatis",
-            "description1": "Saat Anda mengunjungi situs web kami, informasi teknis tertentu mungkin dikumpulkan secara otomatis. Ini dapat mencakup jenis browser, informasi perangkat, alamat IP, dan data penggunaan. Informasi ini membantu kami memahami bagaimana alat digunakan dan meningkatkan kinerja.",
-            "description2": "Ini tidak mengidentifikasi Anda secara pribadi."
-        },
-        "cookies": {
-            "title": "Penggunaan Cookie",
-            "description1": "TikCalculator dapat menggunakan cookie atau teknologi serupa untuk meningkatkan pengalaman pengguna, menganalisis lalu lintas, dan mengoptimalkan fungsionalitas. Cookie membantu kami memahami bagaimana pengunjung berinteraksi dengan situs web.",
-            "description2": "Anda dapat menonaktifkan cookie kapan saja melalui pengaturan browser Anda jika Anda mau."
-        },
-        "howWeUseInfo": {
-            "title": "Bagaimana Kami Menggunakan Informasi",
-            "description": "Data non-pribadi yang dikumpulkan hanya digunakan untuk:",
-            "item1": "Meningkatkan kinerja situs web",
-            "item2": "Meningkatkan pengalaman pengguna",
-            "item3": "Menganalisis tren penggunaan",
-            "item4": "Mempertahankan keamanan dan stabilitas",
-            "note": "Kami tidak pernah menjual, memperdagangkan, atau menyalahgunakan data yang dikumpulkan."
-        },
-        "thirdPartyLinks": {
-            "title": "Tautan Pihak Ketiga",
-            "description": "Situs web kami mungkin menyertakan tautan ke alat atau situs web pihak ketiga. Kami tidak bertanggung jawab atas konten atau praktik privasi mereka. Kami merekomendasikan untuk meninjau kebijakan privasi mereka sebelum menggunakan layanan eksternal apa pun."
-        },
-        "dataSecurity": {
-            "title": "Keamanan Data",
-            "description": "Kami menggunakan langkah-langkah keamanan standar untuk melindungi situs web dan sistemnya. Meskipun tidak ada platform online yang dapat menjamin keamanan lengkap, kami mengambil langkah-langkah yang wajar untuk mencegah akses tidak sah atau penyalahgunaan."
-        },
-        "policyUpdates": {
-            "title": "Pembaruan Kebijakan",
-            "description": "Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu untuk mencerminkan perubahan dalam fungsionalitas atau persyaratan hukum. Setiap pembaruan akan diposting di halaman ini. Penggunaan TikCalculator yang berkelanjutan berarti Anda menerima kebijakan yang diperbarui."
-        },
-        "contactUs": {
-            "title": "Hubungi Kami",
-            "description": "Jika Anda memiliki pertanyaan tentang Kebijakan Privasi kami, jangan ragu untuk menghubungi kami melalui situs web kami."
-        }
-    },
-    "terms": {
-        "title": "Syarat dan Ketentuan",
-        "intro": "Selamat datang di TikCalculator. Harap luangkan waktu sejenak untuk membaca Syarat dan Ketentuan ini dengan seksama sebelum menggunakan alat estimasi penghasilan TikTok kami. Dengan mengakses atau menggunakan TikCalculator, Anda setuju untuk mengikuti ketentuan ini. Jika Anda tidak setuju, harap hentikan penggunaan layanan.",
-        "acceptance": {
-            "title": "Penerimaan Syarat",
-            "description": "Dengan menggunakan TikCalculator, Anda mengonfirmasi bahwa Anda memahami dan menerima Syarat dan Ketentuan ini. Penggunaan berkelanjutan situs web berarti Anda setuju dengan setiap pembaruan yang dibuat pada ketentuan ini di masa depan."
-        },
-        "purposeOfService": {
-            "title": "Tujuan Layanan",
-            "description1": "TikCalculator dirancang untuk menyediakan estimasi penghasilan TikTok berdasarkan data akun yang tersedia untuk umum seperti pengikut, engagement, dan kinerja video.",
-            "description2": "Semua hasil hanya bersifat informatif dan tidak boleh dianggap sebagai nasihat keuangan, hukum, atau profesional.",
-            "description3": "Anda bertanggung jawab atas cara Anda menggunakan informasi yang disediakan oleh alat ini."
-        },
-        "userResponsibility": {
-            "title": "Tanggung Jawab Pengguna",
-            "description1": "Anda setuju untuk menggunakan TikCalculator secara bertanggung jawab dan hanya untuk tujuan yang sah.",
-            "description2": "Anda tidak boleh:",
-            "item1": "Menyalahgunakan alat",
-            "item2": "Mencoba memanipulasi hasil",
-            "item3": "Menggunakan layanan untuk aktivitas penipuan atau menyesatkan",
-            "description3": "Setiap tindakan yang diambil berdasarkan hasil kalkulator sepenuhnya menjadi tanggung jawab Anda."
-        },
-        "intellectualPropertyRights": {
-            "title": "Hak Kekayaan Intelektual",
-            "description1": "Semua konten di TikCalculator — termasuk teks, desain, logo, grafik, dan perangkat lunak — adalah milik TikCalculator dan dilindungi oleh undang-undang hak cipta dan kekayaan intelektual yang berlaku.",
-            "description2": "Anda tidak boleh menyalin, mereproduksi, mendistribusikan, atau memodifikasi bagian mana pun dari situs web tanpa izin tertulis sebelumnya."
-        },
-        "accuracyDisclaimer": {
-            "title": "Penyangkalan Akurasi",
-            "description1": "Meskipun kami berusaha memberikan estimasi yang realistis dan diperbarui, kami tidak menjamin bahwa perhitungan selalu akurat atau lengkap. Penghasilan TikTok dapat bervariasi karena berbagai faktor di luar kendali kami.",
-            "description2": "TikCalculator disediakan \"sebagaimana adanya\" dan \"sebagaimana tersedia\"."
-        },
-        "limitationOfLiability": {
-            "title": "Pembatasan Tanggung Jawab",
-            "description1": "TikCalculator tidak akan bertanggung jawab atas kerusakan langsung, tidak langsung, atau insidental yang diakibatkan dari penggunaan alat kami atau ketergantungan pada estimasinya.",
-            "description2": "Gunakan layanan atas kebijakan dan risiko Anda sendiri."
-        },
-        "thirdPartyLinks": {
-            "title": "Tautan Pihak Ketiga",
-            "description": "Situs web kami mungkin menyertakan tautan ke situs web pihak ketiga untuk sumber daya atau informasi tambahan. Kami tidak mengontrol atau mengambil tanggung jawab atas konten, kebijakan, atau praktik situs eksternal ini."
-        },
-        "terminationOfAccess": {
-            "title": "Penghentian Akses",
-            "description": "Kami berhak menangguhkan atau menghentikan akses ke TikCalculator kapan saja, tanpa pemberitahuan, jika Syarat dan Ketentuan ini dilanggar atau karena alasan operasional."
-        },
-        "changesToTerms": {
-            "title": "Perubahan pada Ketentuan",
-            "description1": "TikCalculator dapat memperbarui Syarat dan Ketentuan ini kapan saja. Setiap perubahan akan diposting di halaman ini, dan penggunaan layanan yang berkelanjutan menunjukkan penerimaan ketentuan yang diperbarui.",
-            "description2": ""
-        },
-        "contactUs": {
-            "title": "Hubungi Kami",
-            "description": "Jika Anda memiliki pertanyaan tentang Syarat dan Ketentuan kami, jangan ragu untuk menghubungi kami melalui situs web kami."
-        }
+      "title": "Kalkulator Tingkat Engagement TikTok | KalkulatorTik",
+      "description": "Hitung tingkat engagement TikTok instan berdasarkan suka, pengikut, dan jumlah video untuk mengevaluasi performa konten."
     },
     "about": {
-        "title": "Tentang Kami – Kalkulator Uang TikTok",
-        "welcome": "Selamat datang di Kalkulator Uang TikTok, platform utama untuk kreator, influencer, dan bisnis yang ingin memahami kinerja TikTok dan potensi penghasilan mereka. Kami menyederhanakan proses menganalisis akun Anda sehingga Anda dapat membuat keputusan yang lebih cerdas, menumbuhkan audiens, dan memaksimalkan peluang Anda di TikTok.",
-        "mission": {
-            "title": "Misi Kami",
-            "description": "Kami bertujuan untuk memberdayakan pengguna TikTok dengan wawasan yang jelas, akurat, dan dapat ditindaklanjuti. Baik Anda adalah kreator yang sedang naik, influencer, atau merek, alat kami membantu Anda mengukur engagement, melacak pertumbuhan, dan memperkirakan penghasilan, memberi Anda kepercayaan untuk merencanakan konten dan kampanye Anda secara efektif."
-        },
-        "whatWeOffer": {
-            "title": "Apa yang Kami Tawarkan",
-            "engagementCalculator": {
-                "title": "Kalkulator Engagement",
-                "description": "Ukur dengan cepat bagaimana audiens Anda berinteraksi dengan konten Anda untuk memahami postingan mana yang berkinerja terbaik."
-            },
-            "earningsCalculator": {
-                "title": "Kalkulator Penghasilan",
-                "description": "Perkirakan potensi pendapatan Anda berdasarkan tayangan, pengikut, dan engagement, sehingga Anda dapat merencanakan kolaborasi dan strategi monetisasi."
-            },
-            "guidesTips": {
-                "title": "Panduan & Tips",
-                "description": "Akses saran ahli tentang strategi TikTok, pembuatan konten, dan engagement audiens untuk meningkatkan kinerja Anda secara konsisten."
-            }
-        },
-        "ourTeam": {
-            "title": "Tim Kami",
-            "description": "Tim kami terdiri dari ahli media sosial, analis data, dan penggemar konten yang terus mempelajari tren dan analitik TikTok. Kami menggabungkan pengetahuan teknis dengan wawasan praktis untuk menyediakan alat yang mudah digunakan, akurat, dan relevan."
-        },
-        "joinUs": {
-            "title": "Bergabunglah dengan Kami",
-            "description": "TikTok berkembang pesat, dan peluang berkembang setiap hari. Dengan Kalkulator Uang TikTok, Anda dapat melacak, mengukur, dan mengoptimalkan kehadiran TikTok Anda seperti seorang profesional. Kami di sini untuk mendukung perjalanan Anda dan membantu Anda sukses dengan kejelasan dan kepercayaan diri.",
-            "thankYou": "Terima kasih telah mempercayai Kalkulator Uang TikTok—mari kita tumbuh, terlibat, dan menghasilkan bersama!"
-        }
+      "title": "Tentang KalkulatorTik | Kalkulator Uang TikTok Tepercaya",
+      "description": "Kenali KalkulatorTik, platform analitik kreator untuk memperkirakan nilai sponsor, keterlibatan audiens, dan tolok ukur TikTok."
     },
     "faq": {
-        "title": "FAQ",
-        "subtitle": "Cara kerjanya",
-        "questions": {
-            "q1": "Bagaimana perkiraan dihitung?",
-            "a1": "Kami menggunakan (tayangan/1000) * CPM * (1 - bagian platform) * pengganda niche, kemudian dikalikan dengan video per bulan.",
-            "q2": "Dari mana nilai CPM berasal?",
-            "a2": "CPM preset diisi untuk negara pilihan (AS, Inggris, IN, PK). Anda dapat menggantinya dengan CPM Anda sendiri.",
-            "q3": "Apakah data saya disimpan?",
-            "a3": "Kami hanya menyimpan input dan hasil untuk menghasilkan tautan yang dapat dibagikan. Tidak diperlukan login.",
-            "q4": "Bisakah saya mengubah mata uang?",
-            "a4": "Saat ini kami mengasumsikan format USD. Anda dapat mencatat ini dalam tautan yang dibagikan."
-        }
+      "title": "FAQ Monetisasi & Kalkulator Uang TikTok | KalkulatorTik",
+      "description": "Temukan jawaban tepercaya mengenai kelayakan Creator Rewards, tayangan memenuhi syarat, dan cara kerja kalkulator KalkulatorTik."
     },
-    "infoSection": {
-        "whatIsTikTokMoneyCalculator": "Apa itu Kalkulator Uang TikTok?",
-        "paragraph1": "Kalkulator Uang TikTok adalah alat online yang memperkirakan berapa banyak akun TikTok dapat menghasilkan. Ini menganalisis data akun publik, seperti jumlah pengikut, tingkat engagement, dan rata-rata tayangan video, untuk menghasilkan kisaran penghasilan yang realistis. Alih-alih menebak pendapatan, kalkulator memberikan wawasan cepat yang membantu kreator, merek, dan pemasar membuat keputusan yang tepat, terutama saat menggunakan alat seperti TikCalculator untuk mengevaluasi kinerja akun.",
-        "paragraph2": "Alat ini dirancang untuk kesederhanaan. Anda tidak memerlukan pengetahuan teknis, perangkat lunak berbayar, atau akses akun. Memasukkan nama pengguna TikTok sudah cukup untuk memulai, membuat estimasi penghasilan dapat diakses oleh semua orang.",
-        "howItWorksHeading": "Cara Kerja Kalkulator Penghasilan TikTok",
-        "howItWorksParagraph1": "Kalkulator Uang TikTok bekerja dengan menggunakan metrik TikTok yang tersedia untuk umum dan menerapkan formula penghasilan berbasis industri. Ini mengevaluasi jumlah pengikut, tingkat engagement, rata-rata tayangan video, dan konsistensi kinerja konten untuk menilai potensi penghasilan, mirip dengan cara TikCalculator memproses data publik untuk menghasilkan estimasi.",
-        "howItWorksParagraph2": "Berdasarkan sinyal-sinyal ini, kalkulator memperkirakan berapa banyak kreator dapat menghasilkan per posting atau kolaborasi merek. Hasilnya ditampilkan sebagai kisaran penghasilan daripada jumlah tetap, membantu pengguna memahami ekspektasi yang realistis daripada klaim yang berlebihan.",
-        "howToCheckHeading": "Cara Memeriksa Penghasilan TikTok Menggunakan Kalkulator",
-        "howToCheckIntro": "Memeriksa penghasilan TikTok dengan kalkulator cepat dan ramah untuk pemula.",
-        "howToCheckPoint1": "Pertama, salin nama pengguna TikTok yang ingin Anda analisis.",
-        "howToCheckPoint2": "Selanjutnya, tempelkan nama pengguna ke dalam alat kalkulator dan klik tombol hitung.",
-        "howToCheckPoint3": "Dalam hitungan detik, alat menampilkan perkiraan penghasilan per posting dalam format yang jelas dan mudah dibaca, baik Anda menggunakan TikCalculator atau alat estimasi penghasilan serupa.",
-        "howToCheckPoint4": "Tidak diperlukan login, unduhan, atau instalasi.",
-        "howToCheckPoint5": "Kalkulator bekerja langsung di browser pada perangkat seluler, tablet, dan desktop, memudahkan akses kapan saja.",
-        "whyPeopleUseHeading": "Mengapa Orang Menggunakan Kalkulator Uang TikTok",
-        "whyPeopleUseParagraph1": "Orang menggunakan Kalkulator Uang TikTok untuk memahami nilai akun tanpa kebingungan. Kreator mengandalkannya untuk memperkirakan nilai mereka sebelum menegosiasikan kesepakatan merek, sementara merek menggunakannya untuk merencanakan anggaran influencer dan membandingkan kreator berdasarkan engagement.",
-        "whyPeopleUseParagraph2": "Alih-alih mengandalkan asumsi atau angka yang menyesatkan, alat seperti TikCalculator membantu pengguna melihat perkiraan penghasilan yang realistis berdasarkan data kinerja aktual. Ini menghemat waktu dan menghilangkan tebakan dari perencanaan monetisasi.",
-        "earningsPotentialHeading": "Berapa Banyak yang Bisa Anda Hasilkan di TikTok?",
-        "earningsPotentialIntro": "Penghasilan TikTok bervariasi dari kreator ke kreator. Beberapa mendapatkan pendapatan sampingan kecil, sementara yang lain mendapatkan kemitraan merek dengan bayaran tinggi. Potensi penghasilan Anda bergantung pada beberapa faktor penting yang bekerja bersama:",
-        "followerCountLabel": "Jumlah Pengikut:",
-        "followerCountDescription": "Audiens yang lebih besar meningkatkan visibilitas, yang membuat merek lebih tertarik pada promosi berbayar dan kolaborasi.",
-        "engagementRateLabel": "Tingkat Engagement:",
-        "engagementRateDescription": "Suka, komentar, bagikan, dan tayangan menunjukkan seberapa aktif dan setia audiens. Engagement yang kuat sering kali lebih penting daripada jumlah pengikut saja.",
-        "monetizationMethodsLabel": "Metode Monetisasi:",
-        "monetizationMethodsDescription": "Penghasilan dapat berasal dari kesepakatan merek, postingan sponsor, pembayaran dana kreator, hadiah langsung, pemasaran afiliasi, dan penjualan merchandise.",
-        "brandPartnershipsLabel": "Kemitraan Merek:",
-        "brandPartnershipsDescription": "Kemitraan merek jangka panjang atau eksklusif biasanya membayar lebih dari postingan sponsor satu kali.",
-        "audienceLocationLabel": "Lokasi Audiens:",
-        "audienceLocationDescription": "Penonton dari wilayah dengan nilai iklan yang lebih tinggi dapat berdampak positif pada penghasilan, terutama untuk pembayaran berbasis platform.",
-        "earningsPotentialConclusion": "Karena penghasilan berbeda untuk setiap kreator, kalkulator membantu memperkirakan rentang pendapatan daripada menjanjikan angka pasti. Kreator dengan engagement yang kuat dan audiens besar dapat menghasilkan mulai dari beberapa ratus hingga beberapa ribu dolar per video bermerek.",
-        "earningsByFollowersHeading": "Berapa Banyak yang Dibayar TikTok untuk 1.000 Pengikut?",
-        "earningsByFollowersIntro": "TikTok tidak membayar kreator secara langsung berdasarkan jumlah pengikut, tetapi perkiraan industri memberikan referensi penghasilan umum:",
-        "range1Label": "1.000–10.000 pengikut:",
-        "range1Value": "$5–$50 per posting",
-        "range2Label": "10.000–100.000 pengikut:",
-        "range2Value": "$60–$90 per posting",
-        "range3Label": "100.000–500.000 pengikut:",
-        "range3Value": "$200–$400 per posting",
-        "range4Label": "500.000–1 juta pengikut:",
-        "range4Value": "$400–$600 per posting",
-        "range5Label": "Lebih dari 1 juta pengikut:",
-        "range5Value": "$750–$1000+ per posting",
-        "earningsByFollowersConclusion": "Penghasilan aktual sangat bergantung pada tingkat engagement, niche konten, dan permintaan merek.",
-        "boostEarningsHeading": "Cara Meningkatkan Penghasilan TikTok Anda",
-        "boostEarningsIntro": "Meningkatkan pendapatan TikTok memerlukan strategi dan konsistensi. Kreator yang sukses fokus pada kebiasaan yang menarik baik penonton maupun merek:",
-        "stayConsistentLabel": "Tetap Konsisten:",
-        "stayConsistentDescription": "Posting secara teratur meningkatkan visibilitas dan menjaga audiens tetap terlibat.",
-        "diversifyContentLabel": "Diversifikasi Konten:",
-        "diversifyContentDescription": "Bereksperimen dengan format sambil tetap dalam niche membantu menjangkau audiens baru.",
-        "engageWithFollowersLabel": "Berinteraksi dengan Pengikut:",
-        "engageWithFollowersDescription": "Membalas komentar dan mendorong interaksi membangun kepercayaan dan meningkatkan tingkat engagement.",
-        "followTrendsLabel": "Ikuti Tren:",
-        "followTrendsDescription": "Suara dan tantangan yang sedang tren dapat dengan cepat meningkatkan jangkauan dan keterlihatan.",
-        "collaborateWithOthersLabel": "Berkolaborasi dengan Orang Lain:",
-        "collaborateWithOthersDescription": "Bekerja dengan kreator lain memperluas eksposur dan membantu menumbuhkan jumlah pengikut.",
-        "boostEarningsConclusion": "Langkah-langkah ini memperkuat pertumbuhan jangka panjang dan membuka lebih banyak peluang monetisasi seiring waktu.",
-        "faqHeading": "Pertanyaan yang Sering Diajukan",
-        "faq1Question": "Bagaimana saya bisa memperkirakan penghasilan TikTok saya dengan TikCalculator?",
-        "faq1Answer": "Anda dapat memperkirakan penghasilan TikTok Anda dengan memasukkan nama pengguna akun TikTok publik apa pun ke TikCalculator. Alat ini menganalisis data yang tersedia seperti jumlah pengikut dan tingkat engagement, kemudian menampilkan kisaran penghasilan perkiraan per posting.",
-        "faq2Question": "Apakah saya perlu membayar untuk menggunakan kalkulator uang TikTok?",
-        "faq2Answer": "Tidak, TikCalculator sepenuhnya gratis digunakan. Anda dapat memeriksa perkiraan penghasilan untuk beberapa akun TikTok tanpa membayar biaya berlangganan atau penggunaan apa pun.",
-        "faq3Question": "Apakah saya perlu menginstal ekstensi untuk menggunakan kalkulator uang TikTok?",
-        "faq3Answer": "Tidak perlu instalasi. TikCalculator bekerja langsung di browser web Anda, dan Anda hanya memerlukan nama pengguna TikTok untuk mendapatkan perkiraan penghasilan.",
-        "faq4Question": "Apakah aman menggunakan kalkulator uang TikTok?",
-        "faq4Answer": "Ya, TikCalculator aman digunakan. Ini tidak memerlukan detail login TikTok dan tidak menyimpan informasi pribadi atau terkait akun.",
-        "faq5Question": "Apakah TikTok bagus untuk menghasilkan uang?",
-        "faq5Answer": "Ya, TikTok bisa menjadi platform yang bagus untuk menghasilkan uang jika Anda memiliki konten yang menarik dan audiens yang aktif. Banyak kreator menghasilkan melalui kemitraan merek, hadiah langsung, dan TikTok Creator Fund.",
-        "faq6Question": "Bagaimana TikTok membayar kreatornya?",
-        "faq6Answer": "TikTok membayar kreator melalui berbagai metode, termasuk Creator Fund, hadiah streaming langsung, kolaborasi merek, dan konten sponsor yang diatur langsung dengan perusahaan.",
-        "faq7Question": "Bisakah siapa saja menghasilkan uang dari TikTok?",
-        "faq7Answer": "Ya, siapa pun berpotensi menghasilkan uang dari TikTok, tetapi kesuksesan bergantung pada posting yang konsisten, kualitas konten, engagement audiens, dan pemilihan niche.",
-        "faq8Question": "Seberapa sering saya harus menggunakan Kalkulator TikTok?",
-        "faq8Answer": "Anda harus menggunakan Kalkulator TikTok setiap kali ada perubahan yang nyata dalam jumlah pengikut atau engagement Anda, atau saat merencanakan kesepakatan merek dan sponsor.",
-        "faq9Question": "Faktor apa yang bisa mempengaruhi penghasilan aktual saya di TikTok?",
-        "faq9Answer": "Penghasilan aktual bergantung pada faktor-faktor seperti jumlah pengikut, tingkat engagement, niche konten, lokasi audiens, konsistensi posting, dan jenis monetisasi yang digunakan.",
-        "faq10Question": "Bagaimana saya bisa menarik penghasilan dari TikCalculator?",
-        "faq10Answer": "TikCalculator tidak memproses pembayaran atau penarikan. Ini hanya menyediakan perkiraan penghasilan, sementara pembayaran aktual ditangani langsung oleh TikTok atau melalui perjanjian merek."
+    "contact": {
+      "title": "Hubungi KalkulatorTik – Dukungan & Informasi",
+      "description": "Ada pertanyaan atau masukan mengenai KalkulatorTik? Lihat status saluran kontak kami untuk kreator dan brand."
+    },
+    "privacy": {
+      "title": "Kebijakan Privasi | KalkulatorTik",
+      "description": "Baca Kebijakan Privasi KalkulatorTik mengenai pemrosesan data publik, cookie, dan analitik situs secara transparan."
+    },
+    "terms": {
+      "title": "Syarat & Ketentuan | KalkulatorTik",
+      "description": "Tinjau Syarat & Ketentuan penggunaan layanan, batasan estimasi informasional, dan penafian KalkulatorTik."
+    },
+    "calculator": {
+      "title": "Kalkulator Pendapatan TikTok – Estimasi Data Langsung",
+      "description": "Periksa estimasi pendapatan TikTok berdasarkan tayangan, engagement, dan penyegaran cache profil."
+    },
+    "notFound": {
+      "title": "404 — Halaman Tidak Ditemukan | KalkulatorTik"
     }
+  }
 }

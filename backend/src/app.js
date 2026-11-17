@@ -5,11 +5,14 @@ const rateLimit = require('express-rate-limit');
 const morgan = require('morgan');
 
 const calculatorRoutes = require('./routes/calculatorRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 const countryRoutes = require('./routes/countryRoutes');
 const savedCalcRoutes = require('./routes/savedCalcRoutes');
 const tiktokRoutes = require('./routes/tiktokRoutes');
 
 const app = express();
+// Respect X-Forwarded-For from Vercel Edge / /api proxy rewrite for accurate per-IP rate limiting
+app.set('trust proxy', 1);
 
 // CORS Configuration - UPDATED
 const allowedOrigins = [
@@ -111,6 +114,7 @@ app.get('/', (_req, res) => {
     endpoints: {
       health: '/api/v1/health',
       calculator: '/api/v1/calc',
+      contact: '/api/v1/contact',
       countries: '/api/v1/countries',
       tiktok: '/api/tiktok',
       savedCalculations: '/api/v1/saved-calcs'
@@ -124,12 +128,21 @@ app.get('/api/v1/health', (_req, res) =>
 );
 
 app.use('/api/v1/calc', calculatorRoutes);
+app.use('/api/v1/contact', contactRoutes);
 app.use('/api/v1/countries', countryRoutes);
 app.use('/api/v1', savedCalcRoutes);
 
 // TikTok route available under both /api and /api/v1 for compatibility
 app.use('/api', tiktokRoutes);
 app.use('/api/v1', tiktokRoutes);
+
+// Return JSON 404 for unknown API endpoints instead of Express default HTML
+app.use('/api', (req, res) => {
+  return res.status(404).json({
+    success: false,
+    error: `API endpoint not found: ${req.method} ${req.originalUrl}`,
+  });
+});
 
 app.use((err, _req, res, _next) => {
   // eslint-disable-next-line no-console

@@ -27,7 +27,14 @@ const LatestVideos = ({ videos = [] }) => {
               {video.cover ? (
                 <img
                   src={video.cover}
-                  alt="Video thumbnail"
+                  alt={
+                    video.title || video.desc
+                      ? `TikTok video thumbnail: ${video.title || video.desc}`
+                      : 'TikTok video thumbnail'
+                  }
+                  width="320"
+                  height="180"
+                  decoding="async"
                   className="h-full w-full object-cover"
                   loading="lazy"
                 />

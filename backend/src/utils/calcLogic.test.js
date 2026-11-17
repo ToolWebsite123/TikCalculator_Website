@@ -1,7 +1,7 @@
-const { calculateEarnings } = require('./calcLogic');
+const { calculateEarnings, calculateRevenue, MAX_CPM } = require('./calcLogic');
 
-describe('calculateEarnings (engagement-based views)', () => {
-  it('computes engagement and earnings correctly for callmegrand sample', () => {
+describe('calcLogic calculateEarnings', () => {
+  it('computes rounded engagement, applies 5% follower view floor, and caps CPM at $6', () => {
     const result = calculateEarnings({
       followers: 18_300_000,
       totalLikes: 484_800_000,
@@ -10,62 +10,49 @@ describe('calculateEarnings (engagement-based views)', () => {
       platformShare: 0.4,
     });
 
-    // avgLikes = 484,800,000 / 3,100 = 156,387.1
-    // engagement = 156,387.1 / 18,300,000 = 0.8545%
-    // views = followers * engagement = ~156,387
+    // avgLikes = 484,800,000 / 3,100 = 156,387.10
+    // engagementRate = roundTo2((156,387.0968 / 18,300,000) * 100) = 0.85
+    // views floored at 5% of followers = 915,000
+    // CPM clamped to MAX_CPM = 6
+    // earningAvg = (915,000 / 1000) * 6 * (1 - 0.4) = 3,294
     expect(result.avgLikes).toBeCloseTo(156387.1, 1);
-    expect(result.engagementRate).toBeCloseTo(0.8545, 3);
-    expect(result.views).toBeCloseTo(156387, -1);
-
-    // earnings = (views/1000) * cpm * (1 - platformShare)
-    // = (156,387/1000) * 20 * 0.6 ≈ 1,876.6
-    expect(result.earningPerVideo).toBeCloseTo(1876.6, 1);
-  });
-});
-const { calculateRevenue } = require('./calcLogic');
-
-describe('calculateRevenue', () => {
-  it('computes per-video and monthly earnings (verification A)', () => {
-    const result = calculateRevenue({
-      viewsPerVideo: 100000,
-      videosPerMonth: 8,
-      cpm: 5,
-      platformShare: 0.4,
+    expect(result.engagementRate).toBe(0.85);
+    expect(result.views).toBe(915_000);
+    expect(result.CPM).toBe(MAX_CPM);
+    expect(result.earningPerVideo).toBe(3294);
+    expect(result.earningsRange).toEqual({
+      min: result.earningsMin,
+      avg: result.earningPerVideo,
+      max: result.earningsMax,
     });
-    expect(result.perVideoGross).toBeCloseTo(500); // (100000/1000)*5
-    expect(result.perVideoNet).toBeCloseTo(300); // 500*(1-0.4)
-    expect(result.monthlyNet).toBeCloseTo(2400); // 300*8
   });
 
-  it('returns monthly 0 when videosPerMonth is 0', () => {
-    const result = calculateRevenue({
-      viewsPerVideo: 50000,
-      videosPerMonth: 0,
+  it('delegates calculateRevenue cleanly and handles invalid zeroed inputs', () => {
+    const zeroResult = calculateRevenue({
+      followers: 0,
+      totalLikes: 0,
+      totalVideos: 0,
       cpm: 4,
     });
-    expect(result.perVideoNet).toBeGreaterThan(0);
-    expect(result.monthlyNet).toBe(0);
+
+    expect(zeroResult.estimatedEarnings).toBe(0);
+    expect(zeroResult.earningPerVideo).toBe(0);
+    expect(zeroResult.error).toBe('Followers and totalVideos must be greater than zero');
   });
 
-  it('uses followers/likes fallback to estimate viewsPerVideo (verification B)', () => {
-    const result = calculateRevenue({
-      followers: 1_600_000,
-      likes: 80_500_000,
-      videosPerMonth: 30,
-      cpm: 20,
-      platformShare: 0.4,
-      avgViewsFactor: 0.1,
+  it('uses unfloored views when computed views fall between 5% and 50% of followers', () => {
+    const result = calculateEarnings({
+      followers: 100_000,
+      totalLikes: 2_000_000,
+      totalVideos: 100, // avgLikes = 20,000 -> engagementRate = 20%
+      cpm: 5,
+      platformShare: 0.35,
     });
-    // engagementRate = 80500000 / 1600000 * 100 = 5031.25%
-    // viewsPerVideo = followers * (engRate/100) * 0.1 = 1,600,000 * 50.3125 * 0.1 = 8,050,000
-    // thousands = 8050
-    // perVideoGross = 8050 * 20 = 161,000
-    // perVideoNet = 161,000 * 0.6 = 96,600
-    // monthlyNet = 96,600 * 30 = 2,898,000
-    expect(result.impressionsPerVideo).toBeCloseTo(8_050_000);
-    expect(result.perVideoGross).toBeCloseTo(161_000);
-    expect(result.perVideoNet).toBeCloseTo(96_600);
-    expect(result.monthlyNet).toBeCloseTo(2_898_000);
+
+    // views = 100,000 * 0.20 = 20,000 (within [5,000, 50,000])
+    expect(result.engagementRate).toBe(20);
+    expect(result.views).toBe(20_000);
+    // earning = (20,000 / 1000) * 5 * 0.65 = 65
+    expect(result.earningPerVideo).toBe(65);
   });
 });
-

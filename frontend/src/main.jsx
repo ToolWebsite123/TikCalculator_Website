@@ -1,44 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './i18n'; // Initialize i18n
-import { ThemeProvider } from './contexts/ThemeContext';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Calculator from './pages/Calculator';
-import About from './pages/About';
-import Faq from './pages/Faq';
-import Contact from './pages/Contact';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsAndConditions from './pages/TermsAndConditions';
-import TikTokCPMCalculator from './pages/TikTokCPMCalculator';
-import TikTokEngagementCalculator from './pages/TikTokEngagementCalculator';
+import i18n from './i18n';
+import App, { preloadRouteForPath } from './App';
+import { loadHomeLocalePack } from './locales/homeContentRegistry';
+import { parseLocalizedPath } from './utils/localeRouting';
 import './index.css';
 
-const App = () => (
-  <ThemeProvider>
-    <BrowserRouter>
-      <div className="flex min-h-screen flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
-        <Navbar />
-        <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/calculator" element={<Calculator />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/faq" element={<Faq />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/terms" element={<TermsAndConditions />} />
-            <Route path="/tiktok-cpm-calculator" element={<TikTokCPMCalculator />} />
-            <Route path="/tiktok-engagement-calculator" element={<TikTokEngagementCalculator />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </BrowserRouter>
-  </ThemeProvider>
-);
+const bootstrap = async () => {
+  const rootEl = document.getElementById('root');
+  if (!rootEl) return;
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const { lang, isKnownRoute, normalizedPath } = parseLocalizedPath(pathname);
+  const ssrRoute = rootEl.getAttribute('data-ssr-route');
+  const matchesStaticRoute = Boolean(ssrRoute) && ssrRoute === normalizedPath;
+  const matchesWildcard404 = ssrRoute === '*' && !isKnownRoute && lang === 'en';
+  const canHydrate =
+    (matchesStaticRoute || matchesWildcard404) && rootEl.hasChildNodes();
 
+  if (canHydrate) {
+    // Preload active locale pack + lazy route chunk so first hydration pass matches SSR DOM synchronously
+    await Promise.all([
+      lang !== 'en'
+        ? Promise.all([i18n.changeLanguage(lang), loadHomeLocalePack(lang)])
+        : i18n.changeLanguage('en'),
+      preloadRouteForPath(pathname),
+    ]);
+
+    ReactDOM.hydrateRoot(rootEl, <App />);
+    return;
+  }
+
+  ReactDOM.createRoot(rootEl).render(<App />);
+};
+
+bootstrap();

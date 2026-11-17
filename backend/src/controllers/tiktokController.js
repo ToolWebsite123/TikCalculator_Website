@@ -204,7 +204,6 @@ const buildResponse = (profile, analytics, earnings, latestVideos = []) => {
     platformFactor: earningsData.platformFactor,
     estimatedEarnings: earningsData.estimatedEarnings,
     earningPerVideo: earningsData.earningPerVideo,
-    earnings: earningsData.estimatedEarnings,
     perVideoNet: earningsData.earningPerVideo,
     earningsMin: earningsData.earningsMin,
     earningsMax: earningsData.earningsMax,

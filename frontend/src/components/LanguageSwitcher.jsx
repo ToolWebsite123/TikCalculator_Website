@@ -1,28 +1,50 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useActiveLang } from '../contexts/LocaleContext';
+import {
+  LANGUAGES,
+  getLanguageSwitchTarget,
+  normalizeLang,
+} from '../utils/localeRouting';
 
-const LanguageSwitcher = () => {
-  const { i18n } = useTranslation();
+const LanguageSwitcher = ({ onLanguageChange }) => {
+  const { t, i18n } = useTranslation();
+  const activeCode = useActiveLang();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  const languages = [
-    { code: 'en', name: 'English', flagSrc: 'https://flagcdn.com/gb.svg' },
-    { code: 'id', name: 'Bahasa Indonesia', flagSrc: 'https://flagcdn.com/id.svg' },
-    { code: 'de', name: 'Deutsch', flagSrc: 'https://flagcdn.com/de.svg' },
-    { code: 'es', name: 'Español', flagSrc: 'https://flagcdn.com/es.svg' },
-    { code: 'fr', name: 'Français', flagSrc: 'https://flagcdn.com/fr.svg' },
-    { code: 'it', name: 'Italiano', flagSrc: 'https://flagcdn.com/it.svg' },
-    { code: 'pt', name: 'Português (Brasil)', flagSrc: 'https://flagcdn.com/br.svg' },
-    { code: 'ms', name: 'Malaysian', flagSrc: 'https://flagcdn.com/my.svg' },
-  ];
+  const currentLanguage =
+    LANGUAGES.find((lang) => lang.code === activeCode) || LANGUAGES[0];
 
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
-
-  const changeLanguage = (langCode) => {
-    i18n.changeLanguage(langCode);
-    localStorage.setItem('i18nextLng', langCode);
+  const changeLanguage = async (langCode) => {
+    const nextLang = normalizeLang(langCode);
     setIsOpen(false);
+    if (typeof onLanguageChange === 'function') {
+      onLanguageChange(nextLang);
+    }
+
+    try {
+      localStorage.setItem('i18nextLng', nextLang);
+    } catch {
+      // Ignore storage access errors
+    }
+
+    const targetUrl = getLanguageSwitchTarget(
+      location.pathname,
+      nextLang,
+      location.search,
+      location.hash
+    );
+    const currentUrl = `${location.pathname}${location.search}${location.hash}`;
+
+    await i18n.changeLanguage(nextLang);
+
+    if (targetUrl !== currentUrl) {
+      navigate(targetUrl);
+    }
   };
 
   // Close dropdown when clicking outside
@@ -43,14 +65,20 @@ const LanguageSwitcher = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1 rounded-full border border-white/30 px-3 py-1 text-[#fff] transition hover:border-white/50 hover:text-white"
+        onClick={() => setIsOpen((prev) => !prev)}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        aria-label={t('navbar.language', 'Language')}
+        className="flex items-center gap-1.5 rounded-lg border border-slate-700/80 bg-slate-900/60 px-3 py-1.5 text-slate-100 transition-colors hover:border-teal-500/60 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
       >
         <img
           src={currentLanguage.flagSrc}
-          alt={currentLanguage.name}
+          alt=""
+          width="16"
+          height="16"
+          decoding="async"
+          aria-hidden="true"
           className="h-4 w-4 rounded-sm object-cover"
-          loading="lazy"
         />
         <span className="text-sm font-medium">{currentLanguage.name}</span>
         <svg
@@ -68,30 +96,42 @@ const LanguageSwitcher = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 rounded-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 p-2 shadow-lg z-50">
-          {languages.map((lang) => (
+        <div
+          role="listbox"
+          aria-label={t('navbar.language', 'Language')}
+          className="absolute left-0 lg:left-auto lg:right-0 mt-2 w-52 rounded-xl border border-slate-200 bg-white p-1.5 shadow-xl z-50"
+        >
+          {LANGUAGES.map((lang) => (
             <button
               key={lang.code}
               type="button"
+              role="option"
+              aria-selected={activeCode === lang.code}
+              lang={lang.code}
               onClick={() => changeLanguage(lang.code)}
-              className={`w-full flex items-center gap-2 rounded-md px-3 py-2 text-left text-sm transition ${
-                i18n.language === lang.code
-                  ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium'
-                  : 'hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-white'
+              className={`w-full flex items-center gap-2 rounded-md px-3 py-2 text-left text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 ${
+                activeCode === lang.code
+                  ? 'bg-teal-50 text-teal-900 font-semibold'
+                  : 'text-slate-800 hover:bg-slate-100 hover:text-slate-900'
               }`}
             >
               <img
                 src={lang.flagSrc}
-                alt={lang.name}
+                alt=""
+                width="16"
+                height="16"
+                decoding="async"
+                aria-hidden="true"
                 className="h-4 w-4 rounded-sm object-cover"
                 loading="lazy"
               />
               <span>{lang.name}</span>
-              {i18n.language === lang.code && (
+              {activeCode === lang.code && (
                 <svg
-                  className="ml-auto h-4 w-4 text-indigo-600 dark:text-indigo-400"
+                  className="ml-auto h-4 w-4 text-teal-600 dark:text-teal-400"
                   fill="currentColor"
                   viewBox="0 0 20 20"
+                  aria-hidden="true"
                 >
                   <path
                     fillRule="evenodd"
@@ -109,4 +149,3 @@ const LanguageSwitcher = () => {
 };
 
 export default LanguageSwitcher;
-

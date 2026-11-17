@@ -1,6 +1,6 @@
 {
-  "short_name": "TikCalculator",
-  "name": "TikTok Money Calculator – Check Real TikTok Earnings & Engagement",
+  "short_name": "KalkulatorTik",
+  "name": "KalkulatorTik – TikTok Money Calculator & Creator Analytics",
   "icons": [
     {
       "src": "/favicon.ico",
@@ -8,19 +8,21 @@
       "type": "image/x-icon"
     },
     {
-      "src": "/imgi_1_logo.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/imgi_1_logo.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "theme_color": "#0f2942",
+  "theme_color": "#0f766e",
   "background_color": "#ffffff"
 }

@@ -1,16 +1,31 @@
 import axios from 'axios';
 
-// API base configuration - Auto-detect production backend vs local dev
-const defaultBaseURL = import.meta.env.PROD
-  ? 'https://tik-calculator-website-ljy6.vercel.app'
-  : 'http://localhost:5000';
+/**
+ * Resolve API baseURL safely without double-prefixing endpoints that already begin with `/api`.
+ * Defaults to relative same-origin (`''`) in production so `/api/*` uses the Vercel proxy rewrite.
+ */
+export const resolveApiBaseURL = (
+  rawBaseUrl = import.meta.env.VITE_API_BASE_URL,
+  isProd = import.meta.env.PROD
+) => {
+  const trimmed = typeof rawBaseUrl === 'string' ? rawBaseUrl.trim() : '';
+  if (!trimmed) {
+    return isProd ? '' : 'http://localhost:5000';
+  }
+
+  const withoutTrailingSlashes = trimmed.replace(/\/+$/, '');
+  if (!withoutTrailingSlashes || withoutTrailingSlashes === '/api') {
+    return '';
+  }
+
+  return withoutTrailingSlashes.endsWith('/api')
+    ? withoutTrailingSlashes.slice(0, -4)
+    : withoutTrailingSlashes;
+};
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || defaultBaseURL,
+  baseURL: resolveApiBaseURL(),
   timeout: 30000, // 30 seconds
-  headers: {
-    'Content-Type': 'application/json',
-  },
 });
 
 // Request interceptor
@@ -23,37 +38,97 @@ api.interceptors.request.use(
   }
 );
 
-// Response interceptor for error handling
+// Sanitize error text so backend HTML pages, stack traces, or internal details are never exposed
+const sanitizeSafeErrorText = (value) => {
+  if (typeof value !== 'string') return '';
+  const trimmed = value.trim();
+  if (!trimmed || trimmed.startsWith('<') || /\bat\s+\S+\s+\(/.test(trimmed) || trimmed.length > 200) {
+    return '';
+  }
+  return trimmed;
+};
+
+// Response interceptor preserving safe status, timeout, cancellation & response metadata for callers
 api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
+  (response) => response,
   (error) => {
-    console.error('[API Error]', error.response?.status, error.message);
-    
-    // Handle specific error cases
-    if (error.response) {
-      // Server responded with error status
-      const { status, data } = error.response;
-      
-      if (status === 404) {
-        throw new Error(data.error || 'User not found');
-      }
-      if (status === 429) {
-        throw new Error(data.error || 'Too many requests. Please wait a moment.');
-      }
-      if (status === 500) {
-        throw new Error(data.error || 'Server error. Please try again.');
-      }
-      
-      throw new Error(data.error || data.message || 'Request failed');
-    } else if (error.request) {
-      // Request made but no response
-      throw new Error('Network error. Please check your connection.');
-    } else {
-      // Something else happened
-      throw new Error(error.message || 'An error occurred');
+    if (
+      axios.isCancel(error) ||
+      error?.code === 'ERR_CANCELED' ||
+      error?.name === 'CanceledError' ||
+      error?.name === 'AbortError'
+    ) {
+      const cancelError = new Error(error?.message || 'Request canceled');
+      cancelError.code = error?.code || 'ERR_CANCELED';
+      cancelError.name = error?.name || 'CanceledError';
+      cancelError.isCanceled = true;
+      return Promise.reject(cancelError);
     }
+
+    const status = error?.response?.status;
+    console.error('[API Error]', status, error?.message);
+
+    if (error?.response) {
+      const rawData = error.response.data;
+      const rawMessage =
+        rawData && typeof rawData === 'object'
+          ? sanitizeSafeErrorText(rawData.error) || sanitizeSafeErrorText(rawData.message)
+          : '';
+
+      let message = rawMessage || 'Request failed';
+      if (status === 404) {
+        message = rawMessage || 'User not found';
+      } else if (status === 429) {
+        message = rawMessage || 'Too many requests. Please wait a moment.';
+      } else if (status >= 500) {
+        message = 'Server error. Please try again.';
+      }
+
+      const apiError = new Error(message);
+      apiError.status = status;
+      apiError.isNetworkError = false;
+      apiError.isTimeout = false;
+      apiError.response = {
+        status,
+        data:
+          status >= 500
+            ? { error: message }
+            : {
+                error: rawMessage || message,
+                ...(rawData && typeof rawData === 'object' && rawData.errors
+                  ? { errors: rawData.errors }
+                  : {}),
+              },
+      };
+      return Promise.reject(apiError);
+    }
+
+    const isTimeout =
+      error?.code === 'ECONNABORTED' ||
+      error?.code === 'ETIMEDOUT' ||
+      /\btimeout\b/i.test(error?.message || '');
+
+    if (isTimeout) {
+      const timeoutError = new Error('Request timed out. Please try again.');
+      timeoutError.status = 0;
+      timeoutError.isNetworkError = true;
+      timeoutError.isTimeout = true;
+      timeoutError.code = error?.code || 'ECONNABORTED';
+      return Promise.reject(timeoutError);
+    }
+
+    if (error?.request) {
+      const netError = new Error('Network error. Please check your connection.');
+      netError.status = 0;
+      netError.isNetworkError = true;
+      netError.isTimeout = false;
+      return Promise.reject(netError);
+    }
+
+    const fallbackError = new Error(sanitizeSafeErrorText(error?.message) || 'An error occurred');
+    fallbackError.isNetworkError = false;
+    fallbackError.isTimeout = false;
+    return Promise.reject(fallbackError);
   }
 );
 
@@ -61,68 +136,48 @@ api.interceptors.response.use(
  * Fetch TikTok user profile and earnings
  * @param {string} username - TikTok username (with or without @)
  * @param {object} params - Query parameters
+ * @param {object} config - Optional axios request config (e.g., signal)
  * @returns {Promise} Profile data with earnings
  */
-export const fetchTikTokProfile = async (username, params = {}) => {
-  try {
-    const cleanUsername = username.replace('@', '');
-    const response = await api.get(`/api/tiktok/user/${encodeURIComponent(cleanUsername)}`, { 
-      params 
-    });
-    
-    // Ensure bio is included in the response
-    const data = response.data;
-    if (data && data.profile) {
-      // Ensure bio is set from multiple possible sources
-      if (!data.profile.bio) {
-        data.profile.bio = data.bio || data.description || data.profile.description || '';
-      }
-      // Also set description if missing
-      if (!data.profile.description) {
-        data.profile.description = data.profile.bio || data.bio || data.description || '';
-      }
+export const fetchTikTokProfile = async (username, params = {}, config = {}) => {
+  const cleanUsername = username.replace('@', '');
+  const response = await api.get(`/api/tiktok/user/${encodeURIComponent(cleanUsername)}`, {
+    params,
+    ...config,
+  });
+  
+  // Ensure bio is included in the response
+  const data = response.data;
+  if (data && data.profile) {
+    // Ensure bio is set from multiple possible sources
+    if (!data.profile.bio) {
+      data.profile.bio = data.bio || data.description || data.profile.description || '';
     }
-    
-    return data;
-  } catch (error) {
-    throw error;
+    // Also set description if missing
+    if (!data.profile.description) {
+      data.profile.description = data.profile.bio || data.bio || data.description || '';
+    }
   }
+  
+  return data;
 };
 
 /**
- * Calculate earnings from views (TikCalculator.com style)
+ * Calculate earnings from views (KalkulatorTik authoritative backend endpoint)
  * @param {number} views - Average views per video
  * @param {number} engagementRate - Engagement rate percentage (optional)
  * @param {number} followers - Follower count (optional)
  * @returns {Promise} Earnings data
  */
 export const calculateEarningsFromViews = async (views, engagementRate = 0, followers = 0) => {
-  try {
-    const response = await api.get('/api/tiktok/earnings', {
-      params: {
-        views: views,
-        engagementRate: engagementRate || undefined,
-        followers: followers || undefined,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('[API] Error calculating earnings from views:', error);
-    // Return safe fallback
-    const cpm = views >= 5_000_000 ? 3.5 : views >= 1_000_000 ? 2.5 : views >= 500_000 ? 1.8 : views >= 100_000 ? 1.2 : views >= 10_000 ? 1.0 : 0.8;
-    const platformFactor = 1.0;
-    const earnings = (views / 1000) * cpm * platformFactor;
-    return {
-      success: true,
-      earnings: earnings,
-      earningPerVideo: earnings,
-      estimatedEarnings: earnings,
-      avgViews: views,
-      engagementRate: engagementRate || 5.0,
-      cpm: cpm,
-      platformFactor: platformFactor,
-    };
-  }
+  const response = await api.get('/api/tiktok/earnings', {
+    params: {
+      views,
+      engagementRate: engagementRate || undefined,
+      followers: followers || undefined,
+    },
+  });
+  return response.data;
 };
 
 /**
@@ -132,35 +187,10 @@ export const calculateEarningsFromViews = async (views, engagementRate = 0, foll
  * @returns {Promise} Earnings data
  */
 export const fetchTikTokEarnings = async (username, params = {}) => {
-  try {
-    const cleanUsername = username.replace('@', '');
-    const url = `/api/tiktok/user/${encodeURIComponent(cleanUsername)}/earnings`;
-    
-    const response = await api.get(url, { params });
-    
-    return response.data;
-  } catch (error) {
-    // CRITICAL: Return safe fallback object instead of throwing
-    // This ensures earningsData is never null/undefined
-    const cleanUsername = username.replace('@', '');
-    return {
-      success: true,
-      estimatedEarnings: 0,
-      earningPerVideo: 0,
-      avgViews: 0,
-      engagementRate: 0,
-      cpm: 0,
-      platformFactor: 1.0,
-      username: cleanUsername,
-      followers: 0,
-      likes: 0,
-      following: 0,
-      videos: 0,
-      monthlyEarning: 0,
-      source: 'error',
-      error: error.message || 'Failed to fetch earnings',
-    };
-  }
+  const cleanUsername = username.replace('@', '');
+  const url = `/api/tiktok/user/${encodeURIComponent(cleanUsername)}/earnings`;
+  const response = await api.get(url, { params });
+  return response.data;
 };
 
 /**
@@ -169,13 +199,9 @@ export const fetchTikTokEarnings = async (username, params = {}) => {
  * @returns {Promise}
  */
 export const clearTikTokCache = async (username) => {
-  try {
-    const cleanUsername = username.replace('@', '');
-    const response = await api.delete(`/api/tiktok/cache/${encodeURIComponent(cleanUsername)}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  const cleanUsername = username.replace('@', '');
+  const response = await api.delete(`/api/tiktok/cache/${encodeURIComponent(cleanUsername)}`);
+  return response.data;
 };
 
 /**
@@ -183,12 +209,8 @@ export const clearTikTokCache = async (username) => {
  * @returns {Promise}
  */
 export const checkHealth = async () => {
-  try {
-    const response = await api.get('/api/tiktok/health');
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  const response = await api.get('/api/tiktok/health');
+  return response.data;
 };
 
 /**
@@ -196,12 +218,8 @@ export const checkHealth = async () => {
  * @returns {Promise}
  */
 export const fetchCountries = async () => {
-  try {
-    const response = await api.get('/api/v1/countries');
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  const response = await api.get('/api/v1/countries');
+  return response.data;
 };
 
 /**
@@ -210,12 +228,8 @@ export const fetchCountries = async () => {
  * @returns {Promise}
  */
 export const saveCalculation = async (payload) => {
-  try {
-    const response = await api.post('/api/v1/save', payload);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  const response = await api.post('/api/v1/save', payload);
+  return response.data;
 };
 
 /**
@@ -224,12 +238,27 @@ export const saveCalculation = async (payload) => {
  * @returns {Promise}
  */
 export const fetchSaved = async (id) => {
-  try {
-    const response = await api.get(`/api/v1/saved/${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  const response = await api.get(`/api/v1/saved/${id}`);
+  return response.data;
+};
+
+/**
+ * Fetch contact form availability status
+ * @returns {Promise} { success, available }
+ */
+export const fetchContactStatus = async () => {
+  const response = await api.get('/api/v1/contact/status');
+  return response.data;
+};
+
+/**
+ * Submit contact message to backend delivery endpoint
+ * @param {object} payload - { name, email, subject, message, website }
+ * @returns {Promise} Delivery confirmation payload
+ */
+export const submitContactMessage = async (payload) => {
+  const response = await api.post('/api/v1/contact', payload);
+  return response.data;
 };
 
 // Backward compatibility

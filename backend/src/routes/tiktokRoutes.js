@@ -39,7 +39,7 @@ router.get('/tiktok/user/:username', getTikTokProfile);
 router.get('/tiktok/user/:username/earnings', getTikTokEarnings);
 
 /**
- * Calculate earnings from views (TikCalculator.com style)
+ * Calculate earnings from views (KalkulatorTik style)
  * GET /api/tiktok/earnings?views=XXXX&engagementRate=XX&followers=XXXX
  * Query params:
  *   - views (required): Average views per video

@@ -4,28 +4,77 @@
     "engagementCalculator": "Calcolatore di Engagement TikTok",
     "cpmCalculator": "Calcolatore CPM TikTok",
     "aboutUs": "Chi siamo",
-    "language": "Lingua"
+    "language": "Lingua",
+    "navAriaLabel": "Navigazione principale",
+    "mobileNavAriaLabel": "Navigazione mobile",
+    "openMenu": "Apri menu",
+    "closeMenu": "Chiudi menu"
   },
   "home": {
-    "badge": "Calcolatore di Guadagni TikTok",
-    "title": "Calcolatore di Denaro TikTok Gratuito",
-    "subtitle": "Inserisci un nome utente TikTok per ottenere statistiche del profilo in tempo reale e guadagni stimati alimentati da RapidAPI.",
-    "placeholder": "es. mrbeast",
-    "button": "Ottieni guadagni",
-    "buttonCalculate": "Calcola guadagni",
-    "buttonLoading": "Caricamento profilo...",
-    "usernameLabel": "Nome utente TikTok:",
-    "error": "Inserisci un nome utente TikTok.",
-    "errorFetch": "Impossibile recuperare le statistiche. Riprova.",
+    "title": "Calcolatore di Denaro TikTok",
+    "subtitle": "Inserisci qualsiasi nome utente TikTok pubblico per calcolare il valore stimato di una sponsorizzazione e i guadagni per video.",
+    "placeholder": "es. khaby.lame o mrbeast",
+    "button": "Calcola Valore Sponsorizzazione",
+    "buttonCalculate": "Calcola Valore Sponsorizzazione",
+    "buttonLoading": "Analisi del profilo pubblico...",
+    "usernameLabel": "Inserisci Nome Utente TikTok Pubblico",
+    "error": "Inserisci un nome utente TikTok pubblico valido per avviare il calcolo.",
+    "errorSpaces": "I nomi utente non possono contenere spazi. Controlla l'handle e riprova.",
+    "errorRateLimit": "Le richieste sono temporaneamente limitate per traffico elevato. Attendi un momento e riprova.",
+    "errorFetch": "Impossibile recuperare i dati del profilo al momento. Controlla la connessione e riprova a breve.",
+    "errorNotFound": "Impossibile trovare dati pubblici per \"@{{username}}\". Verifica l'ortografia e che l'account sia pubblico.",
+    "loadingStatus": "Recupero delle metriche pubbliche del profilo...",
+    "loadedStatus": "Metriche pubbliche caricate per @{{handle}}",
+    "assuranceFree": "Gratuito e senza accesso",
+    "assuranceLookup": "Ricerca profilo pubblico",
+    "assuranceBenchmark": "Stima sponsorizzazione per video",
+    "liveBenchmarkBadge": "Parametro Profilo Live",
+    "resultsFor": "Risultati per @{{handle}}",
+    "sourceLiveVideo": "Calcolato dall'attività recente dei video pubblici.",
+    "sourceFallback": "Stimato dai totali pubblici del profilo (feed video recenti non disponibile).",
+    "metricsHeading": "Panoramica Account & Metriche di Attività",
+    "howToReadLink": "Come leggere queste metriche ↓",
+    "earningsBadge": "VALORE STIMATO SPONSORIZZAZIONE PER VIDEO",
+    "estimatedRange": "Intervallo Stimato",
+    "cpmBenchmark": "CPM di Riferimento",
+    "earningsFootnote": "Tariffa stimata per collaborazioni con brand basata sulla copertura pubblica. Non rappresenta pagamenti diretti dal Programma Creator Rewards di TikTok.",
+    "verifiedBadge": "Verificato",
+    "joinedPrefix": "Iscritto il {{date}}",
+    "idPrefix": "ID: {{id}}",
+    "noBio": "Nessuna bio pubblica disponibile.",
+    "statFollowers": "Follower",
+    "statFollowersHelp": "Ampiezza pubblico",
+    "statLikes": "Mi piace totali",
+    "statLikesHelp": "Mi piace ricevuti",
+    "statVideos": "Video totali",
+    "statVideosHelp": "Video caricati",
+    "statFollowing": "Seguiti",
+    "statFollowingHelp": "Account seguiti",
+    "statAvgViews": "Visualizzazioni Medie St.",
+    "statAvgViewsHelp": "Visualizzazioni per video",
+    "statEngagement": "Engagement",
+    "statEngagementHelp": "Tasso di interazione",
     "profileDetails": "Dettagli del profilo",
     "category": "Categoria",
     "region": "Regione",
     "tiktokId": "ID TikTok",
     "joined": "Iscritto",
     "bio": "Biografia",
-    "notSpecified": "Non specificato"
+    "notSpecified": "Non specificato",
+    "helperText": "Inserisci qualsiasi nome utente TikTok pubblico con o senza il simbolo @.",
+    "formAriaLabel": "Modulo di ricerca nome utente calcolatore TikTok",
+    "inputAriaLabel": "Campo nome utente TikTok",
+    "assurancesAriaLabel": "Garanzie principali del calcolatore",
+    "earningsAriaLabel": "Guadagni TikTok stimati: {{amount}}",
+    "statsAriaLabel": "Statistiche del profilo",
+    "avatarAlt": "Avatar profilo TikTok per @{{username}}",
+    "incompleteProfileTitle": "Avviso: Dati profilo incompleti",
+    "incompleteProfileDesc": "Nome utente mancante nel profilo",
+    "copySummary": "Copia riepilogo",
+    "copiedSummary": "Copiato!"
   },
   "footer": {
+    "navigation": "Navigazione piè di pagina",
     "contactUs": "Contattaci",
     "quickLinks": "Link rapidi",
     "helpfulLinks": "Link utili",
@@ -41,7 +90,7 @@
   },
   "engagementCalculator": {
     "title": "Calcolatore del Tasso di Engagement TikTok",
-    "subtitle": "Calcola il tuo tasso di engagement TikTok ora!",
+    "subtitle": "Controlla il tuo tasso di engagement su TikTok usando Mi piace totali, numero di video e follower. È gratuito e funziona senza effettuare l’accesso.",
     "totalLikes": "Totale Mi Piace:",
     "totalVideos": "Totale Video:",
     "totalFollowers": "Totale Follower:",
@@ -52,238 +101,479 @@
     "placeholderFollowers": "es. 277,8K o 277800",
     "content": {
       "whatIs": {
-        "title": "Cos'è un Calcolatore del Tasso di Engagement TikTok?",
-        "description1": "Un Calcolatore del Tasso di Engagement TikTok è uno strumento di analisi che misura l'interazione del pubblico sul tuo profilo TikTok.",
-        "description2": "Converte le metriche grezze in una semplice percentuale che riflette quanto è coinvolgente il tuo contenuto.",
-        "description3": "Questo aiuta creatori, marchi e marketer a capire se i loro video risuonano con gli spettatori o necessitano di miglioramenti."
+        "title": "Cos’è il tasso di engagement su TikTok?",
+        "p1": "Il tasso di engagement su TikTok mostra quanto gli spettatori interagiscono con i tuoi video rispetto al numero di follower. Invece di guardare solo i follower o i Mi piace totali da soli, trasforma la media dei Mi piace per video in una percentuale semplice. Così capisci subito quanto il pubblico reagisce a ciò che pubblichi.",
+        "p2": "Il solo numero dei follower può trarre in inganno. Due creator possono avere entrambi 100.000 follower, ma uno ottiene in media 800 Mi piace a video mentre l’altro ne riceve 12.000. Confrontare la media dei Mi piace per video con i follower mette subito in luce questa differenza di 15 volte.",
+        "p3": "TikTok funziona in modo diverso dai vecchi social perché la pagina Per Te mostra i video a tante persone che non ti seguono ancora. I Mi piace offrono un segnale rapido di interesse su ogni video. Commenti, condivisioni e salvataggi mostrano poi conversazioni e diffusione più profonde."
       },
-      "tikCalculator": {
-        "title": "Calcola il Tasso di Engagement TikTok – TikCalculator",
-        "description1": "TikCalculator ti aiuta a calcolare istantaneamente il tuo tasso di engagement TikTok utilizzando dati di performance reali.",
-        "description2": "Inserendo like, commenti, condivisioni, video e follower, ottieni una percentuale chiara che mostra quanto attivamente il tuo pubblico interagisce con i tuoi contenuti. Questo elimina le congetture e ti fornisce informazioni affidabili per valutare le prestazioni dell'account."
+      "whyCalculate": {
+        "title": "Perché calcolare il tuo tasso di engagement su TikTok?",
+        "intro": "I follower indicano soltanto quante persone hanno premuto Segui in passato. Calcolare l’engagement offre a creator, manager e brand una visione molto più chiara dell’interesse reale:",
+        "points": [
+          "Nessun accesso o collegamento richiesto: Molti scanner automatici falliscono sui profili nuovi o non caricano statistiche aggiornate. Inserire manualmente Mi piace totali, Numero di video e Follower funziona subito con i numeri che hai già.",
+          "Testa un singolo video o i post recenti: Inserisci 1 in Video totali, oppure somma i Mi piace dei tuoi ultimi 10 caricamenti. Questo mostra la reazione attuale senza che vecchi video virali falsino il dato.",
+          "Rafforza il tuo media kit da creator: I brand cercano interazioni costanti per video quando decidono i compensi per sponsorizzazioni. Dati reali di engagement valgono molto più di follower vecchi o inattivi.",
+          "Confronta i profili in modo equo: Trasformare i dati grezzi in percentuale rende semplice confrontare canali piccoli, medi e grandi alla pari."
+        ]
       },
-      "relatedTools": {
-        "title": "Strumenti Correlati",
-        "moneyCalculator": "Curioso del tuo potenziale di guadagno TikTok? Prova il nostro Calcolatore di Denaro TikTok per stimare possibili entrate utilizzando dati di engagement e prestazioni dell'account. Aiuta i creatori a capire il loro valore di monetizzazione prima di lavorare con i marchi.",
-        "cpmCalculator": "Puoi anche controllare il valore pubblicitario con il Calcolatore CPM TikTok, che mostra il pagamento medio che gli inserzionisti possono offrire per ogni 1.000 visualizzazioni. Questo è utile per pianificare campagne a pagamento e accordi di sponsorizzazione."
+      "howToCalculate": {
+        "title": "Come calcolare il tasso di engagement su TikTok",
+        "formulaTitle": "La formula usata da questo calcolatore",
+        "formulaIntro": "Questo calcolatore confronta la media dei Mi piace per video con i tuoi follower totali. Usa tre numeri semplici presenti sul profilo:",
+        "formula": "Tasso di Engagement (%) = ((Mi piace totali ÷ Follower totali) ÷ Video totali) × 100",
+        "formulaNote": "Tieni a mente questo perimetro quando leggi il tuo punteggio. Lo strumento usa solo Mi piace totali, Video totali e Follower totali perché sono numeri rapidi da inserire. Non conteggia commenti, condivisioni, salvataggi o visualizzazioni.",
+        "stepsTitle": "Esempio svolto passo dopo passo",
+        "stepsIntro": "Supponi che un profilo TikTok abbia 4,2 milioni di Mi piace totali (4.200.000), 221 video e 277.800 follower (277.8K). Puoi digitare abbreviazioni come 4.2M e 277.8K direttamente nel calcolatore qui sopra:",
+        "steps": [
+          "Passaggio 1 — Trova i Mi piace medi per video: Dividi i Mi piace totali per i Video totali (4.200.000 ÷ 221 = 19.004,52 Mi piace medi per video).",
+          "Passaggio 2 — Confronta con i Follower totali: Dividi quella media per i Follower totali (19.004,52 ÷ 277.800 = 0,06841).",
+          "Passaggio 3 — Trasforma in percentuale: Moltiplica per 100 per ottenere un tasso di engagement del 6,84% per video."
+        ],
+        "singleVideoTip": "Suggerimento per un video o gli ultimi post: Non devi analizzare l’intera cronologia dell’account ogni volta. Inserisci 1 in Video totali per controllare un solo video, oppure inserisci 10 con la somma dei Mi piace degli ultimi 10 clip. Unisci quel dato ai tuoi Follower attuali per valutare l’andamento recente.",
+        "findMetricsTitle": "Dove trovare i numeri esatti su TikTok",
+        "findMetricsP1": "Puoi vedere Follower totali e Mi piace totali subito sotto la bio su qualsiasi profilo TikTok. Ogni campo accetta sia cifre complete come 4200000 sia abbreviazioni con K, M o B.",
+        "findMetricsP2": "L’app mobile di TikTok non mostra sempre in cima al profilo il numero totale di video pubblicati. Puoi verificare il conteggio completo in TikTok Creator Tools oppure aprendo il profilo dal web su computer. In alternativa, somma i Mi piace dei tuoi ultimi 10 o 12 post e inserisci 10 o 12 in Video totali."
       },
-      "manualCalculation": {
-        "title": "Come Calcolare Manualmente il Tasso di Engagement su TikTok",
-        "description": "La formula manuale del tasso di engagement è semplice e ampiamente utilizzata:",
-        "formula": "Tasso di Engagement (%) = (Like + Commenti + Condivisioni) ÷ Follower × 100",
-        "explanation1": "Questa formula mostra quanto sono coinvolti i tuoi follower con i tuoi contenuti.",
-        "explanation2": "Una percentuale più alta significa interazione e fedeltà del pubblico più forti."
+      "followersVsViews": {
+        "title": "Engagement per follower vs. per visualizzazioni su TikTok",
+        "intro": "Creator e aziende si stupiscono spesso quando due calcolatori TikTok mostrano risultati diversi per lo stesso profilo. Succede perché gli strumenti usano tre formule differenti:",
+        "methods": [
+          {
+            "name": "1. Mi piace per video vs. Follower (Strumento manuale KalkulatorTik)",
+            "formula": "((Mi piace totali ÷ Follower totali) ÷ Video totali) × 100",
+            "explanation": "Creato per controlli manuali rapidi e gruppi di video personalizzati usando solo Mi piace, Numero di video e Follower. Poiché esclude commenti e condivisioni, le percentuali differiscono dagli strumenti multi-metrica."
+          },
+          {
+            "name": "2. Tasso multi-azione per Follower (Ultimi 12–30 video)",
+            "formula": "(Media Mi piace + Commenti + Condivisioni per post) ÷ Follower totali × 100",
+            "explanation": "Comune nelle piattaforme automatiche per l’analisi di influencer. Includere commenti e condivisioni alza il risultato, mentre limitare il campione agli ultimi 12–30 post evita che vecchi successi falsino la media attuale."
+          },
+          {
+            "name": "3. Tasso di engagement sulle visualizzazioni (Rendimento di copertura)",
+            "formula": "(Mi piace + Commenti + Condivisioni [+ Salvataggi]) ÷ Visualizzazioni totali × 100",
+            "explanation": "Mostra quanto un video coinvolge tutte le persone che lo hanno guardato davvero, follower o meno. Poiché la pagina Per Te porta molti non-follower, questa percentuale riflette la qualità creativa più che la fedeltà dei follower."
+          }
+        ],
+        "summary": "Scegli sempre la formula adatta a ciò che vuoi misurare. Usa i punteggi sui follower per valutare la fedeltà del pubblico, quelli sulle visualizzazioni per la qualità dei video, e non confrontare mai numeri di formule diverse."
       },
-      "benchmarks": {
-        "title": "Riferimenti del Tasso di Engagement TikTok per Numero di Follower",
-        "description": "I tassi di engagement variano a seconda della dimensione del pubblico. Gli account più piccoli di solito vedono un engagement più alto, mentre gli account più grandi subiscono un declino graduale man mano che crescono.",
-        "table": {
-          "followerRange": "Intervallo di Follower",
-          "averageRate": "Tasso di Engagement Medio",
-          "range1": "1K – 5K follower",
-          "rate1": "18% – 22%",
-          "range2": "5K – 20K follower",
-          "rate2": "15% – 19%",
-          "range3": "20K – 100K follower",
-          "rate3": "13% – 16%",
-          "range4": "100K – 500K follower",
-          "rate4": "12% – 15%",
-          "range5": "500K – 1M follower",
-          "rate5": "14% – 17%",
-          "range6": "1M+ follower",
-          "rate6": "13% – 17%"
-        },
-        "conclusion": "Questi intervalli di riferimento aiutano creatori e marchi a valutare le prestazioni in modo realistico utilizzando un calcolatore di engagement TikTok. L'engagement fluttua naturalmente in base alla nicchia, alla qualità del contenuto e al comportamento del pubblico, quindi i risultati dovrebbero essere confrontati all'interno di intervalli di follower simili."
+      "howToUnderstand": {
+        "title": "Come interpretare il tuo tasso di engagement su TikTok",
+        "intro": "Una percentuale dice molto di più quando guardi la storia dietro i numeri. Tieni presenti questi quattro punti mentre leggi il risultato:",
+        "points": [
+          {
+            "label": "Perché i punteggi possono superare il 100%:",
+            "text": "Su TikTok, un video nella pagina Per Te può ottenere molti più Mi piace di quanti follower abbia il profilo. Se un canale con 5.000 follower riceve in media 8.000 Mi piace a clip, il risultato tocca il 160,00%. Indica una forte scoperta tra non-follower, non un errore di calcolo."
+          },
+          {
+            "label": "Perché i totali storici nascondono cali recenti:",
+            "text": "Un successo virale di due anni fa da 3 milioni di Mi piace mantiene alta la media storica anche se oggi i nuovi video ottengono 1.500 Mi piace. Prova a calcolare solo i tuoi ultimi 10 video per capire lo slancio attuale."
+          },
+          {
+            "label": "Perché gli account enormi mostrano tassi più bassi:",
+            "text": "I profili con centinaia di migliaia o milioni di follower raccolgono nel tempo molti utenti occasionali o inattivi. Quella base più ampia abbassa la percentuale anche quando Mi piace totali e visualizzazioni restano molto alti."
+          },
+          {
+            "label": "Come individuare un legame debole col pubblico:",
+            "text": "Fai attenzione agli account con tantissimi follower ma pochissimi Mi piace per clip, ad esempio ben sotto l’1% nei video recenti. Quel divario segnala spesso follower vecchi inattivi, profili falsi o un cambio brusco di argomenti."
+          }
+        ]
       },
-      "howToUse": {
-        "title": "Come Usare il Calcolatore in Modo Efficace",
-        "intro": "Per ottenere risultati accurati:",
-        "tip1": "Inserisci dati corretti e aggiornati",
-        "tip2": "Usa i follower totali, non le visualizzazioni video",
-        "tip3": "Confronta più post invece di uno",
-        "tip4": "Traccia l'engagement costantemente nel tempo",
-        "conclusion": "L'uso regolare aiuta a identificare le tendenze e migliorare le decisioni sui contenuti."
+      "goodRate": {
+        "title": "Qual è un buon tasso di engagement su TikTok?",
+        "p1": "Non esiste una sola cifra che valga come buon tasso di engagement per tutti gli account TikTok. Ciò che conta come risultato solido dipende dalla dimensione del canale, dall’argomento e dalla formula usata.",
+        "p2": "Quasi nessuna tabella di riferimento online può essere confrontata alla pari con questo calcolatore manuale. Molte sommano Mi piace, commenti e condivisioni solo sugli ultimi 12–30 video. Altre dividono le interazioni per le visualizzazioni invece che per i follower.",
+        "scaleTitle": "Come la dimensione dell’account cambia le percentuali",
+        "tableHeaders": [
+          "Fascia Follower",
+          "Andamento tipico",
+          "Come leggerlo con la nostra formula"
+        ],
+        "tableRows": [
+          [
+            "Nano (1K – 10K)",
+            "Oscillazioni verso l’alto più ampie",
+            "Piccoli gruppi affiatati e spinte nella pagina Per Te creano spesso tassi Mi piace/follower molto alti. Clip virali possono portare le medie oltre il 10% o persino il 100%."
+          ],
+          [
+            "Micro (10K – 100K)",
+            "Forte costanza attiva",
+            "I micro-creator attivi mantengono spesso Mi piace solidi a video senza dipendere da un vecchio colpo di fortuna. Controlla blocchi di 10 video per verificarne la regolarità."
+          ],
+          [
+            "Medi (100K – 500K)",
+            "Calo graduale del tasso",
+            "Oltre i 100K follower gli spettatori occasionali crescono più in fretta dei fan abituali. È naturale che i tassi sui follower si stabilizzino più in basso."
+          ],
+          [
+            "Macro e Mega (500K+)",
+            "Percentuale su follower più bassa",
+            "Grandi numeri di follower diluiscono naturalmente la percentuale nel tempo. I brand valutano la media dei Mi piace e le visualizzazioni recenti insieme al tasso percentuale."
+          ]
+        ],
+        "industryTitle": "Perché i parametri cambiano fra settori e nicchie",
+        "industryP1": "Le abitudini di chi guarda cambiano molto da un argomento all’altro. Commedia, animali, moda, beauty e cucina spingono a mettere Mi piace rapidi mentre si scorre. Al contrario, B2B, programmazione, finanza e guide dettagliate ricevono spesso meno Mi piace per spettatore ma generano più salvataggi o clic.",
+        "industryP2": "Ricerche esterne mostrano quanto ampio sia questo divario tra settori con formule diverse. Ad esempio, le analisi Social Cat sommano Mi piace, commenti e condivisioni degli ultimi 12 video e mostrano medie maggiori in Moda (~17,5%) e Beauty (~15,2%) rispetto al Fitness (~11,1%). Usa questi valori solo come traccia orientativa e mai come paragone diretto con un punteggio di soli Mi piace."
       },
-      "whyMatters": {
-        "title": "Perché il Tasso di Engagement è Importante",
-        "point1": "Il tasso di engagement è una delle metriche di performance più importanti di TikTok.",
-        "point2": "Influisce direttamente sulla portata, visibilità e prestazioni dell'algoritmo.",
-        "point3": "I marchi usano anche il tasso di engagement per valutare i creatori per partnership e sponsorizzazioni.",
-        "point4": "Un alto engagement segnala fiducia, rilevanza e una forte connessione con il pubblico."
+      "factors": {
+        "title": "Quali fattori influenzano l’engagement rate su TikTok?",
+        "intro": "Due creator con lo stesso identico numero di follower possono ottenere risultati molto lontani. Cinque fattori quotidiani spiegano gran parte della differenza:",
+        "items": [
+          {
+            "label": "Tipo di contenuto e abitudini del pubblico:",
+            "text": "Video comici, outfit e ricette veloci invitano al doppio tocco istantaneo. Le guide passo passo ricevono più spesso salvataggi silenziosi."
+          },
+          {
+            "label": "Dimensione ed età dell’account:",
+            "text": "I canali attivi da anni accumulano follower che non aprono più TikTok ogni giorno. I profili recenti e mirati hanno spesso fan più reattivi."
+          },
+          {
+            "label": "Copertura nella pagina Per Te:",
+            "text": "I video mostrati a molti non-follower raccolgono Mi piace fuori dalla lista iscritti. Questa copertura extra spinge verso l’alto i tassi calcolati sui follower."
+          },
+          {
+            "label": "Hook iniziale e tempo di visione:",
+            "text": "TikTok testa i video con piccoli gruppi e ne amplia la diffusione quando chi guarda arriva alla fine o rivede il clip. Più visualizzazioni creano subito più occasioni per ottenere Mi piace."
+          },
+          {
+            "label": "Ritmo di pubblicazione e picchi virali:",
+            "text": "Un grande successo virale può alzare di molto la media storica. Sperimentare molti formati nuovi ogni settimana può invece abbassarla temporaneamente finché emergono quelli vincenti."
+          }
+        ]
       },
-      "industrySpecific": {
-        "title": "Engagement Specifico del Settore su TikTok",
-        "description1": "I tassi di engagement variano per nicchia. I contenuti di intrattenimento e lifestyle spesso vedono un'interazione più alta.",
-        "description2": "Le nicchie di business, educazione e finanza di solito hanno un engagement più basso ma più mirato. Confrontare l'engagement all'interno del tuo settore fornisce informazioni sulle prestazioni più accurate rispetto alle medie globali."
+      "improve": {
+        "title": "Come migliorare il tasso di engagement su TikTok",
+        "intro": "Migliorare il coinvolgimento inizia col catturare l’attenzione nei primi istanti. Dai alle persone un motivo semplice per guardare fino in fondo e reagire:",
+        "tips": [
+          {
+            "label": "Conquista i primi 2 secondi visivamente:",
+            "text": "Inizia subito con un movimento chiaro, un risultato visibile o una domanda netta sullo schermo. Salta i saluti lenti così nessuno scorre subito via."
+          },
+          {
+            "label": "Tieni un montaggio serrato dall’inizio alla fine:",
+            "text": "Taglia le pause silenziose e vai dritto al punto. Tassi di completamento più alti aiutano il video a raggiungere più utenti e guadagnare più Mi piace."
+          },
+          {
+            "label": "Crea formati utili da salvare e condividere:",
+            "text": "Liste rapide, confronti sinceri tra strumenti e video prima-e-dopo spingono chi guarda a salvare la clip o mandarla agli amici."
+          },
+          {
+            "label": "Fai domande facili nelle didascalie:",
+            "text": "Invita a scegliere tra opzione A o B nella descrizione o in un commento fissato. Poi rispondi ai commenti più interessanti con brevi video dedicati."
+          },
+          {
+            "label": "Ripeti le serie che funzionano:",
+            "text": "Trasformare buone idee in serie Parte 1 e Parte 2 dà a chi arriva dalla pagina Per Te un motivo per seguirti e aspettare il seguito."
+          },
+          {
+            "label": "Controlla gli ultimi 10 video ogni mese:",
+            "text": "Inserisci qui i tuoi 10 clip più recenti una volta al mese. Così capisci subito con i numeri quali temi aumentano davvero i Mi piace per video."
+          }
+        ],
+        "conclusion": "Inseguire suoni di tendenza casuali raramente basta a lungo. Agganci chiari uniti a formati ripetibili costruiscono un engagement costante nel tempo."
       },
-      "improveEngagement": {
-        "title": "Come Migliorare il Tuo Tasso di Engagement TikTok",
-        "intro": "Migliorare l'engagement richiede coerenza e strategia:",
-        "tip1": "Pubblica regolarmente",
-        "tip2": "Usa ganci forti nei primi secondi",
-        "tip3": "Segui le tendenze con originalità",
-        "tip4": "Usa hashtag rilevanti",
-        "tip5": "Interagisci con i commenti",
-        "tip6": "Incoraggia l'interazione attraverso domande",
-        "tip7": "Collabora con altri creatori",
-        "conclusion": "Un forte engagement deriva dalla connessione, non solo dalle visualizzazioni."
+      "brandsAndCreators": {
+        "title": "Come brand e creator usano il tasso di engagement TikTok",
+        "brandsTitle": "Per brand e responsabili campagna",
+        "brandsP1": "I brand verificano l’engagement prima di ingaggiare un creator per portare il budget verso spettatori reali e attivi. Confrontare la media di Mi piace per video con i follower individua subito i profili sani nelle prime ricerche. Puoi scartare candidati deboli prima ancora di chiedere screenshot di TikTok Analytics.",
+        "brandsCtaPrefix": "Quando un account sembra valido, confronta il compenso richiesto con i costi pubblicitari standard. Verifica subito il costo per mille impressioni con il nostro ",
+        "brandsCtaLink": "Calcolatore CPM TikTok",
+        "brandsCtaSuffix": " prima di bloccare il budget della campagna.",
+        "creatorsTitle": "Per creator e talent manager",
+        "creatorsP1": "I creator possono inserire le percentuali di engagement nei media kit per dimostrare un pubblico reattivo. Questo aiuta soprattutto i canali piccoli, perché i loro tassi battono spesso account molto più grandi. Le aziende notano subito quando i follower partecipano davvero.",
+        "creatorsCtaPrefix": "Vuoi vedere stime dei compensi partendo da visualizzazioni pubbliche recenti, paese del pubblico e interazioni? Cerca qualsiasi profilo pubblico con il nostro ",
+        "creatorsCtaLink": "Calcolatore Guadagni TikTok",
+        "creatorsCtaSuffix": " nella pagina iniziale."
       },
       "faq": {
-        "title": "Domande Frequenti",
-        "q1": {
-          "question": "Cosa fa il Calcolatore del Tasso di Engagement TikTok?",
-          "answer": "Calcola quanto attivamente gli utenti interagiscono con i tuoi contenuti TikTok utilizzando like, commenti, condivisioni e follower."
-        },
-        "q2": {
-          "question": "Questo strumento è gratuito?",
-          "answer": "Sì, il calcolatore è completamente gratuito e non richiede registrazione."
-        },
-        "q3": {
-          "question": "Con che frequenza dovrei controllare il mio tasso di engagement?",
-          "answer": "Controllalo settimanalmente o mensilmente per tracciare accuratamente le tendenze delle prestazioni."
-        },
-        "q4": {
-          "question": "I marchi possono usarlo per la selezione degli influencer?",
-          "answer": "Sì, i marchi usano il tasso di engagement per valutare la qualità degli influencer e l'autenticità del pubblico."
-        },
-        "q5": {
-          "question": "Cosa è considerato un tasso di engagement eccellente?",
-          "answer": "Un tasso di engagement superiore al 10% è considerato eccellente su TikTok."
-        }
+        "title": "Domande frequenti",
+        "items": [
+          {
+            "question": "Che formula utilizza questo Calcolatore del Tasso di Engagement TikTok?",
+            "answer": "Usa ((Mi piace totali ÷ Follower totali) ÷ Video totali) × 100. Dividendo i Mi piace totali per i Video totali ottieni i Mi piace medi per video. Dividendo poi questa media per i Follower totali trasformi il coinvolgimento per post in percentuale."
+          },
+          {
+            "question": "Perché questo calcolatore non include commenti, condivisioni o visualizzazioni?",
+            "answer": "Un profilo TikTok mostra subito Follower e Mi piace totali senza sommare in un unico posto commenti, condivisioni o visualizzazioni storiche. Usare Mi piace, Video totali e Follower consente verifiche rapide ogni volta che hai già quei tre numeri. Per dati automatici su video pubblici recenti inclusi visualizzazioni, commenti e condivisioni, prova il Calcolatore Guadagni TikTok in homepage."
+          },
+          {
+            "question": "Posso calcolare il tasso di engagement per un solo video o gli ultimi 10 video?",
+            "answer": "Sì, puoi testare facilmente entrambe le opzioni. Inserisci 1 in Video totali con i Mi piace di quel singolo video e i follower attuali per valutare un post. Oppure inserisci 10 con i Mi piace sommati degli ultimi 10 clip per vedere la spinta recente."
+          },
+          {
+            "question": "Perché diversi calcolatori di engagement TikTok danno risultati differenti?",
+            "answer": "Ogni strumento misura l’engagement con regole proprie. Alcuni dividono per visualizzazioni invece che per follower, mentre altri sommano commenti, condivisioni e salvataggi ai Mi piace. Molti inoltre calcolano la media solo sugli ultimi 12–30 post anziché sul totale."
+          },
+          {
+            "question": "Perché il mio tasso di engagement su TikTok supera il 100%?",
+            "answer": "La pagina Per Te mostra spesso i video a molte persone che non ti seguono ancora. Grazie a questa scoperta organica, i canali piccoli o in crescita veloce possono ricevere più Mi piace a video rispetto ai propri follower. Ogni volta che i Mi piace medi per clip superano i follower totali, la percentuale sale oltre il 100%."
+          },
+          {
+            "question": "Perché gli account TikTok enormi hanno spesso percentuali più basse?",
+            "answer": "Quando un canale cresce fino a centinaia di migliaia o milioni di follower, molti vecchi iscritti smettono di aprire l’app ogni giorno. Quei follower inattivi aumentano più in fretta dei fan attivi, abbassando la percentuale. Confronta profili della stessa fascia e osserva anche i Mi piace medi per video."
+          },
+          {
+            "question": "Dove trovo il totale dei video se TikTok lo nasconde da mobile?",
+            "answer": "L’app mobile di TikTok non sempre mostra subito il numero totale di video sul profilo. Puoi leggerlo dentro TikTok Creator Tools oppure aprendo il profilo dal browser su computer. In alternativa evita il dato storico sommando i Mi piace degli ultimi 10 video e mettendo 10 in Video totali."
+          },
+          {
+            "question": "Un tasso di engagement più alto aiuta i creator a guadagnare di più su TikTok?",
+            "answer": "Sì, un buon engagement aiuta a negoziare compensi più alti nelle collaborazioni con i brand. Gli inserzionisti pagano volentieri di più quando vedono un pubblico che interagisce davvero con i post. I pagamenti diretti di TikTok Creator Rewards dipendono invece soprattutto da visualizzazioni idonee e RPM."
+          }
+        ]
       }
-    }
+    },
+    "errorRequired": "Si prega di compilare tutti i campi (Totale Mi Piace, Totale Video, Totale Follower).",
+    "errorInvalid": "Si prega di inserire numeri validi (es. 50000, 10K, 1.5M).",
+    "errorZeroVideos": "Il numero di video deve essere maggiore di zero.",
+    "errorZeroFollowers": "Il numero di follower deve essere maggiore di zero."
   },
   "cpmCalculator": {
     "title": "Calcolatore CPM TikTok",
-    "subtitle": "Usa il nostro Calcolatore CPM TikTok per calcolare facilmente il costo di esecuzione di annunci su TikTok.",
-    "totalCost": "Costo Totale:",
-    "impressions": "Numero di Impressioni Pubblicitarie:",
-    "industry": "Seleziona un'industria (opzionale)",
-    "country": "Seleziona un Paese (opzionale)",
-    "channel": "Seleziona un canale (opzionale)",
+    "subtitle": "Calcola il Costo Per Mille (CPM), il budget pubblicitario richiesto o le impressioni stimate in varie valute con benchmark d'asta ufficiali.",
+    "totalCost": "Costo Totale Annunci:",
+    "impressions": "Numero di Impressioni:",
+    "industry": "Seleziona Settore (opzionale)",
+    "country": "Seleziona Paese (opzionale)",
+    "channel": "Seleziona Canale (opzionale)",
     "currency": "Valuta",
     "calculate": "Calcola",
-    "calculatedCpm": "CPM CALCOLATO",
+    "calculatedCpm": "CPM STIMATO",
     "costPerThousand": "Costo per 1.000 impressioni",
-    "placeholderCost": "Inserisci il costo qui",
-    "placeholderImpressions": "Inserisci le impressioni qui",
+    "placeholderCost": "es., 500 o 1.200",
+    "placeholderImpressions": "es., 100.000 o 100K",
+    "modes": {
+      "cpm": "Calcola CPM",
+      "spend": "Calcola Budget",
+      "impressions": "Calcola Impressioni"
+    },
+    "presets": {
+      "label": "Preset Rapidi:",
+      "awareness": "Notorietà ($500 / 100K imp)",
+      "traffic": "Traffico ($1.200 / 250K imp)",
+      "conversions": "Conversioni ($2.500 / 200K imp)"
+    },
+    "form": {
+      "totalCost": "Budget Pubblicitario Totale",
+      "targetCpm": "CPM Target",
+      "impressions": "Numero di Impressioni",
+      "currency": "Valuta",
+      "calculate": "Calcola",
+      "reset": "Reimposta",
+      "copySummary": "Copia Riepilogo Tariffe",
+      "copied": "Copiato negli Appunti!",
+      "placeholderCost": "es., 500 o 1.200",
+      "placeholderCpm": "es., 5.00",
+      "placeholderImpressions": "es., 100.000 o 100K",
+      "errorEmpty": "Compila tutti i campi obbligatori per questa modalità di calcolo.",
+      "errorPositive": "I valori devono essere positivi e superiori a zero.",
+      "errorInvalid": "Inserisci valori numerici validi (es., 500, 100000, 100K, 1.5M)."
+    },
+    "results": {
+      "cpmLabel": "CPM TIKTOK CALCOLATO",
+      "spendLabel": "BUDGET PUBBLICITARIO RICHIESTO",
+      "impressionsLabel": "IMPRESSIONI PUBBLICITARIE STIMATE",
+      "benchmarkTitle": "Stato Benchmark d'Asta",
+      "benchmarkLow": "CPM Basso / Molto Efficiente",
+      "benchmarkLowDesc": "Al di sotto della mediana d'asta standard. Comune per campagne di notorietà o nei mercati emergenti.",
+      "benchmarkTypical": "CPM d'Asta Tipico",
+      "benchmarkTypicalDesc": "Nella media ($3.00 – $7.00) per annunci In-Feed standard nei mercati principali.",
+      "benchmarkCompetitive": "CPM Competitivo / Conversione",
+      "benchmarkCompetitiveDesc": "Sopra la media ($7.00 – $12.00). Comune per lead generation ed e-commerce ad alta competizione.",
+      "benchmarkPremium": "CPM Premium / Alta Intenzione",
+      "benchmarkPremiumDesc": "Fascia premium ($12.00+). Tipica per settori finance, SaaS o formati TopView.",
+      "formulaTrace": "Formula Applicata:",
+      "summaryNote": "Il CPM indica il costo per 1.000 impressioni. I costi reali variano in base al target e alla qualità creativa."
+    },
     "content": {
       "whatIsTikTokCPM": {
-        "title": "Cos'è il CPM TikTok e Perché è Importante?",
-        "description": "CPM TikTok sta per Costo Per Mille, che significa il costo che gli inserzionisti pagano per ogni 1.000 impressioni su TikTok. Un'impressione viene conteggiata ogni volta che il tuo annuncio o contenuto promozionale viene mostrato a un utente. Il CPM è importante perché aiuta creatori, marchi e aziende a comprendere l'efficienza dei costi del loro raggiungimento. Un CPM ben ottimizzato significa che stai raggiungendo più persone spendendo meno, il che impatta direttamente le prestazioni e la redditività della campagna."
-      },
-      "relatedTools": {
-        "title": "Strumenti Correlati",
-        "moneyCalculator": "Usa il nostro Calcolatore di Denaro TikTok per ottenere una gamma stimata di guadagni basata sul numero di follower, visualizzazioni video e engagement complessivo. Aiuta i creatori a capire quanto potrebbe valere il loro contenuto prima di lavorare con i marchi.",
-        "engagementCalculator": "Per valutare quanto bene il tuo contenuto si connette con il tuo pubblico, prova il nostro Calcolatore di Engagement TikTok. Questo strumento analizza like, commenti, condivisioni e visualizzazioni per mostrare quanto attivamente gli utenti interagiscono con i tuoi video—un fattore importante che influenza direttamente il CPM e le prestazioni degli annunci."
-      },
-      "howItHelps": {
-        "title": "Calcolatore CPM TikTok: Come Aiuta Creatori e Marchi",
-        "description": "Un Calcolatore CPM TikTok aiuta gli utenti a stimare i costi pubblicitari prima di eseguire campagne.",
-        "forCreators": "Per i creatori: Mostra quanto è prezioso il loro pubblico per gli inserzionisti.",
-        "forBrands": "Per i marchi: Aiuta a pianificare i budget, confrontare le prestazioni delle campagne e decidere se gli annunci TikTok stanno fornendo un buon valore rispetto ad altre piattaforme."
-      },
-      "howItWorks": {
-        "title": "Come Funziona Realmente un Calcolatore CPM TikTok",
-        "description": "Il calcolatore funziona prendendo due input di base:",
-        "input1": "Spesa pubblicitaria totale",
-        "input2": "Impressioni totali",
-        "conclusion": "Usando questi valori, calcola quanto stai pagando per raggiungere 1.000 utenti. Questo dà un quadro chiaro dell'efficienza del raggiungimento e aiuta gli inserzionisti a controllare la spesa senza indovinare."
+        "title": "Cos'è il CPM di TikTok e come funziona?",
+        "description": "Il CPM di TikTok corrisponde al Costo Per Mille impressioni. È la metrica di riferimento della pubblicità digitale che misura il costo necessario per mostrare un annuncio 1.000 volte su TikTok. Un'impressione viene conteggiata ogni volta che il video appare sullo schermo dell'utente.",
+        "p2": "Nell'acquisto di spazi pubblicitari, 1.000 impressioni è l'unità standard poiché la singola visualizzazione vale frazioni di centesimo. Raggruppare per mille consente di confrontare con chiarezza budget, paesi e formati creativi."
       },
       "formula": {
-        "title": "Formula CPM TikTok Spiegata in Termini Semplici",
-        "equation": "CPM = (Spesa Pubblicitaria Totale ÷ Impressioni Totali) × 1000",
-        "description": "In parole semplici, mostra quanto denaro spendi per mettere il tuo contenuto davanti a 1.000 persone."
+        "title": "Le 3 Formule Standard di Calcolo del CPM su TikTok",
+        "description": "Spesa pubblicitaria, impressioni e CPM sono matematicamente collegati. Conoscendo due variabili, puoi ricavare la terza attraverso queste formule:",
+        "cpmFormula": "CPM = (Spesa Pubblicitaria Totale ÷ Impressioni) × 1.000",
+        "spendFormula": "Spesa = (CPM Target × Impressioni) ÷ 1.000",
+        "impressionsFormula": "Impressioni = (Spesa Totale ÷ CPM Target) × 1.000",
+        "workedExampleTitle": "Esempio Pratico Passo dopo Passo",
+        "exampleIntro": "Supponiamo che un brand investa $1.200 in una campagna In-Feed su TikTok ottenendo 250.000 impressioni:",
+        "step1": "1. Individua la spesa complessiva: $1.200 USD.",
+        "step2": "2. Individua le impressioni totali: 250.000.",
+        "step3": "3. Dividi la spesa per le impressioni: 1.200 ÷ 250.000 = $0,0048 per singola visualizzazione.",
+        "step4": "4. Moltiplica per 1.000: 0,0048 × 1.000 = $4,80 CPM.",
+        "conclusion": "L'inserzionista spende quindi $4,80 per ogni mille visualizzazioni dell'annuncio su TikTok."
       },
-      "stepByStep": {
-        "title": "Calcolare il CPM TikTok Passo dopo Passo",
-        "step1": "Annota il tuo costo pubblicitario totale",
-        "step2": "Controlla le impressioni totali che il tuo annuncio ha ricevuto",
-        "step3": "Dividi il costo per le impressioni",
-        "step4": "Moltiplica il risultato per 1.000",
-        "conclusion": "Questo calcolo passo dopo passo elimina la confusione e ti aiuta a tracciare chiaramente l'efficienza degli annunci."
-      },
-      "lowOrHigh": {
-        "title": "Cosa è Considerato un CPM TikTok Basso o Alto?",
-        "low": "Un CPM basso indica prestazioni forti, targeting buono e contenuto coinvolgente",
-        "high": "Un CPM alto suggerisce targeting scarso, engagement debole o alta concorrenza",
-        "conclusion": "Nessuno è permanente—il CPM può migliorare con una strategia e ottimizzazione migliori."
+      "adCpmVsCreatorRpm": {
+        "title": "CPM Pubblicitario vs. RPM Creator vs. CPM Sponsorizzazioni",
+        "description": "Spesso si confondono i costi sostenuti dalle aziende con i ricavi percepiti dai creator. Pur misurando valori ogni 1.000 visualizzazioni, fanno riferimento a transazioni diverse:",
+        "adCpm": "CPM Pubblicitario: Quanto gli inserzionisti pagano a TikTok Ads Manager per mostrare annunci a 1.000 utenti.",
+        "creatorRpm": "RPM Programma Creator: Quanto TikTok riconosce ai creator per 1.000 visualizzazioni idonee (>1 min) dei loro video.",
+        "sponsorshipCpm": "CPM Sponsorizzazione: La tariffa di mercato che i brand versano direttamente ai creator per 1.000 visualizzazioni stimate.",
+        "table": {
+          "caption": "Confronto tra CPM Pubblicitario TikTok, RPM Creator e CPM Sponsorizzazioni",
+          "thMetric": "Metrica",
+          "thPerspective": "Prospettiva",
+          "thPayer": "Chi Paga?",
+          "thDenominator": "Base di Calcolo",
+          "thRange": "Intervallo Tipico (USD)",
+          "row1Metric": "CPM Pubblicitario TikTok",
+          "row1Perspective": "Inserzionista / Agenzia",
+          "row1Payer": "L'inserzionista paga TikTok",
+          "row1Basis": "Per 1.000 impressioni pubblicitarie",
+          "row1Range": "$3.00 – $10.00",
+          "row2Metric": "RPM Creator Rewards",
+          "row2Perspective": "Creator / Publisher",
+          "row2Payer": "TikTok paga il Creator",
+          "row2Basis": "Per 1.000 visualizzazioni idonee",
+          "row2Range": "$0.40 – $1.80",
+          "row3Metric": "CPM Sponsorizzazioni",
+          "row3Perspective": "Influencer / Brand Partner",
+          "row3Payer": "Il brand paga direttamente il Creator",
+          "row3Basis": "Per 1.000 visualizzazioni stimate",
+          "row3Range": "$12.00 – $42.00"
+        }
       },
       "averageRates": {
-        "title": "Tariffe CPM TikTok Medie e Riferimenti",
-        "description": "Le tariffe CPM TikTok non sono fisse. Varia in base all'obiettivo della campagna, alla posizione del pubblico, alla concorrenza del settore e alla precisione del targeting. Tuttavia, basandosi su modelli pubblicitari comuni, i seguenti riferimenti forniscono una panoramica realistica di ciò che inserzionisti e creatori possono aspettarsi:",
+        "title": "Benchmark di CPM Medio su TikTok per Obiettivo di Campagna",
+        "description": "I costi d'asta su TikTok cambiano in relazione all'obiettivo, al paese e alla competitività del settore. La tabella illustra i valori nei mercati Tier-1:",
         "table": {
-          "campaignObjective": "Obiettivo della Campagna",
-          "estimatedCPM": "CPM TikTok Stimato (USD)",
-          "brandAwareness": "Campagne di Consapevolezza del Marchio",
-          "brandAwarenessCPM": "$1,20 – $3,50",
-          "trafficClicks": "Traffico e Clic sul Sito Web",
-          "trafficClicksCPM": "$3,00 – $6,50",
-          "appInstalls": "Installazioni App e Generazione Lead",
-          "appInstallsCPM": "$4,50 – $8,00",
-          "salesConversion": "Campagne di Vendita e Conversione",
-          "salesConversionCPM": "$6,00 – $12,00",
-          "influencerPromotions": "Promozioni di Influencer e Creatori",
-          "influencerPromotionsCPM": "$7,00 – $14,00"
+          "caption": "Benchmark di CPM TikTok per Obiettivo Pubblicitario",
+          "campaignObjective": "Obiettivo di Campagna",
+          "estimatedCPM": "CPM Medio (USD)",
+          "notes": "Note Strategiche",
+          "brandAwareness": "Notorietà e Copertura",
+          "brandAwarenessCPM": "$1.50 – $3.50",
+          "brandAwarenessNotes": "Massima portata; costo per impressione più contenuto.",
+          "videoViews": "Visualizzazioni e Hook a 6s",
+          "videoViewsCPM": "$2.00 – $4.50",
+          "videoViewsNotes": "Ottimizzato per tempo di permanenza e tasso di completamento.",
+          "trafficClicks": "Traffico e Clic sul Link",
+          "trafficClicksCPM": "$3.00 – $6.50",
+          "trafficClicksNotes": "Targetizza utenti propensi all'interazione verso link esterni.",
+          "appInstalls": "Installazioni App e Lead",
+          "appInstallsCPM": "$5.00 – $9.00",
+          "appInstallsNotes": "Asta più contesa per via del valore diretto di conversione.",
+          "salesConversion": "Conversioni e Vendite Catalogo",
+          "salesConversionCPM": "$7.00 – $14.00+",
+          "salesConversionNotes": "Forte propensione all'acquisto; competizione elevata.",
+          "sparkAds": "Spark Ads (Boost Contenuto UGC)",
+          "sparkAdsCPM": "$3.50 – $7.50",
+          "sparkAdsNotes": "Il coinvolgimento organico abbassa frequentemente il CPM reale."
         },
-        "conclusion": "CPM più bassi sono generalmente visti in campagne di consapevolezza ampie e nicchie meno competitive, mentre CPM più alti sono comuni in annunci focalizzati sulla conversione e settori ad alta domanda. Il targeting geografico gioca anche un ruolo importante—gli annunci mostrati nei paesi di livello 1 generalmente costano più di quelli nei mercati emergenti. Monitorare regolarmente il tuo CPM ti consente di ottimizzare il targeting, controllare la spesa pubblicitaria e migliorare la redditività complessiva della campagna."
+        "conclusion": "La localizzazione incide marcatamente sui costi: i paesi Tier-1 registrano CPM tra $5.00 e $12.00, mentre nei mercati emergenti i valori scendono sotto $2.50."
       },
-      "forUsers": {
-        "title": "CPM TikTok per Influencer, Marchi e Aziende",
-        "influencers": "Gli influencer usano il CPM per dimostrare il valore del pubblico ai marchi",
-        "brands": "I marchi usano il CPM per misurare l'efficienza pubblicitaria",
-        "businesses": "Le aziende si affidano al CPM per ottimizzare i budget di marketing",
-        "conclusion": "Ogni gruppo beneficia comprendendo come le impressioni si traducono in costi e ritorni reali."
+      "drivers": {
+        "title": "5 Fattori Decisivi che Determinano il CPM su TikTok",
+        "description": "Il sistema d'asta bilancia offerta economica, stima della probabilità d'azione e qualità creativa. Ecco i fattori determinanti:",
+        "factor1Title": "Geografia e Demografia del Pubblico",
+        "factor1Desc": "Puntare su mercati ad alto reddito fa salire il CPM per via della forte concorrenza tra inserzionisti.",
+        "factor2Title": "Settore Merceologico e Competizione",
+        "factor2Desc": "Settori ad alto valore di conversione (finanza, software, beauty) richiedono offerte CPM più alte rispetto all'intrattenimento.",
+        "factor3Title": "CTR della Creatività e Watch Time",
+        "factor3Desc": "TikTok premia le inserzioni coinvolgenti. Un elevato tempo di visualizzazione e un CTR solido migliorano il ranking abbassando il CPM.",
+        "factor4Title": "Stagionalità e Picchi Festivi",
+        "factor4Desc": "Nel quarto trimestre (Black Friday, Natale) i CPM crescono bruscamente a causa della saturazione dei budget pubblicitari.",
+        "factor5Title": "Formato Pubblicitario e Posizionamento",
+        "factor5Desc": "I formati In-Feed sono i più economici, gli Spark Ads sfruttano la riprova sociale, mentre i TopView hanno costi fissi premium."
       },
-      "comparison": {
-        "title": "CPM TikTok Confrontato con Altre Piattaforme Social",
-        "description": "Confrontato con piattaforme come Facebook, Instagram e YouTube, TikTok spesso offre CPM più bassi con maggiore portata organica. Questo rende TikTok attraente per i marchi che cercano visibilità conveniente, specialmente per pubblici più giovani e guidati dalle tendenze."
+      "strategies": {
+        "title": "5 Strategie Pratiche per Ridurre il CPM dei Tuoi Annunci",
+        "intro": "Per ottimizzare l'investimento e ottenere più impressioni con il budget a disposizione, adotta queste best practice:",
+        "tip1Title": "1. Cattura l'Attenzione nei Primi 2 Secondi",
+        "tip1Desc": "L'algoritmo premia la ritenzione immediata. Un aggancio visivo o sonoro iniziale evita lo swipe immediato verso altri video.",
+        "tip2Title": "2. Scegli gli Spark Ads rispetto agli Annunci Tradizionali",
+        "tip2Desc": "Gli Spark Ads valorizzano post autentici di creator, mantenendo interazioni native e generando in genere il 20–40% di CTR in più con un CPM inferiore.",
+        "tip3Title": "3. Evita un Targeting Eccessivamente Ristretto all'Inizio",
+        "tip3Desc": "Troppi vincoli demografici limitano la liquidità dell'asta e fanno lievitare i costi. Lascia all'algoritmo il margine per trovare il pubblico migliore.",
+        "tip4Title": "4. Rinnova le Creatività Ogni 7–14 Giorni",
+        "tip4Desc": "La saturazione creativa avviene rapidamente su TikTok. Quando il CTR flette, il CPM aumenta: ruota costantemente nuovi spunti video.",
+        "tip5Title": "5. Crea Video Verticali Nativi in 9:16",
+        "tip5Desc": "I video orizzontali adattati non funzionano bene nel feed. Usa formati verticali, audio di tendenza e sottotitoli dinamici."
       },
-      "improveCPM": {
-        "title": "Modi Provati per Migliorare il Tuo CPM TikTok",
-        "intro": "Puoi migliorare il tuo CPM TikTok:",
-        "tip1": "Creando contenuti coinvolgenti e allineati alle tendenze",
-        "tip2": "Targetizzando le giuste demografie del pubblico",
-        "tip3": "Testando diversi formati pubblicitari",
-        "tip4": "Migliorando i tassi di engagement",
-        "tip5": "Ottimizzando gli orari di pubblicazione",
-        "conclusion": "Quando l'engagement migliora, TikTok premia gli annunci con maggiore portata a costi inferiori."
+      "metricsComparison": {
+        "title": "Confronto tra CPM, CPC, CPV e CTR su TikTok",
+        "description": "Il CPM è uno dei tasselli del tuo quadro analitico. Ecco come si relaziona con gli altri parametri essenziali:",
+        "cpc": "CPM vs CPC (Costo Per Clic): Il CPM quantifica i costi di visibilità (portata), mentre il CPC quantifica l'azione (traffico al sito).",
+        "cpv": "CPM vs CPV (Costo Per Visualizzazione): Il CPV valuta le visualizzazioni di 2 o 6 secondi, mentre il CPM misura le impressioni a schermo.",
+        "ctr": "Rapporto tra CPM e CTR (Percentuale di Clic): Un CTR più alto riduce nel tempo il CPM effettivo, poiché TikTok premia gli annunci performanti."
+      },
+      "relatedTools": {
+        "title": "Scopri gli Altri Calcolatori Gratuiti per TikTok",
+        "description": "Affianca la pianificazione del CPM ai nostri calcolatori di supporto per valutare il valore commerciale dei creator e il loro engagement:",
+        "moneyCalculator": "Calcolatore Denaro TikTok: Inserisci qualsiasi username pubblico per stimare il compenso di un video sponsorizzato.",
+        "engagementCalculator": "Calcolatore Tasso di Engagement TikTok: Misura con precisione l'interazione di un profilo in base a like, video e follower, senza login."
       },
       "faq": {
-        "title": "Domande Frequenti",
+        "title": "Domande Frequenti sul CPM di TikTok",
         "q1": {
-          "question": "Quanto è accurato il Calcolatore CPM TikTok?",
-          "answer": "Il Calcolatore CPM TikTok fornisce una stima accurata basata sulla tua spesa pubblicitaria e impressioni. Anche se non è un importo di fatturazione esatto, fornisce un riferimento affidabile per comprendere e confrontare i costi delle campagne."
+          "question": "Come calcola i costi pubblicitari il Calcolatore CPM TikTok?",
+          "answer": "Utilizza la formula standard: CPM = (Spesa Totale ÷ Impressioni) × 1.000. Ti consente inoltre di calcolare a ritroso il budget o le visualizzazioni stimate."
         },
         "q2": {
-          "question": "Posso usarlo per qualsiasi settore?",
-          "answer": "Sì, il calcolatore funziona per tutti i settori. Tuttavia, i risultati CPM possono variare a seconda della concorrenza di nicchia, della domanda del pubblico e della strategia di targeting."
+          "question": "Qual è un valore di CPM considerato buono nel 2026?",
+          "answer": "Per campagne In-Feed standard in Europa e mercati principali, il CPM oscilla solitamente tra $3.50 e $7.50 per il traffico e tra $1.50 e $3.50 per la notorietà."
         },
         "q3": {
-          "question": "Il CPM differisce per influencer e marchi?",
-          "answer": "Sì, il CPM spesso differisce. Gli influencer possono vedere CPM più alti a causa della fiducia e dell'engagement del pubblico, mentre i marchi che eseguono annunci su larga scala possono raggiungere CPM più bassi con targeting ottimizzato."
+          "question": "Che differenza c'è tra CPM per inserzionisti e RPM per creator?",
+          "answer": "Il CPM è l'importo versato a TikTok dagli inserzionisti per 1.000 impressioni. L'RPM è il compenso riconosciuto da TikTok ai creator per 1.000 visualizzazioni idonee."
         },
         "q4": {
-          "question": "Cosa influenza il CPM su TikTok?",
-          "answer": "Il CPM è influenzato dalla posizione del pubblico, dall'obiettivo dell'annuncio, dalla concorrenza, dalla qualità del contenuto, dalla precisione del targeting e dai livelli di engagement complessivi."
+          "question": "Un coinvolgimento alto abbassa il CPM?",
+          "answer": "Sì. Il meccanismo d'asta premia i video con watch-time prolungato e CTR elevato, garantendo un posizionamento prioritario a costi inferiori."
         },
         "q5": {
-          "question": "Come il CPM aiuta nella pianificazione del budget?",
-          "answer": "Il CPM aiuta a stimare quanto budget è necessario per raggiungere una dimensione specifica del pubblico. Consente agli inserzionisti di pianificare campagne, controllare la spesa e adattare le strategie per risultati migliori."
+          "question": "I creator possono usare questo strumento per proporre tariffe ai brand?",
+          "answer": "Certamente. Nelle collaborazioni sponsorizzate il compenso viene quantificato su un CPM concordato (generalmente tra $15 e $35 per mille visualizzazioni)."
+        },
+        "q6": {
+          "question": "Perché il CPM oscilla sensibilmente durante le festività?",
+          "answer": "La piattaforma opera ad asta: nel quarto trimestre (Q4), l'incremento di investimenti e-commerce alza i prezzi, che poi scendono sensibilmente a gennaio."
         }
+      },
+      "closing": {
+        "title": "Pronto a Calcolare il tuo CPM e la Copertura su TikTok?",
+        "description": "Usa il calcolatore sopra per simulare diversi scenari di budget o scopri i nostri strumenti di analisi del profilo.",
+        "button": "Torna al Calcolatore"
       }
     }
   },
   "contact": {
+    "subtitle": "Contattaci. Saremo lieti di ascoltarti!",
+    "name": "Nome",
+    "namePlaceholder": "Inserisci il tuo nome",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Inserisci la tua email",
+    "message": "Messaggio",
+    "messagePlaceholder": "Scrivi il tuo messaggio",
+    "sendMessage": "Invia messaggio",
+    "sending": "Invio in corso...",
+    "successMessage": "Grazie! Il tuo messaggio è stato inviato con successo.",
     "title": "Contattaci",
-    "email": "tikcalculator@proton.me"
+    "notice": "L'invio di messaggi online non è attualmente disponibile perché nessuna casella di supporto è ancora collegata. Finché è disattivato, questo modulo non raccoglie, archivia o trasmette dati personali.",
+    "submitDisabled": "Invio attualmente non disponibile",
+    "subject": "Oggetto (Opzionale)",
+    "subjectPlaceholder": "Argomento della tua domanda",
+    "resourcesTitle": "Risorse utili mentre il supporto è offline",
+    "resourcesDesc": "Trova risposte su formule di calcolo, metriche e informative in queste pagine:",
+    "resourceFaq": "Domande frequenti (FAQ)",
+    "resourceAbout": "Chi siamo",
+    "resourcePrivacy": "Informativa sulla privacy",
+    "resourceTerms": "Termini e condizioni",
+    "errorNameRequired": "Inserisci almeno 2 caratteri per il nome.",
+    "errorEmailInvalid": "Inserisci un indirizzo email valido.",
+    "errorMessageLength": "Il messaggio deve contenere tra 10 e 2.000 caratteri.",
+    "errorUnavailable": "L'invio di messaggi online non è attualmente disponibile.",
+    "errorRateLimit": "Troppi tentativi inviati. Attendi qualche istante prima di riprovare.",
+    "errorDeliveryFailed": "Impossibile inviare il messaggio al momento. Riprova più tardi.",
+    "messageCharCount": "{{count}} / 2.000 caratteri"
   },
   "privacy": {
     "title": "Informativa sulla Privacy",
-    "intro": "In TikCalculator, la tua privacy è importante per noi. Questa Informativa sulla Privacy spiega come gestiamo le informazioni quando utilizzi il nostro strumento di stima dei guadagni TikTok. Il nostro obiettivo è mantenere le cose trasparenti, semplici e affidabili.",
+    "intro": "In KalkulatorTik, la tua privacy è importante per noi. Questa Informativa sulla Privacy spiega come gestiamo le informazioni quando utilizzi il nostro strumento di stima dei guadagni TikTok. Il nostro obiettivo è mantenere le cose trasparenti, semplici e affidabili.",
     "infoWeCollect": {
       "title": "Informazioni che Raccogliamo",
-      "description": "Non chiediamo né raccogliamo informazioni personali come il tuo nome, indirizzo email, numero di telefono o credenziali di accesso. Puoi usare TikCalculator liberamente senza creare un account o condividere dettagli privati."
+      "description": "Non chiediamo né raccogliamo informazioni personali come il tuo nome, indirizzo email, numero di telefono o credenziali di accesso. Puoi usare KalkulatorTik liberamente senza creare un account o condividere dettagli privati."
     },
     "autoCollected": {
       "title": "Informazioni Raccolte Automaticamente",
@@ -292,7 +582,7 @@
     },
     "cookies": {
       "title": "Uso dei Cookie",
-      "description1": "TikCalculator può utilizzare cookie o tecnologie simili per migliorare l'esperienza utente, analizzare il traffico e ottimizzare la funzionalità. I cookie ci aiutano a capire come i visitatori interagiscono con il sito web.",
+      "description1": "KalkulatorTik può utilizzare cookie o tecnologie simili per migliorare l'esperienza utente, analizzare il traffico e ottimizzare la funzionalità. I cookie ci aiutano a capire come i visitatori interagiscono con il sito web.",
       "description2": "Puoi disabilitare i cookie in qualsiasi momento tramite le impostazioni del browser se preferisci."
     },
     "howWeUseInfo": {
@@ -314,7 +604,7 @@
     },
     "policyUpdates": {
       "title": "Aggiornamenti della Politica",
-      "description": "Possiamo aggiornare questa Informativa sulla Privacy di volta in volta per riflettere cambiamenti nella funzionalità o nei requisiti legali. Eventuali aggiornamenti saranno pubblicati su questa pagina. L'uso continuato di TikCalculator significa che accetti la politica aggiornata."
+      "description": "Possiamo aggiornare questa Informativa sulla Privacy di volta in volta per riflettere cambiamenti nella funzionalità o nei requisiti legali. Eventuali aggiornamenti saranno pubblicati su questa pagina. L'uso continuato di KalkulatorTik significa che accetti la politica aggiornata."
     },
     "contactUs": {
       "title": "Contattaci",
@@ -323,20 +613,20 @@
   },
   "terms": {
     "title": "Termini e Condizioni",
-    "intro": "Benvenuto su TikCalculator. Ti preghiamo di prenderti un momento per leggere attentamente questi Termini e Condizioni prima di utilizzare il nostro strumento di stima dei guadagni TikTok. Accedendo o utilizzando TikCalculator, accetti di rispettare questi termini. Se non sei d'accordo, ti preghiamo di interrompere l'utilizzo del servizio.",
+    "intro": "Benvenuto su KalkulatorTik. Ti preghiamo di prenderti un momento per leggere attentamente questi Termini e Condizioni prima di utilizzare il nostro strumento di stima dei guadagni TikTok. Accedendo o utilizzando KalkulatorTik, accetti di rispettare questi termini. Se non sei d'accordo, ti preghiamo di interrompere l'utilizzo del servizio.",
     "acceptance": {
       "title": "Accettazione dei Termini",
-      "description": "Utilizzando TikCalculator, confermi di comprendere e accettare questi Termini e Condizioni. Il tuo utilizzo continuato del sito web significa che accetti eventuali aggiornamenti apportati a questi termini in futuro."
+      "description": "Utilizzando KalkulatorTik, confermi di comprendere e accettare questi Termini e Condizioni. Il tuo utilizzo continuato del sito web significa che accetti eventuali aggiornamenti apportati a questi termini in futuro."
     },
     "purposeOfService": {
       "title": "Scopo del Servizio",
-      "description1": "TikCalculator è progettato per fornire stime dei guadagni TikTok basate su dati di account pubblicamente disponibili come follower, engagement e prestazioni video.",
+      "description1": "KalkulatorTik è progettato per fornire stime dei guadagni TikTok basate su dati di account pubblicamente disponibili come follower, engagement e prestazioni video.",
       "description2": "Tutti i risultati sono solo informativi e non devono essere considerati consulenza finanziaria, legale o professionale.",
       "description3": "Sei responsabile di come utilizzi le informazioni fornite dallo strumento."
     },
     "userResponsibility": {
       "title": "Responsabilità dell'Utente",
-      "description1": "Accetti di utilizzare TikCalculator in modo responsabile e solo per scopi legali.",
+      "description1": "Accetti di utilizzare KalkulatorTik in modo responsabile e solo per scopi legali.",
       "description2": "Non devi:",
       "item1": "Abusare dello strumento",
       "item2": "Tentare di manipolare i risultati",
@@ -345,17 +635,17 @@
     },
     "intellectualPropertyRights": {
       "title": "Diritti di Proprietà Intellettuale",
-      "description1": "Tutto il contenuto su TikCalculator, inclusi testo, design, loghi, grafiche e software, è di proprietà di TikCalculator e protetto dalle leggi applicabili sul copyright e la proprietà intellettuale.",
+      "description1": "Tutto il contenuto su KalkulatorTik, inclusi testo, design, loghi, grafiche e software, è di proprietà di KalkulatorTik e protetto dalle leggi applicabili sul copyright e la proprietà intellettuale.",
       "description2": "Non puoi copiare, riprodurre, distribuire o modificare alcuna parte del sito web senza previa autorizzazione scritta."
     },
     "accuracyDisclaimer": {
       "title": "Disclaimer sulla Precisione",
       "description1": "Sebbene ci sforziamo di fornire stime realistiche e aggiornate, non garantiamo che i calcoli siano sempre accurati o completi. I guadagni TikTok possono variare a causa di molteplici fattori al di fuori del nostro controllo.",
-      "description2": "TikCalculator è fornito \"così com'è\" e \"come disponibile\"."
+      "description2": "KalkulatorTik è fornito \"così com'è\" e \"come disponibile\"."
     },
     "limitationOfLiability": {
       "title": "Limitazione di Responsabilità",
-      "description1": "TikCalculator non sarà ritenuto responsabile per eventuali danni diretti, indiretti o incidentali derivanti dall'uso del nostro strumento o dalla fiducia nelle sue stime.",
+      "description1": "KalkulatorTik non sarà ritenuto responsabile per eventuali danni diretti, indiretti o incidentali derivanti dall'uso del nostro strumento o dalla fiducia nelle sue stime.",
       "description2": "Utilizza il servizio a tuo rischio e pericolo."
     },
     "thirdPartyLinks": {
@@ -364,11 +654,11 @@
     },
     "terminationOfAccess": {
       "title": "Terminazione dell'Accesso",
-      "description": "Ci riserviamo il diritto di sospendere o terminare l'accesso a TikCalculator in qualsiasi momento, senza preavviso, se questi Termini e Condizioni vengono violati o per motivi operativi."
+      "description": "Ci riserviamo il diritto di sospendere o terminare l'accesso a KalkulatorTik in qualsiasi momento, senza preavviso, se questi Termini e Condizioni vengono violati o per motivi operativi."
     },
     "changesToTerms": {
       "title": "Modifiche ai Termini",
-      "description1": "TikCalculator può aggiornare questi Termini e Condizioni in qualsiasi momento. Eventuali modifiche saranno pubblicate su questa pagina e l'utilizzo continuato del servizio indica l'accettazione dei termini aggiornati.",
+      "description1": "KalkulatorTik può aggiornare questi Termini e Condizioni in qualsiasi momento. Eventuali modifiche saranno pubblicate su questa pagina e l'utilizzo continuato del servizio indica l'accettazione dei termini aggiornati.",
       "description2": ""
     },
     "contactUs": {
@@ -377,8 +667,8 @@
     }
   },
   "about": {
-    "title": "Chi Siamo – Calcolatore di Denaro TikTok",
-    "welcome": "Benvenuto su Calcolatore di Denaro TikTok, la piattaforma di riferimento per creatori, influencer e aziende che vogliono comprendere le loro prestazioni TikTok e il potenziale di guadagno. Semplifichiamo il processo di analisi del tuo account in modo che tu possa prendere decisioni più intelligenti, far crescere il tuo pubblico e massimizzare le tue opportunità su TikTok.",
+    "title": "Chi Siamo – KalkulatorTik",
+    "welcome": "Benvenuto su KalkulatorTik, la piattaforma di riferimento per creatori, influencer e aziende che vogliono comprendere le loro prestazioni TikTok e il potenziale di guadagno. Semplifichiamo il processo di analisi del tuo account in modo che tu possa prendere decisioni più intelligenti, far crescere il tuo pubblico e massimizzare le tue opportunità su TikTok.",
     "mission": {
       "title": "La Nostra Missione",
       "description": "Il nostro obiettivo è responsabilizzare gli utenti TikTok con informazioni chiare, accurate e attuabili. Che tu sia un creatore emergente, un influencer o un marchio, i nostri strumenti ti aiutano a misurare l'engagement, tracciare la crescita e stimare i guadagni, dandoti la fiducia per pianificare efficacemente i tuoi contenuti e le tue campagne."
@@ -404,87 +694,115 @@
     },
     "joinUs": {
       "title": "Unisciti a Noi",
-      "description": "TikTok sta crescendo rapidamente e le opportunità si stanno espandendo ogni giorno. Con Calcolatore di Denaro TikTok, puoi tracciare, misurare e ottimizzare la tua presenza TikTok come un professionista. Siamo qui per supportare il tuo viaggio e aiutarti a raggiungere il successo con chiarezza e fiducia.",
-      "thankYou": "Grazie per aver fiducia in Calcolatore di Denaro TikTok—cresciamo, coinvolgiamo e guadagniamo insieme!"
+      "description": "TikTok sta crescendo rapidamente e le opportunità si stanno espandendo ogni giorno. Con KalkulatorTik, puoi tracciare, misurare e ottimizzare la tua presenza TikTok come un professionista. Siamo qui per supportare il tuo viaggio e aiutarti a raggiungere il successo con chiarezza e fiducia.",
+      "thankYou": "Grazie per aver fiducia in KalkulatorTik—cresciamo, coinvolgiamo e guadagniamo insieme!"
     }
   },
-  "infoSection": {
-    "whatIsTikTokMoneyCalculator": "Cos'è un Calcolatore di Denaro TikTok?",
-    "paragraph1": "Un Calcolatore di Denaro TikTok è uno strumento online che stima quanto può guadagnare un account TikTok. Analizza i dati pubblici dell'account, come il numero di follower, il tasso di coinvolgimento e le visualizzazioni medie dei video, per generare un intervallo di guadagni realistico. Invece di indovinare il reddito, il calcolatore fornisce informazioni rapide che aiutano creatori, marchi e marketer a prendere decisioni informate, specialmente quando si utilizzano strumenti come TikCalculator per valutare le prestazioni dell'account.",
-    "paragraph2": "Lo strumento è progettato per la semplicità. Non hai bisogno di conoscenze tecniche, software a pagamento o accesso all'account. Inserire un nome utente TikTok è sufficiente per iniziare, rendendo la stima dei guadagni accessibile a tutti.",
-    "howItWorksHeading": "Come Funziona il Calcolatore di Guadagni TikTok",
-    "howItWorksParagraph1": "Un Calcolatore di Denaro TikTok funziona utilizzando metriche TikTok pubblicamente disponibili e applicando formule di guadagno basate sull'industria. Valuta il numero di follower, il tasso di coinvolgimento, le visualizzazioni medie dei video e la coerenza delle prestazioni del contenuto per valutare il potenziale di guadagno, simile a come TikCalculator elabora i dati pubblici per generare stime.",
-    "howItWorksParagraph2": "Sulla base di questi segnali, il calcolatore stima quanto un creatore può guadagnare per post o collaborazione con un brand. Il risultato viene mostrato come un intervallo di guadagni piuttosto che un importo fisso, aiutando gli utenti a comprendere aspettative realistiche invece di affermazioni gonfiate.",
-    "howToCheckHeading": "Come Verificare i Guadagni TikTok Usando un Calcolatore",
-    "howToCheckIntro": "Verificare i guadagni TikTok con un calcolatore è veloce e adatto ai principianti.",
-    "howToCheckPoint1": "Prima, copia il nome utente TikTok che desideri analizzare.",
-    "howToCheckPoint2": "Successivamente, incolla il nome utente nello strumento calcolatore e fai clic sul pulsante calcola.",
-    "howToCheckPoint3": "In pochi secondi, lo strumento visualizza i guadagni stimati per post in un formato chiaro e leggibile, sia che tu stia usando TikCalculator o uno strumento simile di stima dei guadagni.",
-    "howToCheckPoint4": "Non sono richiesti login, download o installazioni.",
-    "howToCheckPoint5": "Il calcolatore funziona direttamente nel browser su dispositivi mobili, tablet e desktop, rendendo facile l'accesso in qualsiasi momento.",
-    "whyPeopleUseHeading": "Perché le Persone Usano i Calcolatori di Denaro TikTok",
-    "whyPeopleUseParagraph1": "Le persone usano i Calcolatori di Denaro TikTok per capire il valore dell'account senza confusione. I creatori si affidano a loro per stimare il loro valore prima di negoziare accordi con i brand, mentre i brand li usano per pianificare budget per influencer e confrontare i creatori in base all'engagement.",
-    "whyPeopleUseParagraph2": "Invece di affidarsi a supposizioni o numeri fuorvianti, strumenti come TikCalculator aiutano gli utenti a vedere stime di guadagno realistiche basate su dati di performance reali. Questo fa risparmiare tempo e rimuove le congetture dalla pianificazione della monetizzazione.",
-    "earningsPotentialHeading": "Quanto Puoi Guadagnare su TikTok?",
-    "earningsPotentialIntro": "I guadagni TikTok variano da creatore a creatore. Alcuni guadagnano un piccolo reddito secondario, mentre altri ottengono partnership con brand ben pagati. Il tuo potenziale di guadagno dipende da diversi fattori importanti che lavorano insieme:",
-    "followerCountLabel": "Numero di Follower:",
-    "followerCountDescription": "Un pubblico più ampio aumenta la visibilità, il che rende i brand più interessati a promozioni a pagamento e collaborazioni.",
-    "engagementRateLabel": "Tasso di Engagement:",
-    "engagementRateDescription": "Mi piace, commenti, condivisioni e visualizzazioni mostrano quanto attivo e fedele sia un pubblico. Un engagement forte spesso conta più del solo numero di follower.",
-    "monetizationMethodsLabel": "Metodi di Monetizzazione:",
-    "monetizationMethodsDescription": "I guadagni possono provenire da accordi con brand, post sponsorizzati, pagamenti del fondo creatore, regali in diretta, marketing di affiliazione e vendite di merchandising.",
-    "brandPartnershipsLabel": "Partnership con Brand:",
-    "brandPartnershipsDescription": "Le partnership con brand a lungo termine o esclusive di solito pagano più dei post sponsorizzati una tantum.",
-    "audienceLocationLabel": "Posizione del Pubblico:",
-    "audienceLocationDescription": "Gli spettatori da regioni con valore pubblicitario più alto possono avere un impatto positivo sui guadagni, specialmente per i pagamenti basati sulla piattaforma.",
-    "earningsPotentialConclusion": "Poiché i guadagni differiscono per ogni creatore, i calcolatori aiutano a stimare intervalli di reddito invece di promettere cifre esatte. I creatori con engagement forte e grandi audience possono guadagnare da poche centinaia a diverse migliaia di dollari per video di marca.",
-    "earningsByFollowersHeading": "Quanto Paga TikTok per 1.000 Follower?",
-    "earningsByFollowersIntro": "TikTok non paga direttamente i creatori in base al numero di follower, ma le stime del settore forniscono un riferimento generale di guadagno:",
-    "range1Label": "1.000–10.000 follower:",
-    "range1Value": "$5–$50 per post",
-    "range2Label": "10.000–100.000 follower:",
-    "range2Value": "$60–$90 per post",
-    "range3Label": "100.000–500.000 follower:",
-    "range3Value": "$200–$400 per post",
-    "range4Label": "500.000–1 milione di follower:",
-    "range4Value": "$400–$600 per post",
-    "range5Label": "Oltre 1 milione di follower:",
-    "range5Value": "$750–$1000+ per post",
-    "earningsByFollowersConclusion": "I guadagni effettivi dipendono fortemente dal tasso di engagement, dalla nicchia di contenuti e dalla domanda dei brand.",
-    "boostEarningsHeading": "Come Aumentare i Tuoi Guadagni TikTok",
-    "boostEarningsIntro": "Aumentare i guadagni TikTok richiede strategia e coerenza. I creatori di successo si concentrano su abitudini che attirano sia spettatori che brand:",
-    "stayConsistentLabel": "Resta Coerente:",
-    "stayConsistentDescription": "Pubblicare regolarmente migliora la visibilità e mantiene il pubblico coinvolto.",
-    "diversifyContentLabel": "Diversifica il Contenuto:",
-    "diversifyContentDescription": "Sperimentare con formati rimanendo all'interno di una nicchia aiuta a raggiungere nuovi pubblici.",
-    "engageWithFollowersLabel": "Interagisci con i Follower:",
-    "engageWithFollowersDescription": "Rispondere ai commenti e incoraggiare l'interazione costruisce fiducia e aumenta i tassi di engagement.",
-    "followTrendsLabel": "Segui le Tendenze:",
-    "followTrendsDescription": "Suoni e sfide di tendenza possono aumentare rapidamente la portata e la scopribilità.",
-    "collaborateWithOthersLabel": "Collabora con Altri:",
-    "collaborateWithOthersDescription": "Lavorare con altri creatori espande l'esposizione e aiuta a far crescere il numero di follower.",
-    "boostEarningsConclusion": "Questi passaggi rafforzano la crescita a lungo termine e aprono più opportunità di monetizzazione nel tempo.",
-    "faqHeading": "Domande Frequenti",
-    "faq1Question": "Come posso stimare i miei guadagni TikTok con TikCalculator?",
-    "faq1Answer": "Puoi stimare i tuoi guadagni TikTok inserendo il nome utente di qualsiasi account TikTok pubblico in TikCalculator. Lo strumento analizza i dati disponibili come il numero di follower e il tasso di engagement, quindi mostra un intervallo di guadagno stimato per post.",
-    "faq2Question": "Devo pagare per usare il calcolatore di denaro TikTok?",
-    "faq2Answer": "No, TikCalculator è completamente gratuito. Puoi controllare i guadagni stimati per più account TikTok senza pagare alcuna tariffa di abbonamento o utilizzo.",
-    "faq3Question": "Devo installare un'estensione per usare il calcolatore di denaro TikTok?",
-    "faq3Answer": "Non è richiesta alcuna installazione. TikCalculator funziona direttamente nel tuo browser web e hai solo bisogno del nome utente TikTok per ottenere stime di guadagno.",
-    "faq4Question": "È sicuro usare il calcolatore di denaro TikTok?",
-    "faq4Answer": "Sì, TikCalculator è sicuro da usare. Non richiede dettagli di accesso TikTok e non memorizza informazioni personali o relative all'account.",
-    "faq5Question": "TikTok è buono per guadagnare soldi?",
-    "faq5Answer": "Sì, TikTok può essere una buona piattaforma per guadagnare soldi se hai contenuti coinvolgenti e un pubblico attivo. Molti creatori guadagnano attraverso partnership con brand, regali in diretta e il TikTok Creator Fund.",
-    "faq6Question": "Come TikTok paga i suoi creatori?",
-    "faq6Answer": "TikTok paga i creatori attraverso diversi metodi, incluso il Creator Fund, regali di streaming live, collaborazioni con brand e contenuti sponsorizzati organizzati direttamente con le aziende.",
-    "faq7Question": "Chiunque può guadagnare da TikTok?",
-    "faq7Answer": "Sì, chiunque può potenzialmente guadagnare da TikTok, ma il successo dipende da pubblicazioni coerenti, qualità del contenuto, coinvolgimento del pubblico e selezione della nicchia.",
-    "faq8Question": "Quanto spesso dovrei usare la Calcolatrice TikTok?",
-    "faq8Answer": "Dovresti usare la Calcolatrice TikTok ogni volta che c'è un cambiamento notevole nel tuo numero di follower o engagement, o quando pianifichi accordi con brand e sponsorizzazioni.",
-    "faq9Question": "Quali fattori potrebbero influenzare i miei guadagni effettivi su TikTok?",
-    "faq9Answer": "I guadagni effettivi dipendono da fattori come il numero di follower, il tasso di engagement, la nicchia di contenuti, la posizione del pubblico, la coerenza delle pubblicazioni e il tipo di monetizzazione utilizzata.",
-    "faq10Question": "Come posso prelevare i guadagni da TikCalculator?",
-    "faq10Answer": "TikCalculator non elabora pagamenti o prelievi. Fornisce solo stime di guadagno, mentre i pagamenti effettivi sono gestiti direttamente da TikTok o tramite accordi con brand."
+  "faq": {
+    "pageTitle": "Domande Frequenti (FAQ) — Monetizzazione su TikTok, Guadagni dei Creator e Calcolatori",
+    "pageSubtitle": "Risposte verificate sui requisiti del Programma Creator Rewards di TikTok, visualizzazioni idonee, calcolo dell'RPM e calcolatori di KalkulatorTik.",
+    "sections": {
+      "section1": {
+        "title": "1. Monetizzazione Ufficiale di TikTok e Requisiti",
+        "q1": {
+          "question": "Che cos'è il Programma Creator Rewards di TikTok?",
+          "answer": "Il Programma Creator Rewards di TikTok è il programma ufficiale di monetizzazione per i creator di video, introdotto a inizio 2024 in sostituzione del precedente Fondo per i creator. A differenza del fondo storico, che ripartiva un budget fisso giornaliero, questo programma remunera in modo mirato i contenuti originali con video di durata superiore a 1 minuto. TikTok determina i compensi in modo dinamico sulla base di quattro parametri: originalità, tempo di visualizzazione e tasso di completamento, valore di ricerca e area geografica del pubblico insieme alla qualità del coinvolgimento. Il programma è attivo in Paesi selezionati come Stati Uniti, Regno Unito, Germania, Francia, Giappone, Corea del Sud e Brasile."
+        },
+        "q2": {
+          "question": "Quali sono i requisiti di idoneità per guadagnare su TikTok?",
+          "answer": "Per accedere al Programma Creator Rewards, il proprio account deve soddisfare tutti i criteri seguenti: avere almeno 18 anni (19 anni in Corea del Sud), raggiungere un minimo di 10.000 follower reali, aver accumulato almeno 100.000 visualizzazioni valide negli ultimi 30 giorni consecutivi, mantenere l'account in regola senza violazioni reiterate, risiedere in un Paese aderente e pubblicare video originali di durata superiore a 1 minuto. La candidatura si invia da Strumenti per i creator > Programma Creator Rewards."
+        },
+        "q3": {
+          "question": "Cosa viene considerata una visualizzazione idonea per le ricompense video?",
+          "answer": "TikTok applica verifiche rigorose per stabilire quali visualizzazioni possano essere considerate idonee: la riproduzione deve provenire dalla sezione Per te (FYP), il visitatore deve guardare il video per almeno 5 secondi e la visualizzazione deve essere generata da un utente unico per ciascun video (i passaggi ripetuti dello stesso profilo non valgono come visualizzazioni aggiuntive). Non sono ammesse visualizzazioni artificiali, bot o promozioni a pagamento (come TikTok Promote), e il video deve rispettare le Linee guida della community."
+        }
+      },
+      "section2": {
+        "title": "2. Quanto Guadagnano i Creator su TikTok",
+        "q1": {
+          "question": "Quanto guadagnano i creator su TikTok?",
+          "answer": "Le entrate su TikTok cambiano notevolmente da profilo a profilo, poiché non esiste uno stipendio garantito né una tariffa fissa per visualizzazione. Nell'ambito del Programma Creator Rewards, i creator registrano indicativamente un RPM compreso tra 0,20 $ e oltre 1,00 $ per 1.000 visualizzazioni idonee. Oltre al programma della piattaforma, i creator monetizzano con collaborazioni retribuite con i brand, affiliazioni TikTok Shop e Regali LIVE. Avere molti follower non produce automaticamente pagamenti sui video, ma accresce la portata e la forza contrattuale con le aziende."
+        },
+        "q2": {
+          "question": "Che cos'è l'RPM e perché oscilla?",
+          "answer": "La sigla RPM significa Revenue Per Mille e definisce l'entrata netta stimata per ogni 1.000 visualizzazioni idonee. TikTok non calcola i compensi mediante una formula matematica elementare fissa, bensì applica un modello algoritmico dinamico. A titolo esemplificativo, la relazione viene riassunta dall'equazione: Ricompense Stimate ≈ (Visualizzazioni Idonee / 1.000) × RPM. Il valore dell'RPM effettivo oscilla a causa della provenienza geografica del pubblico, della durata di visualizzazione, del tasso di completamento, del valore di ricerca e della stagionalità pubblicitaria."
+        },
+        "q3": {
+          "question": "Come funzionano i Regali LIVE e i Diamanti?",
+          "answer": "Durante le dirette LIVE, gli utenti possono donare regali virtuali. A fronte di tali donazioni, la piattaforma attribuisce al creator una quantità corrispondente di Diamanti. Secondo la Politica sugli Oggetti Virtuali di TikTok, i Diamanti rappresentano un indicatore virtuale privo di valore monetario intrinseco, non sono beni di proprietà personale e non assicurano in automatico pagamenti in contanti né un tasso di conversione fisso. Nei territori idonei, i creator maggiorenni possono richiedere la conversione a discrezione di TikTok, nel rispetto di soglie minime e commissioni."
+        }
+      },
+      "section3": {
+        "title": "3. Come Funziona KalkulatorTik",
+        "q1": {
+          "question": "Come stima i guadagni il Calcolatore di KalkulatorTik?",
+          "answer": "Il Calcolatore di Guadagni TikTok su KalkulatorTik è uno strumento comparativo indipendente pensato per offrire proiezioni orientative. Esaminando parametri pubblici del profilo (follower, media visualizzazioni e livello di interazione), propone intervalli di riferimento per collaborazioni con marchi ed entrate video. Non è un sistema di busta paga ufficiale di TikTok."
+        },
+        "q2": {
+          "question": "Qual è la differenza tra CPM e RPM?",
+          "answer": "CPM (Costo Per Mille) è il costo sostenuto da un'azienda per acquistare 1.000 visualizzazioni di un proprio annuncio pubblicitario; puoi stimare le spese con il nostro Calcolatore CPM TikTok. RPM (Ricavo Per Mille) è l'importo netto incassato dal creator ogni 1.000 visualizzazioni idonee dopo la quota della piattaforma. I brand cercano un CPM contenuto, mentre i creator puntano a un RPM elevato."
+        },
+        "q3": {
+          "question": "Come viene calcolato il tasso di engagement su KalkulatorTik?",
+          "answer": "Sul nostro Calcolatore di Engagement TikTok, la misurazione adotta la formula: Tasso di Engagement (%) = ((Totale Mi piace / Totale Follower) / Numero di Video) * 100. Questa formula prende in considerazione unicamente i mi piace, i follower e il numero di video esaminati. Non include commenti o condivisioni in questo calcolo per mantenere un confronto omogeneo."
+        },
+        "q4": {
+          "question": "Devo inserire password o dati di accesso?",
+          "answer": "No. KalkulatorTik non richiede mai password, credenziali d'accesso né autorizzazioni all'account TikTok. Tutte le elaborazioni poggiano solo su valori di pubblico dominio o parametri inseriti liberamente dall'utente. Consulta la nostra Informativa sulla Privacy."
+        }
+      },
+      "section4": {
+        "title": "4. Pagamenti e Linee Guida",
+        "q1": {
+          "question": "Quando e come paga TikTok?",
+          "answer": "Per i creator del Programma Creator Rewards, i pagamenti avvengono con cadenza mensile. In Paesi come gli Stati Uniti, l'erogazione viene avviata solitamente attorno al giorno 15 del mese successivo. Tuttavia, date esatte, metodi (PayPal, bonifico bancario) e importi minimi di prelievo (tra 10 $ e 50 $) dipendono dalla nazione di residenza e dalle normative fiscali."
+        },
+        "q2": {
+          "question": "KalkulatorTik è gratuito?",
+          "answer": "Sì. L'accesso e l'impiego dei calcolatori su KalkulatorTik sono del tutto gratuiti senza abbonamenti né registrazioni obbligatorie. Vengono attivati comuni limiti di frequenza sul server per preservare la regolarità del servizio."
+        }
+      }
+    }
+  },
+  "theme": {
+    "switchToDark": "Passa alla modalità scura",
+    "switchToLight": "Passa alla modalità chiara"
+  },
+  "seo": {
+    "cpmCalculator": {
+      "title": "Calcolatore CPM TikTok – Calcola Costi Pubblicitari",
+      "description": "Calcola il tuo CPM TikTok, budget pubblicitario e impressioni stimate. Calcolatore 3-in-1 gratuito con benchmark d'asta e tassi di cambio globali."
+    },
+    "engagementCalculator": {
+      "title": "Calcolatore Tasso di Engagement TikTok | KalkulatorTik",
+      "description": "Calcola subito il tasso di engagement TikTok da Mi piace, follower e video pubblicati."
+    },
+    "about": {
+      "title": "Chi siamo – KalkulatorTik | Calcolatore TikTok",
+      "description": "Scopri KalkulatorTik, la piattaforma analitica per aiutare creator e brand a stimare sponsorizzazioni TikTok."
+    },
+    "faq": {
+      "title": "FAQ Monetizzazione & Calcolatore TikTok | KalkulatorTik",
+      "description": "Risposte verificate su Creator Rewards, visualizzazioni idonee e metodologia di stima di KalkulatorTik."
+    },
+    "contact": {
+      "title": "Contatti | KalkulatorTik",
+      "description": "Domande o feedback su KalkulatorTik? Verifica la disponibilità attuale del nostro modulo di contatto."
+    },
+    "privacy": {
+      "title": "Privacy Policy | KalkulatorTik",
+      "description": "Leggi la Privacy Policy di KalkulatorTik sulla gestione trasparente di dati pubblici e cookie."
+    },
+    "terms": {
+      "title": "Termini e Condizioni | KalkulatorTik",
+      "description": "Consulta i Termini e Condizioni e le note informative sulle stime di KalkulatorTik."
+    },
+    "calculator": {
+      "title": "Calcolatore Guadagni TikTok – Stima Live",
+      "description": "Stima i potenziali ricavi su TikTok con aggiornamento manuale della cache e analisi visualizzazioni."
+    },
+    "notFound": {
+      "title": "404 — Pagina non trovata | KalkulatorTik"
+    }
   }
 }
-

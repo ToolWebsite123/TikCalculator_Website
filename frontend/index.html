@@ -15,36 +15,57 @@
       })();
     </script>
 
-    <title>TikTok Money Calculator – Check Real TikTok Earnings & Engagement Instantly</title>
+    <title>TikTok Money Calculator – Estimate Your TikTok Earnings</title>
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://www.kalkulatortik.com/" />
     <meta
       name="description"
-      content="Check real TikTok earnings using engagement, views, and follower data. Enter any TikTok username and instantly see estimated earnings with this free TikTok Money Calculator."
+      content="Estimate your TikTok earnings using our free TikTok Money Calculator. Explore potential income from views, followers, engagement, and sponsored posts."
     />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="KalkulatorTik" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:url" content="https://www.kalkulatortik.com/" />
-    <meta property="og:title" content="TikTok Money Calculator – Check Real TikTok Earnings & Engagement Instantly" />
+    <meta property="og:title" content="TikTok Money Calculator – Estimate Your TikTok Earnings" />
     <meta
       property="og:description"
-      content="Check real TikTok earnings using engagement, views, and follower data. Enter any TikTok username and instantly see estimated earnings with this free TikTok Money Calculator."
+      content="Estimate your TikTok earnings using our free TikTok Money Calculator. Explore potential income from views, followers, engagement, and sponsored posts."
     />
     <meta property="og:image" content="https://www.kalkulatortik.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta
+      property="og:image:alt"
+      content="KalkulatorTik TikTok Money Calculator – Estimate Brand Sponsorship Value per Video"
+    />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:domain" content="www.kalkulatortik.com" />
     <meta name="twitter:url" content="https://www.kalkulatortik.com/" />
-    <meta name="twitter:title" content="TikTok Money Calculator – Check Real TikTok Earnings & Engagement Instantly" />
+    <meta name="twitter:title" content="TikTok Money Calculator – Estimate Your TikTok Earnings" />
     <meta
       name="twitter:description"
-      content="Check real TikTok earnings using engagement, views, and follower data. Enter any TikTok username and instantly see estimated earnings with this free TikTok Money Calculator."
+      content="Estimate your TikTok earnings using our free TikTok Money Calculator. Explore potential income from views, followers, engagement, and sponsored posts."
     />
     <meta name="twitter:image" content="https://www.kalkulatortik.com/og.png" />
+    <meta
+      name="twitter:image:alt"
+      content="KalkulatorTik TikTok Money Calculator – Estimate Brand Sponsorship Value per Video"
+    />
 
     <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
     <link rel="manifest" href="/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -52,24 +73,42 @@
       "@context": "https://schema.org",
       "@graph": [
         {
+          "@type": "Organization",
+          "@id": "https://www.kalkulatortik.com/#organization",
+          "name": "KalkulatorTik",
+          "url": "https://www.kalkulatortik.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.kalkulatortik.com/icon-512.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        {
           "@type": "WebSite",
           "@id": "https://www.kalkulatortik.com/#website",
           "url": "https://www.kalkulatortik.com/",
-          "name": "TikTok Money Calculator",
-          "description": "Check real TikTok earnings using engagement, views, and follower data. Enter any TikTok username and instantly see estimated earnings with this free TikTok Money Calculator.",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.kalkulatortik.com/?username={search_term_string}",
-            "query-input": "required name=search_term_string"
+          "name": "KalkulatorTik",
+          "alternateName": "TikTok Money Calculator",
+          "description": "Estimate your TikTok earnings using our free TikTok Money Calculator. Explore potential income from views, followers, engagement, and sponsored posts.",
+          "inLanguage": "en",
+          "publisher": {
+            "@id": "https://www.kalkulatortik.com/#organization"
           }
         },
         {
           "@type": "WebApplication",
           "@id": "https://www.kalkulatortik.com/#webapp",
-          "name": "TikTok Money Calculator",
+          "name": "KalkulatorTik – TikTok Money Calculator",
+          "description": "Estimate your TikTok earnings using our free TikTok Money Calculator. Explore potential income from views, followers, engagement, and sponsored posts.",
           "url": "https://www.kalkulatortik.com/",
           "applicationCategory": "BusinessApplication",
           "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript",
+          "isAccessibleForFree": true,
+          "publisher": {
+            "@id": "https://www.kalkulatortik.com/#organization"
+          },
           "offers": {
             "@type": "Offer",
             "price": "0",
@@ -80,7 +119,7 @@
     }
     </script>
   </head>
-  <body class="bg-gray-50">
+  <body class="bg-slate-50 text-slate-900 antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

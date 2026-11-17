@@ -1,7 +1,7 @@
 /**
  * TikTok Earnings Calculator
  *
- * We approximate TikCalculator.com's per-post earnings output using
+ * Estimates per-post earnings output using
  * realistic CPM ranges seen across Creator Fund / brand deals:
  *   - Tiered by region (Tier1: US/CA/UK/AU/NZ/DE, Tier2: EU/BR/MX/SG, Tier3: rest)
  *   - Adjusted by engagement rate and follower scale
@@ -62,7 +62,7 @@ const calculateEngagementRate = (latestVideos = []) => {
   return engagementRate;
 };
 
-// Region-based CPM defaults (USD per 1k views), calibrated closer to TikCalculator
+// Region-based CPM defaults (USD per 1k views), calibrated for creator benchmarks
 const CPM_TIERS = {
   tier1: { min: 22, avg: 30, max: 42 }, // US, CA, UK, AU, NZ, DE
   tier2: { min: 16, avg: 22, max: 32 }, // Western EU, BR, MX, SG
@@ -205,7 +205,7 @@ const computeAnalytics = ({ followers, likes, videos, latestVideos = [] }) => {
 };
 
 /**
- * Calculate earnings EXACTLY like TikCalculator.com
+ * Calculate earnings based on creator performance metrics
  * NEVER returns null - always provides valid earnings data
  */
 const calculateEarnings = ({

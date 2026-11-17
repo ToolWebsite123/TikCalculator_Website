@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import ProfileHeader from '../components/ProfileHeader';
 import StatsGrid from '../components/StatsGrid';
 import EarningsCard from '../components/EarningsCard';
-import { fetchTikTokProfile, fetchTikTokEarnings, clearTikTokCache, calculateEarningsFromViews } from '../utils/api';
-import { mapEarningsData } from '../utils/earningsMapper';
+import { fetchTikTokProfile, clearTikTokCache } from '../utils/api';
+import {
+  extractAuthoritativeEarningsData,
+  hasPublicProfileSignal,
+} from '../utils/earningsMapper';
 import useSEO from '../utils/useSEO';
 
 const LoadingSkeleton = () => (
@@ -21,390 +25,205 @@ const LoadingSkeleton = () => (
   </div>
 );
 
+const hasPublicProfileData = (profileData) => {
+  if (!profileData || profileData.success === false) {
+    return false;
+  }
+  return hasPublicProfileSignal(profileData.profile);
+};
+
+const resolveJoinedAt = (profileData) =>
+  profileData?.profile?.joinedAt ||
+  profileData?.profile?.joined_at ||
+  profileData?.profile?.createTime ||
+  profileData?.joinedAt ||
+  null;
+
 const Calculator = () => {
+  const { t } = useTranslation();
+
   useSEO({
-    title: 'TikTok Earnings Calculator – Calculate Estimated TikTok Income',
-    description: 'Estimate your TikTok earnings with our free calculator. Analyze views, engagement, and potential revenue.',
+    title: t('seo.calculator.title', 'TikTok Earnings Calculator – Calculate Estimated TikTok Income'),
+    description: t(
+      'seo.calculator.description',
+      'Estimate your TikTok earnings with our free calculator. Analyze views, engagement, and potential revenue.'
+    ),
     canonicalPath: '/calculator',
+    robots: 'noindex, follow',
   });
 
   const [username, setUsername] = useState('');
   const [result, setResult] = useState(null);
-  const [earningsData, setEarningsData] = useState({
-    success: false,
-    earnings: 0,
-    earningPerVideo: 0,
-    estimatedEarnings: 0,
-    perVideoNet: 0,
-    avgViews: 0,
-    engagementRate: 0,
-    cpm: 0,
-    CPM: 0,
-    platformFactor: 1.0,
-    username: '',
-    followers: 0,
-    likes: 0,
-    following: 0,
-    videos: 0,
-    monthlyEarning: 0,
-    monthlyEarnings: 0,
-    source: 'initial',
-  });
+  const [earningsData, setEarningsData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [earningsLoading, setEarningsLoading] = useState(false);
   const [error, setError] = useState('');
+  const abortControllerRef = useRef(null);
+  const requestSeqRef = useRef(0);
 
   useEffect(() => {
-    if (result && result.profile && result.success !== false) {
-      const avgViews = Number(result.avgViews) || 
-                      Number(result.analytics?.avgViews) || 
-                      0;
-      const engagementRate = Number(result.engagementRate) || 
-                            Number(result.analytics?.engagementRate) || 
-                            0;
-      
-      if (avgViews > 0 || result.profile.followers > 0) {
-        const views = avgViews > 0 ? avgViews : Math.max((result.profile.followers || 0) * 0.08, 1000);
-        
-        let cpm = 1.0;
-        if (views >= 5_000_000) cpm = 4.0;
-        else if (views >= 1_000_000) cpm = 3.0;
-        else if (views >= 500_000) cpm = 2.5;
-        else if (views >= 100_000) cpm = 2.0;
-        else if (views >= 10_000) cpm = 1.5;
-        else cpm = 1.0;
-        
-        const platformFactor = engagementRate > 0 
-          ? Math.min(0.8 + (Math.min(engagementRate / 10, 1.0) * 0.4), 1.2)
-          : 1.0;
-        
-        let earnings = 0;
-        if (engagementRate > 0) {
-          earnings = (views * engagementRate * cpm) / 1000 * platformFactor;
-        } else {
-          earnings = (views / 1000) * 0.03 * platformFactor;
-        }
-        
-        const calculatedEarningsData = {
-          success: true,
-          earnings: Math.max(earnings, 0.01),
-          earningPerVideo: Math.max(earnings, 0.01),
-          estimatedEarnings: Math.max(earnings, 0.01),
-          perVideoNet: Math.max(earnings, 0.01),
-          avgViews: views,
-          engagementRate: Math.max(engagementRate, 0),
-          cpm: cpm,
-          CPM: cpm,
-          platformFactor: platformFactor,
-          username: result.profile.username || '',
-          followers: result.profile.followers || 0,
-          likes: result.profile.likes || 0,
-          following: result.profile.following || 0,
-          videos: result.profile.videos || 0,
-          monthlyEarning: Math.max(earnings * 20, 0.20),
-          monthlyEarnings: Math.max(earnings * 20, 0.20),
-          source: 'useEffect_calculation',
-        };
-        
-        setEarningsData(calculatedEarningsData);
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
       }
-    }
-  }, [result]);
+    };
+  }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!username.trim()) {
-      setError('Please enter a TikTok username');
-      return;
+  const runProfileLookup = async ({ cleanUsername, forceRefresh = false }) => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
     }
+    const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    abortControllerRef.current = controller;
+    const requestId = ++requestSeqRef.current;
 
     setLoading(true);
-    setEarningsLoading(true);
     setError('');
     setResult(null);
+    setEarningsData(null);
 
     try {
-      const [profileData, earningsResponse] = await Promise.all([
-        fetchTikTokProfile(username.trim()).catch(err => {
-          console.error('[Frontend] ❌ fetchTikTokProfile failed:', err.message);
-          throw err;
-        }),
-        fetchTikTokEarnings(username.trim()).catch(err => {
-          return {
-            success: true,
-            estimatedEarnings: 0,
-            earningPerVideo: 0,
-            avgViews: 0,
-            engagementRate: 0,
-            cpm: 0,
-            platformFactor: 1.0,
-            username: username.trim(),
-            followers: 0,
-            likes: 0,
-            following: 0,
-            videos: 0,
-            monthlyEarning: 0,
-            source: 'error',
-            error: err.message || 'Failed to fetch earnings',
-          };
-        })
-      ]);
-      
-      const extractedEarningsData = profileData?.earningsData;
-      
-      if (extractedEarningsData && typeof extractedEarningsData === 'object') {
-        setEarningsData(extractedEarningsData);
+      if (forceRefresh) {
+        await clearTikTokCache(cleanUsername);
       }
 
-      if (!profileData || !profileData.success || !profileData.profile) {
-        throw new Error('Invalid response from server');
+      const profileData = await fetchTikTokProfile(
+        cleanUsername,
+        forceRefresh ? { refresh: 'true' } : {},
+        controller ? { signal: controller.signal } : {}
+      );
+
+      if (requestSeqRef.current !== requestId) {
+        return;
       }
 
-      if (!profileData.profile.username || profileData.profile.username.trim() === '') {
-        profileData.profile.username = username.trim();
+      if (!hasPublicProfileData(profileData)) {
+        throw new Error(
+          t('home.errorNotFound', {
+            username: cleanUsername,
+            defaultValue: `Unable to find public data for "@${cleanUsername}". Please verify the spelling and confirm that the account is set to public.`,
+          })
+        );
       }
 
-      // ── Inject joinedAt into profile from ALL possible sources ──
-      const joinedAt =
-        profileData.profile?.joinedAt ||
-        profileData.profile?.joined_at ||
-        profileData.profile?.createTime ||
-        profileData.joinedAt ||
-        null;
-
-      profileData.profile.joinedAt = joinedAt;
-
-      setResult(profileData);
-      
-      if (!earningsData || typeof earningsData !== 'object') {
-        const fallbackEarningsData = {
-          avgViews: 0,
-          engagementRate: 5,
-          cpm: 0.02,
-          platformFactor: 1,
-          estimatedEarnings: 0,
-          earningPerVideo: 0,
-        };
-        setEarningsData(fallbackEarningsData);
+      const backendEarnings = extractAuthoritativeEarningsData(profileData);
+      if (!backendEarnings) {
+        throw new Error(
+          t(
+            'home.errorFetch',
+            'Unable to retrieve profile data right now. Please check your connection and try again shortly.'
+          )
+        );
       }
 
-    } catch (err) {
-      const message =
-        err?.response?.data?.error ||
-        err?.response?.data?.message ||
-        err?.message ||
-        'Failed to fetch profile';
-      setError(message);
-      setResult(null);
-
-      const profile = {};
-      const errorFallbackViews = Math.max((profile.followers || 0) * 0.08, 1000);
-      let errorFallbackCPM = 0.8;
-      if (errorFallbackViews >= 5_000_000) errorFallbackCPM = 3.5;
-      else if (errorFallbackViews >= 1_000_000) errorFallbackCPM = 2.5;
-      else if (errorFallbackViews >= 500_000) errorFallbackCPM = 1.8;
-      else if (errorFallbackViews >= 100_000) errorFallbackCPM = 1.2;
-      else if (errorFallbackViews >= 10_000) errorFallbackCPM = 1.0;
-
-      const errorFallbackEarnings = (errorFallbackViews / 1000) * errorFallbackCPM;
-
-      const errorEarningsData = {
-        success: false,
-        earnings: Math.max(errorFallbackEarnings, 0.01),
-        earningPerVideo: Math.max(errorFallbackEarnings, 0.01),
-        estimatedEarnings: Math.max(errorFallbackEarnings, 0.01),
-        perVideoNet: Math.max(errorFallbackEarnings, 0.01),
-        avgViews: errorFallbackViews,
-        engagementRate: 5.0,
-        cpm: errorFallbackCPM,
-        CPM: errorFallbackCPM,
-        platformFactor: 1.0,
-        username: username.trim(),
-        followers: 0,
-        likes: 0,
-        following: 0,
-        videos: 0,
-        monthlyEarning: Math.max(errorFallbackEarnings * 20, 0.20),
-        monthlyEarnings: Math.max(errorFallbackEarnings * 20, 0.20),
-        source: 'error_fallback',
+      const normalizedProfile = {
+        ...profileData.profile,
+        username: (profileData.profile.username || '').trim() || cleanUsername,
+        joinedAt: resolveJoinedAt(profileData),
       };
 
-      setEarningsData(errorEarningsData);
+      setResult({
+        ...profileData,
+        profile: normalizedProfile,
+      });
+      setEarningsData(backendEarnings);
+    } catch (err) {
+      if (
+        requestSeqRef.current !== requestId ||
+        err?.code === 'ERR_CANCELED' ||
+        err?.name === 'CanceledError' ||
+        err?.name === 'AbortError'
+      ) {
+        return;
+      }
+
+      const status = err?.status ?? err?.response?.status;
+      if (status === 404) {
+        setError(
+          t('home.errorNotFound', {
+            username: cleanUsername,
+            defaultValue: `Unable to find public data for "@${cleanUsername}". Please verify the spelling and confirm that the account is set to public.`,
+          })
+        );
+      } else if (status === 429) {
+        setError(
+          t(
+            'home.errorRateLimit',
+            'Requests are temporarily limited due to high traffic. Please wait a moment and try again.'
+          )
+        );
+      } else if (err?.isNetworkError || status === 0 || (typeof status === 'number' && status >= 500)) {
+        setError(
+          t(
+            'home.errorFetch',
+            'Unable to retrieve profile data right now. Please check your connection and try again shortly.'
+          )
+        );
+      } else {
+        setError(
+          err?.response?.data?.error ||
+            err?.response?.data?.message ||
+            err?.message ||
+            t(
+              'home.errorFetch',
+              'Unable to retrieve profile data right now. Please check your connection and try again shortly.'
+            )
+        );
+      }
+
+      setResult(null);
+      setEarningsData(null);
     } finally {
-      setLoading(false);
-      setEarningsLoading(false);
+      if (requestSeqRef.current === requestId) {
+        setLoading(false);
+      }
     }
   };
 
+  const getValidatedUsername = () => {
+    const cleanUsername = username.trim().replace(/^@/, '');
+
+    if (!cleanUsername) {
+      setError(
+        t('home.error', 'Please enter a valid public TikTok username to run a calculation.')
+      );
+      return null;
+    }
+
+    if (/\s/.test(cleanUsername)) {
+      setError(
+        t(
+          'home.errorSpaces',
+          'Usernames cannot contain spaces. Please check the handle and try again.'
+        )
+      );
+      return null;
+    }
+
+    return cleanUsername;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const cleanUsername = getValidatedUsername();
+    if (!cleanUsername) return;
+    await runProfileLookup({ cleanUsername, forceRefresh: false });
+  };
+
   const handleRefresh = async () => {
-    if (!username.trim()) {
-      setError('Please enter a TikTok username');
-      return;
-    }
-    setLoading(true);
-    setEarningsLoading(true);
-    setError('');
-
-    try {
-      await clearTikTokCache(username.trim());
-
-      const [profileData, earningsResponse] = await Promise.all([
-        fetchTikTokProfile(username.trim(), { refresh: 'true' }),
-        fetchTikTokEarnings(username.trim(), { refresh: 'true' }).catch(() => null)
-      ]);
-
-      // ── Inject joinedAt on refresh too ──
-      if (profileData?.profile) {
-        const joinedAt =
-          profileData.profile?.joinedAt ||
-          profileData.profile?.joined_at ||
-          profileData.profile?.createTime ||
-          profileData.joinedAt ||
-          null;
-        profileData.profile.joinedAt = joinedAt;
-      }
-
-      setResult(profileData);
-
-      const profile = profileData.profile || {};
-      const analytics = profileData.analytics || {};
-      const latestVideos = profileData.latestVideos || [];
-
-      let finalEarningsData = null;
-
-      if (earningsResponse && earningsResponse.success) {
-        const hasValidEarnings = earningsResponse.estimatedEarnings > 0;
-        const hasValidViews = earningsResponse.avgViews > 0;
-        const hasValidCPM = earningsResponse.cpm > 0;
-
-        if (hasValidEarnings && hasValidViews && hasValidCPM) {
-          finalEarningsData = earningsResponse;
-        }
-      }
-
-      if (!finalEarningsData) {
-        let avgViews = 0;
-        if (latestVideos.length > 0) {
-          const videosWithViews = latestVideos.filter(v => v && Number(v.views) > 0);
-          if (videosWithViews.length > 0) {
-            const videosToUse = videosWithViews.length > 30 ? videosWithViews.slice(-30) : videosWithViews;
-            const totalViews = videosToUse.reduce((sum, v) => sum + (Number(v.views) || 0), 0);
-            avgViews = totalViews / videosToUse.length;
-          }
-        }
-
-        if (!avgViews || avgViews === 0) {
-          avgViews = Math.max((profile.followers || 0) * 0.08, 1000);
-        }
-
-        let engagementRate = analytics.engagementRate || 0;
-        if ((!engagementRate || engagementRate === 0) && latestVideos.length > 0) {
-          const videosWithData = latestVideos.filter(v => v && Number(v.views) > 0);
-          if (videosWithData.length > 0) {
-            const totalViews = videosWithData.reduce((sum, v) => sum + (Number(v.views) || 0), 0);
-            const totalEngagements = videosWithData.reduce(
-              (sum, v) => sum + (Number(v.likes) || 0) + (Number(v.comments) || 0) + (Number(v.shares) || 0),
-              0
-            );
-            if (totalViews > 0) {
-              engagementRate = (totalEngagements / totalViews) * 100;
-            }
-          }
-        }
-
-        let calculatedCPM = 5.0;
-        if (avgViews >= 10_000_000) calculatedCPM = 12.0;
-        else if (avgViews >= 5_000_000) calculatedCPM = 10.0;
-        else if (avgViews >= 1_000_000) calculatedCPM = 8.0;
-        else if (avgViews >= 500_000) calculatedCPM = 7.0;
-        else if (avgViews >= 100_000) calculatedCPM = 6.0;
-
-        const platformFactor = 1.0;
-        const { calculateEarning } = await import('../utils/earnings');
-        const estimatedEarnings = calculateEarning(avgViews, calculatedCPM, platformFactor);
-        const monthlyEarning = estimatedEarnings * 20;
-
-        finalEarningsData = {
-          success: true,
-          username: profile.username || username.trim(),
-          followers: profile.followers || 0,
-          likes: profile.likes || 0,
-          following: profile.following || 0,
-          videos: profile.videos || 0,
-          avgViews: Math.round(avgViews * 100) / 100,
-          engagementRate: Math.round(engagementRate * 100) / 100,
-          estimatedEarnings: Math.round(estimatedEarnings * 100) / 100,
-          earningPerVideo: Math.round(estimatedEarnings * 100) / 100,
-          monthlyEarning: Math.round(monthlyEarning * 100) / 100,
-          cpm: calculatedCPM,
-          platformFactor: platformFactor,
-        };
-      }
-
-      if (!finalEarningsData) {
-        const fallbackViews = Math.max((profile.followers || 0) * 0.08, 1000);
-        const fallbackCPM = 5.0;
-        const fallbackEarnings = (fallbackViews / 1000) * fallbackCPM;
-        finalEarningsData = {
-          success: true,
-          username: profile.username || username.trim(),
-          followers: profile.followers || 0,
-          avgViews: fallbackViews,
-          engagementRate: 5.0,
-          estimatedEarnings: fallbackEarnings,
-          earningPerVideo: fallbackEarnings,
-          monthlyEarning: fallbackEarnings * 20,
-          cpm: fallbackCPM,
-          platformFactor: 1.0,
-        };
-      }
-
-      setEarningsData(finalEarningsData);
-    } catch (err) {
-      const message =
-        err?.response?.data?.error ||
-        err?.response?.data?.message ||
-        err?.message ||
-        'Failed to refresh profile';
-      setError(message);
-
-      const refreshErrorEarningsData = {
-        success: false,
-        earnings: 0.01,
-        earningPerVideo: 0.01,
-        estimatedEarnings: 0.01,
-        perVideoNet: 0.01,
-        avgViews: 1000,
-        engagementRate: 5.0,
-        cpm: 0.8,
-        CPM: 0.8,
-        platformFactor: 1.0,
-        username: username.trim(),
-        followers: 0,
-        likes: 0,
-        following: 0,
-        videos: 0,
-        monthlyEarning: 0.20,
-        monthlyEarnings: 0.20,
-        source: 'error',
-      };
-      setEarningsData(refreshErrorEarningsData);
-    } finally {
-      setLoading(false);
-      setEarningsLoading(false);
-    }
+    const cleanUsername = getValidatedUsername();
+    if (!cleanUsername) return;
+    await runProfileLookup({ cleanUsername, forceRefresh: true });
   };
 
   return (
     <section className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-10">
       {/* Input Form */}
-      <div className="space-y-3 rounded-3xl bg-white p-6 shadow-lg ring-1 ring-gray-100">
+      <div className="space-y-3 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="space-y-1">
-          <p className="text-sm font-semibold text-indigo-700">TikTok earnings calculator</p>
-          <h2 className="text-3xl font-bold text-slate-900">Enter a username to get live estimates</h2>
+          <p className="text-sm font-semibold text-teal-700">TikTok Earnings Calculator</p>
+          <h1 className="text-3xl font-bold text-slate-900">Enter a TikTok Username for Live Estimates</h1>
           <p className="text-sm text-slate-600">
-            We fetch the public profile, compute average views, engagement, and earnings.
+            We fetch public profile data to estimate average views, engagement rates, and earnings benchmarks.
           </p>
         </div>
 
@@ -419,13 +238,16 @@ const Calculator = () => {
             autoComplete="off"
             placeholder="@username (e.g., mrbeast)"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-base text-slate-900 outline-none transition focus:border-indigo-500 focus:ring focus:ring-indigo-100"
+            onChange={(e) => {
+              setUsername(e.target.value);
+              if (error) setError('');
+            }}
+            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500 outline-none transition hover:border-slate-400 focus:border-teal-600 focus:ring-4 focus:ring-teal-500/15"
             disabled={loading}
           />
           <button
             type="submit"
-            className="inline-flex items-center justify-center rounded-xl bg-[#14b8a6] px-5 py-3 text-base font-semibold text-white shadow-lg transition hover:bg-[#0d9488] focus:outline-none focus:ring-2 focus:ring-[#14b8a6] disabled:cursor-not-allowed disabled:opacity-70"
+            className="inline-flex items-center justify-center rounded-xl bg-teal-700 px-5 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-teal-800 active:bg-teal-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
             disabled={loading}
             aria-busy={loading}
           >
@@ -433,12 +255,12 @@ const Calculator = () => {
           </button>
         </form>
 
-        <p className="text-xs text-slate-500">
-          Estimates only. Data fetched from public TikTok pages. If a profile is private we'll let you know.
+        <p className="text-xs text-slate-600">
+          Estimates only. Data fetched from public TikTok pages. If a profile is private we&apos;ll let you know.
         </p>
 
         {error && (
-          <div className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-800">
+          <div role="alert" className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-800">
             <p className="font-semibold">Error:</p>
             <p>{error}</p>
           </div>
@@ -466,24 +288,21 @@ const Calculator = () => {
               following: result.profile.following,
               likes: result.profile.likes,
               videos: result.profile.videos,
-              avgViews: earningsData?.avgViews || result.analytics?.avgViews || 0,
-              engagementRate: earningsData?.engagementRate || result.analytics?.engagementRate || 0,
+              avgViews: earningsData?.avgViews ?? result.analytics?.avgViews ?? 0,
+              engagementRate: earningsData?.engagementRate ?? result.analytics?.engagementRate ?? 0,
             }}
           />
 
-          <EarningsCard
-            earningsData={earningsData}
-            isLoading={earningsLoading}
-          />
+          {earningsData && <EarningsCard earningsData={earningsData} isLoading={loading} />}
 
           <div className="flex justify-center">
             <button
               type="button"
               onClick={handleRefresh}
               disabled={loading}
-              className="inline-flex items-center gap-2 rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 transition hover:bg-indigo-100 disabled:cursor-not-allowed disabled:opacity-70"
+              className="inline-flex items-center gap-2 rounded-lg border border-teal-200 bg-teal-50 px-4 py-2 text-sm font-semibold text-teal-800 transition hover:bg-teal-100 active:bg-teal-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
             >
-              <span aria-hidden>🔄</span>
+              <span aria-hidden="true">🔄</span>
               {loading ? 'Refreshing...' : 'Refresh Data'}
             </button>
           </div>
