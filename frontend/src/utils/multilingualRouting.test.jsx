@@ -65,7 +65,7 @@ describe('Multilingual URL Routing, Language Switcher, Hreflang & Sitemap (KHK-0
     it('builds and parses localized URLs consistently across all 8 languages', () => {
       expect(buildLocalizedPath('/', 'en')).toBe('/');
       NON_DEFAULT_LANGS.forEach((lang) => {
-        expect(buildLocalizedPath('/', lang)).toBe(`/${lang}/`);
+        expect(buildLocalizedPath('/', lang)).toBe(`/${lang}`);
         expect(buildLocalizedPath('/calculator', lang)).toBe(`/${lang}/calculator`);
         expect(buildLocalizedPath('/tiktok-cpm-calculator', lang)).toBe(
           `/${lang}/tiktok-cpm-calculator`
@@ -77,14 +77,14 @@ describe('Multilingual URL Routing, Language Switcher, Hreflang & Sitemap (KHK-0
         basePath: '/',
         hasLangPrefix: true,
         isKnownRoute: true,
-        normalizedPath: '/id/',
+        normalizedPath: '/id',
       });
       expect(parseLocalizedPath('/id')).toEqual({
         lang: 'id',
         basePath: '/',
         hasLangPrefix: true,
         isKnownRoute: true,
-        normalizedPath: '/id/',
+        normalizedPath: '/id',
       });
       expect(parseLocalizedPath('/de/calculator/')).toEqual({
         lang: 'de',
@@ -107,10 +107,10 @@ describe('Multilingual URL Routing, Language Switcher, Hreflang & Sitemap (KHK-0
         '/de/tiktok-cpm-calculator?curr=EUR#top'
       );
       expect(getLanguageSwitchTarget('/de/about', 'en')).toBe('/about');
-      expect(getLanguageSwitchTarget('/id/', 'pt')).toBe('/pt/');
-      expect(getLanguageSwitchTarget('/id/', 'en')).toBe('/');
-      expect(getLanguageSwitchTarget('/de/nonexistent', 'fr')).toBe('/fr/');
-      expect(getLanguageSwitchTarget('/nonexistent', 'id')).toBe('/id/');
+      expect(getLanguageSwitchTarget('/id', 'pt')).toBe('/pt');
+      expect(getLanguageSwitchTarget('/id', 'en')).toBe('/');
+      expect(getLanguageSwitchTarget('/de/nonexistent', 'fr')).toBe('/fr');
+      expect(getLanguageSwitchTarget('/nonexistent', 'id')).toBe('/id');
 
       localStorage.setItem('i18nextLng', 'fr');
       window.history.pushState({}, '', '/');
@@ -213,13 +213,13 @@ describe('Multilingual URL Routing, Language Switcher, Hreflang & Sitemap (KHK-0
       15000
     );
 
-    it('normalizes missing trailing slashes on localized homepages (/id -> /id/) and extra slashes on subpages (/de/about/ -> /de/about)', async () => {
-      renderAppAt(['/id']);
+    it('normalizes extra trailing slashes on localized homepages (/id/ -> /id) and subpages (/de/about/ -> /de/about)', async () => {
+      renderAppAt(['/id/']);
       await waitFor(() => {
         expect(document.documentElement.lang).toBe('id');
         expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
           'href',
-          `${BASE_URL}/id/`
+          `${BASE_URL}/id`
         );
       });
 
@@ -303,12 +303,12 @@ describe('Multilingual URL Routing, Language Switcher, Hreflang & Sitemap (KHK-0
     });
 
     it('renders clean noindex 404 without stale canonical/hreflang tags and uses safe homepage fallback when switching languages on unknown routes', async () => {
-      // First load /de/ to verify 404 clears prior SEO canonical + hreflang + FAQ schema
-      const { go } = renderAppAt(['/de/']);
+      // First load /de to verify 404 clears prior SEO canonical + hreflang + FAQ schema
+      const { go } = renderAppAt(['/de']);
       await waitFor(() => {
         expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
           'href',
-          `${BASE_URL}/de/`
+          `${BASE_URL}/de`
         );
         expect(document.head.querySelectorAll('link[rel="alternate"][hreflang]')).toHaveLength(9);
       });
@@ -327,7 +327,7 @@ describe('Multilingual URL Routing, Language Switcher, Hreflang & Sitemap (KHK-0
       expect(document.head.querySelectorAll('link[rel="alternate"][hreflang]')).toHaveLength(0);
       expect(document.querySelector('script[data-seo-managed="page-schema"]')).toBeNull();
 
-      // Switch language on unknown 404 page -> safe fallback to /fr/
+      // Switch language on unknown 404 page -> safe fallback to /fr
       const trigger = screen.getAllByRole('button', { name: /Sprache/i })[0];
       fireEvent.click(trigger);
       const frOption = screen.getByRole('option', { name: /Français/i });
@@ -339,7 +339,7 @@ describe('Multilingual URL Routing, Language Switcher, Hreflang & Sitemap (KHK-0
         expect(document.documentElement.lang).toBe('fr');
         expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
           'href',
-          `${BASE_URL}/fr/`
+          `${BASE_URL}/fr`
         );
         expect(
           screen.getByRole('heading', { level: 1, name: /^Calculateur d'Argent TikTok$/i })

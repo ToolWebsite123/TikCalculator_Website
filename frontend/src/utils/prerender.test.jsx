@@ -292,12 +292,12 @@ describe('Production Prerendered HTML & Hydration Validation (KHK-07)', () => {
     });
   }, 15000);
 
-  it.each(['/about', '/id/', '/de/calculator'])(
+  it.each(['/about', '/id', '/de/calculator'])(
     'hydrates prerendered route "%s" cleanly with zero hydration mismatch errors',
     async (routeUrl) => {
-      const lang = routeUrl.startsWith('/id/')
+      const lang = routeUrl.startsWith('/id')
         ? 'id'
-        : routeUrl.startsWith('/de/')
+        : routeUrl.startsWith('/de')
         ? 'de'
         : 'en';
 

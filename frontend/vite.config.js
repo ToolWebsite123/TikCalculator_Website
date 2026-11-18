@@ -50,9 +50,9 @@ const previewVercelParityPlugin = () => ({
       }
 
       const segments = pathname.split('/').filter(Boolean);
-      if (segments.length === 1 && PREVIEW_LANGS.has(segments[0]) && !pathname.endsWith('/')) {
+      if (segments.length === 1 && PREVIEW_LANGS.has(segments[0]) && pathname.endsWith('/')) {
         res.statusCode = 308;
-        res.setHeader('Location', `/${segments[0]}/${querySuffix}`);
+        res.setHeader('Location', `/${segments[0]}${querySuffix}`);
         res.end();
         return undefined;
       }

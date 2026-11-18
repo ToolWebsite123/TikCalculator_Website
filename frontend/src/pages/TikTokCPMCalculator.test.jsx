@@ -248,7 +248,7 @@ describe('TikTokCPMCalculator Component & DOM Integration', () => {
     });
 
     const deHomeLinks = screen.getAllByRole('link', { name: /TikTok Geld-Rechner/i });
-    expect(deHomeLinks.some((l) => l.getAttribute('href') === '/de/')).toBe(true);
+    expect(deHomeLinks.some((l) => l.getAttribute('href') === '/de')).toBe(true);
 
     const deEngLinks = screen.getAllByRole('link', { name: /TikTok Engagement-Rechner/i });
     expect(deEngLinks.some((l) => l.getAttribute('href') === '/de/tiktok-engagement-calculator')).toBe(true);

@@ -29,7 +29,7 @@ const getAllPrerenderRoutes = () => {
       if (lang === 'en') {
         routes.push(basePath);
       } else if (basePath === '/') {
-        routes.push(`/${lang}/`);
+        routes.push(`/${lang}`);
       } else {
         routes.push(`/${lang}${basePath}`);
       }

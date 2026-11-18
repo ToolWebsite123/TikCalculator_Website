@@ -174,7 +174,7 @@ export const AppShell = ({ routeComponents = null }) => {
     }
   }, [location.pathname]);
 
-  // Normalize missing trailing slashes on localized homepages (/id -> /id/) and extra slashes on subpages (/de/about/ -> /de/about)
+  // Normalize extra trailing slashes on localized homepages (/it/ -> /it) and subpages (/de/about/ -> /de/about)
   if (parsed.isKnownRoute && location.pathname !== parsed.normalizedPath) {
     return (
       <Navigate

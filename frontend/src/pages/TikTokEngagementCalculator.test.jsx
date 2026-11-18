@@ -112,7 +112,7 @@ describe('/tiktok-engagement-calculator Content, Formula & Localization Verifica
     );
     expect(screen.getByRole('link', { name: /TikTok-Geldrechner/i })).toHaveAttribute(
       'href',
-      '/de/'
+      '/de'
     );
   });
 

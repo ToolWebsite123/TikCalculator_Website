@@ -1,16 +1,5 @@
-// Use services scraper which has better API support
-const { scrapeTikTokProfile: scrapeTikTokProfileService, TikTokScraperError, deriveAnalytics, fetchVideosFromTikWM } = require('../services/tiktokScraper');
-// Fallback to scraper if services fails
-let scrapeTikTokProfileFallback;
-try {
-  const scraperModule = require('../scraper/tiktokScraper');
-  scrapeTikTokProfileFallback = scraperModule.scrapeTikTokProfile;
-} catch (err) {
-  console.warn('[Controller] Fallback scraper not available');
-}
-
-// Use services scraper as primary
-const scrapeTikTokProfile = scrapeTikTokProfileService;
+// Use services scraper which provides robust API and HTML scraping
+const { scrapeTikTokProfile, TikTokScraperError, deriveAnalytics, fetchVideosFromTikWM } = require('../services/tiktokScraper');
 const { calculateEarnings, calculateCPMRange } = require('../utils/calcEarnings');
 const { isMongoAvailable } = require('../utils/db');
 

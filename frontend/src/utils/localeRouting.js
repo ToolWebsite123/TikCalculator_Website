@@ -92,7 +92,7 @@ export const parseLocalizedPath = (pathname = '/') => {
     ? basePath === '/'
       ? lang === DEFAULT_LANG
         ? '/'
-        : `/${lang}/`
+        : `/${lang}`
       : lang === DEFAULT_LANG
       ? basePath
       : `/${lang}${basePath}`
@@ -109,7 +109,7 @@ export const parseLocalizedPath = (pathname = '/') => {
 
 /**
  * Build the canonical localized path for a target route while preserving any query or hash suffix.
- * Default English uses unprefixed paths ("/", "/about"); localized homepages use "/{lang}/".
+ * Default English uses unprefixed paths ("/", "/about"); localized homepages use "/{lang}".
  */
 export const buildLocalizedPath = (targetPath = '/', lang = DEFAULT_LANG) => {
   const raw = String(targetPath || '/');
@@ -126,7 +126,7 @@ export const buildLocalizedPath = (targetPath = '/', lang = DEFAULT_LANG) => {
 
   let localized;
   if (basePath === '/') {
-    localized = targetLang === DEFAULT_LANG ? '/' : `/${targetLang}/`;
+    localized = targetLang === DEFAULT_LANG ? '/' : `/${targetLang}`;
   } else {
     localized = targetLang === DEFAULT_LANG ? basePath : `/${targetLang}${basePath}`;
   }

@@ -29,6 +29,11 @@
       "permanent": true
     },
     {
+      "source": "/:lang(id|de|es|fr|it|ms|pt)/",
+      "destination": "/:lang",
+      "permanent": true
+    },
+    {
       "source": "/:lang(id|de|es|fr|it|ms|pt)/:slug(calculator|about|faq|contact|privacy|terms|tiktok-cpm-calculator|tiktok-engagement-calculator)/",
       "destination": "/:lang/:slug",
       "permanent": true
